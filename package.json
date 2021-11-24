@@ -1,0 +1,27 @@
+{
+  "name": "MMM-HK-Transport-ETA",
+  "version": "1.0.0",
+  "description": "MagicMirror² module - station monitor for Hong Kong Transport",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/winstonma/MMM-HK-Transport-ETA.git"
+  },
+  "keywords": [
+    "MagicMirror",
+    "KMB",
+    "magic mirror",
+    "smart mirror",
+    "public transport",
+    "local transit"
+  ],
+  "author": "Winston Ma",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/winstonma/MMM-HK-Transport-ETA/issues"
+  },
+  "homepage": "https://github.com/winstonma/MMM-HK-Transport-ETA#readme",
+  "dependencies": {
+    "js-kmb-api": "^3.2.6",
+    "node-cron": "^3.0.0"
+  }
+}

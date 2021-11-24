@@ -1,0 +1,26 @@
+{% if currentETA %}
+    <table class="{{ config.tableClass }}">
+        {% for f in currentETA %}
+            <tr {% if config.colored %}class="colored"{% endif %} {% if config.fade %}style="opacity: {{ currentStep | opacity(numSteps) }};"{% endif %}>
+                <td class="align-right bright max-temp">
+                    {{ f.dest }}
+                </td>
+                <td class="align-right min-temp">
+                    {{ f.time | formatTime }}
+                </td>
+                {#
+                <td class="align-right min-temp">
+                    {{ f.time | fromNow }}
+                </td>
+                #}
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <div class="dimmed light small">
+        {{ "LOADING" | translate }}
+    </div>
+{% endif %}
+
+<!-- Uncomment the line below to see the contents of the `forecast` object. -->
+<!-- <div style="word-wrap:break-word" class="xsmall dimmed">{{forecast | dump}}</div> -->
