@@ -120,7 +120,7 @@ Module.register("MMM-HK-Transport-ETA", {
 				if (Array.isArray(date)) {
 					const retArray = date.map(singleDate => {
 						singleDate = moment(singleDate);
-	
+
 						if (this.config.timeFormat !== 24) {
 							if (this.config.showPeriod) {
 								if (this.config.showPeriodUpper) {
@@ -132,8 +132,8 @@ Module.register("MMM-HK-Transport-ETA", {
 								return singleDate.format("h:mm");
 							}
 						}
-	
-						return singleDate.format("HH:mm"); s
+
+						return singleDate.format("HH:mm");
 					});
 					return retArray.toString();
 				} else {
@@ -164,6 +164,17 @@ Module.register("MMM-HK-Transport-ETA", {
 					return date.endOf('minute').fromNow();
 				});
 				return retArray.toString();
+			}.bind(this)
+		);
+
+		this.nunjucksEnvironment().addFilter(
+			'json',
+			function (value, spaces) {
+				if (value instanceof nunjucks.runtime.SafeString) {
+					value = value.toString()
+				}
+				const jsonString = JSON.stringify(value, null, spaces).replace(/</g, '\\u003c')
+				return nunjucks.runtime.markSafe(jsonString)
 			}.bind(this)
 		);
 
