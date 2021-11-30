@@ -1,19 +1,25 @@
 {% if currentETA %}
     <table class="{{ config.tableClass }}">
         {% for f in currentETA %}
-            <tr {% if config.colored %}class="colored"{% endif %} {% if config.fade %}style="opacity: {{ currentStep | opacity(numSteps) }};"{% endif %}>
-                <td class="align-right bright max-temp">
-                    {{ f.dest }}
-                </td>
-                <td class="align-right min-temp">
-                    {{ f.time | formatTime }}
-                </td>
-                {#
-                <td class="align-right min-temp">
-                    {{ f.time | fromNow }}
-                </td>
-                #}
-            </tr>
+            {% if f.line %}
+                <tr {% if config.colored %}class="colored"{% endif %} {% if config.fade %}style="opacity: {{ currentStep | opacity(numSteps) }};"{% endif %}>
+                    <td class="align-right bright max-temp">
+                        {{ f.line }}
+                    </td>
+                </tr>
+            {% endif %}
+            {% if f.etas %}
+                {% for eta in f.etas %}
+                    <tr {% if config.colored %}class="colored"{% endif %} {% if config.fade %}style="opacity: {{ currentStep | opacity(numSteps) }};"{% endif %}>
+                        <td class="align-right bright max-temp">
+                            {{ eta.dest }}
+                        </td>
+                        <td class="align-right min-temp">
+                            {{ eta.time | formatTime }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
         {% endfor %}
     </table>
 {% else %}
