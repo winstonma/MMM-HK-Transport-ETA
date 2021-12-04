@@ -17,85 +17,83 @@ HKTransportETAProvider.register("mtrbus", {
 
 	// Set the default config properties that is specific to this provider
 	defaults: {
-		apiBase: "https://rt.data.gov.hk/v1/transport/mtr/bus/getSchedule"
+		apiBase: "https://rt.data.gov.hk/v1/transport/mtr/bus/getSchedule",
+		mtrBusLines: "https://raw.githubusercontent.com/kirosc/telegram-hketa/master/data/routes-mtr.json",
+		allRoutesData: {},
+		lineInfo: []
 	},
 
 	// Overwrite the fetchETA method.
-	fetchETA() {
-		const lang = 'en';
-		const dataObject = { "language": lang, "routeName": this.config.line };
+	async fetchETA() {
+
+		if (this.config.lineInfo.length === 0) {
+			this.config.lineInfo = await this.fetchRouteInfo();
+		}
+
+		const dataObject = { "language": 'en', "routeName": this.config.line };
 		this.fetchData(this.config.apiBase, method = "POST", data = dataObject)
-			.then((data) => {
-				const correntETA = this.generateETAObject(data);
-				this.setCurrentETA(correntETA);
+			.then(data => this.config.lineInfo.map(line => this.generateETAObject(line, data)))
+			.then(currentETAArray => {
+				this.setCurrentETA([{
+					line: this.config.line,
+					etas: currentETAArray
+				}]);
 			})
-			.catch(function (request) {
+			.catch(request => {
 				Log.error("Could not load data ... ", request);
 			})
 			.finally(() => this.updateAvailable());
 	},
 
+	fetchRouteInfo() {
+		return this.fetchData(this.config.mtrBusLines)
+			.then(data => {
+				this.config.allRoutesData = data;
+				return data.find(route => route.route_number === this.config.line);
+			}).then(data =>
+				data.lines.map(line => {
+					return line.stops.map(stop => ({
+						...stop,
+						description_en: line.description_en,
+						description_zh: line.description_zh,
+						dest: this.config.lang.startsWith("zh") ? line.description_zh.split(" 往 ")[1] : route.description_en.split(" to ")[1],
+					}))
+				})
+					.flat()
+					.filter(stop => ([stop.name_ch, stop.name_en].includes(this.config.sta)))
+			)
+			.catch(request => {
+				Log.error("Could not load data ... ", request);
+			});
+	},
+
 	/*
 	 * Generate a ETAObject based on currentWeatherInformation
 	 */
-	generateETAObject(currentETAData) {
-		const stop = currentETAData.busStop.find((s) => s.busStopId === this.config.sta);
+	generateETAObject(stopInfo, currentETAData) {
+		const stop = currentETAData.busStop.find(stop => stop.busStopId === stopInfo.ref_ID);
 
 		if (!stop) {
-		  //return currentETAData.routeStatusRemarkTitle ?? '尾班車已過或未有到站時間提供';
-		  return [];
+			//return currentETAData.routeStatusRemarkTitle ?? '尾班車已過或未有到站時間提供';
+			return [];
 		}
-	  
-		const etas = stop.bus.map(
-		  ({ arrivalTimeInSecond, departureTimeInSecond, isDelayed, isScheduled }) => ({
-			time: moment().add(arrivalTimeInSecond || departureTimeInSecond, 'seconds'),
-			isDelayed: (isDelayed === '1'),
-			isScheduled: (isScheduled === '1')
-		  })
-		);
 
-		return etas;
+		return {
+			dest: stopInfo.dest,
+			/*
+			etas: stop.bus.map(
+				({ arrivalTimeInSecond, departureTimeInSecond, isDelayed, isScheduled }) => ({
+					time: moment().add(arrivalTimeInSecond || departureTimeInSecond, 'seconds'),
+					isDelayed: (isDelayed === '1'),
+					isScheduled: (isScheduled === '1')
+				})
+			)
+			*/
+			time: stop.bus.map(
+				({ arrivalTimeInSecond, departureTimeInSecond, isDelayed, isScheduled }) =>
+					moment().add(arrivalTimeInSecond || departureTimeInSecond, 'seconds'
+				)
+			)
+		}
 	},
-
-	/*
-	 * Convert the OpenWeatherMap icons to a more usable name.
-	 */
-	convertWeatherType(weatherType) {
-		const weatherTypes = {
-			"01d": "day-sunny",
-			"02d": "day-cloudy",
-			"03d": "cloudy",
-			"04d": "cloudy-windy",
-			"09d": "showers",
-			"10d": "rain",
-			"11d": "thunderstorm",
-			"13d": "snow",
-			"50d": "fog",
-			"01n": "night-clear",
-			"02n": "night-cloudy",
-			"03n": "night-cloudy",
-			"04n": "night-cloudy",
-			"09n": "night-showers",
-			"10n": "night-rain",
-			"11n": "night-thunderstorm",
-			"13n": "night-snow",
-			"50n": "night-alt-cloudy-windy"
-		};
-
-		return weatherTypes.hasOwnProperty(weatherType) ? weatherTypes[weatherType] : null;
-	},
-
-	/* getParams(compliments)
-	 * Generates an url with api parameters based on the config.
-	 *
-	 * return String - URL params.
-	 */
-	getParams() {
-		let params = "?";
-
-		params += "&language=" + 'zh';
-		params += "&routeName=" + 'K12';
-
-		return params;
-	}
 });
