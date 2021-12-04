@@ -75,20 +75,14 @@ HKTransportETAProvider.register("mtrbus", {
 
 		if (!stop) {
 			//return currentETAData.routeStatusRemarkTitle ?? '尾班車已過或未有到站時間提供';
-			return [];
+			return {
+				dest: stopInfo.dest,
+				time: []
+			};
 		}
 
 		return {
 			dest: stopInfo.dest,
-			/*
-			etas: stop.bus.map(
-				({ arrivalTimeInSecond, departureTimeInSecond, isDelayed, isScheduled }) => ({
-					time: moment().add(arrivalTimeInSecond || departureTimeInSecond, 'seconds'),
-					isDelayed: (isDelayed === '1'),
-					isScheduled: (isScheduled === '1')
-				})
-			)
-			*/
 			time: stop.bus.map(
 				({ arrivalTimeInSecond, departureTimeInSecond, isDelayed, isScheduled }) =>
 					moment().add(arrivalTimeInSecond || departureTimeInSecond, 'seconds'
