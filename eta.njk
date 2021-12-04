@@ -1,16 +1,14 @@
 {% if currentETA %}
     <table class="{{ config.tableClass }}">
         {% for f in currentETA %}
-            {% if f.line %}
-                <tr {% if config.colored %}class="colored"{% endif %} {% if config.fade %}style="opacity: {{ currentStep | opacity(numSteps) }};"{% endif %}>
-                    <td class="align-right bright max-temp">
-                        {{ f.line }}
-                    </td>
-                </tr>
-            {% endif %}
             {% if f.etas %}
                 {% for eta in f.etas %}
                     <tr {% if config.colored %}class="colored"{% endif %} {% if config.fade %}style="opacity: {{ currentStep | opacity(numSteps) }};"{% endif %}>
+                        {% if f.line and loop.first %}
+                            <td rowspan="{{ f.etas.length }}" class="align-right bright max-temp">
+                                {{ f.line }}
+                            </td>
+                        {% endif %}
                         <td class="align-right bright max-temp">
                             {{ eta.dest }}
                         </td>
