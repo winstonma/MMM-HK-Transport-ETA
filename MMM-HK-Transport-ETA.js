@@ -23,7 +23,6 @@ Module.register("MMM-HK-Transport-ETA", {
 		fade: true,
 		fadePoint: 0.25, // Start on 1/4th of the list.
 		initialLoadDelay: 0, // 0 seconds delay
-		appendLocationNameToHeader: true,
 		calendarClass: "calendar",
 		tableClass: "small",
 		colored: false,
@@ -47,12 +46,8 @@ Module.register("MMM-HK-Transport-ETA", {
 
 	// Override getHeader method.
 	getHeader: function () {
-		if (this.config.appendLocationNameToHeader && this.config.sta) {
-			if (this.data.header) return this.data.header + " " + this.config.sta;
-			else return this.config.sta;
-		}
-
-		return this.data.header ? this.data.header : "";
+		return this.transportETAProvider.currentETA() ?
+			this.transportETAProvider.currentETA()[0].station : `${this.data.classes}-${this.config.transportETAProvider}`;
 	},
 
 	// Start the weather module.
