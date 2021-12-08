@@ -94,7 +94,7 @@ HKTransportETAProvider.register("gmb", {
 			station: stationInfo.station,
 			etas: [{
 				dest: stationInfo.dest,
-				time: currentETAData.data[0].eta.map(time => time.timestamp)
+				time: currentETAData.data[0].eta?.map(time => time.timestamp)
 			}]
 		}
 	},
