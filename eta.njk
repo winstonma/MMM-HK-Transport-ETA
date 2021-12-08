@@ -5,11 +5,11 @@
                 {% for eta in f.etas %}
                     <tr {% if config.colored %}class="colored"{% endif %} {% if config.fade %}style="opacity: {{ currentStep | opacity(numSteps) }};"{% endif %}>
                         {% if f.line and loop.first %}
-                            <td rowspan="{{ f.etas.length }}" class="align-right bright max-temp">
+                            <td rowspan="{{ f.etas.length }}" class="align-left bright max-temp">
                                 {{ f.line }}
                             </td>
                         {% endif %}
-                        <td class="align-right bright max-temp">
+                        <td class="align-left bright max-temp">
                             {{ eta.dest }}
                         </td>
                         <td class="align-right min-temp">
