@@ -15,8 +15,6 @@ Module.register("MMM-HK-Transport-ETA", {
 		updateInterval: 10 * 60 * 1000, // every 10 minutes
 		animationSpeed: 1000,
 		timeFormat: config.timeFormat,
-		showPeriod: true,
-		showPeriodUpper: false,
 		useBeaufort: true,
 		lang: config.language,
 		maxNumberOfDays: 5,
@@ -122,17 +120,8 @@ Module.register("MMM-HK-Transport-ETA", {
 						singleDate = moment(singleDate);
 
 						if (this.config.timeFormat !== 24) {
-							if (this.config.showPeriod) {
-								if (this.config.showPeriodUpper) {
-									return singleDate.format("h:mm A");
-								} else {
-									return singleDate.format("h:mm a");
-								}
-							} else {
-								return singleDate.format("h:mm");
-							}
+							return singleDate.format("h:mm")
 						}
-
 						return singleDate.format("HH:mm");
 					});
 					return retArray.toString();
@@ -140,15 +129,7 @@ Module.register("MMM-HK-Transport-ETA", {
 					date = moment(date);
 
 					if (this.config.timeFormat !== 24) {
-						if (this.config.showPeriod) {
-							if (this.config.showPeriodUpper) {
-								return date.format("h:mm A");
-							} else {
-								return date.format("h:mm a");
-							}
-						} else {
-							return date.format("h:mm");
-						}
+						return date.format("h:mm");
 					}
 
 					return date.format("HH:mm");
