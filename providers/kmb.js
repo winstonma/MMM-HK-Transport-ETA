@@ -340,10 +340,10 @@ HKTransportETAProvider.register("kmb", {
 		return Promise.all(
 			this.config.testData.sort((a, b) => {
 				if (a.stop.id != b.stop.id)
-					return a.stop.id - b.stop.id;
+					return (a.stop.id > b.stop.id) ? 1 : -1;
 
 				if (a.variant.route.number != b.variant.route.number)
-					return b.variant.route.number - a.variant.route.number;
+					return (a.variant.route.number < b.variant.route.number) ? -1 : 1;
 
 				return a.sequence - b.sequence;
 			}).map(data => {
