@@ -56,7 +56,7 @@ HKTransportETAProvider.register("mtrbus", {
 						...stop,
 						description_en: line.description_en,
 						description_zh: line.description_zh,
-						dest: this.config.lang.startsWith("zh") ? line.description_zh.split(" 往 ")[1] : route.description_en.split(" to ")[1],
+						dest: this.config.lang.startsWith("zh") ? line.description_zh.split(" 往 ")[1] : line.description_en.split(" to ")[1],
 					}))
 				})
 					.flat()
