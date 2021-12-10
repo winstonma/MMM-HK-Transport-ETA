@@ -20,283 +20,10 @@ HKTransportETAProvider.register("kmb", {
 		apiBase: "https://data.etabus.gov.hk/v1/transport/kmb",
 		allRoutesData: {},
 		lineInfo: [],
-		testData: [
-			{
-				"stop": {
-					"id": "NI01-W-1000-0"
-				},
-				"variant": {
-					"route": {
-						"number": "274",
-						"bound": 1
-					},
-					"serviceType": 1,
-					"origin": "Sheung Shui (Tai Ping)",
-					"destination": "Wu Kai Sha Station",
-					"description": "Normal"
-				},
-				"direction": "B",
-				"sequence": 20,
-				"fare": 4.6
-			},
-			{
-				"stop": {
-					"id": "NI01-W-1000-0"
-				},
-				"variant": {
-					"route": {
-						"number": "43X",
-						"bound": 1
-					},
-					"serviceType": 1,
-					"origin": "Yiu On",
-					"destination": "Tsuen Wan West Station",
-					"description": ""
-				},
-				"direction": "F",
-				"sequence": 5,
-				"fare": 9.6
-			},
-			{
-				"stop": {
-					"id": "NI01-W-1000-0"
-				},
-				"variant": {
-					"route": {
-						"number": "81C",
-						"bound": 1
-					},
-					"serviceType": 1,
-					"origin": "Yiu On",
-					"destination": "Tsim Sha Tsui East (Mody Road)",
-					"description": ""
-				},
-				"direction": "F",
-				"sequence": 5,
-				"fare": 9.4
-			},
-			{
-				"stop": {
-					"id": "NI01-W-0800-0"
-				},
-				"variant": {
-					"route": {
-						"number": "85K",
-						"bound": 1
-					},
-					"serviceType": 1,
-					"origin": "Heng On",
-					"destination": "Shatin Station",
-					"description": ""
-				},
-				"direction": "F",
-				"sequence": 6,
-				"fare": 5.4
-			},
-			{
-				"stop": {
-					"id": "NI01-W-0900-0"
-				},
-				"variant": {
-					"route": {
-						"number": "85S",
-						"bound": 1
-					},
-					"serviceType": 1,
-					"origin": "Yiu On",
-					"destination": "Hung Hom (Hung Luen Road)",
-					"description": ""
-				},
-				"direction": "F",
-				"sequence": 6,
-				"fare": 9.1
-			},
-			{
-				"stop": {
-					"id": "NI01-W-0800-0"
-				},
-				"variant": {
-					"route": {
-						"number": "89C",
-						"bound": 1
-					},
-					"serviceType": 1,
-					"origin": "Heng On",
-					"destination": "Kwun Tong (Tsui Ping Road)",
-					"description": ""
-				},
-				"direction": "F",
-				"sequence": 6,
-				"fare": 9.1
-			},
-			{
-				"stop": {
-					"id": "NI01-W-0800-0"
-				},
-				"variant": {
-					"route": {
-						"number": "N86",
-						"bound": 1
-					},
-					"serviceType": 1,
-					"origin": "Kam Ying Court",
-					"destination": "Shatin Station",
-					"description": "Normal"
-				},
-				"direction": "",
-				"sequence": 9,
-				"fare": 11.4
-			},
-			{
-				"stop": {
-					"id": "NI01-W-1000-0"
-				},
-				"variant": {
-					"route": {
-						"number": "281X",
-						"bound": 1
-					},
-					"serviceType": 1,
-					"origin": "Yiu On",
-					"destination": "Tsim Sha Tsui East (Mody Road)",
-					"description": ""
-				},
-				"direction": "F",
-				"sequence": 5,
-				"fare": 9.4
-			},
-			{
-				"stop": {
-					"id": "NI01-W-0900-0"
-				},
-				"variant": {
-					"route": {
-						"number": "286M",
-						"bound": 1
-					},
-					"serviceType": 1,
-					"origin": "Ma On Shan Town Centre",
-					"destination": "Diamond Hill Station (Circular)",
-					"description": ""
-				},
-				"direction": "F",
-				"sequence": 5,
-				"fare": 7.6
-			},
-			{
-				"stop": {
-					"id": "NI01-W-0900-0"
-				},
-				"variant": {
-					"route": {
-						"number": "289K",
-						"bound": 1
-					},
-					"serviceType": 1,
-					"origin": "University Station",
-					"destination": "Chevalier Garden (Circular)",
-					"description": ""
-				},
-				"direction": "B",
-				"sequence": 3,
-				"fare": 4.9
-			},
-			{
-				"stop": {
-					"id": "NI01-W-1000-0"
-				},
-				"variant": {
-					"route": {
-						"number": "681P",
-						"bound": 1
-					},
-					"serviceType": 1,
-					"origin": "Yiu On",
-					"destination": "Sheung Wan",
-					"description": ""
-				},
-				"direction": "F",
-				"sequence": 6,
-				"fare": 21.9
-			},
-			{
-				"stop": {
-					"id": "NI01-W-1000-0"
-				},
-				"variant": {
-					"route": {
-						"number": "981P",
-						"bound": 1
-					},
-					"serviceType": 1,
-					"origin": "Yiu On",
-					"destination": "Wan Chai (Fleming Road)",
-					"description": "(Monday to Friday)"
-				},
-				"direction": "F",
-				"sequence": 6,
-				"fare": 21.9
-			},
-			{
-				"stop": {
-					"id": "NI01-W-0850-2"
-				},
-				"variant": {
-					"route": {
-						"number": "A41P",
-						"bound": 1
-					},
-					"serviceType": 1,
-					"origin": "Wu Kai Sha Station",
-					"destination": "Airport (Ground Transportation Centre)",
-					"description": ""
-				},
-				"direction": "F",
-				"sequence": 11,
-				"fare": 27.7
-			},
-			{
-				"stop": {
-					"id": "NI01-W-0850-2"
-				},
-				"variant": {
-					"route": {
-						"number": "NA40",
-						"bound": 1
-					},
-					"serviceType": 1,
-					"origin": "Wu Kai Sha Station",
-					"destination": "Hzmb Hong Kong Port",
-					"description": "Normal"
-				},
-				"direction": "F",
-				"sequence": 12,
-				"fare": 40
-			},
-			{
-				"stop": {
-					"id": "NI01-W-0800-0"
-				},
-				"variant": {
-					"route": {
-						"number": "R287",
-						"bound": 1
-					},
-					"serviceType": 1,
-					"origin": "Wu Kai Sha Station",
-					"destination": "Tsim Sha Tsui East (Mody Road)",
-					"description": "Normal"
-				},
-				"direction": "",
-				"sequence": 12,
-				"fare": 18.3
-			}
-		],
 	},
 
 	// Overwrite the fetchETA method.
 	async fetchETA() {
-
 		if (this.config.lineInfo.length === 0) {
 			this.config.lineInfo = await this.fetchRouteInfo();
 		}
@@ -320,7 +47,7 @@ HKTransportETAProvider.register("kmb", {
 
 					return {
 						line: stop.variant.route.number,
-						station: 'b',
+						station: this.config.lineInfo.stopName,
 						etas: [{
 							dest: dest,
 							time: filteredResult.map(a => a.eta)
@@ -337,8 +64,8 @@ HKTransportETAProvider.register("kmb", {
 
 	fetchRouteInfo() {
 		// First of all, obtain the testData
-		return Promise.all(
-			this.config.testData.sort((a, b) => {
+		return this.getStoppings()
+			.then(data => Promise.all(data.sort((a, b) => {
 				if (a.stop.id != b.stop.id)
 					return (a.stop.id > b.stop.id) ? 1 : -1;
 
@@ -356,13 +83,34 @@ HKTransportETAProvider.register("kmb", {
 							stopID: result.data.find(stop => parseInt(stop.seq) === sequence).stop
 						};
 					})
-			})).then(data => ({
-				stopInfo: data,
-				stopIDList: [...new Set(data.map(line => line.stopID))]
-			}))
-			.catch(request => {
-				Log.error("Could not load data ... ", request);
-			});
+			})).then(stopList => {
+				const stopIDList = [...new Set(stopList.map(line => line.stopID))];
+				return Promise.all(stopIDList.map(stopID =>
+					this.fetchData(`https://data.etabus.gov.hk/v1/transport/kmb/stop/${stopID}`)
+						.then(data => data.data)
+				)).then(stopNameList => {
+					return stopList.map(stop => {
+						const stopName = stopNameList.find(stopname => stopname.stop === stop.stopID);
+						return {
+							...stop,
+							stopName: this.config.lang.startsWith("zh") ? stopName.name_tc : stopName.name_en
+						};
+					});
+				})
+			}).then(data => {
+				const stopNameObject = data.map(stop => stop.stopName).reduce((a, c) => (a[c] = (a[c] || 0) + 1, a), Object.create(null));
+				const stopName = Object.keys(Object.fromEntries(
+					Object.entries(stopNameObject).sort(([, a], [, b]) => a - b)
+				))[0];
+				return {
+					stopName: stopName,
+					stopInfo: data,
+					stopIDList: [...new Set(data.map(line => line.stopID))]	
+				}
+			})
+				.catch(request => {
+					Log.error("Could not load data ... ", request);
+				}));
 	},
 
 	// Create a URL from the config and base URL.
@@ -370,32 +118,11 @@ HKTransportETAProvider.register("kmb", {
 		return `${this.config.apiBase}/stop-eta/${stopID}`;
 	},
 
-	/*
-	 * Generate a ETAObject based on currentWeatherInformation
-	 */
-	generateETAObject(stopID, currentETAData) {
-		const routeList = this.config.lineInfo.stopInfo.filter(line => line.stopID === stopID).map(line => line.variant.route.number);
-		const etaList = currentETAData.data
-			.filter(eta => routeList.includes(eta.route))
-			.map(data => ({
-				dest: this.config.lang.startsWith("zh") ? data.dest_tc : data.dest_en
-			}));
-
-		if (!stop) {
-			//return currentETAData.routeStatusRemarkTitle ?? '尾班車已過或未有到站時間提供';
-			return {
-				dest: stopInfo.dest,
-				time: []
-			};
-		}
-
-		return {
-			dest: this.config.lang.startsWith("zh") ? route.dest_tc : route.dest_en,
-			time: stop.bus.map(
-				({ arrivalTimeInSecond, departureTimeInSecond, isDelayed, isScheduled }) =>
-					moment().add(arrivalTimeInSecond || departureTimeInSecond, 'seconds'
-					)
-			)
-		}
-	},
+	getStoppings() {
+		return new Promise((resolve, reject) => {
+			setTimeout(() => {
+				resolve(this.config.stops);
+			}, 0);
+		});
+	}
 });

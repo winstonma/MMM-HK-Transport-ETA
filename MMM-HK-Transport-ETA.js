@@ -57,14 +57,33 @@ Module.register("MMM-HK-Transport-ETA", {
 		// Initialize the weather provider.
 		this.transportETAProvider = HKTransportETAProvider.initialize(this.config.transportETAProvider, this);
 
-		// Let the weather provider know we are starting.
-		this.transportETAProvider.start();
-
 		// Add custom filters
 		this.addFilters();
 
-		// Schedule the first update.
-		this.scheduleUpdate(this.config.initialLoadDelay);
+		if (this.config.transportETAProvider === "kmb") {
+			this.sendSocketNotification("ADD_KMB_STOP", this.config.sta);
+		} else {
+			// Let the weather provider know we are starting.
+			this.transportETAProvider.start();
+
+			// Schedule the first update.
+			this.scheduleUpdate(this.config.initialLoadDelay);
+		}
+	},
+
+	socketNotificationReceived: function (notification, payload) {
+		if (notification === "KMB_STOP_ITEM") {
+			this.config.stops = payload;
+
+			const config = Object.assign({}, this.transportETAProvider.defaults, this.config);
+			this.transportETAProvider.setConfig(config);
+
+			// Let the weather provider know we are starting.
+			this.transportETAProvider.start();
+
+			// Schedule the first update.
+			this.scheduleUpdate(this.config.initialLoadDelay);
+		}
 	},
 
 	// Override notification handler.
@@ -89,10 +108,6 @@ Module.register("MMM-HK-Transport-ETA", {
 		Log.log("New ETA information available.");
 		this.updateDom(0);
 		this.scheduleUpdate();
-
-		if (this.transportETAProvider.currentETA()) {
-			this.sendNotification("CURRENTWEATHER_TYPE", { type: this.transportETAProvider.currentETA() });
-		}
 	},
 
 	scheduleUpdate: function (delay = null) {

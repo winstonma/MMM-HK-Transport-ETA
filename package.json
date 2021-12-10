@@ -20,5 +20,8 @@
     "url": "https://github.com/winstonma/MMM-HK-Transport-ETA/issues"
   },
   "homepage": "https://github.com/winstonma/MMM-HK-Transport-ETA#readme",
-  "dependencies": {}
+  "dependencies": {
+    "js-kmb-api": "^3.2.6",
+    "node-storage-shim": "^2.0.1"
+  }
 }
