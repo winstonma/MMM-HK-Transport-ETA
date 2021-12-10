@@ -67,29 +67,35 @@ const HKTransportETAProvider = Class.extend({
 
 	// A convenience function to make requests. It returns a promise.
 	fetchData: function (url, method = "GET", data = null) {
-		const getData = function (data) {
+		const getData = function (mockData) {
 			return new Promise(function (resolve, reject) {
-				const request = new XMLHttpRequest();
-				request.open(method, url, true);
-				request.onreadystatechange = function () {
-					if (this.readyState === 4) {
-						if (this.status === 200) {
-							resolve(JSON.parse(this.response));
-						} else {
-							reject(request);
-						}
-					}
-				};
-				if (data) {
-					request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-					request.send(JSON.stringify(data));
+				if (mockData) {
+					let mdata = mockData;
+					mdata = mdata.substring(1, mdata.length - 1);
+					resolve(JSON.parse(mdata));
 				} else {
-					request.send();
+					const request = new XMLHttpRequest();
+					request.open(method, url, true);
+					request.onreadystatechange = function () {
+						if (this.readyState === 4) {
+							if (this.status === 200) {
+								resolve(JSON.parse(this.response));
+							} else {
+								reject(request);
+							}
+						}
+					};
+					if (data) {
+						request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+						request.send(JSON.stringify(data));
+					} else {
+						request.send();
+					}
 				}
 			});
 		};
 
-		return getData(data);
+		return getData(this.config.mockData);
 	}
 });
 
