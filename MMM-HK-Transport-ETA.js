@@ -10,20 +10,11 @@ Module.register("MMM-HK-Transport-ETA", {
 	// Default module config.
 	defaults: {
 		transportETAProvider: "KMB",
-		type: "current", // current, forecast, daily (equivalent to forecast), hourly (only with OpenWeatherMap /onecall endpoint)
-		useKmh: false,
 		updateInterval: 10 * 60 * 1000, // every 10 minutes
 		animationSpeed: 1000,
 		timeFormat: config.timeFormat,
-		useBeaufort: true,
 		lang: config.language,
-		maxNumberOfDays: 5,
-		maxEntries: 5,
-		ignoreToday: false,
-		fade: true,
-		fadePoint: 0.25, // Start on 1/4th of the list.
 		initialLoadDelay: 0, // 0 seconds delay
-		calendarClass: "calendar",
 		tableClass: "small",
 		colored: false,
 	},
@@ -155,51 +146,6 @@ Module.register("MMM-HK-Transport-ETA", {
 					return date.endOf('minute').fromNow();
 				});
 				return retArray.toString();
-			}.bind(this)
-		);
-
-		this.nunjucksEnvironment().addFilter(
-			'json',
-			function (value, spaces) {
-				if (value instanceof nunjucks.runtime.SafeString) {
-					value = value.toString()
-				}
-				const jsonString = JSON.stringify(value, null, spaces).replace(/</g, '\\u003c')
-				return nunjucks.runtime.markSafe(jsonString)
-			}.bind(this)
-		);
-
-		this.nunjucksEnvironment().addFilter(
-			"calcNumSteps",
-			function (forecast) {
-				return Math.min(forecast.length, this.config.maxNumberOfDays);
-			}.bind(this)
-		);
-
-		this.nunjucksEnvironment().addFilter(
-			"calcNumEntries",
-			function (dataArray) {
-				return Math.min(dataArray.length, this.config.maxEntries);
-			}.bind(this)
-		);
-
-		this.nunjucksEnvironment().addFilter(
-			"opacity",
-			function (currentStep, numSteps) {
-				if (this.config.fade && this.config.fadePoint < 1) {
-					if (this.config.fadePoint < 0) {
-						this.config.fadePoint = 0;
-					}
-					const startingPoint = numSteps * this.config.fadePoint;
-					const numFadesteps = numSteps - startingPoint;
-					if (currentStep >= startingPoint) {
-						return 1 - (currentStep - startingPoint) / numFadesteps;
-					} else {
-						return 1;
-					}
-				} else {
-					return 1;
-				}
 			}.bind(this)
 		);
 
