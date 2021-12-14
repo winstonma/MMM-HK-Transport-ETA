@@ -32,7 +32,7 @@ Module.register("MMM-HK-Transport-ETA", {
 
 	// Return the scripts that are necessary for the weather module.
 	getScripts: function () {
-		return ["moment.js", "hktransportetaprovider.js", "etaobject.js", "suncalc.js", this.file("providers/" + this.config.transportETAProvider.toLowerCase() + ".js")];
+		return ["moment.js", "hktransportetaprovider.js", "etaobject.js", this.file("providers/" + this.config.transportETAProvider.toLowerCase() + ".js")];
 	},
 
 	// Override getHeader method.
