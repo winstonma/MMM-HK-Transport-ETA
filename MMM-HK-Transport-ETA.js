@@ -10,7 +10,7 @@ Module.register("MMM-HK-Transport-ETA", {
 	// Default module config.
 	defaults: {
 		transportETAProvider: "KMB",
-		updateInterval: 10 * 60 * 1000, // every 10 minutes
+		updateInterval: 1 * 60 * 1000, // every 1 minute
 		animationSpeed: 1000,
 		timeFormat: config.timeFormat,
 		lang: config.language,

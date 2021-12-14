@@ -30,13 +30,20 @@ The following properties can be configured:
 ### General options
 | Option                       | Description
 | ---------------------------- | -----------
-| `transportETAProvider`            | Which ETA provider should be used. <br><br> **Possible values:** `mtr`, `mtrbus` or `gmb`<br> **Default value:** `mtr`
+| `transportETAProvider`            | Which ETA provider should be used. <br><br> **Possible values:** `mtr`, `kmb` ,`mtrbus` or `gmb`<br> **Default value:** `mtr`
+| `updateInterval`             | How often does the content needs to be fetched? (Milliseconds) <br><br> **Possible values:** `1000` - `86400000` <br> **Default value:** `60000` (1 minute)
 
 ### MTR
 
 | Option                       | Description
 | ---------------------------- | -----------
 | `sta`                    | Which MTR station <br><br> **Possible values:** Please use the **stations.tc** or **stations.en** field of the [supported list of stations](https://codebeautify.org/jsonviewer?url=https://raw.githubusercontent.com/kirosc/telegram-hketa/master/data/mtr-lines.json)<br> **Default value:** `Hong Kong`
+
+### KMB
+
+| Option                       | Description
+| ---------------------------- | -----------
+| `sta`                    | Which KMB station <br><br> **Possible values:** Please use the **stations.tc** or **stations.en** field of the [supported list of stations](https://codebeautify.org/jsonviewer?url=https://raw.githubusercontent.com/kirosc/telegram-hketa/master/data/mtr-lines.json)<br> **Default value:** `Hong Kong`
 
 ### MTR Bus
 
