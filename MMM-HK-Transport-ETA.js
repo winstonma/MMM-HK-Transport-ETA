@@ -10,9 +10,11 @@ Module.register("MMM-HK-Transport-ETA", {
 	// Default module config.
 	defaults: {
 		transportETAProvider: "KMB",
-		updateInterval: 1 * 60 * 1000, // every 1 minute
-		animationSpeed: 1000,
+		reloadInterval: 1 * 60 * 1000, // every 1 minute
+		updateInterval: 5 * 1000,
+		animationSpeed: 2500,
 		timeFormat: config.timeFormat,
+		showRelativeTime: true,
 		lang: config.language,
 		initialLoadDelay: 0, // 0 seconds delay
 		tableClass: "small",
@@ -27,7 +29,7 @@ Module.register("MMM-HK-Transport-ETA", {
 
 	// Define required scripts.
 	getStyles: function () {
-		return ["font-awesome.css", "weather-icons.css", "MMM-HK-Transport-ETA.css"];
+		return ["font-awesome.css", "MMM-HK-Transport-ETA.css"];
 	},
 
 	// Return the scripts that are necessary for the weather module.
@@ -43,6 +45,9 @@ Module.register("MMM-HK-Transport-ETA", {
 
 	// Start the weather module.
 	start: function () {
+		this.loaded = false;
+		this.displayRelativeTime = false;
+
 		moment.locale(this.config.lang);
 
 		// Initialize the weather provider.
@@ -90,19 +95,38 @@ Module.register("MMM-HK-Transport-ETA", {
 	getTemplateData: function () {
 		return {
 			config: this.config,
-			currentETA: this.transportETAProvider.currentETA(),
+			currentETA: this.transportETAProvider.currentETA()
 		};
 	},
 
 	// What to do when the HK Transport ETA provider has new information available?
 	updateAvailable: function () {
 		Log.log("New ETA information available.");
-		this.updateDom(0);
+
+		if (!this.loaded) {
+			this.scheduleUpdateInterval();
+		}
 		this.scheduleUpdate();
 	},
 
+	/**
+	 * Schedule visual update.
+	 */
+	scheduleUpdateInterval: function () {
+		const start = moment();
+		const nextLoad = this.config.updateInterval - ((start.millisecond() + start.second() * 1000) % this.config.updateInterval);
+		if (this.config.showRelativeTime) {
+			this.config.displayRelativeTime = Math.round((start.millisecond() + start.second() * 1000) / this.config.updateInterval) % 2;
+		}
+
+		setTimeout(() => {
+			this.updateDom(this.config.animationSpeed);
+			this.scheduleUpdateInterval();
+		}, nextLoad);
+	},
+
 	scheduleUpdate: function (delay = null) {
-		let nextLoad = this.config.updateInterval;
+		let nextLoad = this.config.reloadInterval;
 		if (delay !== null && delay >= 0) {
 			nextLoad = delay;
 		}

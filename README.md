@@ -31,7 +31,10 @@ The following properties can be configured:
 | Option                       | Description
 | ---------------------------- | -----------
 | `transportETAProvider`            | Which ETA provider should be used. <br><br> **Possible values:** `mtr`, `kmb` ,`mtrbus` or `gmb`<br> **Default value:** `mtr`
-| `updateInterval`             | How often does the content needs to be fetched? (Milliseconds) <br><br> **Possible values:** `1000` - `86400000` <br> **Default value:** `60000` (1 minute)
+| `reloadInterval`             | How often does the content needs to be fetched? (Milliseconds) <br><br> **Possible values:** `1000` - `86400000` <br> **Default value:** `60000` (1 minute)
+| `updateInterval`   | How often do you want to display a relative time? (Milliseconds) <br><br> **Possible values:**`1000` - `60000` <br> **Default value:** `5000` (5 seconds)
+| `showRelativeTime`  | Display the relative time. <br><br> **Possible values:** `true` or `false` <br> **Default value:** `true`
+| `animationSpeed`   | Speed of the update animation. (Milliseconds) <br><br> **Possible values:**`0` - `5000` <br> **Default value:** `2500` (2.5 seconds)
 
 ### MTR
 

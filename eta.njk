@@ -3,7 +3,7 @@
         {% for f in currentETA %}
             {% if f.etas %}
                 {% for eta in f.etas %}
-                    <tr {% if config.colored %}class="colored"{% endif %}>
+                    <tr {% if config.colored %} class="colored" {% endif %}>
                         {% if f.line and loop.first %}
                             <td rowspan="{{ f.etas.length }}" class="align-left bright max-temp">
                                 {{ f.line }}
@@ -13,7 +13,11 @@
                             {{ eta.dest }}
                         </td>
                         <td class="align-right min-temp">
-                            {{ eta.time | formatTime }}
+                            {% if config.displayRelativeTime %}
+                                {{ eta.time | fromNow }}
+                            {% else %}
+                                {{ eta.time | formatTime }}
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}
@@ -25,6 +29,5 @@
         {{ "LOADING" | translate }}
     </div>
 {% endif %}
-
 <!-- Uncomment the line below to see the contents of the `forecast` object. -->
 <!-- <div style="word-wrap:break-word" class="xsmall dimmed">{{forecast | dump}}</div> -->
