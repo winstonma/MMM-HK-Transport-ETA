@@ -11,10 +11,9 @@ Module.register("MMM-HK-Transport-ETA", {
 	defaults: {
 		transportETAProvider: "KMB",
 		reloadInterval: 1 * 60 * 1000, // every 1 minute
-		updateInterval: 5 * 1000,
+		updateInterval: 5,  // every 5 seconds
 		animationSpeed: 2500,
 		timeFormat: config.timeFormat,
-		showRelativeTime: true,
 		lang: config.language,
 		initialLoadDelay: 0, // 0 seconds delay
 		tableClass: "small",
@@ -113,10 +112,10 @@ Module.register("MMM-HK-Transport-ETA", {
 	 * Schedule visual update.
 	 */
 	scheduleUpdateInterval: function () {
-		const start = moment();
-		const nextLoad = this.config.updateInterval - ((start.millisecond() + start.second() * 1000) % this.config.updateInterval);
-		if (this.config.showRelativeTime) {
-			this.config.displayRelativeTime = Math.round((start.millisecond() + start.second() * 1000) / this.config.updateInterval) % 2;
+		const currentTime = moment();
+		const nextLoad = this.config.updateInterval - (currentTime.unix() % this.config.updateInterval);
+		if (this.config.updateInterval !== 0) {
+			this.config.displayRelativeTime = Math.round(currentTime.unix() / this.config.updateInterval) % 2;
 		}
 
 		setTimeout(() => {
