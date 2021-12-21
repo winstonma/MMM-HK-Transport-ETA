@@ -102,24 +102,27 @@ Module.register("MMM-HK-Transport-ETA", {
 	updateAvailable: function () {
 		Log.log("New ETA information available.");
 
-		if (!this.loaded) {
+		if (this.config.updateInterval !== 0 && !this.loaded) {
 			this.scheduleUpdateInterval();
+		} else {
+			this.updateDom(this.config.animationSpeed);
 		}
+
 		this.scheduleUpdate();
+		this.loaded = true;
 	},
 
 	/**
 	 * Schedule visual update.
 	 */
 	scheduleUpdateInterval: function () {
+		this.updateDom(this.config.animationSpeed);
+
 		const currentTime = moment();
-		const nextLoad = this.config.updateInterval - (currentTime.unix() % this.config.updateInterval);
-		if (this.config.updateInterval !== 0) {
-			this.config.displayRelativeTime = Math.round(currentTime.unix() / this.config.updateInterval) % 2;
-		}
+		const nextLoad = (this.config.updateInterval - (currentTime.unix() % this.config.updateInterval)) * 1000;
+		this.config.displayRelativeTime = Math.round(currentTime.unix() / this.config.updateInterval) % 2;
 
 		setTimeout(() => {
-			this.updateDom(this.config.animationSpeed);
 			this.scheduleUpdateInterval();
 		}, nextLoad);
 	},
