@@ -16,7 +16,7 @@ modules: [
 		config: {
 			// See 'Configuration options' for more information.
 			transportETAProvider: 'mtr',
-            sta: 'Hong Kong'
+			sta: 'Hong Kong'
 		}
 	}
 ]
