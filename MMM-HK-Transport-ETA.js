@@ -11,7 +11,7 @@ Module.register("MMM-HK-Transport-ETA", {
 	defaults: {
 		transportETAProvider: "KMB",
 		reloadInterval: 1 * 60 * 1000, // every 1 minute
-		updateInterval: 5,  // every 5 seconds
+		updateInterval: 5 * 1000,  // every 5 seconds
 		animationSpeed: 2500,
 		timeFormat: config.timeFormat,
 		lang: config.language,
@@ -46,8 +46,25 @@ Module.register("MMM-HK-Transport-ETA", {
 	start: function () {
 		this.loaded = false;
 		this.displayRelativeTime = false;
+		this.error = null;
 
 		moment.locale(this.config.lang);
+		moment.updateLocale("en", {
+			relativeTime: {
+				s: "just now",
+				m: '%dm',
+				mm: '%dm',
+				h: '%dm'
+			},
+		});
+		moment.updateLocale("zh-tw", {
+			relativeTime: {
+				s: "現在",
+				m: '%d分',
+				mm: '%d分',
+				h: '%d分'
+			},
+		});
 
 		// Initialize the weather provider.
 		this.transportETAProvider = HKTransportETAProvider.initialize(this.config.transportETAProvider, this);
@@ -92,6 +109,11 @@ Module.register("MMM-HK-Transport-ETA", {
 
 	// Add all the data to the template.
 	getTemplateData: function () {
+		if (this.error) {
+			return {
+				error: this.error
+			};
+		}
 		return {
 			config: this.config,
 			currentETA: this.transportETAProvider.currentETA()
@@ -119,8 +141,9 @@ Module.register("MMM-HK-Transport-ETA", {
 		this.updateDom(this.config.animationSpeed);
 
 		const currentTime = moment();
-		const nextLoad = (this.config.updateInterval - (currentTime.unix() % this.config.updateInterval)) * 1000;
-		this.config.displayRelativeTime = Math.round(currentTime.unix() / this.config.updateInterval) % 2;
+		const nextLoad = this.config.updateInterval - (currentTime.valueOf() % this.config.updateInterval);
+		console.log(currentTime+nextLoad);
+		this.config.displayRelativeTime = Math.round(currentTime.valueOf() / this.config.updateInterval) % 2;
 
 		setTimeout(() => {
 			this.scheduleUpdateInterval();
@@ -167,11 +190,7 @@ Module.register("MMM-HK-Transport-ETA", {
 		this.nunjucksEnvironment().addFilter(
 			"fromNow",
 			function (dateArray) {
-				const retArray = dateArray.map(date => {
-					date = moment(date);
-					return date.endOf('minute').fromNow();
-				});
-				return retArray.toString();
+				return dateArray.map(date => moment(date).fromNow(true)).toString();
 			}.bind(this)
 		);
 
