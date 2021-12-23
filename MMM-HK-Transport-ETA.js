@@ -48,7 +48,9 @@ Module.register("MMM-HK-Transport-ETA", {
 		this.displayRelativeTime = false;
 		this.error = null;
 
+		// Moment.js config
 		moment.locale(this.config.lang);
+		moment.relativeTimeThreshold('m', 60);
 		moment.updateLocale("en", {
 			relativeTime: {
 				s: "just now",
