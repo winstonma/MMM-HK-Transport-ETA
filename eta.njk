@@ -5,14 +5,14 @@
                 {% for eta in f.etas %}
                     <tr {% if config.colored %} class="colored" {% endif %}>
                         {% if f.line and loop.first %}
-                            <td rowspan="{{ f.etas.length }}" class="align-left bright max-temp">
+                            <td rowspan="{{ f.etas.length }}" class="align-left bright">
                                 {{ f.line }}
                             </td>
                         {% endif %}
-                        <td class="align-left bright max-temp">
+                        <td class="align-left bright">
                             {{ eta.dest }}
                         </td>
-                        <td class="align-right min-temp">
+                        <td class="align-right bright">
                             {% if config.displayRelativeTime %}
                                 {{ eta.time | fromNow }}
                             {% else %}
@@ -24,6 +24,10 @@
             {% endif %}
         {% endfor %}
     </table>
+{% elseif error %}
+    <div class="small dimmed">
+        {{ "MODULE_CONFIG_ERROR" | translate({MODULE_NAME: "MMM-HK-Transport-ETA", ERROR: error}) | safe }}
+    </div>
 {% else %}
     <div class="dimmed light small">
         {{ "LOADING" | translate }}
