@@ -144,7 +144,6 @@ Module.register("MMM-HK-Transport-ETA", {
 
 		const currentTime = moment();
 		const nextLoad = this.config.updateInterval - (currentTime.valueOf() % this.config.updateInterval);
-		console.log(currentTime+nextLoad);
 		this.config.displayRelativeTime = Math.round(currentTime.valueOf() / this.config.updateInterval) % 2;
 
 		setTimeout(() => {
