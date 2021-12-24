@@ -24,7 +24,6 @@ HKTransportETAProvider.register("gmb", {
 
 	// Overwrite the fetchETA method.
 	async fetchETA() {
-
 		if (this.config.lineInfo.length === 0) {
 			this.config.lineInfo = await this.fetchRouteInfo();
 		}
@@ -89,13 +88,14 @@ HKTransportETAProvider.register("gmb", {
 	 * Generate a ETAObject based on currentWeatherInformation
 	 */
 	generateETAObject(stationInfo, currentETAData) {
+		const etas = (currentETAData.data[0].eta?.length === 0) ? null : [{
+			dest: stationInfo.dest,
+			time: currentETAData.data[0].eta?.map(time => time.timestamp)
+		}];
 		return {
 			line: this.config.line,
 			station: stationInfo.station,
-			etas: [{
-				dest: stationInfo.dest,
-				time: currentETAData.data[0].eta?.map(time => time.timestamp)
-			}]
+			etas: etas
 		}
 	},
 });
