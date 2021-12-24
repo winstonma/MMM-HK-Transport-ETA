@@ -1,7 +1,7 @@
 {% if currentETA %}
     <table class="{{ config.tableClass }}">
         {% for f in currentETA %}
-            {% if f.etas %}
+            {% if f.etas|length %}
                 {% for eta in f.etas %}
                     <tr {% if config.colored %} class="colored" {% endif %}>
                         {% if f.line and loop.first %}
@@ -21,6 +21,10 @@
                         </td>
                     </tr>
                 {% endfor %}
+            {% else %}
+                <div class="dimmed light small">
+                    {{ "EMPTY" | translate }}
+                </div>
             {% endif %}
         {% endfor %}
     </table>
