@@ -81,23 +81,24 @@ HKTransportETAProvider.register("mtr", {
 		const [lineCode, stationCode] = Object.keys(currentETAData.data)[0].split("-");
 		const lang = this.config.lang.startsWith("zh") ? "tc" : "en";
 		const stationInfo = this.config.lineInfo.find(station => ((station.line_code === lineCode) && (station.station_code === stationCode)));
+		const etas = Object.keys(etaObject)
+			.filter(key => ['UP', 'DOWN'].includes(key))
+			.map(direction => {
+				const groupByDest = etaObject[direction].reduce((r, a) => {
+					const destination = this.config.mtrData[lineCode].stations.find(station => station.code === a.dest)[lang];
+					r[destination] = [...r[destination] || [], a];
+					return r;
+				}, {});
+				return Object.entries(groupByDest).map(([key, value]) => ({
+					dest: key,
+					time: value.map(eta => eta.time)
+				}))[0];
+			}).filter(n => n);
 
 		return {
 			line: stationInfo.line,
 			station: stationInfo.station,
-			etas: Object.keys(etaObject)
-				.filter(key => ['UP', 'DOWN'].includes(key))
-				.map(direction => {
-					const groupByDest = etaObject[direction].reduce((r, a) => {
-						const destination = this.config.mtrData[lineCode].stations.find(station => station.code === a.dest)[lang];
-						r[destination] = [...r[destination] || [], a];
-						return r;
-					}, {});
-					return Object.entries(groupByDest).map(([key, value]) => ({
-						dest: key,
-						time: value.map(eta => eta.time)
-					}))[0];
-				})
+			etas: etas
 		}
 	},
 
