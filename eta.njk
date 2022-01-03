@@ -1,7 +1,18 @@
 {% if currentETA %}
     <table class="{{ config.tableClass }}">
+        <tr>
+            <th class="align-left bright">
+                {{ "LINE" | translate }}
+            </th>
+            <th class="align-left bright">
+                {{ "DESTINATION" | translate }}
+            </th>
+            <th class="align-right bright">
+                {{ "DEPARTURE" | translate }}
+            </th>
+        </tr>
         {% for f in currentETA %}
-            {% if f.etas|length %}
+            {% if f.etas | length %}
                 {% for eta in f.etas %}
                     <tr {% if config.colored %} class="colored" {% endif %}>
                         {% if f.line and loop.first %}

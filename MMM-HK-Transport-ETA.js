@@ -42,6 +42,13 @@ Module.register("MMM-HK-Transport-ETA", {
 			this.transportETAProvider.currentETA()[0].station : `${this.data.classes}-${this.config.transportETAProvider}`;
 	},
 
+	getTranslations() {
+		return {
+			en: "translations/en.json",
+			"zh-tw": "translations/zh-tw.json",
+		};
+	},
+
 	// Start the weather module.
 	start: function () {
 		this.loaded = false;
