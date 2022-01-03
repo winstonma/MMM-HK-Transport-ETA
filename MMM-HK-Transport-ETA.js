@@ -51,22 +51,33 @@ Module.register("MMM-HK-Transport-ETA", {
 		// Moment.js config
 		moment.locale(this.config.lang);
 		moment.relativeTimeThreshold('m', 60);
-		moment.updateLocale("en", {
-			relativeTime: {
-				s: "just now",
-				m: '%dm',
-				mm: '%dm',
-				h: '%dm'
+
+		const momentLanguageConfigData = {
+			"en": {
+				relativeTime: {
+					s: "just now",
+					ss: "just now",
+					m: '%dm',
+					mm: '%dm',
+					h: '%dh',
+					hh: '%dh',
+				}
 			},
-		});
-		moment.updateLocale("zh-tw", {
-			relativeTime: {
-				s: "現在",
-				m: '%d分',
-				mm: '%d分',
-				h: '%d分'
+			"zh-tw": {
+				relativeTime: {
+					s: "現在",
+					ss: "現在",
+					m: '%d分',
+					mm: '%d分',
+					h: '%d小時',
+					hh: '%d小時',
+				}
 			},
-		});
+		};
+
+		const lang = this.config.lang.startsWith("zh") ? "zh-tw" : "en";
+
+		moment.updateLocale(lang, momentLanguageConfigData[lang]);
 
 		// Initialize the weather provider.
 		this.transportETAProvider = HKTransportETAProvider.initialize(this.config.transportETAProvider, this);
@@ -142,11 +153,13 @@ Module.register("MMM-HK-Transport-ETA", {
 	scheduleUpdateInterval: function () {
 		this.updateDom(this.config.animationSpeed);
 
-		const currentTime = moment();
-		const nextLoad = this.config.updateInterval - (currentTime.valueOf() % this.config.updateInterval);
-		this.config.displayRelativeTime = Math.round(currentTime.valueOf() / this.config.updateInterval) % 2;
+		const currentTime = Date.now();
+		const nextLoad = this.config.updateInterval - (currentTime % this.config.updateInterval);
+		this.config.displayRelativeTime = Math.round(currentTime / this.config.updateInterval) % 2;
 
-		setTimeout(() => {
+		if (this.timer) clearTimeout(this.timer);
+
+		this.timer = setTimeout(() => {
 			this.scheduleUpdateInterval();
 		}, nextLoad);
 	},
