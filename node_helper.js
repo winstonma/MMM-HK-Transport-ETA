@@ -34,6 +34,7 @@ module.exports = NodeHelper.create({
    * and broadcasts these using sendSocketNotification.
    */
   broadcastETAs: function (data) {
+    Log.log("Sending KMB Stop Info");
     this.sendSocketNotification("KMB_STOP_ITEM", data);
   },
 });
