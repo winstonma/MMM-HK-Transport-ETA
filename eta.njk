@@ -1,16 +1,18 @@
 {% if currentETA %}
     <table class="{{ config.tableClass }}">
-        <tr>
-            <th class="align-left bright">
-                {{ "LINE" | translate }}
-            </th>
-            <th class="align-left bright">
-                {{ "DESTINATION" | translate }}
-            </th>
-            <th class="align-right bright">
-                {{ "DEPARTURE" | translate }}
-            </th>
-        </tr>
+        {% if config.showHeader %}
+            <tr>
+                <th class="align-left bright">
+                    {{ "LINE" | translate }}
+                </th>
+                <th class="align-left bright">
+                    {{ "DESTINATION" | translate }}
+                </th>
+                <th class="align-right bright">
+                    {{ "DEPARTURE" | translate }}
+                </th>
+            </tr>
+        {% endif %}
         {% for f in currentETA %}
             {% if f.etas | length %}
                 {% for eta in f.etas %}

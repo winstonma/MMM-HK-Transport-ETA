@@ -18,6 +18,7 @@ Module.register("MMM-HK-Transport-ETA", {
 		initialLoadDelay: 0, // 0 seconds delay
 		tableClass: "small",
 		colored: false,
+		showHeader: false
 	},
 
 	// Module properties.
