@@ -1,8 +1,24 @@
-# Weather Module
+# MMM-HK-Transport-ETA Module
 
-This module aims to be the replacement for the current `currentweather` and `weatherforcast` modules. The module will be configurable to be used as a current weather view, or to show the forecast. This way the module can be used twice to fulfill both purposes.
+Estimated Time of Arrival (ETA) for the Hong Kong Transport. It uses the API provided by [DATA.GOV.HK](https://data.gov.hk/) and support several Hong Kong transport.
 
-For configuration options, please check the [MagicMirror² documentation](https://docs.magicmirror.builders/modules/weather.html).
+This module aims to be the replacement the [MMM-HK-KMB](https://github.com/winstonma/MMM-HK-KMB) and [MMM-HK-Transport](https://github.com/winstonma/MMM-HK-Transport) modules.
+
+## Prerequisite
+A working installation of [MagicMirror<sup>2</sup>](https://github.com/MichMich/MagicMirror)
+ 
+## Dependencies
+  * npm
+  * [js-kmb-api](https://github.com/miklcct/js-kmb-api)
+
+## Installation
+To add this module, go to MagicMirror folder and run the following command
+```bash
+cd modules
+git clone https://github.com/winstonma/MMM-HK-Transport-ETA.git
+cd MMM-HK-Transport-ETA
+npm install
+```
 
 ## Usage
 
