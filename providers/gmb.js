@@ -48,15 +48,15 @@ HKTransportETAProvider.register("gmb", {
 				return data.data[0];
 			}).then(routeInfo =>
 				Promise.all(routeInfo.directions.map(route => this.fetchData(`${this.config.apiBase}/route-stop/${routeInfo.route_id}/${route.route_seq}`)
-					.then(retValue => retValue.data.route_stops
-						.filter(stop => stop.stop_id === this.config.sta)
-						.map(stop => ({
-							...stop,
-							routeID: routeInfo.route_id,
-							routeSeq: route.routeSeq,
-							station: this.config.lang.startsWith("zh") ? stop.name_tc : stop.name_en,
-							dest: this.config.lang.startsWith("zh") ? route.dest_tc : route.dest_en,
-						}))
+					.then(retValue =>
+						retValue.data.route_stops.filter(stop => stop.stop_id === this.config.sta)
+							.map(stop => ({
+								...stop,
+								routeID: routeInfo.route_id,
+								routeSeq: route.routeSeq,
+								station: this.config.lang.startsWith("zh") ? stop.name_tc : stop.name_en,
+								dest: this.config.lang.startsWith("zh") ? route.dest_tc : route.dest_en,
+							}))
 					)
 				))
 			).then(data => data.flat())

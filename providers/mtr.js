@@ -48,16 +48,16 @@ HKTransportETAProvider.register("mtr", {
 
 				// Find the valid line and routes
 				return Object.entries(data)
-					.map(([key, value]) => value.stations.map(station => ({
-						line_code: key,
-						line: this.config.lang.startsWith("zh") ? value.tc : value.en,
-						station: this.config.lang.startsWith("zh") ? station.tc : station.en,
-						station_tc: station.tc,
-						station_en: station.en,
-						station_code: station.code
-					})))
+					.map(([key, lineInfo]) =>
+						lineInfo.stations.filter(station => ([station.tc, station.en].includes(this.config.sta)))
+							.map(station => ({
+								line_code: key,
+								line: this.config.lang.startsWith("zh") ? lineInfo.tc : lineInfo.en,
+								station: this.config.lang.startsWith("zh") ? station.tc : station.en,
+								station_code: station.code
+							}))
+					)
 					.flat()
-					.filter(station => ([station.station_tc, station.station_en].includes(this.config.sta)))
 			})
 			.catch(function (request) {
 				Log.error("Could not load data ... ", request);
