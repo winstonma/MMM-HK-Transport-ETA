@@ -35,6 +35,7 @@ HKTransportETAProvider.register("mtrbus", {
 			.then(data => this.config.lineInfo.map(line => this.generateETAObject(line, data)))
 			.then(currentETAArray => {
 				this.setCurrentETA([{
+					station: this.config.lineInfo[0].station,
 					line: this.config.line,
 					etas: currentETAArray
 				}]);
@@ -52,15 +53,16 @@ HKTransportETAProvider.register("mtrbus", {
 				return data.find(route => route.route_number === this.config.line);
 			}).then(data =>
 				data.lines.map(line => {
-					return line.stops.map(stop => ({
-						...stop,
-						description_en: line.description_en,
-						description_zh: line.description_zh,
-						dest: this.config.lang.startsWith("zh") ? line.description_zh.split(" 往 ")[1] : line.description_en.split(" to ")[1],
-					}))
-				})
-					.flat()
-					.filter(stop => ([stop.name_ch, stop.name_en].includes(this.config.sta)))
+					const filteredArray = line.stops.filter(stop => ([stop.name_ch, stop.name_en].includes(this.config.sta)));
+					return [...new Map(filteredArray.map(item => [item.ref_ID, item])).values()]
+						.map(stop => ({
+							...stop,
+							station: this.config.lang.startsWith("zh") ? stop.name_ch : stop.name_en,
+							dest: this.config.lang.startsWith("zh") ?
+								(line.description_zh.split(" 往 ").length > 1 ? line.description_zh.split(" 往 ")[1] : line.description_zh)
+								: (line.description_en.split(" to ").length > 1 ? line.description_en.split(" to ")[1] : line.description_en),
+						}))
+				}).flat()
 			)
 			.catch(request => {
 				Log.error("Could not load data ... ", request);
@@ -84,9 +86,8 @@ HKTransportETAProvider.register("mtrbus", {
 		return {
 			dest: stopInfo.dest,
 			time: stop.bus.map(
-				({ arrivalTimeInSecond, departureTimeInSecond, isDelayed, isScheduled }) =>
-					moment().add(arrivalTimeInSecond || departureTimeInSecond, 'seconds'
-				)
+				({ departureTimeInSecond }) =>
+					moment().add(departureTimeInSecond, 'seconds')
 			)
 		}
 	},
