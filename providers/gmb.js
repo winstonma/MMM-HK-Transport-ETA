@@ -69,7 +69,7 @@ HKTransportETAProvider.register("gmb", {
 					dest: route.dest
 				})))
 					.flat()
-					.filter(stop => stop.name_tc === this.config.sta)
+					.filter(stop => stop.stop_id === this.config.sta)
 			)
 			.catch(request => {
 				Log.error("Could not load data ... ", request);
