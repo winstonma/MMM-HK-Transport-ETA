@@ -1,10 +1,10 @@
-/* global WeatherProvider, ETAObject */
+/* global ETAProvider, ETAObject */
 
 /* Magic Mirror
- * Module: Weather
+ * Module: ETA
  *
- * By Michael Teeuw https://michaelteeuw.nl
- * MIT Licensed.
+ * By Winston Ma https://github.com/winstonma
+ * AGPL-3.0 Licensed.
  *
  * This class is the blueprint for a HK Transport ETA provider.
  */

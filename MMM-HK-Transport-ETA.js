@@ -1,10 +1,10 @@
-/* global WeatherProvider */
+/* global ETAProvider */
 
 /* Magic Mirror
- * Module: Weather
+ * Module: MMM-HK-Transport-ETA
  *
- * By Michael Teeuw https://michaelteeuw.nl
- * MIT Licensed.
+ * By Winston Ma https://github.com/winstonma
+ * AGPL-3.0 Licensed.
  */
 Module.register("MMM-HK-Transport-ETA", {
 	// Default module config.
@@ -32,7 +32,7 @@ Module.register("MMM-HK-Transport-ETA", {
 		return ["font-awesome.css", "MMM-HK-Transport-ETA.css"];
 	},
 
-	// Return the scripts that are necessary for the weather module.
+	// Return the scripts that are necessary for the ETA module.
 	getScripts: function () {
 		return ["moment.js", "hktransportetaprovider.js", "etaobject.js", this.file("providers/" + this.config.transportETAProvider.toLowerCase() + ".js")];
 	},
@@ -50,7 +50,7 @@ Module.register("MMM-HK-Transport-ETA", {
 		};
 	},
 
-	// Start the weather module.
+	// Start the ETA module.
 	start: function () {
 		this.loaded = false;
 		this.displayRelativeTime = false;
@@ -87,7 +87,7 @@ Module.register("MMM-HK-Transport-ETA", {
 
 		moment.updateLocale(lang, momentLanguageConfigData[lang]);
 
-		// Initialize the weather provider.
+		// Initialize the ETA provider.
 		this.transportETAProvider = HKTransportETAProvider.initialize(this.config.transportETAProvider, this);
 
 		// Add custom filters
@@ -96,7 +96,7 @@ Module.register("MMM-HK-Transport-ETA", {
 		if (this.config.transportETAProvider === "kmb") {
 			this.sendSocketNotification("ADD_KMB_STOP", this.config.sta);
 		} else {
-			// Let the weather provider know we are starting.
+			// Let the ETA provider know we are starting.
 			this.transportETAProvider.start();
 
 			// Schedule the first update.
@@ -111,7 +111,7 @@ Module.register("MMM-HK-Transport-ETA", {
 			const config = Object.assign({}, this.transportETAProvider.defaults, this.config);
 			this.transportETAProvider.setConfig(config);
 
-			// Let the weather provider know we are starting.
+			// Let the ETA provider know we are starting.
 			this.transportETAProvider.start();
 
 			// Schedule the first update.

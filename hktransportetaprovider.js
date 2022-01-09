@@ -1,15 +1,15 @@
 /* global Class */
 
 /* Magic Mirror
- * Module: Weather
+ * Module: ETA
  *
- * By Michael Teeuw https://michaelteeuw.nl
- * MIT Licensed.
+ * By Winston Ma https://github.com/winstonma
+ * AGPL-3.0 Licensed.
  *
  * This class is the blueprint for a HK Transport ETA provider.
  */
 const HKTransportETAProvider = Class.extend({
-	// Weather Provider Properties
+	// ETA Provider Properties
 	providerName: null,
 	defaults: {},
 
@@ -23,7 +23,7 @@ const HKTransportETAProvider = Class.extend({
 	delegate: null,
 	providerIdentifier: null,
 
-	// Weather Provider Methods
+	// ETA Provider Methods
 	// All the following methods can be overwritten, although most are good as they are.
 
 	// Called when a HK Transport ETA provider is initialized.
@@ -32,7 +32,7 @@ const HKTransportETAProvider = Class.extend({
 		Log.info(`HK Transport ETA provider: ${this.providerName} initialized.`);
 	},
 
-	// Called to set the config, this config is the same as the weather module's config.
+	// Called to set the config, this config is the same as the ETA module's config.
 	setConfig: function (config) {
 		this.config = config;
 		Log.info(`HK Transport ETA provider: ${this.providerName} config set.`, this.config);
@@ -43,24 +43,24 @@ const HKTransportETAProvider = Class.extend({
 		Log.info(`HK Transport ETA provider: ${this.providerName} started.`);
 	},
 
-	// This method should start the API request to fetch the current weather.
+	// This method should start the API request to fetch the current ETA.
 	// This method should definitely be overwritten in the provider.
 	fetchETA: function () {
 		Log.warn(`HK Transport ETA provider: ${this.providerName} does not subclass the fetchETA method.`);
 	},
 
-	// This returns a WeatherDay object for the current weather.
+	// This returns the current ETA object for the current ETA.
 	currentETA: function () {
 		return this.currentETAArray;
 	},
 
 	// Set the currentETA and notify the delegate that new information is available.
 	setCurrentETA: function (currentETAArray) {
-		// We should check here if we are passing a WeatherDay
+		// We should check here if we are passing a ETA
 		this.currentETAArray = currentETAArray;
 	},
 
-	// Notify the delegate that new weather is available.
+	// Notify the delegate that new ETA is available.
 	updateAvailable: function () {
 		this.delegate.updateAvailable(this);
 	},
@@ -100,7 +100,7 @@ const HKTransportETAProvider = Class.extend({
 });
 
 /**
- * Collection of registered weather providers.
+ * Collection of registered ETA providers.
  */
 HKTransportETAProvider.providers = [];
 
@@ -118,7 +118,7 @@ HKTransportETAProvider.register = function (providerIdentifier, providerDetails)
  * Static method to initialize a new HK Transport ETA provider.
  *
  * @param {string} providerIdentifier The name of the HK Transport ETA provider
- * @param {object} delegate The weather module
+ * @param {object} delegate The ETA module
  * @returns {object} The new HK Transport ETA provider
  */
 HKTransportETAProvider.initialize = function (providerIdentifier, delegate) {

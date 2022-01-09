@@ -1,10 +1,10 @@
-/* global WeatherProvider, ETAObject */
+/* global ETAProvider, ETAObject */
 
 /* Magic Mirror
- * Module: Weather
+ * Module: ETA
  *
- * By Michael Teeuw https://michaelteeuw.nl
- * MIT Licensed.
+ * By Winston Ma https://github.com/winstonma
+ * AGPL-3.0 Licensed.
  *
  * This class is the blueprint for a HK Transport ETA provider.
  */
@@ -64,7 +64,7 @@ HKTransportETAProvider.register("mtr", {
 			});
 	},
 
-	/** OpenWeatherMap Specific Methods - These are not part of the default provider methods */
+	/** MTR Specific Methods - These are not part of the default provider methods */
 	/*
 	 * Gets the complete url for the request
 	 */
@@ -73,7 +73,7 @@ HKTransportETAProvider.register("mtr", {
 	},
 
 	/*
-	 * Generate a ETAObject based on currentWeatherInformation
+	 * Generate a ETAObject based on currentETAData
 	 */
 	generateETAObject(currentETAData) {
 		const etaObject = Object.values(currentETAData.data)[0];
