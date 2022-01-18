@@ -15,7 +15,7 @@ A working installation of [MagicMirror<sup>2</sup>](https://github.com/MichMich/
 To add this module, go to MagicMirror folder and run the following command
 ```bash
 cd modules
-git clone https://github.com/winstonma/MMM-HK-Transport-ETA.git
+git clone --recurse-submodules https://github.com/winstonma/MMM-HK-Transport-ETA.git
 cd MMM-HK-Transport-ETA
 npm install
 ```
