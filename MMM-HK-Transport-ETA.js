@@ -9,7 +9,8 @@
 Module.register("MMM-HK-Transport-ETA", {
 	// Default module config.
 	defaults: {
-		transportETAProvider: "KMB",
+		transportETAProvider: "mtr",
+		sta: "Hong Kong"
 		reloadInterval: 1 * 60 * 1000, // every 1 minute
 		updateInterval: 5 * 1000,  // every 5 seconds
 		animationSpeed: 2500,
