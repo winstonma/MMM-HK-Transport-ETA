@@ -62,7 +62,7 @@ The following properties can be configured:
 
 | Option                       | Description
 | ---------------------------- | -----------
-| `sta`                    | Which KMB station <br><br> **Possible values:** Please use the **stations.tc** or **stations.en** field of the [supported list of stations](https://codebeautify.org/jsonviewer?url=https://raw.githubusercontent.com/kirosc/telegram-hketa/master/data/mtr-lines.json)<br> **Default value:** `Hong Kong`
+| `sta`                    | Which KMB station <br><br> **Possible values:**<br>1. Open your web browser and navigate to the [kmb_eta](https://miklcct.com/kmb_eta/) page, developed by miklcct.<br>2. In the `Enter the route number:` box, enter the KMB Bus route number that passes the stop. Then press the submit button. The destination and the home would be displayed.<br>3. After the submit of the bus route, the route origin and destination would be displayed. Choose the right direction by clicking the `Switch direction` button.<br>4. In the `Choose a route variant:` infobox, select the variant.<br>5. In the `Choose a stop in the list:` infobox, there is a list of stops with the `stopID` displayed in the bracket. Fill the `sta` in the `config.js`.
 
 ### MTR Bus
 
