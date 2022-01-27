@@ -106,8 +106,8 @@ Module.register("MMM-HK-Transport-ETA", {
 	},
 
 	socketNotificationReceived: function (notification, payload) {
-		if (notification === "KMB_STOP_ITEM") {
-			this.config.stops = payload;
+		if (notification === "KMB_STOP_ITEM" && payload.station === this.config.sta) {
+			this.config.stops = payload.data;
 
 			const config = Object.assign({}, this.transportETAProvider.defaults, this.config);
 			this.transportETAProvider.setConfig(config);

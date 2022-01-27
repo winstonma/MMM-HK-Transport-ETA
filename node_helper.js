@@ -24,7 +24,8 @@ module.exports = NodeHelper.create({
       const stop = payload ? new this.kmb.Stop(payload) : null;
       stop.getStoppings()
         .then(data => {
-          this.broadcastETAs(data);
+          const retVal = {station: payload, data: data};
+          this.broadcastETAs(retVal);
         });
     }
   },
