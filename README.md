@@ -46,7 +46,7 @@ The following properties can be configured:
 ### General options
 | Option                       | Description
 | ---------------------------- | -----------
-| `transportETAProvider`            | Which ETA provider should be used. <br><br> **Possible values:** `mtr`, `kmb` ,`mtrbus` or `gmb`<br> **Default value:** `mtr`
+| `transportETAProvider`            | Which ETA provider should be used. <br><br> **Possible values:** `mtr`, `kmb` ,`mtrbus`, `lrt` or `gmb`<br> **Default value:** `mtr`
 | `reloadInterval`             | How often does the content needs to be fetched? (Milliseconds) <br><br> **Possible values:** `1000` - `86400000` <br> **Default value:** `60000` (1 minute)
 | `updateInterval`   | How often do you want to display a relative time? (seconds). If set to `0`, the relative time would not be displayed.<br><br>  **Possible values:** `0` - `60000` <br> **Default value:** `5000` (5 seconds)
 | `animationSpeed`   | Speed of the update animation. (Milliseconds) <br><br> **Possible values:** `0` - `5000` <br> **Default value:** `2500` (2.5 seconds)
@@ -70,6 +70,12 @@ The following properties can be configured:
 | ---------------------------- | -----------
 | `line`                 | Which Bus line <br><br> **Possible values:** Please refer to **route_number** field of the [supported list of bus routes](https://codebeautify.org/jsonviewer?url=https://raw.githubusercontent.com/kirosc/telegram-hketa/master/data/routes-mtr.json), for example `K12`
 | `sta`                    | Which Bus station <br><br> **Possible values:** Please refer to **line.stops.name_ch** or  **line.stops.name_en** field of the [supported list of bus routes](https://codebeautify.org/jsonviewer?url=https://raw.githubusercontent.com/kirosc/telegram-hketa/master/data/routes-mtr.json), for example `Tai Po Market Station` or `大埔墟站`
+
+### Light Rail Transit (LRT)
+
+| Option                       | Description
+| ---------------------------- | -----------
+| `sta`                    | Which LRT station <br><br> **Possible values:** Please refer to **eng_name** or  **chi_name** field of the [supported list of lrt station](https://codebeautify.org/jsonviewer?url=https://raw.githubusercontent.com/kirosc/telegram-hketa/master/data/station-lrt.json), for example `Lung Mun` or `龍門`
 
 ### Green Minibuses (GMB)
 
