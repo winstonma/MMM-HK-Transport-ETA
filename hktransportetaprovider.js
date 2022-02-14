@@ -1,6 +1,6 @@
 /* global Class */
 
-/* Magic Mirror
+/* MagicMirror²
  * Module: ETA
  *
  * By Winston Ma https://github.com/winstonma

@@ -1,4 +1,4 @@
-/* Magic Mirror
+/* MagicMirror²
  * Module: MMM-HK-KMB
  *
  * By Winston / https://github.com/winstonma

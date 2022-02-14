@@ -1,6 +1,6 @@
 /* global ETAProvider */
 
-/* Magic Mirror
+/* MagicMirror²
  * Module: MMM-HK-Transport-ETA
  *
  * By Winston Ma https://github.com/winstonma
