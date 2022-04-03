@@ -28,12 +28,11 @@ HKTransportETAProvider.register("gmb", {
 			this.config.lineInfo = await this.fetchRouteInfo();
 		}
 
-		Promise.all(this.config.lineInfo.map(station =>
-			this.fetchData(this.getUrl(station))
-				.then(data => this.generateETAObject(station, data))
-		)).then(currentETAArray => {
-			this.setCurrentETA(currentETAArray);
-		})
+		this.fetchData(this.getUrl(this.config.lineInfo[0]))
+			.then(data => this.generateETAObject(data))
+			.then(currentETAArray => {
+				this.setCurrentETA(currentETAArray);
+			})
 			.catch(request => {
 				Log.error("Could not load data ... ", request);
 			})
@@ -70,21 +69,24 @@ HKTransportETAProvider.register("gmb", {
 	 * Gets the complete url for the request
 	 */
 	getUrl(stationInfo) {
-		return `${this.config.apiBase}/eta/route-stop/${stationInfo.routeID}/${stationInfo.stop_id}`;
+		return `${this.config.apiBase}/eta/route-stop/${stationInfo.routeID}/${this.config.sta}`;
 	},
 
 	/*
 	 * Generate a ETAObject based on currentETAData
 	 */
-	generateETAObject(stationInfo, currentETAData) {
-		const etas = (currentETAData.data[0].eta?.length === 0) ? null : [{
-			dest: stationInfo.dest,
-			time: currentETAData.data[0].eta?.map(time => time.timestamp)
-		}];
-		return {
-			line: this.config.line,
-			station: stationInfo.station,
-			etas: etas
-		}
+	generateETAObject(currentETAData) {
+		return this.config.lineInfo.map(stationInfo => {
+			const targetStation = currentETAData.data.find(etaData => (etaData.stop_seq == stationInfo.stop_seq));
+			const etas = (targetStation.eta?.length === 0) ? null : [{
+				dest: stationInfo.dest,
+				time: targetStation.eta?.map(time => time.timestamp)
+			}];
+			return {
+				line: this.config.line,
+				station: stationInfo.station,
+				etas: etas
+			}
+		})
 	},
 });

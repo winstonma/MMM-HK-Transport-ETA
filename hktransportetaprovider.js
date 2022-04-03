@@ -65,8 +65,17 @@ const HKTransportETAProvider = Class.extend({
 		this.delegate.updateAvailable(this);
 	},
 
+	getCorsUrl: function () {
+		if (this.config.mockData || typeof this.config.useCorsProxy === "undefined" || !this.config.useCorsProxy) {
+			return "";
+		} else {
+			return location.protocol + "//" + location.host + "/cors?url=";
+		}
+	},
+
 	// A convenience function to make requests. It returns a promise.
-	fetchData: function (url, method = "GET", data = null) {
+	fetchData: function (url, method = "GET", type = "json") {
+		url = this.getCorsUrl() + url;
 		const getData = function (mockData) {
 			return new Promise(function (resolve, reject) {
 				if (mockData) {
@@ -79,18 +88,17 @@ const HKTransportETAProvider = Class.extend({
 					request.onreadystatechange = function () {
 						if (this.readyState === 4) {
 							if (this.status === 200) {
-								resolve(JSON.parse(this.response));
+								if (type === "xml") {
+									resolve(this.responseXML);
+								} else {
+									resolve(JSON.parse(this.response));
+								}
 							} else {
 								reject(request);
 							}
 						}
 					};
-					if (data) {
-						request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-						request.send(JSON.stringify(data));
-					} else {
-						request.send();
-					}
+					request.send();
 				}
 			});
 		};
