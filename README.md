@@ -4,6 +4,10 @@ Estimated Time of Arrival (ETA) for the Hong Kong Transport. It uses the API pro
 
 This module aims to be the replacement the [MMM-HK-KMB](https://github.com/winstonma/MMM-HK-KMB) and [MMM-HK-Transport](https://github.com/winstonma/MMM-HK-Transport) modules.
 
+## Screenshot
+
+![MMM-HK-Transport-ETA module running in MagicMirror<sup>2</sup>](screenshots/screenshot.png)
+
 ## Prerequisite
 A working installation of [MagicMirror<sup>2</sup>](https://github.com/MichMich/MagicMirror)
  
