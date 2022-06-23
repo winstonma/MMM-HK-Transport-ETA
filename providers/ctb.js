@@ -18,16 +18,22 @@ HKTransportETAProvider.register("ctb", {
 	// Set the default config properties that is specific to this provider
 	defaults: {
 		apiBase: "https://rt.data.gov.hk/v1.1",
-		stopInfo: null
+		stopInfo: null,
+		stopRouteInfo: null
 	},
 
 	// Overwrite the fetchETA method.
 	async fetchETA() {
 		if (!this.config.stopInfo) {
 			this.config.stopInfo = await this.fetchStopInfo();
+			this.config.stopRouteInfo = await this.fetchStopRouteInfo();
 		}
 
-		this.fetchData(this.getUrl())
+		Promise.all(this.config.stopRouteInfo.map(stopRoute =>
+			this.fetchData(this.getUrl(stopRoute.route))
+				.then(data => data.data)
+		))
+			.then(data => data.filter(etaInfo => etaInfo.length))
 			.then(data => this.generateETAObject(data))
 			.then(currentETAArray => {
 				this.setCurrentETA(currentETAArray);
@@ -47,33 +53,44 @@ HKTransportETAProvider.register("ctb", {
 			});
 	},
 
+	fetchStopRouteInfo() {
+		const stopURL = `${this.config.apiBase}/transport/batch/stop-route/${this.providerName}/${this.config.sta}`;
+		return this.fetchData(stopURL)
+			.then(data => data.data)
+			.catch(request => {
+				Log.error("Could not load data ... ", request);
+			});
+	},
+
 	/*
 	 * Gets the complete url for the request
 	 */
-	getUrl() {
-		return `${this.config.apiBase}/transport/citybus-nwfb/eta/CTB/${this.config.sta}/${this.config.line}`;
+	getUrl(route) {
+		return `${this.config.apiBase}/transport/citybus-nwfb/eta/${this.providerName}/${this.config.sta}/${route}`;
 	},
 
 	/*
 	 * Generate a ETAObject based on currentETAData
 	 */
-	generateETAObject(currentETAData) {
-		const groupedETA = currentETAData.data.reduce((group, product) => {
-			const { dir } = product;
-			group[dir] = group[dir] ?? [];
-			group[dir].push(product);
-			return group;
-		}, {});
-		return Object.keys(groupedETA).map((key, index) => {
-			const value = groupedETA[key];
-			return {
-				line: value[0].route,
-				station: this.config.lang.startsWith("zh") ? this.config.stopInfo.name_tc : this.config.stopInfo.name_en,
-				etas: [{
-					dest: this.config.lang.startsWith("zh") ? value[0].dest_tc : value[0].dest_en,
-					time: value.map(eta => eta.eta)
-				}]
-			}
+	generateETAObject(currentETAArray) {
+		return currentETAArray.map(currentETA => {
+			const groupedETA = currentETA.reduce((group, product) => {
+				const { dir } = product;
+				group[dir] = group[dir] ?? [];
+				group[dir].push(product);
+				return group;
+			}, {});
+			return Object.keys(groupedETA).map((key, index) => {
+				const value = groupedETA[key];
+				return {
+					line: value[0].route,
+					station: this.config.lang.startsWith("zh") ? this.config.stopInfo.name_tc : this.config.stopInfo.name_en,
+					etas: [{
+						dest: this.config.lang.startsWith("zh") ? value[0].dest_tc : value[0].dest_en,
+						time: value.map(eta => eta.eta)
+					}]
+				}
+			})[0];
 		});
 	},
 });
