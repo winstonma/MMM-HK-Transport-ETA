@@ -99,7 +99,7 @@ HKTransportETAProvider.register("lrt", {
 	 * return String - URL params.
 	 */
 	getParams(stationInfo) {
-		let params = "?";
+		const params = "?";
 
 		params += "&station_id=" + stationInfo.station_id;
 

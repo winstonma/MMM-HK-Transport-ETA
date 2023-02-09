@@ -79,7 +79,7 @@ const HKTransportETAProvider = Class.extend({
 		const getData = function (mockData) {
 			return new Promise(function (resolve, reject) {
 				if (mockData) {
-					let mdata = mockData;
+					const mdata = mockData;
 					mdata = mdata.substring(1, mdata.length - 1);
 					resolve(JSON.parse(mdata));
 				} else {

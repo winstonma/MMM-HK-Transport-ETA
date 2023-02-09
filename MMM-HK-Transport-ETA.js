@@ -174,7 +174,7 @@ Module.register("MMM-HK-Transport-ETA", {
 	},
 
 	scheduleUpdate: function (delay = null) {
-		let nextLoad = this.config.reloadInterval;
+		const nextLoad = this.config.reloadInterval;
 		if (delay !== null && delay >= 0) {
 			nextLoad = delay;
 		}
