@@ -48,6 +48,7 @@ HKTransportETAProvider.register("mtr", {
 
 				// Find the valid line and routes
 				return Object.entries(data)
+					.filter(([key, lineInfo]) => lineInfo.stations)
 					.map(([key, lineInfo]) =>
 						lineInfo.stations.filter(station => ([station.tc, station.en].includes(this.config.sta)))
 							.map(station => ({
