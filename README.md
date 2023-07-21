@@ -60,7 +60,7 @@ The following properties can be configured:
 
 | Option                       | Description
 | ---------------------------- | -----------
-| `sta`                    | Which MTR station <br><br> **Possible values:** Please use the **stations.tc** or **stations.en** field of the [supported list of stations](https://codebeautify.org/jsonviewer?url=https://raw.githubusercontent.com/kirosc/telegram-hketa/master/data/mtr-lines.json)<br> **Default value:** `Hong Kong`
+| `sta`                    | Which MTR station <br><br> **Possible values:** Please use the **stations.tc** or **stations.en** field of the [supported list of stations](https://github.com/winstonma/MMM-HK-Transport-ETA/blob/main/data/mtr-lines.json)<br> **Default value:** `Hong Kong`
 
 ### KMB
 
