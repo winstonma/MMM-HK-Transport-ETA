@@ -1,0 +1,560 @@
+{
+  "AEL": {
+    "tc": "機場快綫",
+    "en": "Airport Express",
+    "stations": [
+      {
+        "code": "HOK",
+        "tc": "香港",
+        "en": "Hong Kong"
+      },
+      {
+        "code": "KOW",
+        "tc": "九龍",
+        "en": "Kowloon"
+      },
+      {
+        "code": "TSY",
+        "tc": "青衣",
+        "en": "Tsing Yi"
+      },
+      {
+        "code": "AIR",
+        "tc": "機場",
+        "en": "Airport"
+      },
+      {
+        "code": "AWE",
+        "tc": "博覽館",
+        "en": "AsiaWorld-Expo"
+      }
+    ]
+  },
+  "TCL": {
+    "tc": "東涌綫",
+    "en": "Tung Chung line",
+    "stations": [
+      {
+        "code": "HOK",
+        "tc": "香港",
+        "en": "Hong Kong"
+      },
+      {
+        "code": "KOW",
+        "tc": "九龍",
+        "en": "Kowloon"
+      },
+      {
+        "code": "OLY",
+        "tc": "奧運",
+        "en": "Olympic"
+      },
+      {
+        "code": "NAC",
+        "tc": "南昌",
+        "en": "Nam Cheong"
+      },
+      {
+        "code": "LAK",
+        "tc": "茘景",
+        "en": "Lai King"
+      },
+      {
+        "code": "TSY",
+        "tc": "青衣",
+        "en": "Tsing Yi"
+      },
+      {
+        "code": "SUN",
+        "tc": "欣澳",
+        "en": "Sunny Bay"
+      },
+      {
+        "code": "TUC",
+        "tc": "東涌",
+        "en": "Tung Chung"
+      }
+    ]
+  },
+  "TML": {
+    "tc": "屯馬綫",
+    "en": "Tuen Ma Line",
+    "stations": [
+      {
+        "code": "WKS",
+        "tc": "烏溪沙",
+        "en": "Wu Kai Sha"
+      },
+      {
+        "code": "MOS",
+        "tc": "馬鞍山",
+        "en": "Ma On Shan"
+      },
+      {
+        "code": "HEO",
+        "tc": "恆安",
+        "en": "Heng On"
+      },
+      {
+        "code": "TSH",
+        "tc": "大水坑",
+        "en": "Tai Shui Hang"
+      },
+      {
+        "code": "SHM",
+        "tc": "石門",
+        "en": "Shek Mun"
+      },
+      {
+        "code": "CIO",
+        "tc": "第一城",
+        "en": "City One"
+      },
+      {
+        "code": "STW",
+        "tc": "沙田圍",
+        "en": "Sha Tin Wai"
+      },
+      {
+        "code": "CKT",
+        "tc": "車公廟",
+        "en": "Che Kung Temple"
+      },
+      {
+        "code": "TAW",
+        "tc": "大圍",
+        "en": "Tai Wai"
+      },
+      {
+        "code": "HIK",
+        "tc": "顯徑",
+        "en": "Hin Keng"
+      },
+      {
+        "code": "DIH",
+        "tc": "鑽石山",
+        "en": "Diamond Hill"
+      },
+      {
+        "code": "KAT",
+        "tc": "啟德",
+        "en": "Kai Tak"
+      },
+      {
+        "code": "SUW",
+        "tc": "宋皇臺",
+        "en": "Sung Wong Toi"
+      },
+      {
+        "code": "TKW",
+        "tc": "土瓜灣",
+        "en": "To Kwa Wan"
+      },
+      {
+        "code": "HOM",
+        "tc": "何文田",
+        "en": "Ho Man Tin"
+      },
+      {
+        "code": "HUH",
+        "tc": "紅磡",
+        "en": "Hung Hom"
+      },
+      {
+        "code": "ETS",
+        "tc": "尖東",
+        "en": "East Tsim Sha Tsui"
+      },
+      {
+        "code": "AUS",
+        "tc": "柯士甸",
+        "en": "Austin"
+      },
+      {
+        "code": "NAC",
+        "tc": "南昌",
+        "en": "Nam Cheong"
+      },
+      {
+        "code": "MEF",
+        "tc": "美孚",
+        "en": "Mei Foo"
+      },
+      {
+        "code": "TWW",
+        "tc": "荃灣西",
+        "en": "Tsuen Wan West"
+      },
+      {
+        "code": "KSR",
+        "tc": "錦上路",
+        "en": "Kam Sheung Road"
+      },
+      {
+        "code": "YUL",
+        "tc": "元朗",
+        "en": "Yuen Long"
+      },
+      {
+        "code": "LOP",
+        "tc": "朗屏",
+        "en": "Long Ping"
+      },
+      {
+        "code": "TIS",
+        "tc": "天水圍",
+        "en": "Tin Shui Wai"
+      },
+      {
+        "code": "SIH",
+        "tc": "兆康",
+        "en": "Siu Hong"
+      },
+      {
+        "code": "TUM",
+        "tc": "屯門",
+        "en": "Tuen Mun"
+      }
+    ]
+  },
+  "TKL": {
+    "tc": "將軍澳綫",
+    "en": "Tseung Kwan O line",
+    "stations": [
+      {
+        "code": "NOP",
+        "tc": "北角",
+        "en": "North Point"
+      },
+      {
+        "code": "QUB",
+        "tc": "鰂魚涌",
+        "en": "Quarry Bay"
+      },
+      {
+        "code": "YAT",
+        "tc": "油塘",
+        "en": "Yau Tong"
+      },
+      {
+        "code": "TIK",
+        "tc": "調景嶺",
+        "en": "Tiu Keng Leng"
+      },
+      {
+        "code": "TKO",
+        "tc": "將軍澳",
+        "en": "Tseung Kwan O"
+      },
+      {
+        "code": "LHP",
+        "tc": "康城",
+        "en": "LOHAS Park"
+      },
+      {
+        "code": "HAH",
+        "tc": "坑口",
+        "en": "Hang Hau"
+      },
+      {
+        "code": "POA",
+        "tc": "寶琳",
+        "en": "Po Lam"
+      }
+    ]
+  },
+  "EAL": {
+    "tc": "東鐵綫",
+    "en": "East Rail Line",
+    "stations": [
+      {
+        "code": "ADM",
+        "tc": "金鐘",
+        "en": "Admiralty"
+      },
+      {
+        "code": "EXC",
+        "tc": "會展",
+        "en": "Exhibition Centre"
+      },
+      {
+        "code": "HUH",
+        "tc": "紅磡",
+        "en": "Hung Hom"
+      },
+      {
+        "code": "MKK",
+        "tc": "旺角東",
+        "en": "Mong Kok East"
+      },
+      {
+        "code": "KOT",
+        "tc": "九龍塘",
+        "en": "Kowloon Tong"
+      },
+      {
+        "code": "TAW",
+        "tc": "大圍",
+        "en": "Tai Wai"
+      },
+      {
+        "code": "SHT",
+        "tc": "沙田",
+        "en": "Sha Tin"
+      },
+      {
+        "code": "FOT",
+        "tc": "火炭",
+        "en": "Fo Tan"
+      },
+      {
+        "code": "RAC",
+        "tc": "馬場",
+        "en": "Racecourse"
+      },
+      {
+        "code": "UNI",
+        "tc": "大學",
+        "en": "University"
+      },
+      {
+        "code": "TAP",
+        "tc": "大埔墟",
+        "en": "Tai Po Market"
+      },
+      {
+        "code": "TWO",
+        "tc": "太和",
+        "en": "Tai Wo"
+      },
+      {
+        "code": "FAN",
+        "tc": "粉嶺",
+        "en": "Fanling"
+      },
+      {
+        "code": "SHS",
+        "tc": "上水",
+        "en": "Sheung Shui"
+      },
+      {
+        "code": "LOW",
+        "tc": "羅湖",
+        "en": "Lo Wu"
+      },
+      {
+        "code": "LMC",
+        "tc": "落馬洲",
+        "en": "Lok Ma Chau"
+      }
+    ]
+  },
+  "SIL": {
+    "tc": "南港島綫",
+    "en": "South Island Line",
+    "stations": [
+      {
+        "code": "ADM",
+        "tc": "金鐘",
+        "en": "Admiralty"
+      },
+      {
+        "code": "OCP",
+        "tc": "海洋公園",
+        "en": "Ocean Park"
+      },
+      {
+        "code": "WCH",
+        "tc": "黃竹坑",
+        "en": "Wong Chuk Hang"
+      },
+      {
+        "code": "LET",
+        "tc": "利東",
+        "en": "Lei Tung"
+      },
+      {
+        "code": "SOH",
+        "tc": "海怡半島",
+        "en": "South Horizons"
+      }
+    ]
+  },
+  "TWL": {
+    "tc": "荃灣綫",
+    "en": "Tsuen Wan Line",
+    "stations": [
+      {
+        "code": "CEN",
+        "tc": "中環",
+        "en": "Central"
+      },
+      {
+        "code": "ADM",
+        "tc": "金鐘",
+        "en": "Admiralty"
+      },
+      {
+        "code": "TST",
+        "tc": "尖沙咀",
+        "en": "Tsim Sha Tsui"
+      },
+      {
+        "code": "JOR",
+        "tc": "佐敦",
+        "en": "Jordan"
+      },
+      {
+        "code": "YMT",
+        "tc": "油麻地",
+        "en": "Yau Ma Tei"
+      },
+      {
+        "code": "MOK",
+        "tc": "旺角",
+        "en": "Mong Kok"
+      },
+      {
+        "code": "PRE",
+        "tc": "太子",
+        "en": "Prince Edward"
+      },
+      {
+        "code": "SSP",
+        "tc": "深水埗",
+        "en": "Sham Shui Po"
+      },
+      {
+        "code": "CSW",
+        "tc": "長沙灣",
+        "en": "Cheung Sha Wan"
+      },
+      {
+        "code": "LCK",
+        "tc": "茘枝角",
+        "en": "Lai Chi Kok"
+      },
+      {
+        "code": "MEF",
+        "tc": "美孚",
+        "en": "Mei Foo"
+      },
+      {
+        "code": "LAK",
+        "tc": "茘景",
+        "en": "Lai King"
+      },
+      {
+        "code": "KWF",
+        "tc": "葵芳",
+        "en": "Kwai Fong"
+      },
+      {
+        "code": "KWH",
+        "tc": "葵興",
+        "en": "Kwai Hing"
+      },
+      {
+        "code": "TWH",
+        "tc": "大窩口",
+        "en": "Tai Wo Hau"
+      },
+      {
+        "code": "TSW",
+        "tc": "荃灣",
+        "en": "Tsuen Wan"
+      }
+    ]
+  },
+  "ISL": {
+    "tc": "港島綫",
+    "en": "Island Line",
+    "stations": [
+      {
+        "code": "KET",
+        "tc": "堅尼地城",
+        "en": "Kennedy Town"
+      },
+      {
+        "code": "HKU",
+        "tc": "香港大學",
+        "en": "HKU"
+      },
+      {
+        "code": "SYP",
+        "tc": "西營盤",
+        "en": "Sai Ying Pun"
+      },
+      {
+        "code": "SHW",
+        "tc": "上環",
+        "en": "Sheung Wan"
+      },
+      {
+        "code": "CEN",
+        "tc": "中環",
+        "en": "Central"
+      },
+      {
+        "code": "ADM",
+        "tc": "金鐘",
+        "en": "Admiralty"
+      },
+      {
+        "code": "WAC",
+        "tc": "灣仔",
+        "en": "Wan Chai"
+      },
+      {
+        "code": "CAB",
+        "tc": "銅鑼灣",
+        "en": "Causeway Bay"
+      },
+      {
+        "code": "TIH",
+        "tc": "天后",
+        "en": "Tin Hau"
+      },
+      {
+        "code": "FOH",
+        "tc": "炮台山",
+        "en": "Fortress Hill"
+      },
+      {
+        "code": "NOP",
+        "tc": "北角",
+        "en": "North Point"
+      },
+      {
+        "code": "QUB",
+        "tc": "鰂魚涌",
+        "en": "Quarry Bay"
+      },
+      {
+        "code": "TAK",
+        "tc": "太古",
+        "en": "Tai Koo"
+      },
+      {
+        "code": "SWH",
+        "tc": "西灣河",
+        "en": "Sai Wan Ho"
+      },
+      {
+        "code": "SKW",
+        "tc": "筲箕灣",
+        "en": "Shau Kei Wan"
+      },
+      {
+        "code": "HFC",
+        "tc": "杏花邨",
+        "en": "Heng Fa Chuen"
+      },
+      {
+        "code": "CHW",
+        "tc": "柴灣",
+        "en": "Chai Wan"
+      }
+    ]
+  }
+}

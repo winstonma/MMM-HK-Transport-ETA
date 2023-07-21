@@ -18,7 +18,7 @@ HKTransportETAProvider.register("mtr", {
 	// Set the default config properties that is specific to this provider
 	defaults: {
 		apiBase: "https://rt.data.gov.hk/v1/transport/mtr/getSchedule.php",
-		mtrLines: "/modules/MMM-HK-Transport-ETA/telegram-hketa/data/mtr-lines.json",
+		mtrLines: "/modules/MMM-HK-Transport-ETA/data/mtr-lines.json",
 		mtrData: {},
 		lineInfo: []
 	},
