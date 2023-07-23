@@ -60,7 +60,7 @@ The following properties can be configured:
 
 | Option                       | Description
 | ---------------------------- | -----------
-| `sta`                    | Which MTR station <br><br> **Possible values:** Please use the **stations.tc** or **stations.en** field of the [supported list of stations](https://github.com/winstonma/MMM-HK-Transport-ETA/blob/main/data/mtr-lines.json)<br> **Default value:** `Hong Kong`
+| `sta`                    | Which MTR station <br><br> **Possible values:** Please use either chinese station name or english station name inside the [MTR routemap](https://www.mtr.com.hk/archive/en/services/routemap.pdf). **Currently Kwun Tong Line is not supported.**<br> **Default value:** `Hong Kong`
 
 ### KMB
 
