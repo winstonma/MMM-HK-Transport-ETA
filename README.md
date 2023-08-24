@@ -79,7 +79,7 @@ The following properties can be configured:
 
 | Option                       | Description
 | ---------------------------- | -----------
-| `sta`                    | Which LRT station <br><br> **Possible values:** Please refer to **eng_name** or  **chi_name** field of the [supported list of lrt station](https://codebeautify.org/jsonviewer?url=https://raw.githubusercontent.com/kirosc/telegram-hketa/master/data/station-lrt.json), for example `Lung Mun` or `龍門`
+| `sta`                    | Which LRT station <br><br> **Possible values:** Please use to **eng_name** or  **chi_name** of the [supported list of lrt station](https://www.mtr.com.hk/archive/en/services/LR_routemap.pdf), for example `Lung Mun` or `龍門`
 
 ### Green Minibuses (GMB)
 
