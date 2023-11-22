@@ -556,5 +556,96 @@
         "en": "Chai Wan"
       }
     ]
-  }
+  },
+  "KTL": {
+    "tc": "觀塘綫",
+    "en": "Kwun Tong Line",
+    "stations": [
+      {
+        "code": "WHA",
+        "tc": "黃埔",
+        "en": "Whampoa"
+      },
+      {
+        "code": "HOM",
+        "tc": "何文田",
+        "en": "Ho Man Tin"
+      },
+      {
+        "code": "YMT",
+        "tc": "油麻地",
+        "en": "Yau Ma Tei"
+      },
+      {
+        "code": "MOK",
+        "tc": "旺角",
+        "en": "Mong Kok"
+      },
+      {
+        "code": "PRE",
+        "tc": "太子",
+        "en": "Prince Edward"
+      },
+      {
+        "code": "SKM",
+        "tc": "石硤尾",
+        "en": "Shek Kip Mei"
+      },
+      {
+        "code": "KOT",
+        "tc": "九龍塘",
+        "en": "Kowloon Tong"
+      },
+      {
+        "code": "LOF",
+        "tc": "樂富",
+        "en": "Lok Fu"
+      },
+      {
+        "code": "WTS",
+        "tc": "黃大仙",
+        "en": "Wong Tai Sin"
+      },
+      {
+        "code": "DIH",
+        "tc": "鑽石山",
+        "en": "Diamond Hill"
+      },
+      {
+        "code": "CHH",
+        "tc": "彩虹",
+        "en": "Choi Hung"
+      },
+      {
+        "code": "KOB",
+        "tc": "九龍灣",
+        "en": "Kowloon Bay"
+      },
+      {
+        "code": "NTK",
+        "tc": "牛頭角",
+        "en": "Ngau Tau Kok"
+      },
+      {
+        "code": "KWT",
+        "tc": "觀塘",
+        "en": "Kwun Tong"
+      },
+      {
+        "code": "LAT",
+        "tc": "藍田",
+        "en": "Lam Tin"
+      },
+      {
+        "code": "YAT",
+        "tc": "油塘",
+        "en": "Yau Tong"
+      },
+      {
+        "code": "TIK",
+        "tc": "調景嶺",
+        "en": "Tiu Keng Leng"
+      }
+    ]
+  } 
 }
