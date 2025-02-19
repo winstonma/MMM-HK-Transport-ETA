@@ -25,44 +25,42 @@ HKTransportETAProvider.register("mtr", {
 
 	// Overwrite the fetchETA method.
 	async fetchETA() {
-
 		if (this.config.lineInfo.length === 0) {
 			this.config.lineInfo = await this.fetchStationInfo();
 		}
 
-		Promise.all(this.config.lineInfo.map(station => this.fetchData(this.getUrl(station))))
-			.then(dataArray => {
-				const currentETAArray = dataArray.map(data => this.generateETAObject(data));
-				this.setCurrentETA(currentETAArray);
-			})
-			.catch(function (request) {
-				Log.error("Could not load data ... ", request);
-			})
-			.finally(() => this.updateAvailable());
+		try {
+			const dataArray = await Promise.all(this.config.lineInfo.map(station => this.fetchData(this.getUrl(station))));
+			const currentETAArray = dataArray.map(data => this.generateETAObject(data));
+			this.setCurrentETA(currentETAArray);
+		} catch (error) {
+			Log.error("Could not load data ... ", error);
+		} finally {
+			this.updateAvailable();
+		}
 	},
 
-	fetchStationInfo() {
-		return this.fetchData(this.config.mtrLines)
-			.then(data => {
-				this.config.mtrData = data;
+	async fetchStationInfo() {
+		try {
+			const data = await this.fetchData(this.config.mtrLines);
+			this.config.mtrData = data;
 
-				// Find the valid line and routes
-				return Object.entries(data)
-					.filter(([key, lineInfo]) => lineInfo.stations)
-					.map(([key, lineInfo]) =>
-						lineInfo.stations.filter(station => ([station.tc, station.en].includes(this.config.sta)))
-							.map(station => ({
-								line_code: key,
-								line: this.config.lang.startsWith("zh") ? lineInfo.tc : lineInfo.en,
-								station: this.config.lang.startsWith("zh") ? station.tc : station.en,
-								station_code: station.code
-							}))
-					)
-					.flat()
-			})
-			.catch(function (request) {
-				Log.error("Could not load data ... ", request);
-			});
+			// Find the valid line and routes
+			return Object.entries(data)
+				.flatMap(([key, lineInfo]) => 
+					(lineInfo.stations || []).filter(station => 
+						([station.tc, station.en].includes(this.config.sta))
+					).map(station => ({
+						line_code: key,
+						line: this.config.lang.startsWith("zh") ? lineInfo.tc : lineInfo.en,
+						station: this.config.lang.startsWith("zh") ? station.tc : station.en,
+						station_code: station.code
+					}))
+				);
+		} catch (request) {
+			Log.error("Could not load data ... ", request);
+			return [];
+		}
 	},
 
 	/** MTR Specific Methods - These are not part of the default provider methods */
