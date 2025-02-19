@@ -24,42 +24,45 @@ HKTransportETAProvider.register("kmb", {
 
 	// Overwrite the fetchETA method.
 	async fetchETA() {
-		if (this.config.lineInfo.length === 0) {
-			this.config.lineInfo = await this.fetchRouteInfo();
+		try {
+			if (this.config.lineInfo.length === 0) {
+				this.config.lineInfo = await this.fetchRouteInfo();
+			}
+
+			const etaPromises = this.config.lineInfo.stopIDList.map(stopID => 
+				this.fetchData(this.getUrl(stopID))
+					.then(data => data.data)
+			);
+
+			const etaArray = (await Promise.all(etaPromises)).flat().filter(eta => eta.eta);
+
+			const currentETAArray = this.config.lineInfo.stopInfo.map(stop => {
+				const filteredResult = etaArray.filter(eta =>
+					(eta.route === stop.variant.route.number) &&
+					(eta.service_type === stop.variant.serviceType))
+					.sort((a, b) => a.eta_seq - b.eta_seq);
+				if (filteredResult.length == 0) {
+					return {};
+				}
+
+				const dest = this.config.lang.startsWith("zh") ? filteredResult[0].dest_tc : filteredResult[0].dest_en;
+
+				return {
+					line: stop.variant.route.number,
+					station: this.config.lineInfo.stopName,
+					etas: [{
+						dest: dest,
+						time: filteredResult.map(a => a.eta)
+					}]
+				}
+			}).filter(value => Object.keys(value).length !== 0);
+
+			this.setCurrentETA(currentETAArray);
+		} catch (error) {
+			Log.error("Could not load data ... ", error);
+		} finally {
+			this.updateAvailable();
 		}
-
-		Promise.all(this.config.lineInfo.stopIDList.map(stopID =>
-			this.fetchData(this.getUrl(stopID))
-				.then(data => data.data)
-		))
-			.then(etaArray => etaArray.flat().filter(eta => eta.eta))
-			.then(etaArray => {
-				const currentETAArray = this.config.lineInfo.stopInfo.map(stop => {
-					const filteredResult = etaArray.filter(eta =>
-						(eta.route === stop.variant.route.number) &&
-						(eta.service_type === stop.variant.serviceType))
-						.sort((a, b) => a.eta_seq - b.eta_seq);
-					if (filteredResult.length == 0) {
-						return {};
-					}
-
-					const dest = this.config.lang.startsWith("zh") ? filteredResult[0].dest_tc : filteredResult[0].dest_en;
-
-					return {
-						line: stop.variant.route.number,
-						station: this.config.lineInfo.stopName,
-						etas: [{
-							dest: dest,
-							time: filteredResult.map(a => a.eta)
-						}]
-					}
-				}).filter(value => Object.keys(value).length !== 0);
-				this.setCurrentETA(currentETAArray);
-			})
-			.catch(request => {
-				Log.error("Could not load data ... ", request);
-			})
-			.finally(() => this.updateAvailable());
 	},
 
 	fetchRouteInfo() {
