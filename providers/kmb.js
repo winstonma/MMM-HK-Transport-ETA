@@ -65,55 +65,66 @@ HKTransportETAProvider.register("kmb", {
 		}
 	},
 
-	fetchRouteInfo() {
-		// First of all, obtain the testData
-		return this.getStoppings()
-			.then(data => Promise.all(data.sort((a, b) => {
-				if (a.stop.id != b.stop.id)
+	async fetchRouteInfo() {
+		try {
+			// First of all, obtain the testData
+			const stops = await this.getStoppings();
+
+			const sortedStops = stops.sort((a, b) => {
+				if (a.stop.id !== b.stop.id)
 					return (a.stop.id > b.stop.id) ? 1 : -1;
 
-				if (a.variant.route.number != b.variant.route.number)
+				if (a.variant.route.number !== b.variant.route.number)
 					return (a.variant.route.number < b.variant.route.number) ? -1 : 1;
 
 				return a.sequence - b.sequence;
-			}).map(data => {
+			});
+
+			const stopPromises = sortedStops.map(async data => {
 				const bound = data.variant.route.bound === 1 ? "outbound" : "inbound";
-				return this.fetchData(`${this.config.apiBase}/route-stop/${data.variant.route.number}/${bound}/${data.variant.serviceType}`)
-					.then(result => {
-						const sequence = data.sequence === 999 ? result.data.length : data.sequence + 1;
-						return {
-							...data,
-							stopID: result.data.find(stop => parseInt(stop.seq) === sequence).stop
-						};
-					})
-			})).then(stopList => {
-				const stopIDList = [...new Set(stopList.map(line => line.stopID))];
-				return Promise.all(stopIDList.map(stopID =>
-					this.fetchData(`${this.config.apiBase}/stop/${stopID}`)
-						.then(data => data.data)
-				)).then(stopNameList => {
-					return stopList.map(stop => {
-						const stopName = stopNameList.find(stopname => stopname.stop === stop.stopID);
-						return {
-							...stop,
-							stopName: this.config.lang.startsWith("zh") ? stopName.name_tc : stopName.name_en
-						};
-					});
-				})
-			}).then(data => {
-				const stopNameObject = data.map(stop => stop.stopName).reduce((a, c) => (a[c] = (a[c] || 0) + 1, a), Object.create(null));
-				const stopName = Object.keys(Object.fromEntries(
-					Object.entries(stopNameObject).sort(([, a], [, b]) => a - b)
-				))[0];
+				const routeStopData = await this.fetchData(`${this.config.apiBase}/route-stop/${data.variant.route.number}/${bound}/${data.variant.serviceType}`);
+				
+				const sequence = data.sequence === 999 ? routeStopData.data.length : data.sequence + 1;
+				const stopID = routeStopData.data.find(stop => parseInt(stop.seq) === sequence).stop;
+
 				return {
-					stopName: stopName,
-					stopInfo: data,
-					stopIDList: [...new Set(data.map(line => line.stopID))]	
-				}
-			})
-				.catch(request => {
-					Log.error("Could not load data ... ", request);
-				}));
+					...data,
+					stopID: stopID
+				};
+			});
+
+			const stopList = await Promise.all(stopPromises);
+
+			const stopIDList = [...new Set(stopList.map(line => line.stopID))];
+
+			const stopNamePromises = stopIDList.map(async stopID => {
+				const stopData = await this.fetchData(`${this.config.apiBase}/stop/${stopID}`);
+				return stopData.data;
+			});
+
+			const stopNameList = await Promise.all(stopNamePromises);
+
+			const dataWithNames = stopList.map(stop => {
+				const stopName = stopNameList.find(stopname => stopname.stop === stop.stopID);
+				return {
+					...stop,
+					stopName: this.config.lang.startsWith("zh") ? stopName.name_tc : stopName.name_en
+				};
+			});
+
+			const stopNameObject = dataWithNames.map(stop => stop.stopName).reduce((a, c) => (a[c] = (a[c] || 0) + 1, a), Object.create(null));
+			const stopName = Object.keys(Object.fromEntries(
+				Object.entries(stopNameObject).sort(([, a], [, b]) => a - b)
+			))[0];
+
+			return {
+				stopName: stopName,
+				stopInfo: dataWithNames,
+				stopIDList: [...new Set(dataWithNames.map(line => line.stopID))]
+			};
+		} catch (error) {
+			Log.error("Could not load data ... ", error);
+		}
 	},
 
 	// Create a URL from the config and base URL.
