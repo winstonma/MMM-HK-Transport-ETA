@@ -68,7 +68,7 @@ HKTransportETAProvider.register("kmb", {
 	async fetchRouteInfo() {
 		try {
 			// First of all, obtain the testData
-			const stops = await this.getStoppings();
+			const stops = this.config.stops;
 
 			const sortedStops = stops.sort((a, b) => {
 				if (a.stop.id !== b.stop.id)
@@ -130,13 +130,5 @@ HKTransportETAProvider.register("kmb", {
 	// Create a URL from the config and base URL.
 	getUrl(stopID) {
 		return `${this.config.apiBase}/stop-eta/${stopID}`;
-	},
-
-	getStoppings() {
-		return new Promise((resolve, reject) => {
-			setTimeout(() => {
-				resolve(this.config.stops);
-			}, 0);
-		});
 	}
 });
