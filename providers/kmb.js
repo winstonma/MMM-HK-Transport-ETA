@@ -86,7 +86,7 @@ HKTransportETAProvider.register("kmb", {
 			})).then(stopList => {
 				const stopIDList = [...new Set(stopList.map(line => line.stopID))];
 				return Promise.all(stopIDList.map(stopID =>
-					this.fetchData(`https://data.etabus.gov.hk/v1/transport/kmb/stop/${stopID}`)
+					this.fetchData(`${this.config.apiBase}/stop/${stopID}`)
 						.then(data => data.data)
 				)).then(stopNameList => {
 					return stopList.map(stop => {
