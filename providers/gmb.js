@@ -19,26 +19,24 @@ HKTransportETAProvider.register("gmb", {
 	defaults: {
 		apiBase: "https://data.etagmb.gov.hk",
 		routeData: {},
-		lineInfo: []
+		stationInfo: null
 	},
 
 	// Overwrite the fetchETA method.
 	async fetchETA() {
-		if (this.config.lineInfo.length === 0) {
-			this.config.lineInfo = await this.fetchRouteInfo();
+		if (this.config.stationInfo === null) {
+			this.config.stationInfo = await this.fetchRouteInfo();
 		}
 	
 		try {
-			for (const stationInfo of this.config.lineInfo) {
-				const url = this.getUrl(stationInfo);
-				const data = await this.fetchData(url);
-	
-				// Generate the ETA object and update current eta
-				const etaObject = this.generateETAObject(data);
-				const currentETAArray = Array.isArray(etaObject) ? etaObject : [etaObject];
-				
-				this.setCurrentETA(currentETAArray);
-			}
+			const url = this.getUrl(this.config.stationInfo);
+			const data = await this.fetchData(url);
+
+			// Generate the ETA object and update current eta
+			const etaObject = this.generateETAObject(data.data);
+			const currentETAArray = Array.isArray(etaObject) ? etaObject : [etaObject];
+
+			this.setCurrentETA(currentETAArray);
 		} catch (request) {
 			Log.error("Could not load data ... ", request);
 		} finally {
@@ -70,7 +68,8 @@ HKTransportETAProvider.register("gmb", {
 			});
 	
 			const stopData = await Promise.all(stopPromises);
-			return stopData.flat();
+
+			return stopData.flat()[0];
 		} catch (request) {
 			Log.error("Could not load data ... ", request);
 			throw request; // Rethrow the error for further handling if necessary
@@ -89,21 +88,23 @@ HKTransportETAProvider.register("gmb", {
 	 * Generate a ETAObject based on currentETAData
 	 */
 	generateETAObject(currentETAData) {
-		const getTargetStation = (etaData, stopSeq) => 
-			etaData.data.find(etaData => etaData.stop_seq == stopSeq);
+		const getTargetStation = (etaData) => {
+			if (this.config.stop_seq) {
+				const outputData = etaData.find(etaData => etaData.stop_seq == this.config.stop_seq);
+				return Array.isArray(outputData) ? outputData : [outputData];
+			} else {
+				return etaData
+			}
+		}
 
-		const createETAArray = (stationInfo, targetStation) => ({
+		const targetStation = getTargetStation(currentETAData);
+		return targetStation.map(data => ({
 			line: this.config.line,
-			station: stationInfo.station,
-			etas: targetStation.eta?.length === 0 ? null : [{
-				dest: stationInfo.dest,
-				time: targetStation.eta.map(time => time.timestamp)
+			station: this.config.stationInfo.station,
+			etas: data.eta?.length === 0 ? null : [{
+				dest: this.config.stationInfo.dest,
+				time: data.eta.map(etaData => etaData.timestamp)
 			}]
-		});
-
-		return this.config.lineInfo.map(stationInfo => {
-			const targetStation = getTargetStation(currentETAData, stationInfo.stop_seq);
-			return createETAArray(stationInfo, targetStation);
-		});
+		}));
 	},
 });
