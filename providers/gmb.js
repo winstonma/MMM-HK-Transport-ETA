@@ -105,5 +105,5 @@ HKTransportETAProvider.register("gmb", {
 				time: data.eta.map(etaData => etaData.timestamp)
 			}]
 		}));
-	},
+	}
 });

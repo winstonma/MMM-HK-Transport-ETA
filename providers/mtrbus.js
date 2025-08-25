@@ -98,5 +98,5 @@ HKTransportETAProvider.register("mtrbus", {
 					moment().add(departureTimeInSecond, 'seconds')
 			)
 		}
-	},
+	}
 });

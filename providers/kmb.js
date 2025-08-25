@@ -118,10 +118,12 @@ HKTransportETAProvider.register("kmb", {
 				Object.entries(stopNameObject).sort(([, a], [, b]) => a - b)
 			))[0];
 
+			return { stopIDList, stopName, stopInfo: dataWithNames };
 			} catch (error) {
 			Log.error("Error fetching route information:", error.message);
 			throw error; // Re-throw the error
 		}
+	},
 
 	// Create a URL from the config and base URL.
 	getUrl(stopID) {

@@ -97,5 +97,5 @@ HKTransportETAProvider.register("nwfb", {
 				}
 			})[0];
 		});
-	},
+	}
 });

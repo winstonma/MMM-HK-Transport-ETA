@@ -40,8 +40,12 @@ Module.register("MMM-HK-Transport-ETA", {
 
 	// Override getHeader method.
 	getHeader: function () {
-		return this.transportETAProvider.currentETA() ?
-			this.transportETAProvider.currentETA()[0].station : `${this.data.classes}-${this.config.transportETAProvider}`;
+		if (typeof this.transportETAProvider.getHeader === 'function') {
+			return this.transportETAProvider.getHeader();
+		} else {
+			return this.transportETAProvider.currentETA() ?
+				this.transportETAProvider.currentETA()[0].station : `${this.data.classes}-${this.config.transportETAProvider}`;
+		}
 	},
 
 	getTranslations() {
