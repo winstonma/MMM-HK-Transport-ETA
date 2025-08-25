@@ -647,5 +647,21 @@
         "en": "Tiu Keng Leng"
       }
     ]
+  },
+  "DRL": {
+    "tc": "迪士尼綫",
+    "en": "Disneyland Resort Line",
+    "stations": [
+      {
+        "code": "SUN",
+        "tc": "欣澳",
+        "en": "Sunny Bay"
+      },
+      {
+        "code": "DIS",
+        "tc": "迪士尼",
+        "en": "Disneyland Resort"
+      }
+    ]
   } 
 }
