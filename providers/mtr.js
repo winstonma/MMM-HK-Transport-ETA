@@ -25,9 +25,12 @@ HKTransportETAProvider.register("mtr", {
 
 	// Overwrite the fetchETA method.
 	async fetchETA() {
-		if (this.config.lineInfo.length === 0) {
-			this.config.lineInfo = await this.fetchStationInfo();
-		}
+					if (this.config.lineInfo.length === 0) {
+				this.config.lineInfo = await this.fetchStationInfo();
+				if (!this.config.lineInfo || this.config.lineInfo.length === 0) {
+					throw new Error("Failed to fetch station information or no stations found.");
+				}
+			}
 
 		try {
 			const dataArray = await Promise.all(this.config.lineInfo.map(station => this.fetchData(this.getUrl(station))));

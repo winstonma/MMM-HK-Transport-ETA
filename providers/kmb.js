@@ -41,8 +41,9 @@ HKTransportETAProvider.register("kmb", {
 					(eta.route === stop.variant.route.number) &&
 					(eta.service_type === stop.variant.serviceType))
 					.sort((a, b) => a.eta_seq - b.eta_seq);
-				if (filteredResult.length == 0) {
-					return {};
+
+				if (filteredResult.length === 0) {
+					return null;
 				}
 
 				const dest = this.config.lang.startsWith("zh") ? filteredResult[0].dest_tc : filteredResult[0].dest_en;
@@ -54,8 +55,8 @@ HKTransportETAProvider.register("kmb", {
 						dest: dest,
 						time: filteredResult.map(a => a.eta)
 					}]
-				}
-			}).filter(value => Object.keys(value).length !== 0);
+				};
+			}).filter(Boolean);
 
 			this.setCurrentETA(currentETAArray);
 		} catch (error) {
@@ -117,15 +118,10 @@ HKTransportETAProvider.register("kmb", {
 				Object.entries(stopNameObject).sort(([, a], [, b]) => a - b)
 			))[0];
 
-			return {
-				stopName: stopName,
-				stopInfo: dataWithNames,
-				stopIDList: [...new Set(dataWithNames.map(line => line.stopID))]
-			};
-		} catch (error) {
-			Log.error("Could not load data ... ", error);
+			} catch (error) {
+			Log.error("Error fetching route information:", error.message);
+			throw error; // Re-throw the error
 		}
-	},
 
 	// Create a URL from the config and base URL.
 	getUrl(stopID) {

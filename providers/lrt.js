@@ -60,7 +60,17 @@ HKTransportETAProvider.register("lrt", {
 	 * Generate a ETAObject based on currentETAData
 	 */
 	generateETAObject(currentETAData) {
+		if (!currentETAData || !currentETAData.platform_list) {
+			Log.warn("Invalid ETA data received: platform_list is missing.", currentETAData);
+			return [];
+		}
+
 		return currentETAData.platform_list.map(routeLists => {
+			if (!routeLists || !routeLists.route_list) {
+				Log.warn("Invalid route list in ETA data.", routeLists);
+				return [];
+			}
+
 			const groupedRouteList = routeLists.route_list.reduce((group, product) => {
 				const { route_no } = product;
 				group[route_no] = group[route_no] ?? [];

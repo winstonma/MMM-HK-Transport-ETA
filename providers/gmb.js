@@ -88,14 +88,13 @@ HKTransportETAProvider.register("gmb", {
 	 * Generate a ETAObject based on currentETAData
 	 */
 	generateETAObject(currentETAData) {
-		const getTargetStation = (etaData) => {
+		const getTargetStation = (etaList) => {
 			if (this.config.stop_seq) {
-				const outputData = etaData.find(etaData => etaData.stop_seq == this.config.stop_seq);
-				return Array.isArray(outputData) ? outputData : [outputData];
-			} else {
-				return etaData
+				const found = etaList.find(eta => eta.stop_seq == this.config.stop_seq);
+				return found ? [found] : [];
 			}
-		}
+			return etaList;
+		};
 
 		const targetStation = getTargetStation(currentETAData);
 		return targetStation.map(data => ({

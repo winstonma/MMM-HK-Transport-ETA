@@ -74,6 +74,11 @@ HKTransportETAProvider.register("nwfb", {
 	 */
 	generateETAObject(currentETAArray) {
 		return currentETAArray.map(currentETA => {
+			if (!currentETA || currentETA.length === 0) {
+				Log.warn("Invalid ETA data received for currentETA.", currentETA);
+				return null;
+			}
+
 			const groupedETA = currentETA.reduce((group, product) => {
 				const { dir } = product;
 				group[dir] = group[dir] ?? [];

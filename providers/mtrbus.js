@@ -73,9 +73,17 @@ HKTransportETAProvider.register("mtrbus", {
 	 * Generate a ETAObject based on currentETAData
 	 */
 	generateETAObject(stopInfo, currentETAData) {
+		if (!currentETAData || !currentETAData.busStop) {
+			Log.warn("Invalid ETA data received: busStop is missing.", currentETAData);
+			return {
+				dest: stopInfo.dest,
+				time: []
+			};
+		}
+
 		const stop = currentETAData.busStop.find(stop => stop.busStopId === stopInfo.ref_ID);
 
-		if (!stop) {
+		if (!stop || !stop.bus) {
 			//return currentETAData.routeStatusRemarkTitle ?? '尾班車已過或未有到站時間提供';
 			return {
 				dest: stopInfo.dest,
