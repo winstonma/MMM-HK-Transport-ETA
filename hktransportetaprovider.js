@@ -29,13 +29,18 @@ const HKTransportETAProvider = Class.extend({
 	// Called when a HK Transport ETA provider is initialized.
 	init: function (config) {
 		this.config = config;
-		Log.info(`HK Transport ETA provider: ${this.providerName} initialized.`);
+		Log.info(
+			`HK Transport ETA provider: ${this.providerName} initialized.`,
+		);
 	},
 
 	// Called to set the config, this config is the same as the ETA module's config.
 	setConfig: function (config) {
 		this.config = config;
-		Log.info(`HK Transport ETA provider: ${this.providerName} config set.`, this.config);
+		Log.info(
+			`HK Transport ETA provider: ${this.providerName} config set.`,
+			this.config,
+		);
 	},
 
 	// Called when the HK Transport ETA provider is about to start.
@@ -46,7 +51,9 @@ const HKTransportETAProvider = Class.extend({
 	// This method should start the API request to fetch the current ETA.
 	// This method should definitely be overwritten in the provider.
 	fetchETA: function () {
-		Log.warn(`HK Transport ETA provider: ${this.providerName} does not subclass the fetchETA method.`);
+		Log.warn(
+			`HK Transport ETA provider: ${this.providerName} does not subclass the fetchETA method.`,
+		);
 	},
 
 	// This returns the current ETA object for the current ETA.
@@ -74,15 +81,28 @@ const HKTransportETAProvider = Class.extend({
 	 * @param {Array.<string>} expectedResponseHeaders the expected HTTP headers to recieve
 	 * @returns {Promise} resolved when the fetch is done
 	 */
-	fetchData: async function (url, type = "json", requestHeaders = undefined, expectedResponseHeaders = undefined) {
+	fetchData: async function (
+		url,
+		type = "json",
+		requestHeaders = undefined,
+		expectedResponseHeaders = undefined,
+	) {
 		const mockData = this.config.mockData;
 		if (mockData) {
 			const data = mockData.substring(1, mockData.length - 1);
 			return JSON.parse(data);
 		}
-		const useCorsProxy = typeof this.config.useCorsProxy !== "undefined" && this.config.useCorsProxy;
-		return performWebRequest(url, type, useCorsProxy, requestHeaders, expectedResponseHeaders);
-	}
+		const useCorsProxy =
+			typeof this.config.useCorsProxy !== "undefined" &&
+			this.config.useCorsProxy;
+		return performWebRequest(
+			url,
+			type,
+			useCorsProxy,
+			requestHeaders,
+			expectedResponseHeaders,
+		);
+	},
 });
 
 /**
@@ -96,8 +116,12 @@ HKTransportETAProvider.providers = [];
  * @param {string} providerIdentifier The name of the HK Transport ETA provider
  * @param {object} providerDetails The details of the HK Transport ETA provider
  */
-HKTransportETAProvider.register = function (providerIdentifier, providerDetails) {
-	HKTransportETAProvider.providers[providerIdentifier.toLowerCase()] = HKTransportETAProvider.extend(providerDetails);
+HKTransportETAProvider.register = function (
+	providerIdentifier,
+	providerDetails,
+) {
+	HKTransportETAProvider.providers[providerIdentifier.toLowerCase()] =
+		HKTransportETAProvider.extend(providerDetails);
 };
 
 /**
