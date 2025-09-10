@@ -19,7 +19,7 @@ HKTransportETAProvider.register("nwfb", {
 	defaults: {
 		apiBase: "https://rt.data.gov.hk/v1.1",
 		stopInfo: null,
-		stopRouteInfo: null
+		stopRouteInfo: null,
 	},
 
 	// Overwrite the fetchETA method.
@@ -29,16 +29,19 @@ HKTransportETAProvider.register("nwfb", {
 			this.config.stopRouteInfo = await this.fetchStopRouteInfo();
 		}
 
-		Promise.all(this.config.stopRouteInfo.map(stopRoute =>
-			this.fetchData(this.getUrl(stopRoute.route))
-				.then(data => data.data)
-		))
-			.then(data => data.filter(etaInfo => etaInfo.length))
-			.then(data => this.generateETAObject(data))
-			.then(currentETAArray => {
+		Promise.all(
+			this.config.stopRouteInfo.map((stopRoute) =>
+				this.fetchData(this.getUrl(stopRoute.route)).then(
+					(data) => data.data,
+				),
+			),
+		)
+			.then((data) => data.filter((etaInfo) => etaInfo.length))
+			.then((data) => this.generateETAObject(data))
+			.then((currentETAArray) => {
 				this.setCurrentETA(currentETAArray);
 			})
-			.catch(request => {
+			.catch((request) => {
 				Log.error("Could not load data ... ", request);
 			})
 			.finally(() => this.updateAvailable());
@@ -47,8 +50,8 @@ HKTransportETAProvider.register("nwfb", {
 	fetchStopInfo() {
 		const stopURL = `${this.config.apiBase}/transport/citybus-nwfb/stop/${this.config.sta}`;
 		return this.fetchData(stopURL)
-			.then(data => data.data)
-			.catch(request => {
+			.then((data) => data.data)
+			.catch((request) => {
 				Log.error("Could not load data ... ", request);
 			});
 	},
@@ -56,8 +59,8 @@ HKTransportETAProvider.register("nwfb", {
 	fetchStopRouteInfo() {
 		const stopURL = `${this.config.apiBase}/transport/batch/stop-route/${this.providerName}/${this.config.sta}`;
 		return this.fetchData(stopURL)
-			.then(data => data.data)
-			.catch(request => {
+			.then((data) => data.data)
+			.catch((request) => {
 				Log.error("Could not load data ... ", request);
 			});
 	},
@@ -73,9 +76,12 @@ HKTransportETAProvider.register("nwfb", {
 	 * Generate a ETAObject based on currentETAData
 	 */
 	generateETAObject(currentETAArray) {
-		return currentETAArray.map(currentETA => {
+		return currentETAArray.map((currentETA) => {
 			if (!currentETA || currentETA.length === 0) {
-				Log.warn("Invalid ETA data received for currentETA.", currentETA);
+				Log.warn(
+					"Invalid ETA data received for currentETA.",
+					currentETA,
+				);
 				return null;
 			}
 
@@ -89,13 +95,19 @@ HKTransportETAProvider.register("nwfb", {
 				const value = groupedETA[key];
 				return {
 					line: value[0].route,
-					station: this.config.lang.startsWith("zh") ? this.config.stopInfo.name_tc : this.config.stopInfo.name_en,
-					etas: [{
-						dest: this.config.lang.startsWith("zh") ? value[0].dest_tc : value[0].dest_en,
-						time: value.map(eta => eta.eta)
-					}]
-				}
+					station: this.config.lang.startsWith("zh")
+						? this.config.stopInfo.name_tc
+						: this.config.stopInfo.name_en,
+					etas: [
+						{
+							dest: this.config.lang.startsWith("zh")
+								? value[0].dest_tc
+								: value[0].dest_en,
+							time: value.map((eta) => eta.eta),
+						},
+					],
+				};
 			})[0];
 		});
-	}
+	},
 });

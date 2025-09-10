@@ -10,10 +10,7 @@
  * As soon as we start implementing the forecast, mode properties will be added.
  */
 class ETAObject {
-
-	constructor() {
-	}
-
+	constructor() {}
 }
 
 /*************** DO NOT EDIT THE LINE BELOW ***************/

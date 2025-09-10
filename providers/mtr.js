@@ -20,21 +20,29 @@ HKTransportETAProvider.register("mtr", {
 		apiBase: "https://rt.data.gov.hk/v1/transport/mtr/getSchedule.php",
 		mtrLines: "/modules/MMM-HK-Transport-ETA/data/mtr-lines.json",
 		mtrData: {},
-		lineInfo: []
+		lineInfo: [],
 	},
 
 	// Overwrite the fetchETA method.
 	async fetchETA() {
-					if (this.config.lineInfo.length === 0) {
-				this.config.lineInfo = await this.fetchStationInfo();
-				if (!this.config.lineInfo || this.config.lineInfo.length === 0) {
-					throw new Error("Failed to fetch station information or no stations found.");
-				}
+		if (this.config.lineInfo.length === 0) {
+			this.config.lineInfo = await this.fetchStationInfo();
+			if (!this.config.lineInfo || this.config.lineInfo.length === 0) {
+				throw new Error(
+					"Failed to fetch station information or no stations found.",
+				);
 			}
+		}
 
 		try {
-			const dataArray = await Promise.all(this.config.lineInfo.map(station => this.fetchData(this.getUrl(station))));
-			const currentETAArray = dataArray.map(data => this.generateETAObject(data));
+			const dataArray = await Promise.all(
+				this.config.lineInfo.map((station) =>
+					this.fetchData(this.getUrl(station)),
+				),
+			);
+			const currentETAArray = dataArray.map((data) =>
+				this.generateETAObject(data),
+			);
 			this.setCurrentETA(currentETAArray);
 		} catch (error) {
 			Log.error("Could not load data ... ", error);
@@ -49,17 +57,22 @@ HKTransportETAProvider.register("mtr", {
 			this.config.mtrData = data;
 
 			// Find the valid line and routes
-			return Object.entries(data)
-				.flatMap(([key, lineInfo]) => 
-					(lineInfo.stations || []).filter(station => 
-						([station.tc, station.en].includes(this.config.sta))
-					).map(station => ({
+			return Object.entries(data).flatMap(([key, lineInfo]) =>
+				(lineInfo.stations || [])
+					.filter((station) =>
+						[station.tc, station.en].includes(this.config.sta),
+					)
+					.map((station) => ({
 						line_code: key,
-						line: this.config.lang.startsWith("zh") ? lineInfo.tc : lineInfo.en,
-						station: this.config.lang.startsWith("zh") ? station.tc : station.en,
-						station_code: station.code
-					}))
-				);
+						line: this.config.lang.startsWith("zh")
+							? lineInfo.tc
+							: lineInfo.en,
+						station: this.config.lang.startsWith("zh")
+							? station.tc
+							: station.en,
+						station_code: station.code,
+					})),
+			);
 		} catch (request) {
 			Log.error("Could not load data ... ", request);
 			return [];
@@ -80,28 +93,37 @@ HKTransportETAProvider.register("mtr", {
 	generateETAObject(currentETAData) {
 		const etaObject = Object.values(currentETAData.data)[0];
 
-		const [lineCode, stationCode] = Object.keys(currentETAData.data)[0].split("-");
+		const [lineCode, stationCode] = Object.keys(
+			currentETAData.data,
+		)[0].split("-");
 		const lang = this.config.lang.startsWith("zh") ? "tc" : "en";
-		const stationInfo = this.config.lineInfo.find(station => ((station.line_code === lineCode) && (station.station_code === stationCode)));
+		const stationInfo = this.config.lineInfo.find(
+			(station) =>
+				station.line_code === lineCode &&
+				station.station_code === stationCode,
+		);
 		const etas = Object.keys(etaObject)
-			.filter(key => ['UP', 'DOWN'].includes(key))
-			.map(direction => {
+			.filter((key) => ["UP", "DOWN"].includes(key))
+			.map((direction) => {
 				const groupByDest = etaObject[direction].reduce((r, a) => {
-					const destination = this.config.mtrData[lineCode].stations.find(station => station.code === a.dest)[lang];
-					r[destination] = [...r[destination] || [], a];
+					const destination = this.config.mtrData[
+						lineCode
+					].stations.find((station) => station.code === a.dest)[lang];
+					r[destination] = [...(r[destination] || []), a];
 					return r;
 				}, {});
 				return Object.entries(groupByDest).map(([key, value]) => ({
 					dest: key,
-					time: value.map(eta => eta.time)
+					time: value.map((eta) => eta.time),
 				}))[0];
-			}).filter(n => n);
+			})
+			.filter((n) => n);
 
 		return {
 			line: stationInfo.line,
 			station: stationInfo.station,
-			etas: etas
-		}
+			etas: etas,
+		};
 	},
 
 	/* getParams(compliments)
@@ -116,5 +138,5 @@ HKTransportETAProvider.register("mtr", {
 		params += "&sta=" + stationInfo.station_code;
 
 		return params;
-	}
+	},
 });

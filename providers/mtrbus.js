@@ -18,29 +18,39 @@ HKTransportETAProvider.register("mtrbus", {
 	// Set the default config properties that is specific to this provider
 	defaults: {
 		apiBase: "https://rt.data.gov.hk/v1/transport/mtr/bus/getSchedule",
-		mtrBusLines: "/modules/MMM-HK-Transport-ETA/telegram-hketa/data/routes-mtr.json",
+		mtrBusLines:
+			"/modules/MMM-HK-Transport-ETA/telegram-hketa/data/routes-mtr.json",
 		allRoutesData: {},
-		lineInfo: []
+		lineInfo: [],
 	},
 
 	// Overwrite the fetchETA method.
 	async fetchETA() {
-
 		if (this.config.lineInfo.length === 0) {
 			this.config.lineInfo = await this.fetchRouteInfo();
 		}
 
-		const dataObject = { "language": 'en', "routeName": this.config.line };
-		this.fetchData(this.config.apiBase, method = "POST", data = dataObject)
-			.then(data => this.config.lineInfo.map(line => this.generateETAObject(line, data)))
-			.then(currentETAArray => {
-				this.setCurrentETA([{
-					station: this.config.lineInfo[0].station,
-					line: this.config.line,
-					etas: currentETAArray
-				}]);
+		const dataObject = { language: "en", routeName: this.config.line };
+		this.fetchData(
+			this.config.apiBase,
+			(method = "POST"),
+			(data = dataObject),
+		)
+			.then((data) =>
+				this.config.lineInfo.map((line) =>
+					this.generateETAObject(line, data),
+				),
+			)
+			.then((currentETAArray) => {
+				this.setCurrentETA([
+					{
+						station: this.config.lineInfo[0].station,
+						line: this.config.line,
+						etas: currentETAArray,
+					},
+				]);
 			})
-			.catch(request => {
+			.catch((request) => {
 				Log.error("Could not load data ... ", request);
 			})
 			.finally(() => this.updateAvailable());
@@ -48,23 +58,44 @@ HKTransportETAProvider.register("mtrbus", {
 
 	fetchRouteInfo() {
 		return this.fetchData(this.config.mtrBusLines)
-			.then(data => {
+			.then((data) => {
 				this.config.allRoutesData = data;
-				return data.find(route => route.route_number === this.config.line);
-			}).then(data =>
-				data.lines.map(line => {
-					const filteredArray = line.stops.filter(stop => ([stop.name_ch, stop.name_en].includes(this.config.sta)));
-					return [...new Map(filteredArray.map(item => [item.ref_ID, item])).values()]
-						.map(stop => ({
+				return data.find(
+					(route) => route.route_number === this.config.line,
+				);
+			})
+			.then((data) =>
+				data.lines
+					.map((line) => {
+						const filteredArray = line.stops.filter((stop) =>
+							[stop.name_ch, stop.name_en].includes(
+								this.config.sta,
+							),
+						);
+						return [
+							...new Map(
+								filteredArray.map((item) => [
+									item.ref_ID,
+									item,
+								]),
+							).values(),
+						].map((stop) => ({
 							...stop,
-							station: this.config.lang.startsWith("zh") ? stop.name_ch : stop.name_en,
-							dest: this.config.lang.startsWith("zh") ?
-								(line.description_zh.split(" 往 ").length > 1 ? line.description_zh.split(" 往 ")[1] : line.description_zh)
-								: (line.description_en.split(" to ").length > 1 ? line.description_en.split(" to ")[1] : line.description_en),
-						}))
-				}).flat()
+							station: this.config.lang.startsWith("zh")
+								? stop.name_ch
+								: stop.name_en,
+							dest: this.config.lang.startsWith("zh")
+								? line.description_zh.split(" 往 ").length > 1
+									? line.description_zh.split(" 往 ")[1]
+									: line.description_zh
+								: line.description_en.split(" to ").length > 1
+									? line.description_en.split(" to ")[1]
+									: line.description_en,
+						}));
+					})
+					.flat(),
 			)
-			.catch(request => {
+			.catch((request) => {
 				Log.error("Could not load data ... ", request);
 			});
 	},
@@ -74,29 +105,33 @@ HKTransportETAProvider.register("mtrbus", {
 	 */
 	generateETAObject(stopInfo, currentETAData) {
 		if (!currentETAData || !currentETAData.busStop) {
-			Log.warn("Invalid ETA data received: busStop is missing.", currentETAData);
+			Log.warn(
+				"Invalid ETA data received: busStop is missing.",
+				currentETAData,
+			);
 			return {
 				dest: stopInfo.dest,
-				time: []
+				time: [],
 			};
 		}
 
-		const stop = currentETAData.busStop.find(stop => stop.busStopId === stopInfo.ref_ID);
+		const stop = currentETAData.busStop.find(
+			(stop) => stop.busStopId === stopInfo.ref_ID,
+		);
 
 		if (!stop || !stop.bus) {
 			//return currentETAData.routeStatusRemarkTitle ?? '尾班車已過或未有到站時間提供';
 			return {
 				dest: stopInfo.dest,
-				time: []
+				time: [],
 			};
 		}
 
 		return {
 			dest: stopInfo.dest,
-			time: stop.bus.map(
-				({ departureTimeInSecond }) =>
-					moment().add(departureTimeInSecond, 'seconds')
-			)
-		}
-	}
+			time: stop.bus.map(({ departureTimeInSecond }) =>
+				moment().add(departureTimeInSecond, "seconds"),
+			),
+		};
+	},
 });

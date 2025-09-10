@@ -18,9 +18,10 @@ HKTransportETAProvider.register("lrt", {
 	// Set the default config properties that is specific to this provider
 	defaults: {
 		apiBase: " https://rt.data.gov.hk/v1/transport/mtr/lrt/getSchedule",
-		lrtLines: "/modules/MMM-HK-Transport-ETA/telegram-hketa/data/station-lrt.json",
+		lrtLines:
+			"/modules/MMM-HK-Transport-ETA/telegram-hketa/data/station-lrt.json",
 		allRoutesData: {},
-		stationInfo: {}
+		stationInfo: {},
 	},
 
 	// Overwrite the fetchETA method.
@@ -30,11 +31,11 @@ HKTransportETAProvider.register("lrt", {
 		}
 
 		this.fetchData(this.getUrl(this.config.stationInfo))
-			.then(data => {
+			.then((data) => {
 				const currentETAArray = this.generateETAObject(data).flat();
 				this.setCurrentETA(currentETAArray);
 			})
-			.catch(request => {
+			.catch((request) => {
 				Log.error("Could not load data ... ", request);
 			})
 			.finally(() => this.updateAvailable());
@@ -42,16 +43,22 @@ HKTransportETAProvider.register("lrt", {
 
 	fetchStationInfo() {
 		return this.fetchData(this.config.lrtLines)
-			.then(data => {
+			.then((data) => {
 				this.config.allRoutesData = data;
-				const stations = data.map(zones => zones.stations.map(data => data)).flat()
-				const targetStation = stations.find(stop => ([stop.eng_name, stop.chi_name].includes(this.config.sta)));
+				const stations = data
+					.map((zones) => zones.stations.map((data) => data))
+					.flat();
+				const targetStation = stations.find((stop) =>
+					[stop.eng_name, stop.chi_name].includes(this.config.sta),
+				);
 				return {
 					station_id: targetStation.station_id,
-					station: this.config.lang.startsWith("zh") ? targetStation.chi_name : targetStation.eng_name,
-				}
+					station: this.config.lang.startsWith("zh")
+						? targetStation.chi_name
+						: targetStation.eng_name,
+				};
 			})
-			.catch(request => {
+			.catch((request) => {
 				Log.error("Could not load data ... ", request);
 			});
 	},
@@ -61,35 +68,48 @@ HKTransportETAProvider.register("lrt", {
 	 */
 	generateETAObject(currentETAData) {
 		if (!currentETAData || !currentETAData.platform_list) {
-			Log.warn("Invalid ETA data received: platform_list is missing.", currentETAData);
+			Log.warn(
+				"Invalid ETA data received: platform_list is missing.",
+				currentETAData,
+			);
 			return [];
 		}
 
-		return currentETAData.platform_list.map(routeLists => {
+		return currentETAData.platform_list.map((routeLists) => {
 			if (!routeLists || !routeLists.route_list) {
 				Log.warn("Invalid route list in ETA data.", routeLists);
 				return [];
 			}
 
-			const groupedRouteList = routeLists.route_list.reduce((group, product) => {
-				const { route_no } = product;
-				group[route_no] = group[route_no] ?? [];
-				group[route_no].push(product);
-				return group;
-			}, {});
+			const groupedRouteList = routeLists.route_list.reduce(
+				(group, product) => {
+					const { route_no } = product;
+					group[route_no] = group[route_no] ?? [];
+					group[route_no].push(product);
+					return group;
+				},
+				{},
+			);
 			return Object.keys(groupedRouteList).map((key) => {
 				const dataList = groupedRouteList[key];
-				const destination = this.config.lang.startsWith("zh") ? dataList[0].dest_ch : dataList[0].dest_en;
+				const destination = this.config.lang.startsWith("zh")
+					? dataList[0].dest_ch
+					: dataList[0].dest_en;
 				return {
 					line: key,
 					station: this.config.stationInfo.station,
-					etas: [{
-						dest: destination,
-						time: dataList.map(schedule => {
-							const arrivingMinute = (schedule.time_en == "Arriving") ? 0 : parseInt(schedule.time_en);
-							return moment().add(arrivingMinute, 'minutes');
-						})
-					}]
+					etas: [
+						{
+							dest: destination,
+							time: dataList.map((schedule) => {
+								const arrivingMinute =
+									schedule.time_en == "Arriving"
+										? 0
+										: parseInt(schedule.time_en);
+								return moment().add(arrivingMinute, "minutes");
+							}),
+						},
+					],
 				};
 			});
 		});
@@ -114,5 +134,5 @@ HKTransportETAProvider.register("lrt", {
 		params += "&station_id=" + stationInfo.station_id;
 
 		return params;
-	}
+	},
 });

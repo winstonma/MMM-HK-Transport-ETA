@@ -19,7 +19,7 @@ HKTransportETAProvider.register("gmb", {
 	defaults: {
 		apiBase: "https://data.etagmb.gov.hk",
 		routeData: {},
-		stationInfo: null
+		stationInfo: null,
 	},
 
 	// Overwrite the fetchETA method.
@@ -27,14 +27,16 @@ HKTransportETAProvider.register("gmb", {
 		if (this.config.stationInfo === null) {
 			this.config.stationInfo = await this.fetchRouteInfo();
 		}
-	
+
 		try {
 			const url = this.getUrl(this.config.stationInfo);
 			const data = await this.fetchData(url);
 
 			// Generate the ETA object and update current eta
 			const etaObject = this.generateETAObject(data.data);
-			const currentETAArray = Array.isArray(etaObject) ? etaObject : [etaObject];
+			const currentETAArray = Array.isArray(etaObject)
+				? etaObject
+				: [etaObject];
 
 			this.setCurrentETA(currentETAArray);
 		} catch (request) {
@@ -48,25 +50,31 @@ HKTransportETAProvider.register("gmb", {
 		try {
 			const routeURL = `${this.config.apiBase}/route/${this.config.area}/${this.config.line}`;
 			const routeData = await this.fetchData(routeURL);
-			
+
 			if (!routeData.data || !routeData.data[0]) {
 				throw new Error("Invalid route data received");
 			}
-	
+
 			const routeInfo = routeData.data[0];
 			const stopPromises = routeInfo.directions.map(async (route) => {
-				const stopsResponse = await this.fetchData(`${this.config.apiBase}/route-stop/${routeInfo.route_id}/${route.route_seq}`);
+				const stopsResponse = await this.fetchData(
+					`${this.config.apiBase}/route-stop/${routeInfo.route_id}/${route.route_seq}`,
+				);
 				return stopsResponse.data.route_stops
-					.filter(stop => stop.stop_id === this.config.sta)
-					.map(stop => ({
+					.filter((stop) => stop.stop_id === this.config.sta)
+					.map((stop) => ({
 						...stop,
 						routeID: routeInfo.route_id,
 						routeSeq: route.routeSeq,
-						station: this.config.lang.startsWith("zh") ? stop.name_tc : stop.name_en,
-						dest: this.config.lang.startsWith("zh") ? route.dest_tc : route.dest_en,
+						station: this.config.lang.startsWith("zh")
+							? stop.name_tc
+							: stop.name_en,
+						dest: this.config.lang.startsWith("zh")
+							? route.dest_tc
+							: route.dest_en,
 					}));
 			});
-	
+
 			const stopData = await Promise.all(stopPromises);
 
 			return stopData.flat()[0];
@@ -90,20 +98,29 @@ HKTransportETAProvider.register("gmb", {
 	generateETAObject(currentETAData) {
 		const getTargetStation = (etaList) => {
 			if (this.config.stop_seq) {
-				const found = etaList.find(eta => eta.stop_seq == this.config.stop_seq);
+				const found = etaList.find(
+					(eta) => eta.stop_seq == this.config.stop_seq,
+				);
 				return found ? [found] : [];
 			}
 			return etaList;
 		};
 
 		const targetStation = getTargetStation(currentETAData);
-		return targetStation.map(data => ({
+		return targetStation.map((data) => ({
 			line: this.config.line,
 			station: this.config.stationInfo.station,
-			etas: data.eta?.length === 0 ? null : [{
-				dest: this.config.stationInfo.dest,
-				time: data.eta.map(etaData => etaData.timestamp)
-			}]
+			etas:
+				data.eta?.length === 0
+					? null
+					: [
+							{
+								dest: this.config.stationInfo.dest,
+								time: data.eta.map(
+									(etaData) => etaData.timestamp,
+								),
+							},
+						],
 		}));
-	}
+	},
 });

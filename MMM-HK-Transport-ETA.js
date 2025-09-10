@@ -12,14 +12,14 @@ Module.register("MMM-HK-Transport-ETA", {
 		transportETAProvider: "mtr",
 		sta: "Hong Kong",
 		reloadInterval: 1 * 60 * 1000, // every 1 minute
-		updateInterval: 5 * 1000,  // every 5 seconds
+		updateInterval: 5 * 1000, // every 5 seconds
 		animationSpeed: 2500,
 		timeFormat: config.timeFormat,
 		lang: config.language,
 		initialLoadDelay: 0, // 0 seconds delay
 		tableClass: "small",
 		colored: false,
-		showHeader: false
+		showHeader: false,
 	},
 
 	// Module properties.
@@ -35,16 +35,26 @@ Module.register("MMM-HK-Transport-ETA", {
 
 	// Return the scripts that are necessary for the ETA module.
 	getScripts: function () {
-		return ["moment.js", this.file("../default/utils.js"), "hktransportetaprovider.js", "etaobject.js", this.file(`providers/${this.config.transportETAProvider.toLowerCase()}.js`)];
+		return [
+			"moment.js",
+			this.file("../default/utils.js"),
+			"hktransportetaprovider.js",
+			"etaobject.js",
+			this.file(
+				`providers/${this.config.transportETAProvider.toLowerCase()}.js`,
+			),
+		];
 	},
 
 	// Override getHeader method.
 	getHeader: function () {
-		if (typeof this.transportETAProvider.getHeader === 'function') {
+		if (typeof this.transportETAProvider.getHeader === "function") {
 			return this.transportETAProvider.getHeader();
 		} else {
-			return this.transportETAProvider.currentETA() ?
-				this.transportETAProvider.currentETA()[0].station : `${this.data.classes}-${this.config.transportETAProvider}`;
+			const currentETA = this.transportETAProvider.currentETA();
+			return currentETA && currentETA.length > 0
+				? currentETA[0].station
+				: `${this.data.classes}-${this.config.transportETAProvider}`;
 		}
 	},
 
@@ -63,28 +73,28 @@ Module.register("MMM-HK-Transport-ETA", {
 
 		// Moment.js config
 		moment.locale(this.config.lang);
-		moment.relativeTimeThreshold('m', 60);
+		moment.relativeTimeThreshold("m", 60);
 
 		const momentLanguageConfigData = {
-			"en": {
+			en: {
 				relativeTime: {
 					s: "just now",
 					ss: "just now",
-					m: '%dm',
-					mm: '%dm',
-					h: '%dh',
-					hh: '%dh',
-				}
+					m: "%dm",
+					mm: "%dm",
+					h: "%dh",
+					hh: "%dh",
+				},
 			},
 			"zh-tw": {
 				relativeTime: {
 					s: "現在",
 					ss: "現在",
-					m: '%d分',
-					mm: '%d分',
-					h: '%d小時',
-					hh: '%d小時',
-				}
+					m: "%d分",
+					mm: "%d分",
+					h: "%d小時",
+					hh: "%d小時",
+				},
 			},
 		};
 
@@ -93,12 +103,18 @@ Module.register("MMM-HK-Transport-ETA", {
 		moment.updateLocale(lang, momentLanguageConfigData[lang]);
 
 		// Initialize the ETA provider.
-		this.transportETAProvider = HKTransportETAProvider.initialize(this.config.transportETAProvider, this);
+		this.transportETAProvider = HKTransportETAProvider.initialize(
+			this.config.transportETAProvider,
+			this,
+		);
 
 		// Add custom filters
 		this.addFilters();
 
-		if (this.config.transportETAProvider === "kmb") {
+		if (
+			this.config.transportETAProvider === "kmb" &&
+			this.config.sta.includes("-")
+		) {
 			this.sendSocketNotification("ADD_KMB_STOP", this.config.sta);
 		} else {
 			// Let the ETA provider know we are starting.
@@ -110,10 +126,17 @@ Module.register("MMM-HK-Transport-ETA", {
 	},
 
 	socketNotificationReceived: function (notification, payload) {
-		if (notification === "KMB_STOP_ITEM" && payload.station === this.config.sta) {
+		if (
+			notification === "KMB_STOP_ITEM" &&
+			payload.station === this.config.sta
+		) {
 			this.config.stops = payload.data;
 
-			const config = Object.assign({}, this.transportETAProvider.defaults, this.config);
+			const config = Object.assign(
+				{},
+				this.transportETAProvider.defaults,
+				this.config,
+			);
 			this.transportETAProvider.setConfig(config);
 
 			// Let the ETA provider know we are starting.
@@ -125,8 +148,7 @@ Module.register("MMM-HK-Transport-ETA", {
 	},
 
 	// Override notification handler.
-	notificationReceived: function (notification, payload, sender) {
-	},
+	notificationReceived: function (notification, payload, sender) {},
 
 	// Select the template depending on the display type.
 	getTemplate: function () {
@@ -137,12 +159,12 @@ Module.register("MMM-HK-Transport-ETA", {
 	getTemplateData: function () {
 		if (this.error) {
 			return {
-				error: this.error
+				error: this.error,
 			};
 		}
 		return {
 			config: this.config,
-			currentETA: this.transportETAProvider.currentETA()
+			currentETA: this.transportETAProvider.currentETA(),
 		};
 	},
 
@@ -167,8 +189,11 @@ Module.register("MMM-HK-Transport-ETA", {
 		this.updateDom(this.config.animationSpeed);
 
 		const currentTime = Date.now();
-		const nextLoad = this.config.updateInterval - (currentTime % this.config.updateInterval);
-		this.config.displayRelativeTime = Math.round(currentTime / this.config.updateInterval) % 2;
+		const nextLoad =
+			this.config.updateInterval -
+			(currentTime % this.config.updateInterval);
+		this.config.displayRelativeTime =
+			Math.round(currentTime / this.config.updateInterval) % 2;
 
 		if (this.timer) clearTimeout(this.timer);
 
@@ -193,11 +218,11 @@ Module.register("MMM-HK-Transport-ETA", {
 			"formatTime",
 			function (date) {
 				if (Array.isArray(date)) {
-					const retArray = date.map(singleDate => {
+					const retArray = date.map((singleDate) => {
 						singleDate = moment(singleDate);
 
 						if (this.config.timeFormat !== 24) {
-							return singleDate.format("h:mm")
+							return singleDate.format("h:mm");
 						}
 						return singleDate.format("HH:mm");
 					});
@@ -211,25 +236,30 @@ Module.register("MMM-HK-Transport-ETA", {
 
 					return date.format("HH:mm");
 				}
-			}.bind(this)
+			}.bind(this),
 		);
 
 		this.nunjucksEnvironment().addFilter(
 			"fromNow",
 			function (dateArray) {
-				return dateArray.map(date => moment(date).fromNow(true)).toString();
-			}.bind(this)
+				return dateArray
+					.map((date) => moment(date).fromNow(true))
+					.toString();
+			}.bind(this),
 		);
 
 		this.nunjucksEnvironment().addFilter(
 			"json",
 			function (value, spaces) {
 				if (value instanceof nunjucks.runtime.SafeString) {
-					value = value.toString()
+					value = value.toString();
 				}
-				const jsonString = JSON.stringify(value, null, spaces).replace(/</g, '\\u003c')
-				return nunjucks.runtime.markSafe(jsonString)
-			}.bind(this)
+				const jsonString = JSON.stringify(value, null, spaces).replace(
+					/</g,
+					"\\u003c",
+				);
+				return nunjucks.runtime.markSafe(jsonString);
+			}.bind(this),
 		);
-	}
+	},
 });

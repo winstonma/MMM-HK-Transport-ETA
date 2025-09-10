@@ -19,7 +19,7 @@ HKTransportETAProvider.register("ctb", {
 	defaults: {
 		apiBase: "https://rt.data.gov.hk/v2/transport/citybus",
 		company_id: "CTB",
-		stopInfo: null
+		stopInfo: null,
 	},
 
 	// Overwrite the fetchETA method.
@@ -29,20 +29,24 @@ HKTransportETAProvider.register("ctb", {
 				this.config.stopInfo = await this.fetchStopInfo();
 			}
 
-			const etaData = await Promise.all(this.config.routes.map(async stopRoute => {
-				const url = this.getUrl(stopRoute.route);
-				const data = await this.fetchData(url);
-				if (data && data.data) {
-					return { data: data.data, dir: stopRoute.dir };
-				} else {
-					Log.warn(`No data.data found for route ${stopRoute.route}. Full response:`, data);
-					return null;
-				}
-			}));
+			const etaData = await Promise.all(
+				this.config.routes.map(async (stopRoute) => {
+					const url = this.getUrl(stopRoute.route);
+					const data = await this.fetchData(url);
+					if (data && data.data) {
+						return { data: data.data, dir: stopRoute.dir };
+					} else {
+						Log.warn(
+							`No data.data found for route ${stopRoute.route}. Full response:`,
+							data,
+						);
+						return null;
+					}
+				}),
+			);
 
-			const filteredData = etaData.filter(item => item?.data?.length);
+			const filteredData = etaData.filter((item) => item?.data?.length);
 			const currentETAArray = this.generateETAObject(filteredData);
-			debugger
 
 			this.setCurrentETA(currentETAArray);
 		} catch (error) {
@@ -55,8 +59,8 @@ HKTransportETAProvider.register("ctb", {
 	fetchStopInfo() {
 		const stopURL = `${this.config.apiBase}/stop/${this.config.sta}`;
 		return this.fetchData(stopURL)
-			.then(data => data.data)
-			.catch(error => {
+			.then((data) => data.data)
+			.catch((error) => {
 				Log.error("Could not load stop info ... ", error);
 				throw error; // Re-throw the error to propagate it
 			});
@@ -74,10 +78,10 @@ HKTransportETAProvider.register("ctb", {
 	 */
 	generateETAObject(etaDataListWithDir) {
 		let combinedETAData = [];
-		etaDataListWithDir.forEach(item => {
+		etaDataListWithDir.forEach((item) => {
 			let etas = item.data;
 			if (item.dir) {
-				etas = etas.filter(eta => eta.dir === item.dir);
+				etas = etas.filter((eta) => eta.dir === item.dir);
 			}
 			combinedETAData = combinedETAData.concat(etas);
 		});
@@ -97,15 +101,19 @@ HKTransportETAProvider.register("ctb", {
 			return groups;
 		}, {});
 
-		const etasArray = Object.entries(etasByDestination).map(([dest, times]) => ({
-			dest: dest,
-			time: times
-		}));
+		const etasArray = Object.entries(etasByDestination).map(
+			([dest, times]) => ({
+				dest: dest,
+				time: times,
+			}),
+		);
 
-		return [{
-			line: route,
-			etas: etasArray
-		}];
+		return [
+			{
+				line: route,
+				etas: etasArray,
+			},
+		];
 	},
 
 	// Helper methods to improve readability
@@ -127,12 +135,10 @@ HKTransportETAProvider.register("ctb", {
 	},
 
 	getLocalizedDestination(eta) {
-		return this.config.lang.startsWith("zh")
-			? eta.dest_tc
-			: eta.dest_en;
+		return this.config.lang.startsWith("zh") ? eta.dest_tc : eta.dest_en;
 	},
 
 	getHeader: function () {
 		return this.getLocalizedStationName();
-	}
+	},
 });
