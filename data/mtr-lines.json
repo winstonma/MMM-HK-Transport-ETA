@@ -32,7 +32,7 @@
 	},
 	"TCL": {
 		"tc": "東涌綫",
-		"en": "Tung Chung line",
+		"en": "Tung Chung Line",
 		"stations": [
 			{
 				"code": "HOK",
@@ -219,7 +219,7 @@
 	},
 	"TKL": {
 		"tc": "將軍澳綫",
-		"en": "Tseung Kwan O line",
+		"en": "Tseung Kwan O Line",
 		"stations": [
 			{
 				"code": "NOP",
