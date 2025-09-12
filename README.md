@@ -23,7 +23,7 @@ To add this module, go to MagicMirror folder and run the following command
 
 ```bash
 cd modules
-git clone --recurse-submodules https://github.com/winstonma/MMM-HK-Transport-ETA.git
+git clone https://github.com/winstonma/MMM-HK-Transport-ETA.git
 cd MMM-HK-Transport-ETA
 npm install
 ```
@@ -76,14 +76,14 @@ The following properties can be configured:
 
 | Option | Description                                                                                                                                                                                                                                                                                                                                  |
 | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `line` | Which Bus line <br><br> **Possible values:** Please refer to **route_number** field of the [supported list of bus routes](https://codebeautify.org/jsonviewer?url=https://raw.githubusercontent.com/kirosc/telegram-hketa/master/data/routes-mtr.json), for example `K12`                                                                    |
-| `sta`  | Which Bus station <br><br> **Possible values:** Please refer to **line.stops.name_ch** or **line.stops.name_en** field of the [supported list of bus routes](https://codebeautify.org/jsonviewer?url=https://raw.githubusercontent.com/kirosc/telegram-hketa/master/data/routes-mtr.json), for example `Tai Po Market Station` or `大埔墟站` |
+| `line` | Which Bus line <br><br> **Possible values:** Please refer to **route_number** field of the supported list of bus routes, for example `K12`                                                                    |
+| `sta`  | Which Bus station <br><br> **Possible values:** Please refer to **line.stops.name_ch** or **line.stops.name_en** field of the supported list of bus routes, for example `Tai Po Market Station` or `大埔墟站` |
 
 ### Light Rail Transit (LRT)
 
 | Option | Description                                                                                                                                                                                                                     |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sta`  | Which LRT station <br><br> **Possible values:** Please use to **eng_name** or **chi_name** of the [supported list of lrt station](https://www.mtr.com.hk/archive/en/services/LR_routemap.pdf), for example `Lung Mun` or `龍門` |
+| `sta`  | Which LRT station <br><br> **Possible values:** Please use to **eng_name** or **chi_name** of the supported list of lrt station, for example `Lung Mun` or `龍門` |
 
 ### Green Minibuses (GMB)
 
