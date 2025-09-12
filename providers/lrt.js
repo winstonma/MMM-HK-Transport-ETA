@@ -18,8 +18,7 @@ HKTransportETAProvider.register("lrt", {
 	// Set the default config properties that is specific to this provider
 	defaults: {
 		apiBase: " https://rt.data.gov.hk/v1/transport/mtr/lrt/getSchedule",
-		lrtLines:
-			"/modules/MMM-HK-Transport-ETA/telegram-hketa/data/station-lrt.json",
+		lrtLines: "/modules/MMM-HK-Transport-ETA/data/station-lrt.json",
 		allRoutesData: {},
 		stationInfo: {},
 	},
