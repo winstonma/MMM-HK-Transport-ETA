@@ -25,78 +25,84 @@ HKTransportETAProvider.register("mtrbus", {
 
 	// Overwrite the fetchETA method.
 	async fetchETA() {
-		if (this.config.lineInfo.length === 0) {
-			this.config.lineInfo = await this.fetchRouteInfo();
-		}
+		try {
+			if (this.config.lineInfo.length === 0) {
+				this.config.lineInfo = await this.fetchRouteInfo();
+			}
 
-		const dataObject = { language: "en", routeName: this.config.line };
-		this.fetchData(
-			this.config.apiBase,
-			(method = "POST"),
-			(data = dataObject),
-		)
-			.then((data) =>
-				this.config.lineInfo.map((line) =>
-					this.generateETAObject(line, data),
-				),
-			)
-			.then((currentETAArray) => {
-				this.setCurrentETA([
-					{
-						station: this.config.lineInfo[0].station,
-						line: this.config.line,
-						etas: currentETAArray,
-					},
-				]);
-			})
-			.catch((request) => {
-				Log.error("Could not load data ... ", request);
-			})
-			.finally(() => this.updateAvailable());
+			const dataObject = { language: "en", routeName: this.config.line };
+			const data = await this.fetchData(
+				this.config.apiBase,
+				"POST",
+				dataObject,
+			);
+
+			const currentETAArray = this.config.lineInfo.map((line) =>
+				this.generateETAObject(line, data),
+			);
+
+			this.setCurrentETA([
+				{
+					station: this.config.lineInfo[0].station,
+					line: this.config.line,
+					etas: currentETAArray,
+				},
+			]);
+		} catch (request) {
+			Log.error("Could not load data ... ", request);
+		} finally {
+			this.updateAvailable();
+		}
 	},
 
-	fetchRouteInfo() {
-		return this.fetchData(this.config.mtrBusLines)
-			.then((data) => {
-				this.config.allRoutesData = data;
-				return data.find(
-					(route) => route.route_number === this.config.line,
-				);
-			})
-			.then((data) =>
-				data.lines
-					.map((line) => {
-						const filteredArray = line.stops.filter((stop) =>
-							[stop.name_ch, stop.name_en].includes(
-								this.config.sta,
-							),
-						);
-						return [
-							...new Map(
-								filteredArray.map((item) => [
-									item.ref_ID,
-									item,
-								]),
-							).values(),
-						].map((stop) => ({
-							...stop,
-							station: this.config.lang.startsWith("zh")
-								? stop.name_ch
-								: stop.name_en,
-							dest: this.config.lang.startsWith("zh")
-								? line.description_zh.split(" 往 ").length > 1
-									? line.description_zh.split(" 往 ")[1]
-									: line.description_zh
-								: line.description_en.split(" to ").length > 1
-									? line.description_en.split(" to ")[1]
-									: line.description_en,
-						}));
-					})
-					.flat(),
-			)
-			.catch((request) => {
-				Log.error("Could not load data ... ", request);
-			});
+	async fetchRouteInfo() {
+		try {
+			const data = await this.fetchData(this.config.mtrBusLines);
+			this.config.allRoutesData = data;
+
+			const routeData = data.find(
+				(route) => route.route_number === this.config.line,
+			);
+
+			if (!routeData) {
+				return [];
+			}
+
+			const result = routeData.lines
+				.map((line) => {
+					const filteredArray = line.stops.filter((stop) =>
+						[stop.name_ch, stop.name_en].includes(
+							this.config.sta,
+						),
+					);
+					return [
+						...new Map(
+							filteredArray.map((item) => [
+								item.ref_ID,
+								item,
+							]),
+						).values(),
+					].map((stop) => ({
+						...stop,
+						station: this.config.lang.startsWith("zh")
+							? stop.name_ch
+							: stop.name_en,
+						dest: this.config.lang.startsWith("zh")
+							? line.description_zh.split(" 往 ").length > 1
+								? line.description_zh.split(" 往 ")[1]
+								: line.description_zh
+							: line.description_en.split(" to ").length > 1
+								? line.description_en.split(" to ")[1]
+								: line.description_en,
+					}));
+				})
+				.flat();
+
+			return result;
+		} catch (request) {
+			Log.error("Could not load data ... ", request);
+			return [];
+		}
 	},
 
 	/*
