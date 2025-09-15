@@ -30,12 +30,23 @@ HKTransportETAProvider.register("mtrbus", {
 				this.config.lineInfo = await this.fetchRouteInfo();
 			}
 
-			const dataObject = { language: "en", routeName: this.config.line };
-			const data = await this.fetchData(
-				this.config.apiBase,
-				"POST",
-				dataObject,
-			);
+			// Prepare the request payload
+			const dataObject = {
+				language: "en",
+				routeName: this.config.line
+			};
+
+			// Make the API request
+			const response = await fetch(this.config.apiBase, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify(dataObject)
+			});
+
+			// Parse the JSON response
+			const data = await response.json();
 
 			const currentETAArray = this.config.lineInfo.map((line) =>
 				this.generateETAObject(line, data),
