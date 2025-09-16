@@ -140,6 +140,56 @@ HKTransportETAProvider.register("ctb", {
 	},
 
 	/*
+	 * Fetch route stops with stop names
+	 * Enhances route stops data with all name variants by calling fetchStop for each stop
+	 */
+	async fetchRouteStopsWithNames(route) {
+		try {
+			// First get the route stops (which contain stop_ids)
+			const routeStops = await this.fetchRouteStops(route);
+
+			if (!routeStops || !Array.isArray(routeStops) || routeStops.length === 0) {
+				return [];
+			}
+
+			// Process stops in batches to avoid overwhelming the API
+			const batchSize = 5;
+			const enhancedStops = [];
+
+			for (let i = 0; i < routeStops.length; i += batchSize) {
+				const batch = routeStops.slice(i, i + batchSize);
+				const batchPromises = batch.map(async (stop) => {
+					try {
+						// Fetch the full stop information to get all name variants
+						const stopInfo = await this.fetchStop(stop.stop);
+
+						// Return the original stop object enhanced with all name variants
+						return {
+							...stop,
+							name_tc: stopInfo?.name_tc || null,
+							name_en: stopInfo?.name_en || null,
+							name_sc: stopInfo?.name_sc || null
+						};
+					} catch (error) {
+						Log.error(`Error fetching stop info for stop ${stop.stop}:`, error);
+						// Return the original stop object even if we couldn't get the info
+						return stop;
+					}
+				});
+
+				// Wait for all promises in this batch to resolve
+				const batchResults = await Promise.all(batchPromises);
+				enhancedStops.push(...batchResults);
+			}
+
+			return enhancedStops;
+		} catch (error) {
+			Log.error(`Could not load route stops with names for route ${route} ... `, error);
+			throw error;
+		}
+	},
+
+	/*
 	 * Fetch stop information by stop_id
 	 */
 	async fetchStop(stop_id) {
