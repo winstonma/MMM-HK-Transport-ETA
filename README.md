@@ -8,6 +8,10 @@ This module aims to be the replacement the [MMM-HK-KMB](https://github.com/winst
 
 ![MMM-HK-Transport-ETA module running in MagicMirror<sup>2</sup>](screenshots/screenshot.png)
 
+## Data Extraction Script
+
+This module includes a data extraction script for MTR Bus routes in the `scripts/` directory. The script extracts route and station information from the MTR Bus Data Dictionary PDF and converts it to JSON format for use in the module.
+
 ## Prerequisite
 
 A working installation of [MagicMirror<sup>2</sup>](https://github.com/MichMich/MagicMirror)
