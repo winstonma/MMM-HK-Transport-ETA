@@ -1,138 +1,198 @@
 [
 	{
 		"route_number": "506",
-		"route_ID": 1,
-		"shape": "U",
 		"lines": [
 			{
-				"id": 1,
-				"description_en": "Tuen Mun Ferry Pier to Siu Lun (Circular)",
-				"description_zh": "屯門碼頭至兆麟 (循環綫)",
+				"description_en": "Tuen Mun Ferry Pier to Siu Lun",
+				"description_zh": "屯門碼頭至兆麟",
 				"stops": [
 					{
 						"name_en": "Tuen Mun Ferry Pier",
 						"name_ch": "屯門碼頭",
-						"ref_ID": "506-U010"
+						"ref_ID": "506-U010",
+						"latitude": 22.372986,
+						"longitude": 113.966502
 					},
 					{
 						"name_en": "Melody Garden",
 						"name_ch": "美樂花園",
-						"ref_ID": "506-U020"
+						"ref_ID": "506-U020",
+						"latitude": 22.375834,
+						"longitude": 113.960628
 					},
 					{
 						"name_en": "LR Butterfly Stop",
 						"name_ch": "輕鐵蝴蝶站",
-						"ref_ID": "506-U030"
+						"ref_ID": "506-U030",
+						"latitude": 22.378364,
+						"longitude": 113.961965
 					},
 					{
 						"name_en": "Light Rail Depot Stop",
 						"name_ch": "輕鐵車廠站",
-						"ref_ID": "506-U040"
+						"ref_ID": "506-U040",
+						"latitude": 22.382203,
+						"longitude": 113.96359
 					},
 					{
 						"name_en": "LR Lung Mun Stop",
 						"name_ch": "輕鐵龍門站",
-						"ref_ID": "506-U050"
+						"ref_ID": "506-U050",
+						"latitude": 22.385399,
+						"longitude": 113.965222
 					},
 					{
 						"name_en": "LR Tsing Wun Stop",
 						"name_ch": "輕鐵青雲站",
-						"ref_ID": "506-U060"
+						"ref_ID": "506-U060",
+						"latitude": 22.393627,
+						"longitude": 113.96752
 					},
 					{
 						"name_en": "LR Kin On Stop",
 						"name_ch": "輕鐵建安站",
-						"ref_ID": "506-U070"
+						"ref_ID": "506-U070",
+						"latitude": 22.395064,
+						"longitude": 113.969953
 					},
 					{
 						"name_en": "MTR Tuen Mun Station",
 						"name_ch": "港鐵屯門站",
-						"ref_ID": "506-U080"
+						"ref_ID": "506-U080",
+						"latitude": 22.394117,
+						"longitude": 113.973992
 					},
 					{
 						"name_en": "Tuen Mun Town Centre",
 						"name_ch": "屯門市中心",
-						"ref_ID": "506-U090"
+						"ref_ID": "506-U090",
+						"latitude": 22.391352,
+						"longitude": 113.975474
 					},
 					{
 						"name_en": "On Ting Estate",
 						"name_ch": "安定邨",
-						"ref_ID": "506-U100"
+						"ref_ID": "506-U100",
+						"latitude": 22.387312,
+						"longitude": 113.975341
 					},
 					{
 						"name_en": "LR Sam Shing Stop",
 						"name_ch": "輕鐵三聖站",
-						"ref_ID": "506-U110"
+						"ref_ID": "506-U110",
+						"latitude": 22.382916,
+						"longitude": 113.976276
 					},
 					{
 						"name_en": "Siu Lun",
 						"name_ch": "兆麟",
-						"ref_ID": "506-D010"
+						"ref_ID": "506-U120",
+						"latitude": 22.38551,
+						"longitude": 113.9767
+					}
+				]
+			},
+			{
+				"description_en": "Siu Lun to Tuen Mun Ferry Pier",
+				"description_zh": "兆麟至屯門碼頭",
+				"stops": [
+					{
+						"name_en": "Siu Lun",
+						"name_ch": "兆麟",
+						"ref_ID": "506-D010",
+						"latitude": 22.38551,
+						"longitude": 113.9767
 					},
 					{
 						"name_en": "Yau Oi Estate",
 						"name_ch": "友愛邨",
-						"ref_ID": "506-D020"
+						"ref_ID": "506-D020",
+						"latitude": 22.387783,
+						"longitude": 113.975189
 					},
 					{
 						"name_en": "LR Town Centre Stop",
 						"name_ch": "輕鐵市中心站",
-						"ref_ID": "506-D030"
+						"ref_ID": "506-D030",
+						"latitude": 22.392125,
+						"longitude": 113.975128
 					},
 					{
 						"name_en": "LR Tuen Mun Stop(MTR Tuen Mun Station)",
 						"name_ch": "輕鐵屯門站(港鐵屯門站)",
-						"ref_ID": "506-D040"
+						"ref_ID": "506-D040",
+						"latitude": 22.393937,
+						"longitude": 113.973896
 					},
 					{
 						"name_en": "LR Kin On Stop",
 						"name_ch": "輕鐵建安站",
-						"ref_ID": "506-D050"
+						"ref_ID": "506-D050",
+						"latitude": 22.394687,
+						"longitude": 113.970746
 					},
 					{
 						"name_en": "LR Tsing Wun Stop",
 						"name_ch": "輕鐵青雲站",
-						"ref_ID": "506-D060"
+						"ref_ID": "506-D060",
+						"latitude": 22.393382,
+						"longitude": 113.967707
 					},
 					{
 						"name_en": "SKH St. Peter's Church",
 						"name_ch": "聖彼得堂",
-						"ref_ID": "506-D070"
+						"ref_ID": "506-D070",
+						"latitude": 22.391722,
+						"longitude": 113.967726
 					},
 					{
 						"name_en": "Glorious Garden",
 						"name_ch": "富健花園",
-						"ref_ID": "506-D080"
+						"ref_ID": "506-D080",
+						"latitude": 22.383618,
+						"longitude": 113.964478
 					},
 					{
 						"name_en": "Sun Tuen Mun Centre",
 						"name_ch": "新屯門中心",
-						"ref_ID": "506-D090"
+						"ref_ID": "506-D090",
+						"latitude": 22.382269,
+						"longitude": 113.963833
 					},
 					{
 						"name_en": "LR Butterfly Stop",
 						"name_ch": "輕鐵蝴蝶站",
-						"ref_ID": "506-D100"
+						"ref_ID": "506-D100",
+						"latitude": 22.377547,
+						"longitude": 113.961481
 					},
 					{
 						"name_en": "Tip Sum House, Butterfly Estate",
 						"name_ch": "蝴蝶邨蝶心樓",
-						"ref_ID": "506-D110"
+						"ref_ID": "506-D110",
+						"latitude": 22.374219,
+						"longitude": 113.962106
 					},
 					{
 						"name_en": "Wu Pik House, Wu King Estate",
 						"name_ch": "湖景邨湖碧樓",
-						"ref_ID": "506-D120"
+						"ref_ID": "506-D120",
+						"latitude": 22.373549,
+						"longitude": 113.964341
 					},
 					{
 						"name_en": "Pierhead Garden",
 						"name_ch": "海翠花園",
-						"ref_ID": "506-D130"
+						"ref_ID": "506-D130",
+						"latitude": 22.373192,
+						"longitude": 113.966053
 					},
 					{
 						"name_en": "Tuen Mun Ferry Pier",
 						"name_ch": "屯門碼頭",
-						"ref_ID": "506-U010"
+						"ref_ID": "506-D140",
+						"latitude": 22.372986,
+						"longitude": 113.966502
 					}
 				]
 			}
@@ -140,55 +200,65 @@
 	},
 	{
 		"route_number": "K12",
-		"route_ID": 2,
-		"shape": "H",
 		"lines": [
 			{
-				"id": 2,
 				"description_en": "Tai Po Market Station to Eightland Garden",
-				"description_zh": "大埔墟站 往 八號花園",
+				"description_zh": "大埔墟站至八號花園",
 				"stops": [
 					{
 						"name_en": "Tai Po Market Station",
 						"name_ch": "大埔墟站",
-						"ref_ID": "K12-U010"
+						"ref_ID": "K12-U010",
+						"latitude": 22.444414,
+						"longitude": 114.169471
 					},
 					{
 						"name_en": "Tai Po Mega Mall",
 						"name_ch": "大埔超級城",
-						"ref_ID": "K12-U020"
+						"ref_ID": "K12-U020",
+						"latitude": 22.450971,
+						"longitude": 114.169957
 					},
 					{
 						"name_en": "Eightland Garden",
 						"name_ch": "八號花園",
-						"ref_ID": "K12-D010"
+						"ref_ID": "K12-U030",
+						"latitude": 22.452836,
+						"longitude": 114.166496
 					}
 				]
 			},
 			{
-				"id": 3,
 				"description_en": "Eightland Garden to Tai Po Market Station",
-				"description_zh": "八號花園 往 大埔墟站",
+				"description_zh": "八號花園至大埔墟站",
 				"stops": [
 					{
 						"name_en": "Eightland Garden",
 						"name_ch": "八號花園",
-						"ref_ID": "K12-D010"
+						"ref_ID": "K12-D010",
+						"latitude": 22.452836,
+						"longitude": 114.166496
 					},
 					{
 						"name_en": "Tai Po Mega Mall",
 						"name_ch": "大埔超級城",
-						"ref_ID": "K12-D020"
+						"ref_ID": "K12-D020",
+						"latitude": 22.451278,
+						"longitude": 114.170087
 					},
 					{
 						"name_en": "Uptown Plaza",
 						"name_ch": "新達廣場",
-						"ref_ID": "K12-D030"
+						"ref_ID": "K12-D030",
+						"latitude": 22.443712,
+						"longitude": 114.16991
 					},
 					{
 						"name_en": "Tai Po Market Station",
 						"name_ch": "大埔墟站",
-						"ref_ID": "K12-U010"
+						"ref_ID": "K12-D040",
+						"latitude": 22.444414,
+						"longitude": 114.169471
 					}
 				]
 			}
@@ -196,28 +266,31 @@
 	},
 	{
 		"route_number": "K14",
-		"route_ID": 3,
-		"shape": "I",
 		"lines": [
 			{
-				"id": 4,
-				"description_en": "Tai Po Mega Mall ←→ Tai Po Market Station",
-				"description_zh": "大埔超級城 ←→ 大埔墟站",
+				"description_en": "Tai Po Mega Mall to Tai Po Market Station",
+				"description_zh": "大埔超級城至大埔墟站",
 				"stops": [
 					{
 						"name_en": "Tai Po Mega Mall",
 						"name_ch": "大埔超級城",
-						"ref_ID": "K14-D010"
+						"ref_ID": "K14-D010",
+						"latitude": 22.451278,
+						"longitude": 114.170087
 					},
 					{
 						"name_en": "Uptown Plaza",
 						"name_ch": "新達廣場",
-						"ref_ID": "K14-D020"
+						"ref_ID": "K14-D020",
+						"latitude": 22.443712,
+						"longitude": 114.16991
 					},
 					{
 						"name_en": "Tai Po Market Station",
 						"name_ch": "大埔墟站",
-						"ref_ID": "K14-D030"
+						"ref_ID": "K14-D030",
+						"latitude": 22.444414,
+						"longitude": 114.169471
 					}
 				]
 			}
@@ -225,55 +298,65 @@
 	},
 	{
 		"route_number": "K17",
-		"route_ID": 4,
-		"shape": "H",
 		"lines": [
 			{
-				"id": 5,
 				"description_en": "Tai Po Market Station to Fu Shin",
-				"description_zh": "大埔墟站 往 富善",
+				"description_zh": "大埔墟站至富善",
 				"stops": [
 					{
 						"name_en": "Tai Po Market Station",
 						"name_ch": "大埔墟站",
-						"ref_ID": "K17-U010"
+						"ref_ID": "K17-U010",
+						"latitude": 22.444414,
+						"longitude": 114.169471
 					},
 					{
 						"name_en": "Tai Po Centre Phase 5",
 						"name_ch": "大埔中心第五期",
-						"ref_ID": "K17-U020"
+						"ref_ID": "K17-U020",
+						"latitude": 22.453021,
+						"longitude": 114.172331
 					},
 					{
 						"name_en": "Yee Nga Court",
 						"name_ch": "怡雅苑",
-						"ref_ID": "K17-U030"
+						"ref_ID": "K17-U030",
+						"latitude": 22.454538,
+						"longitude": 114.174428
 					},
 					{
 						"name_en": "Fu Shin",
 						"name_ch": "富善",
-						"ref_ID": "K17-D010"
+						"ref_ID": "K17-U040",
+						"latitude": 22.454322,
+						"longitude": 114.174098
 					}
 				]
 			},
 			{
-				"id": 6,
 				"description_en": "Fu Shin to Tai Po Market Station",
-				"description_zh": "富善 往 大埔墟站",
+				"description_zh": "富善至大埔墟站",
 				"stops": [
 					{
 						"name_en": "Fu Shin",
 						"name_ch": "富善",
-						"ref_ID": "K17-D010"
+						"ref_ID": "K17-D010",
+						"latitude": 22.454322,
+						"longitude": 114.174098
 					},
 					{
 						"name_en": "Uptown Plaza",
 						"name_ch": "新達廣場",
-						"ref_ID": "K17-D020"
+						"ref_ID": "K17-D020",
+						"latitude": 22.443712,
+						"longitude": 114.16991
 					},
 					{
 						"name_en": "Tai Po Market Station",
 						"name_ch": "大埔墟站",
-						"ref_ID": "K17-U010"
+						"ref_ID": "K17-D030",
+						"latitude": 22.444414,
+						"longitude": 114.169471
 					}
 				]
 			}
@@ -281,50 +364,58 @@
 	},
 	{
 		"route_number": "K18",
-		"route_ID": 5,
-		"shape": "H",
 		"lines": [
 			{
-				"id": 7,
 				"description_en": "Tai Po Market Station to Kwong Fuk",
-				"description_zh": "大埔墟站 往 廣福",
+				"description_zh": "大埔墟站至廣福",
 				"stops": [
 					{
 						"name_en": "Tai Po Market Station",
 						"name_ch": "大埔墟站",
-						"ref_ID": "K18-U010"
+						"ref_ID": "K18-U010",
+						"latitude": 22.444414,
+						"longitude": 114.169471
 					},
 					{
 						"name_en": "Wang Fuk Court",
 						"name_ch": "宏福苑",
-						"ref_ID": "K18-U020"
+						"ref_ID": "K18-U020",
+						"latitude": 22.447531,
+						"longitude": 114.17473
 					},
 					{
 						"name_en": "Kwong Fuk",
 						"name_ch": "廣福",
-						"ref_ID": "K18-D010"
+						"ref_ID": "K18-U030",
+						"latitude": 22.4487,
+						"longitude": 114.174398
 					}
 				]
 			},
 			{
-				"id": 8,
 				"description_en": "Kwong Fuk to Tai Po Market Station",
-				"description_zh": "廣福 往 大埔墟站",
+				"description_zh": "廣福至大埔墟站",
 				"stops": [
 					{
 						"name_en": "Kwong Fuk",
 						"name_ch": "廣福",
-						"ref_ID": "K18-D010"
+						"ref_ID": "K18-D010",
+						"latitude": 22.4487,
+						"longitude": 114.174398
 					},
 					{
 						"name_en": "Uptown Plaza",
 						"name_ch": "新達廣場",
-						"ref_ID": "K18-D020"
+						"ref_ID": "K18-D020",
+						"latitude": 22.443712,
+						"longitude": 114.16991
 					},
 					{
 						"name_en": "Tai Po Market Station",
 						"name_ch": "大埔墟站",
-						"ref_ID": "K18-U010"
+						"ref_ID": "K18-D030",
+						"latitude": 22.444414,
+						"longitude": 114.169471
 					}
 				]
 			}
@@ -332,290 +423,768 @@
 	},
 	{
 		"route_number": "K51",
-		"route_ID": 6,
-		"shape": "H",
 		"lines": [
 			{
-				"id": 9,
 				"description_en": "Fu Tai to Tai Lam",
-				"description_zh": "富泰 往 大欖",
+				"description_zh": "富泰至大欖",
 				"stops": [
 					{
 						"name_en": "Fu Tai",
 						"name_ch": "富泰",
-						"ref_ID": "K51-U010"
+						"ref_ID": "K51-U010",
+						"latitude": 22.413286,
+						"longitude": 113.982895
 					},
 					{
 						"name_en": "Beneville",
 						"name_ch": "聚康山莊",
-						"ref_ID": "K51-U020"
+						"ref_ID": "K51-U020",
+						"latitude": 22.412025,
+						"longitude": 113.983771
 					},
 					{
 						"name_en": "Lingnan University",
 						"name_ch": "嶺南大學",
-						"ref_ID": "K51-U030"
+						"ref_ID": "K51-U030",
+						"latitude": 22.41059,
+						"longitude": 113.982387
 					},
 					{
 						"name_en": "Brilliant Garden",
 						"name_ch": "彩暉花園",
-						"ref_ID": "K51-U040"
+						"ref_ID": "K51-U040",
+						"latitude": 22.408575,
+						"longitude": 113.980046
 					},
 					{
-						"name_en": "MTR Siu Hong Station(South), (LR Siu Hong Stop)",
-						"name_ch": "港鐵兆康站(南), (輕鐵兆康站)",
-						"ref_ID": "K51-U050"
+						"name_en": "MTR Siu Hong Station(South),(LR Siu Hong Stop)",
+						"name_ch": "港鐵兆康站(南),(輕鐵兆康站)",
+						"ref_ID": "K51-U050",
+						"latitude": 22.410247,
+						"longitude": 113.978583
 					},
 					{
 						"name_en": "Tseng Choi Street",
 						"name_ch": "井財街",
-						"ref_ID": "K51-U060"
+						"ref_ID": "K51-U060",
+						"latitude": 22.40205,
+						"longitude": 113.9776
 					},
 					{
 						"name_en": "ACME Shopping Arcade",
 						"name_ch": "雅都商場",
-						"ref_ID": "K51-U070"
+						"ref_ID": "K51-U070",
+						"latitude": 22.39834,
+						"longitude": 113.9752
 					},
 					{
 						"name_en": "Tak Ching Court(MTR Tuen Mun Station)",
 						"name_ch": "德政圍(港鐵屯門站)",
-						"ref_ID": "K51-U080"
+						"ref_ID": "K51-U080",
+						"latitude": 22.39494,
+						"longitude": 113.9746
 					},
 					{
 						"name_en": "Tuen Mun Town Centre(LR Town Centre Stop)",
 						"name_ch": "屯門市中心(輕鐵市中心站)",
-						"ref_ID": "K51-U090"
+						"ref_ID": "K51-U090",
+						"latitude": 22.39153,
+						"longitude": 113.9755
 					},
 					{
 						"name_en": "Tuen Mun Government Secondary School",
 						"name_ch": "屯門官立中學",
-						"ref_ID": "K51-U100"
+						"ref_ID": "K51-U100",
+						"latitude": 22.3906,
+						"longitude": 113.9788
 					},
 					{
 						"name_en": "Handsome Court",
 						"name_ch": "恒順園",
-						"ref_ID": "K51-U110"
+						"ref_ID": "K51-U110",
+						"latitude": 22.38771,
+						"longitude": 113.9807
 					},
 					{
 						"name_en": "Harvest Garden",
 						"name_ch": "恒豐園",
-						"ref_ID": "K51-U120"
+						"ref_ID": "K51-U120",
+						"latitude": 22.38519,
+						"longitude": 113.981
 					},
 					{
 						"name_en": "Sam Shing Estate",
 						"name_ch": "三聖邨",
-						"ref_ID": "K51-U130"
+						"ref_ID": "K51-U130",
+						"latitude": 22.381748,
+						"longitude": 113.978862
 					},
 					{
 						"name_en": "Castle Peak Beach",
 						"name_ch": "青山灣",
-						"ref_ID": "K51-U140"
+						"ref_ID": "K51-U140",
+						"latitude": 22.378898,
+						"longitude": 113.980751
 					},
 					{
 						"name_en": "Seaview Garden",
 						"name_ch": "海景花園",
-						"ref_ID": "K51-U150"
+						"ref_ID": "K51-U150",
+						"latitude": 22.377938,
+						"longitude": 113.983475
 					},
 					{
 						"name_en": "Cafeteria Beach",
 						"name_ch": "咖啡灣",
-						"ref_ID": "K51-U160"
+						"ref_ID": "K51-U160",
+						"latitude": 22.374926,
+						"longitude": 113.986745
 					},
 					{
 						"name_en": "Golden Beach",
 						"name_ch": "黃金泳灘",
-						"ref_ID": "K51-U170"
+						"ref_ID": "K51-U170",
+						"latitude": 22.373784,
+						"longitude": 113.990756
 					},
 					{
 						"name_en": "Hong Kong Gold Coast",
 						"name_ch": "香港黃金海岸",
-						"ref_ID": "K51-U180"
+						"ref_ID": "K51-U180",
+						"latitude": 22.372025,
+						"longitude": 113.993574
 					},
 					{
 						"name_en": "Kar Wo Lei Tsuen",
 						"name_ch": "嘉禾里村",
-						"ref_ID": "K51-U190"
+						"ref_ID": "K51-U190",
+						"latitude": 22.36945,
+						"longitude": 113.9954
 					},
 					{
 						"name_en": "Siu Sau Tsuen",
 						"name_ch": "小秀村",
-						"ref_ID": "K51-U200"
+						"ref_ID": "K51-U200",
+						"latitude": 22.36817,
+						"longitude": 113.9991
 					},
 					{
 						"name_en": "The Aegean",
 						"name_ch": "愛琴灣",
-						"ref_ID": "K51-U210"
+						"ref_ID": "K51-U210",
+						"latitude": 22.36627,
+						"longitude": 114.0033
 					},
 					{
 						"name_en": "Siu Lam San Tsuen",
 						"name_ch": "小欖新村",
-						"ref_ID": "K51-U220"
+						"ref_ID": "K51-U220",
+						"latitude": 22.36638,
+						"longitude": 114.0063
 					},
 					{
 						"name_en": "Siu Lam Tsuen",
 						"name_ch": "小欖村",
-						"ref_ID": "K51-U230"
+						"ref_ID": "K51-U230",
+						"latitude": 22.3663,
+						"longitude": 114.0113
 					},
 					{
 						"name_en": "Ching Lai Road Siu Lam",
 						"name_ch": "小欖澄麗路",
-						"ref_ID": "K51-U240"
+						"ref_ID": "K51-U240",
+						"latitude": 22.36497,
+						"longitude": 114.0133
 					},
 					{
 						"name_en": "Tai Lam",
 						"name_ch": "大欖",
-						"ref_ID": "K51-D010"
+						"ref_ID": "K51-U250",
+						"latitude": 22.362495,
+						"longitude": 114.019113
 					}
 				]
 			},
 			{
-				"id": 10,
 				"description_en": "Tai Lam to Fu Tai",
-				"description_zh": "大欖 往 富泰",
+				"description_zh": "大欖至富泰",
 				"stops": [
 					{
 						"name_en": "Tai Lam",
 						"name_ch": "大欖",
-						"ref_ID": "K51-D010"
+						"ref_ID": "K51-D010",
+						"latitude": 22.362495,
+						"longitude": 114.019113
 					},
 					{
 						"name_en": "Siu Lam",
 						"name_ch": "小欖",
-						"ref_ID": "K51-D020"
+						"ref_ID": "K51-D020",
+						"latitude": 22.364165,
+						"longitude": 114.014994
 					},
 					{
 						"name_en": "Ching Lai Road Siu Lam",
 						"name_ch": "小欖澄麗路",
-						"ref_ID": "K51-D030"
+						"ref_ID": "K51-D030",
+						"latitude": 22.365696,
+						"longitude": 114.01244
 					},
 					{
 						"name_en": "Siu Lam Tsuen",
 						"name_ch": "小欖村",
-						"ref_ID": "K51-D040"
+						"ref_ID": "K51-D040",
+						"latitude": 22.366338,
+						"longitude": 114.00949
 					},
 					{
 						"name_en": "Siu Lam San Tsuen",
 						"name_ch": "小欖新村",
-						"ref_ID": "K51-D050"
+						"ref_ID": "K51-D050",
+						"latitude": 22.366102,
+						"longitude": 114.005524
 					},
 					{
 						"name_en": "The Aegean",
 						"name_ch": "愛琴灣",
-						"ref_ID": "K51-D060"
+						"ref_ID": "K51-D060",
+						"latitude": 22.366573,
+						"longitude": 114.001616
 					},
 					{
 						"name_en": "Siu Sau Sheung Tsuen",
 						"name_ch": "小秀上村",
-						"ref_ID": "K51-D070"
+						"ref_ID": "K51-D070",
+						"latitude": 22.368003,
+						"longitude": 113.999085
 					},
 					{
 						"name_en": "Pearl Island",
 						"name_ch": "龍珠島",
-						"ref_ID": "K51-D080"
+						"ref_ID": "K51-D080",
+						"latitude": 22.368035,
+						"longitude": 113.996264
 					},
 					{
 						"name_en": "Hong Kong Gold Coast",
 						"name_ch": "香港黃金海岸",
-						"ref_ID": "K51-D090"
+						"ref_ID": "K51-D090",
+						"latitude": 22.371285,
+						"longitude": 113.993882
 					},
 					{
 						"name_en": "Golden Beach",
 						"name_ch": "黃金泳灘",
-						"ref_ID": "K51-D100"
+						"ref_ID": "K51-D100",
+						"latitude": 22.373628,
+						"longitude": 113.991213
 					},
 					{
 						"name_en": "Cafeteria Beach",
 						"name_ch": "咖啡灣",
-						"ref_ID": "K51-D110"
+						"ref_ID": "K51-D110",
+						"latitude": 22.3759,
+						"longitude": 113.985635
 					},
 					{
 						"name_en": "Bayview Terrace",
 						"name_ch": "碧翠花園",
-						"ref_ID": "K51-D120"
+						"ref_ID": "K51-D120",
+						"latitude": 22.377927,
+						"longitude": 113.983242
 					},
 					{
 						"name_en": "Castle Peak Bay Pier",
 						"name_ch": "青山灣碼頭",
-						"ref_ID": "K51-D130"
+						"ref_ID": "K51-D130",
+						"latitude": 22.378957,
+						"longitude": 113.980602
 					},
 					{
 						"name_en": "Sam Shing Estate",
 						"name_ch": "三聖邨",
-						"ref_ID": "K51-D140"
+						"ref_ID": "K51-D140",
+						"latitude": 22.381214,
+						"longitude": 113.979092
 					},
 					{
 						"name_en": "Hanford Garden(LR Sam Shing Stop)",
 						"name_ch": "恆福花園(輕鐵三聖站)",
-						"ref_ID": "K51-D150"
+						"ref_ID": "K51-D150",
+						"latitude": 22.382064,
+						"longitude": 113.977151
 					},
 					{
 						"name_en": "Mrs Aw Boon Haw Secondary School",
 						"name_ch": "胡陳金枝中學",
-						"ref_ID": "K51-D160"
+						"ref_ID": "K51-D160",
+						"latitude": 22.383774,
+						"longitude": 113.97939
 					},
 					{
 						"name_en": "Tsing Sin Playground",
 						"name_ch": "青善遊樂場",
-						"ref_ID": "K51-D170"
+						"ref_ID": "K51-D170",
+						"latitude": 22.384602,
+						"longitude": 113.980638
 					},
 					{
 						"name_en": "Chi Lok Fa Yuen",
 						"name_ch": "置樂花園",
-						"ref_ID": "K51-D180"
+						"ref_ID": "K51-D180",
+						"latitude": 22.387355,
+						"longitude": 113.98069
 					},
 					{
 						"name_en": "Tuen Mun Government Secondary School",
 						"name_ch": "屯門官立中學",
-						"ref_ID": "K51-D190"
+						"ref_ID": "K51-D190",
+						"latitude": 22.390433,
+						"longitude": 113.978805
 					},
 					{
 						"name_en": "LR Town Centre Stop",
 						"name_ch": "輕鐵市中心站",
-						"ref_ID": "K51-D200"
+						"ref_ID": "K51-D200",
+						"latitude": 22.392116,
+						"longitude": 113.975082
 					},
 					{
 						"name_en": "MTR Tuen Mun Station(LR Tuen Mun Stop)",
 						"name_ch": "港鐵屯門站(輕鐵屯門站)",
-						"ref_ID": "K51-D210"
+						"ref_ID": "K51-D210",
+						"latitude": 22.395021,
+						"longitude": 113.974444
 					},
 					{
 						"name_en": "SKH St. Simon's Lui Ming Choi Secondary School",
 						"name_ch": "聖公會聖西門呂明才中學",
-						"ref_ID": "K51-D220"
+						"ref_ID": "K51-D220",
+						"latitude": 22.397311,
+						"longitude": 113.974853
 					},
 					{
 						"name_en": "Prime View Garden",
 						"name_ch": "景峰花園",
-						"ref_ID": "K51-D230"
+						"ref_ID": "K51-D230",
+						"latitude": 22.40334,
+						"longitude": 113.979247
 					},
 					{
 						"name_en": "LR Fung Tei Stop",
 						"name_ch": "輕鐵鳳地站",
-						"ref_ID": "K51-D240"
+						"ref_ID": "K51-D240",
+						"latitude": 22.407254,
+						"longitude": 113.978641
 					},
 					{
-						"name_en": "MTR Siu Hong Station(South), (LR Siu Hong Stop)",
-						"name_ch": "港鐵兆康站(南), (輕鐵兆康站)",
-						"ref_ID": "K51-D250"
+						"name_en": "MTR Siu Hong Station(South),(LR Siu Hong Stop)",
+						"name_ch": "港鐵兆康站(南),(輕鐵兆康站)",
+						"ref_ID": "K51-D250",
+						"latitude": 22.410378,
+						"longitude": 113.978607
 					},
 					{
 						"name_en": "Brilliant Garden",
 						"name_ch": "彩暉花園",
-						"ref_ID": "K51-D260"
+						"ref_ID": "K51-D260",
+						"latitude": 22.408779,
+						"longitude": 113.980397
 					},
 					{
 						"name_en": "Lingnan University",
 						"name_ch": "嶺南大學",
-						"ref_ID": "K51-D270"
+						"ref_ID": "K51-D270",
+						"latitude": 22.410694,
+						"longitude": 113.982212
 					},
 					{
 						"name_en": "South Hillcrest",
 						"name_ch": "倚嶺南庭",
-						"ref_ID": "K51-D280"
+						"ref_ID": "K51-D280",
+						"latitude": 22.411927,
+						"longitude": 113.983128
 					},
 					{
 						"name_en": "Fu Tai",
 						"name_ch": "富泰",
-						"ref_ID": "K51-U010"
+						"ref_ID": "K51-D290",
+						"latitude": 22.413286,
+						"longitude": 113.982895
+					}
+				]
+			}
+		]
+	},
+	{
+		"route_number": "K51A",
+		"lines": [
+			{
+				"description_en": "Fu Tai to So Kwun Wat Tsuen",
+				"description_zh": "富泰至掃管笏村",
+				"stops": [
+					{
+						"name_en": "Fu Tai",
+						"name_ch": "富泰",
+						"ref_ID": "K51A-U010",
+						"latitude": 22.413286,
+						"longitude": 113.982895
+					},
+					{
+						"name_en": "Beneville",
+						"name_ch": "聚康山莊",
+						"ref_ID": "K51A-U020",
+						"latitude": 22.412025,
+						"longitude": 113.983771
+					},
+					{
+						"name_en": "Lingnan University",
+						"name_ch": "嶺南大學",
+						"ref_ID": "K51A-U030",
+						"latitude": 22.41059,
+						"longitude": 113.982387
+					},
+					{
+						"name_en": "Brilliant Garden",
+						"name_ch": "彩暉花園",
+						"ref_ID": "K51A-U040",
+						"latitude": 22.408575,
+						"longitude": 113.980046
+					},
+					{
+						"name_en": "MTR Siu Hong Station(South)(LR Siu Hong Stop)",
+						"name_ch": "港鐵兆康站(南)(輕鐵兆康站)",
+						"ref_ID": "K51A-U050",
+						"latitude": 22.410247,
+						"longitude": 113.978583
+					},
+					{
+						"name_en": "Tseng Choi Street",
+						"name_ch": "井財街",
+						"ref_ID": "K51A-U060",
+						"latitude": 22.40205,
+						"longitude": 113.9776
+					},
+					{
+						"name_en": "ACME Shopping Arcade",
+						"name_ch": "雅都商場",
+						"ref_ID": "K51A-U070",
+						"latitude": 22.39834,
+						"longitude": 113.9752
+					},
+					{
+						"name_en": "Tak Ching Court(MTR Tuen Mun Station)",
+						"name_ch": "德政圍(港鐵屯門站)",
+						"ref_ID": "K51A-U080",
+						"latitude": 22.39494,
+						"longitude": 113.9746
+					},
+					{
+						"name_en": "Tuen Mun Town Centre(LR Town Centre Stop)",
+						"name_ch": "屯門市中心(輕鐵市中心站)",
+						"ref_ID": "K51A-U090",
+						"latitude": 22.39153,
+						"longitude": 113.9755
+					},
+					{
+						"name_en": "Tuen Mun Government Secondary School",
+						"name_ch": "屯門官立中學",
+						"ref_ID": "K51A-U100",
+						"latitude": 22.3906,
+						"longitude": 113.9788
+					},
+					{
+						"name_en": "Handsome Court",
+						"name_ch": "恒順園",
+						"ref_ID": "K51A-U110",
+						"latitude": 22.38771,
+						"longitude": 113.9807
+					},
+					{
+						"name_en": "Harvest Garden",
+						"name_ch": "恒豐園",
+						"ref_ID": "K51A-U120",
+						"latitude": 22.38519,
+						"longitude": 113.981
+					},
+					{
+						"name_en": "Sam Shing Estate",
+						"name_ch": "三聖邨",
+						"ref_ID": "K51A-U130",
+						"latitude": 22.381748,
+						"longitude": 113.978862
+					},
+					{
+						"name_en": "Castle Peak Beach",
+						"name_ch": "青山灣",
+						"ref_ID": "K51A-U140",
+						"latitude": 22.378898,
+						"longitude": 113.980751
+					},
+					{
+						"name_en": "Seaview Garden",
+						"name_ch": "海景花園",
+						"ref_ID": "K51A-U150",
+						"latitude": 22.377938,
+						"longitude": 113.983475
+					},
+					{
+						"name_en": "Cafeteria Beach",
+						"name_ch": "咖啡灣",
+						"ref_ID": "K51A-U160",
+						"latitude": 22.374926,
+						"longitude": 113.986745
+					},
+					{
+						"name_en": "Golden Beach",
+						"name_ch": "黃金泳灘",
+						"ref_ID": "K51A-U170",
+						"latitude": 22.373784,
+						"longitude": 113.990756
+					},
+					{
+						"name_en": "Hong Kong Gold Coast",
+						"name_ch": "香港黃金海岸",
+						"ref_ID": "K51A-U180",
+						"latitude": 22.372025,
+						"longitude": 113.993574
+					},
+					{
+						"name_en": "Aegean Coast",
+						"name_ch": "愛琴海岸",
+						"ref_ID": "K51A-U190",
+						"latitude": 22.371605,
+						"longitude": 113.9954
+					},
+					{
+						"name_en": "So Kwun Wat Sub- station",
+						"name_ch": "掃管笏變電站",
+						"ref_ID": "K51A-U200",
+						"latitude": 22.373878,
+						"longitude": 113.996144
+					},
+					{
+						"name_en": "So Kwun Wat Tsuen",
+						"name_ch": "掃管笏村",
+						"ref_ID": "K51A-U210",
+						"latitude": 22.375743,
+						"longitude": 113.999829
+					},
+					{
+						"name_en": "So Kwun Wat(Mrs. Cheng Yam On Millennium School)",
+						"name_ch": "掃管笏(鄭任安夫人千禧小學)",
+						"ref_ID": "K51A-U220",
+						"latitude": 22.372023,
+						"longitude": 114.003593
+					},
+					{
+						"name_en": "So Kwun Wat Road",
+						"name_ch": "掃管笏路",
+						"ref_ID": "K51A-U230",
+						"latitude": 22.374216,
+						"longitude": 114.002295
+					},
+					{
+						"name_en": "18 Kwun Chui Road",
+						"name_ch": "管翠路 18 號",
+						"ref_ID": "K51A-U240",
+						"latitude": 22.373866,
+						"longitude": 114.001024
+					},
+					{
+						"name_en": "So Kwun Wat Tsuen",
+						"name_ch": "掃管笏村",
+						"ref_ID": "K51A-U250",
+						"latitude": 22.375743,
+						"longitude": 113.999829
+					}
+				]
+			},
+			{
+				"description_en": "So Kwun Wat Tsuen to Fu Tai",
+				"description_zh": "掃管笏村至富泰",
+				"stops": [
+					{
+						"name_en": "So Kwun Wat Tsuen",
+						"name_ch": "掃管笏村",
+						"ref_ID": "K51A-D010",
+						"latitude": 22.375743,
+						"longitude": 113.999829
+					},
+					{
+						"name_en": "So Kwun Wat(Mrs. Cheng Yam On Millennium School)",
+						"name_ch": "掃管笏(鄭任安夫人千禧小學)",
+						"ref_ID": "K51A-D020",
+						"latitude": 22.372023,
+						"longitude": 114.003593
+					},
+					{
+						"name_en": "So Kwun Wat Road",
+						"name_ch": "掃管笏路",
+						"ref_ID": "K51A-D030",
+						"latitude": 22.374216,
+						"longitude": 114.002295
+					},
+					{
+						"name_en": "18 Kwun Chui Road",
+						"name_ch": "管翠路 18 號",
+						"ref_ID": "K51A-D040",
+						"latitude": 22.373866,
+						"longitude": 114.001024
+					},
+					{
+						"name_en": "Kwun Chui Road",
+						"name_ch": "管翠路",
+						"ref_ID": "K51A-D050",
+						"latitude": 22.375123,
+						"longitude": 113.997707
+					},
+					{
+						"name_en": "Aegean Coast",
+						"name_ch": "愛琴海岸",
+						"ref_ID": "K51A-D060",
+						"latitude": 22.371473,
+						"longitude": 113.995381
+					},
+					{
+						"name_en": "Hong Kong Gold Coast",
+						"name_ch": "香港黃金海岸",
+						"ref_ID": "K51A-D070",
+						"latitude": 22.371294,
+						"longitude": 113.993906
+					},
+					{
+						"name_en": "Golden Beach",
+						"name_ch": "黃金泳灘",
+						"ref_ID": "K51A-D080",
+						"latitude": 22.373628,
+						"longitude": 113.991213
+					},
+					{
+						"name_en": "Cafeteria Beach",
+						"name_ch": "咖啡灣",
+						"ref_ID": "K51A-D090",
+						"latitude": 22.3759,
+						"longitude": 113.985635
+					},
+					{
+						"name_en": "Bayview Terrace",
+						"name_ch": "碧翠花園",
+						"ref_ID": "K51A-D100",
+						"latitude": 22.377927,
+						"longitude": 113.983242
+					},
+					{
+						"name_en": "Castle Peak Bay Pier",
+						"name_ch": "青山灣碼頭",
+						"ref_ID": "K51A-D110",
+						"latitude": 22.378957,
+						"longitude": 113.980602
+					},
+					{
+						"name_en": "Sam Shing Estate",
+						"name_ch": "三聖邨",
+						"ref_ID": "K51A-D120",
+						"latitude": 22.381214,
+						"longitude": 113.979092
+					},
+					{
+						"name_en": "Mrs Aw Boon Haw Secondary School",
+						"name_ch": "胡陳金枝中學",
+						"ref_ID": "K51A-D140",
+						"latitude": 22.383774,
+						"longitude": 113.97939
+					},
+					{
+						"name_en": "Tsing Sin Playground",
+						"name_ch": "青善遊樂場",
+						"ref_ID": "K51A-D150",
+						"latitude": 22.384602,
+						"longitude": 113.980638
+					},
+					{
+						"name_en": "Chi Lok Fa Yuen",
+						"name_ch": "置樂花園",
+						"ref_ID": "K51A-D160",
+						"latitude": 22.387355,
+						"longitude": 113.98069
+					},
+					{
+						"name_en": "Tuen Mun Government Secondary School",
+						"name_ch": "屯門官立中學",
+						"ref_ID": "K51A-D170",
+						"latitude": 22.390433,
+						"longitude": 113.978805
+					},
+					{
+						"name_en": "LR Town Centre Stop",
+						"name_ch": "輕鐵市中心站",
+						"ref_ID": "K51A-D180",
+						"latitude": 22.392116,
+						"longitude": 113.975082
+					},
+					{
+						"name_en": "MTR Tuen Mun Station(LR Tuen Mun Stop)",
+						"name_ch": "港鐵屯門站(輕鐵屯門站)",
+						"ref_ID": "K51A-D190",
+						"latitude": 22.395021,
+						"longitude": 113.974444
+					},
+					{
+						"name_en": "SKH St. Simon's Lui Ming Choi Secondary School",
+						"name_ch": "聖公會聖西門呂明才中學",
+						"ref_ID": "K51A-D200",
+						"latitude": 22.397311,
+						"longitude": 113.974853
+					},
+					{
+						"name_en": "Prime View Garden",
+						"name_ch": "景峰花園",
+						"ref_ID": "K51A-D210",
+						"latitude": 22.40334,
+						"longitude": 113.979247
+					},
+					{
+						"name_en": "LR Fung Tei Stop",
+						"name_ch": "輕鐵鳳地站",
+						"ref_ID": "K51A-D220",
+						"latitude": 22.407254,
+						"longitude": 113.978641
+					},
+					{
+						"name_en": "MTR Siu Hong Station(South)(LR Siu Hong Stop)",
+						"name_ch": "港鐵兆康站(南)(輕鐵兆康站)",
+						"ref_ID": "K51A-D230",
+						"latitude": 22.410378,
+						"longitude": 113.978607
+					},
+					{
+						"name_en": "Brilliant Garden",
+						"name_ch": "彩暉花園",
+						"ref_ID": "K51A-D240",
+						"latitude": 22.408779,
+						"longitude": 113.980397
+					},
+					{
+						"name_en": "Lingnan University",
+						"name_ch": "嶺南大學",
+						"ref_ID": "K51A-D250",
+						"latitude": 22.410694,
+						"longitude": 113.982212
+					},
+					{
+						"name_en": "South Hillcrest",
+						"name_ch": "倚嶺南庭",
+						"ref_ID": "K51A-D260",
+						"latitude": 22.411927,
+						"longitude": 113.983128
+					},
+					{
+						"name_en": "Fu Tai",
+						"name_ch": "富泰",
+						"ref_ID": "K51A-D270",
+						"latitude": 22.413286,
+						"longitude": 113.982895
 					}
 				]
 			}
@@ -623,285 +1192,719 @@
 	},
 	{
 		"route_number": "K52",
-		"route_ID": 7,
-		"shape": "H",
 		"lines": [
 			{
-				"id": 11,
-				"description_en": "Tuen Mun Station to Lung Kwu Tan",
-				"description_zh": "屯門站 往 龍鼓灘",
+				"description_en": "Yuet Wu Villa to Lung Kwu Tan",
+				"description_zh": "悅湖山莊至龍鼓灘",
 				"stops": [
-					{
-						"name_en": "Tuen Mun Station(LR Tuen Mun Stop)",
-						"name_ch": "屯門站(輕鐵屯門站)",
-						"ref_ID": "K52-U010"
-					},
-					{
-						"name_en": "Tuen Mun Town Centre",
-						"name_ch": "屯門市中心",
-						"ref_ID": "K52-U020"
-					},
-					{
-						"name_en": "Tuen Mun Government Secondary School",
-						"name_ch": "屯門官立中學",
-						"ref_ID": "K52-U030"
-					},
-					{
-						"name_en": "Handsome Court",
-						"name_ch": "恒順園",
-						"ref_ID": "K52-U040"
-					},
-					{
-						"name_en": "Harvest Garden",
-						"name_ch": "恒豐園",
-						"ref_ID": "K52-U050"
-					},
-					{
-						"name_en": "LR Sam Shing Stop",
-						"name_ch": "輕鐵三聖站",
-						"ref_ID": "K52-U060"
-					},
-					{
-						"name_en": "Tuen Mun Central Square",
-						"name_ch": "屯門中央廣場",
-						"ref_ID": "K52-U070"
-					},
 					{
 						"name_en": "Yuet Wu Villa",
 						"name_ch": "悅湖山莊",
-						"ref_ID": "K52-U080"
+						"ref_ID": "K52-nU010",
+						"latitude": 22.375261,
+						"longitude": 113.968532
 					},
 					{
 						"name_en": "Miami Beach Towers",
 						"name_ch": "邁亞美海灣",
-						"ref_ID": "K52-U090"
+						"ref_ID": "K52-nU020",
+						"latitude": 22.372808,
+						"longitude": 113.970095
 					},
 					{
 						"name_en": "Tuen Mun Ferry Pier",
 						"name_ch": "屯門碼頭",
-						"ref_ID": "K52-U100"
+						"ref_ID": "K52-nU030",
+						"latitude": 22.372801,
+						"longitude": 113.967391
 					},
 					{
 						"name_en": "Wu Boon House, Wu King Estate",
 						"name_ch": "湖景邨湖畔樓",
-						"ref_ID": "K52-U110"
+						"ref_ID": "K52-nU040",
+						"latitude": 22.374496,
+						"longitude": 113.965605
 					},
 					{
 						"name_en": "Wu Tsui House, Wu King Estate",
 						"name_ch": "湖景邨湖翠樓",
-						"ref_ID": "K52-U120"
-					},
-					{
-						"name_en": "Siu Shan Court",
-						"name_ch": "兆山苑",
-						"ref_ID": "K52-U130"
-					},
-					{
-						"name_en": "LR Butterfly Stop",
-						"name_ch": "輕鐵蝴蝶站",
-						"ref_ID": "K52-U140"
-					},
-					{
-						"name_en": "Tuen Mun Public Riding School",
-						"name_ch": "屯門公眾騎術學校",
-						"ref_ID": "K52-U150"
-					},
-					{
-						"name_en": "Butterfly Beach Park",
-						"name_ch": "蝴蝶灣公園",
-						"ref_ID": "K52-U160"
-					},
-					{
-						"name_en": "Pillar Point",
-						"name_ch": "望后石",
-						"ref_ID": "K52-U180"
-					},
-					{
-						"name_en": "Government Depot",
-						"name_ch": "政府車場",
-						"ref_ID": "K52-U190"
-					},
-					{
-						"name_en": "River Trade Terminal",
-						"name_ch": "內河碼頭",
-						"ref_ID": "K52-U200"
-					},
-					{
-						"name_en": "EcoPark",
-						"name_ch": "環保園",
-						"ref_ID": "K52-U210"
-					},
-					{
-						"name_en": "Shiu Wing Steel Mill",
-						"name_ch": "紹榮鋼鐵",
-						"ref_ID": "K52-U220"
-					},
-					{
-						"name_en": "No.312 Sha Po Kong",
-						"name_ch": "沙埔崗312號",
-						"ref_ID": "K52-U230"
-					},
-					{
-						"name_en": "No.177 Sha Po Kong",
-						"name_ch": "沙埔崗177號",
-						"ref_ID": "K52-U240"
-					},
-					{
-						"name_en": "No.127 Sha Po Kong",
-						"name_ch": "沙埔崗127號",
-						"ref_ID": "K52-U250"
-					},
-					{
-						"name_en": "Lung Kwu Tan",
-						"name_ch": "龍鼓灘",
-						"ref_ID": "K52-D010"
-					}
-				]
-			},
-			{
-				"id": 12,
-				"description_en": "Lung Kwu Tan to Tuen Mun Station",
-				"description_zh": "龍鼓灘 往 屯門站",
-				"stops": [
-					{
-						"name_en": "Lung Kwu Tan",
-						"name_ch": "龍鼓灘",
-						"ref_ID": "K52-D010"
-					},
-					{
-						"name_en": "No.127 Sha Po Kong",
-						"name_ch": "沙埔崗127號",
-						"ref_ID": "K52-D020"
-					},
-					{
-						"name_en": "No.177 Sha Po Kong",
-						"name_ch": "沙埔崗177號",
-						"ref_ID": "K52-D030"
-					},
-					{
-						"name_en": "No.288 Sha Po Kong",
-						"name_ch": "沙埔崗288號",
-						"ref_ID": "K52-D040"
-					},
-					{
-						"name_en": "No.351 Sha Po Kong",
-						"name_ch": "沙埔崗351號",
-						"ref_ID": "K52-D050"
-					},
-					{
-						"name_en": "CLP (Plant A)",
-						"name_ch": "中電 A廠",
-						"ref_ID": "K52-D060"
-					},
-					{
-						"name_en": "Shiu Wing Steel Mill",
-						"name_ch": "紹榮鋼鐵",
-						"ref_ID": "K52-D070"
-					},
-					{
-						"name_en": "EcoPark",
-						"name_ch": "環保園",
-						"ref_ID": "K52-D080"
-					},
-					{
-						"name_en": "River Trade Terminal",
-						"name_ch": "內河碼頭",
-						"ref_ID": "K52-D090"
-					},
-					{
-						"name_en": "Government Depot",
-						"name_ch": "政府車場",
-						"ref_ID": "K52-D100"
-					},
-					{
-						"name_en": "Pillar Point",
-						"name_ch": "望后石",
-						"ref_ID": "K52-D110"
-					},
-					{
-						"name_en": "Butterfly Beach Park",
-						"name_ch": "蝴蝶灣公園",
-						"ref_ID": "K52-D130"
-					},
-					{
-						"name_en": "Tuen Mun Public Riding School",
-						"name_ch": "屯門公眾騎術學校",
-						"ref_ID": "K52-D140"
-					},
-					{
-						"name_en": "LR Butterfly Stop",
-						"name_ch": "輕鐵蝴蝶站",
-						"ref_ID": "K52-D150"
-					},
-					{
-						"name_en": "Siu Shan Court",
-						"name_ch": "兆山苑",
-						"ref_ID": "K52-D160"
-					},
-					{
-						"name_en": "Wu Tsui House, Wu King Estate",
-						"name_ch": "湖景邨湖翠樓",
-						"ref_ID": "K52-D170"
-					},
-					{
-						"name_en": "Siu Hei Court",
-						"name_ch": "兆禧苑",
-						"ref_ID": "K52-D180"
-					},
-					{
-						"name_en": "Pierhead Garden(LR Tuen Mun Ferry Pier Stop)",
-						"name_ch": "海翠花園(輕鐵屯門碼頭站)",
-						"ref_ID": "K52-D190"
-					},
-					{
-						"name_en": "Miami Beach Towers",
-						"name_ch": "邁亞美海灣",
-						"ref_ID": "K52-D200"
-					},
-					{
-						"name_en": "Yuet Wu Villa",
-						"name_ch": "悅湖山莊",
-						"ref_ID": "K52-D210"
+						"ref_ID": "K52-nU050",
+						"latitude": 22.376739,
+						"longitude": 113.966289
 					},
 					{
 						"name_en": "Tuen Mun Central Square",
 						"name_ch": "屯門中央廣場",
-						"ref_ID": "K52-D220"
+						"ref_ID": "K52-nU060",
+						"latitude": 22.381216,
+						"longitude": 113.972293
 					},
 					{
 						"name_en": "LR Sam Shing Stop",
 						"name_ch": "輕鐵三聖站",
-						"ref_ID": "K52-D230"
+						"ref_ID": "K52-nU070",
+						"latitude": 22.382943,
+						"longitude": 113.976283
 					},
 					{
 						"name_en": "Mrs Aw Boon Haw Secondary School",
 						"name_ch": "胡陳金枝中學",
-						"ref_ID": "K52-D240"
+						"ref_ID": "K52-nU080",
+						"latitude": 22.383774,
+						"longitude": 113.97939
 					},
 					{
 						"name_en": "Tsing Sin Playground",
 						"name_ch": "青善遊樂場",
-						"ref_ID": "K52-D250"
+						"ref_ID": "K52-nU090",
+						"latitude": 22.38457,
+						"longitude": 113.98065
 					},
 					{
 						"name_en": "Chi Lok Fa Yuen",
 						"name_ch": "置樂花園",
-						"ref_ID": "K52-D260"
+						"ref_ID": "K52-nU100",
+						"latitude": 22.387385,
+						"longitude": 113.980666
 					},
 					{
 						"name_en": "Tuen Mun Government Secondary School",
 						"name_ch": "屯門官立中學",
-						"ref_ID": "K52-D270"
+						"ref_ID": "K52-nU110",
+						"latitude": 22.390462,
+						"longitude": 113.97885
 					},
 					{
 						"name_en": "LR Town Centre Stop",
 						"name_ch": "輕鐵市中心站",
-						"ref_ID": "K52-D280"
+						"ref_ID": "K52-nU120",
+						"latitude": 22.392116,
+						"longitude": 113.975082
 					},
 					{
-						"name_en": "Tuen Mun Station(LR Tuen Mun Stop)",
-						"name_ch": "屯門站(輕鐵屯門站)",
-						"ref_ID": "K52-U010"
+						"name_en": "LR Tuen Mun Stop(MTR Tuen Mun Station)",
+						"name_ch": "輕鐵屯門站(港鐵屯門站)",
+						"ref_ID": "K52-nU140",
+						"latitude": 22.393937,
+						"longitude": 113.973896
+					},
+					{
+						"name_en": "LR Kin On Stop",
+						"name_ch": "輕鐵建安站",
+						"ref_ID": "K52-nU150",
+						"latitude": 22.394687,
+						"longitude": 113.970746
+					},
+					{
+						"name_en": "LR Tsing Wun Stop",
+						"name_ch": "輕鐵青雲站",
+						"ref_ID": "K52-nU160",
+						"latitude": 22.393382,
+						"longitude": 113.967707
+					},
+					{
+						"name_en": "SKH St. Peter's Church",
+						"name_ch": "聖彼得堂",
+						"ref_ID": "K52-nU170",
+						"latitude": 22.391722,
+						"longitude": 113.967726
+					},
+					{
+						"name_en": "Glorious Garden",
+						"name_ch": "富健花園",
+						"ref_ID": "K52-nU180",
+						"latitude": 22.383618,
+						"longitude": 113.964478
+					},
+					{
+						"name_en": "Sun Tuen Mun Centre",
+						"name_ch": "新屯門中心",
+						"ref_ID": "K52-nU190",
+						"latitude": 22.382269,
+						"longitude": 113.963833
+					},
+					{
+						"name_en": "LR Butterfly Stop",
+						"name_ch": "輕鐵蝴蝶站",
+						"ref_ID": "K52-nU200",
+						"latitude": 22.377549,
+						"longitude": 113.961472
+					},
+					{
+						"name_en": "Tuen Mun Public Riding School",
+						"name_ch": "屯門公眾騎術學校",
+						"ref_ID": "K52-nU210",
+						"latitude": 22.375483,
+						"longitude": 113.959318
+					},
+					{
+						"name_en": "Butterfly Beach Park",
+						"name_ch": "蝴蝶灣公園",
+						"ref_ID": "K52-nU220",
+						"latitude": 22.37319,
+						"longitude": 113.95473
+					},
+					{
+						"name_en": "Pillar Point",
+						"name_ch": "望后石",
+						"ref_ID": "K52-nU230",
+						"latitude": 22.368528,
+						"longitude": 113.948898
+					},
+					{
+						"name_en": "Government Depot",
+						"name_ch": "政府車場",
+						"ref_ID": "K52-nU240",
+						"latitude": 22.366727,
+						"longitude": 113.94371
+					},
+					{
+						"name_en": "River Trade Terminal",
+						"name_ch": "內河碼頭",
+						"ref_ID": "K52-nU250",
+						"latitude": 22.36857,
+						"longitude": 113.93822
+					},
+					{
+						"name_en": "EcoPark",
+						"name_ch": "環保園",
+						"ref_ID": "K52-nU260",
+						"latitude": 22.36999,
+						"longitude": 113.93403
+					},
+					{
+						"name_en": "Shiu Wing Steel Mill",
+						"name_ch": "紹榮鋼鐵",
+						"ref_ID": "K52-nU270",
+						"latitude": 22.36995,
+						"longitude": 113.92874
+					},
+					{
+						"name_en": "No.312 Sha Po Kong",
+						"name_ch": "沙埔崗312號",
+						"ref_ID": "K52-nU280",
+						"latitude": 22.386382,
+						"longitude": 113.921122
+					},
+					{
+						"name_en": "No.177 Sha Po Kong",
+						"name_ch": "沙埔崗177號",
+						"ref_ID": "K52-nU290",
+						"latitude": 22.388034,
+						"longitude": 113.920786
+					},
+					{
+						"name_en": "No.127 Sha Po Kong",
+						"name_ch": "沙埔崗127號",
+						"ref_ID": "K52-nU300",
+						"latitude": 22.389307,
+						"longitude": 113.920224
+					},
+					{
+						"name_en": "Lung Kwu Tan",
+						"name_ch": "龍鼓灘",
+						"ref_ID": "K52-nU310",
+						"latitude": 22.390617,
+						"longitude": 113.920146
+					}
+				]
+			},
+			{
+				"description_en": "Lung Kwu Tan to Yuet Wu Villa",
+				"description_zh": "龍鼓灘至悅湖山莊",
+				"stops": [
+					{
+						"name_en": "Lung Kwu Tan",
+						"name_ch": "龍鼓灘",
+						"ref_ID": "K52-nD010",
+						"latitude": 22.390617,
+						"longitude": 113.920146
+					},
+					{
+						"name_en": "No.127 Sha Po Kong",
+						"name_ch": "沙埔崗127號",
+						"ref_ID": "K52-nD020",
+						"latitude": 22.389103,
+						"longitude": 113.920301
+					},
+					{
+						"name_en": "No.177 Sha Po Kong",
+						"name_ch": "沙埔崗177號",
+						"ref_ID": "K52-nD030",
+						"latitude": 22.388058,
+						"longitude": 113.920786
+					},
+					{
+						"name_en": "No.288 Sha Po Kong",
+						"name_ch": "沙埔崗288號",
+						"ref_ID": "K52-nD040",
+						"latitude": 22.386623,
+						"longitude": 113.921158
+					},
+					{
+						"name_en": "No.351 Sha Po Kong",
+						"name_ch": "沙埔崗351號",
+						"ref_ID": "K52-nD050",
+						"latitude": 22.385511,
+						"longitude": 113.921257
+					},
+					{
+						"name_en": "CLP(Plant A)",
+						"name_ch": "中電 A廠",
+						"ref_ID": "K52-nD060",
+						"latitude": 22.38252,
+						"longitude": 113.92102
+					},
+					{
+						"name_en": "Shiu Wing Steel Mill",
+						"name_ch": "紹榮鋼鐵",
+						"ref_ID": "K52-nD070",
+						"latitude": 22.37012,
+						"longitude": 113.92898
+					},
+					{
+						"name_en": "EcoPark",
+						"name_ch": "環保園",
+						"ref_ID": "K52-nD080",
+						"latitude": 22.37001,
+						"longitude": 113.93439
+					},
+					{
+						"name_en": "River Trade Terminal",
+						"name_ch": "內河碼頭",
+						"ref_ID": "K52-nD090",
+						"latitude": 22.36855,
+						"longitude": 113.938063
+					},
+					{
+						"name_en": "Government Depot",
+						"name_ch": "政府車場",
+						"ref_ID": "K52-nD100",
+						"latitude": 22.366875,
+						"longitude": 113.944272
+					},
+					{
+						"name_en": "Pillar Point",
+						"name_ch": "望后石",
+						"ref_ID": "K52-nD110",
+						"latitude": 22.368667,
+						"longitude": 113.948837
+					},
+					{
+						"name_en": "Butterfly Beach Park",
+						"name_ch": "蝴蝶灣公園",
+						"ref_ID": "K52-nD120",
+						"latitude": 22.3729,
+						"longitude": 113.954631
+					},
+					{
+						"name_en": "Tuen Mun Public Riding School",
+						"name_ch": "屯門公眾騎術學校",
+						"ref_ID": "K52-nD130",
+						"latitude": 22.375258,
+						"longitude": 113.958583
+					},
+					{
+						"name_en": "LR Butterfly Stop",
+						"name_ch": "輕鐵蝴蝶站",
+						"ref_ID": "K52-nD140",
+						"latitude": 22.378359,
+						"longitude": 113.961955
+					},
+					{
+						"name_en": "Light Rail Depot Stop",
+						"name_ch": "輕鐵車廠站",
+						"ref_ID": "K52-nD150",
+						"latitude": 22.382203,
+						"longitude": 113.96359
+					},
+					{
+						"name_en": "LR Lung Mun Stop",
+						"name_ch": "輕鐵龍門站",
+						"ref_ID": "K52-nD160",
+						"latitude": 22.385399,
+						"longitude": 113.965222
+					},
+					{
+						"name_en": "LR Tsing Wun Stop",
+						"name_ch": "輕鐵青雲站",
+						"ref_ID": "K52-nD170",
+						"latitude": 22.393627,
+						"longitude": 113.96752
+					},
+					{
+						"name_en": "LR Kin On Stop",
+						"name_ch": "輕鐵建安站",
+						"ref_ID": "K52-nD180",
+						"latitude": 22.395064,
+						"longitude": 113.969953
+					},
+					{
+						"name_en": "Tuen Mun Station",
+						"name_ch": "屯門站",
+						"ref_ID": "K52-nD190",
+						"latitude": 22.394117,
+						"longitude": 113.973992
+					},
+					{
+						"name_en": "Tuen Mun Town Centre",
+						"name_ch": "屯門市中心",
+						"ref_ID": "K52-nD200",
+						"latitude": 22.391543,
+						"longitude": 113.975435
+					},
+					{
+						"name_en": "Tuen Mun Government Secondary School",
+						"name_ch": "屯門官立中學",
+						"ref_ID": "K52-nD210",
+						"latitude": 22.3906,
+						"longitude": 113.9788
+					},
+					{
+						"name_en": "Handsome Court",
+						"name_ch": "恒順園",
+						"ref_ID": "K52-nD220",
+						"latitude": 22.38771,
+						"longitude": 113.9807
+					},
+					{
+						"name_en": "Harvest Garden",
+						"name_ch": "恒豐園",
+						"ref_ID": "K52-nD230",
+						"latitude": 22.38519,
+						"longitude": 113.981
+					},
+					{
+						"name_en": "LR Sam Shing Stop",
+						"name_ch": "輕鐵三聖站",
+						"ref_ID": "K52-nD240",
+						"latitude": 22.382769,
+						"longitude": 113.976256
+					},
+					{
+						"name_en": "Tuen Mun Central Square",
+						"name_ch": "屯門中央廣場",
+						"ref_ID": "K52-nD250",
+						"latitude": 22.380902,
+						"longitude": 113.972021
+					},
+					{
+						"name_en": "Wu Tsui House, Wu King Estate",
+						"name_ch": "湖景邨湖翠樓",
+						"ref_ID": "K52-nD260",
+						"latitude": 22.37652,
+						"longitude": 113.966372
+					},
+					{
+						"name_en": "Siu Hei Court",
+						"name_ch": "兆禧苑",
+						"ref_ID": "K52-nD270",
+						"latitude": 22.374598,
+						"longitude": 113.965833
+					},
+					{
+						"name_en": "Pierhead Garden",
+						"name_ch": "海翠花園",
+						"ref_ID": "K52-nD280",
+						"latitude": 22.373244,
+						"longitude": 113.965958
+					},
+					{
+						"name_en": "Miami Beach Towers",
+						"name_ch": "邁亞美海灣",
+						"ref_ID": "K52-nD290",
+						"latitude": 22.372843,
+						"longitude": 113.969696
+					},
+					{
+						"name_en": "Yuet Wu Villa",
+						"name_ch": "悅湖山莊",
+						"ref_ID": "K52-nD300",
+						"latitude": 22.375257,
+						"longitude": 113.968481
+					}
+				]
+			}
+		]
+	},
+	{
+		"route_number": "K52A",
+		"lines": [
+			{
+				"description_en": "Tuen Mun Station to Tsang Tsui",
+				"description_zh": "屯門站至曾咀",
+				"stops": [
+					{
+						"name_en": "Tuen Mun Station",
+						"name_ch": "屯門站",
+						"ref_ID": "K52A-U010",
+						"latitude": 22.394225,
+						"longitude": 113.973358
+					},
+					{
+						"name_en": "LR Tuen Mun Stop(MTR Tuen Mun Station)",
+						"name_ch": "輕鐵屯門站(港鐵屯門站)",
+						"ref_ID": "K52A-U015",
+						"latitude": 22.393937,
+						"longitude": 113.973896
+					},
+					{
+						"name_en": "LR Kin On Stop",
+						"name_ch": "輕鐵建安站",
+						"ref_ID": "K52A-U020",
+						"latitude": 22.394687,
+						"longitude": 113.970746
+					},
+					{
+						"name_en": "LR Tsing Wun Stop",
+						"name_ch": "輕鐵青雲站",
+						"ref_ID": "K52A-U030",
+						"latitude": 22.393382,
+						"longitude": 113.967707
+					},
+					{
+						"name_en": "SKH St. Peter's Church",
+						"name_ch": "聖彼得堂",
+						"ref_ID": "K52A-U040",
+						"latitude": 22.391722,
+						"longitude": 113.967726
+					},
+					{
+						"name_en": "Glorious Garden",
+						"name_ch": "富健花園",
+						"ref_ID": "K52A-U050",
+						"latitude": 22.383618,
+						"longitude": 113.964478
+					},
+					{
+						"name_en": "Sun Tuen Mun Centre",
+						"name_ch": "新屯門中心",
+						"ref_ID": "K52A-U060",
+						"latitude": 22.382269,
+						"longitude": 113.963833
+					},
+					{
+						"name_en": "LR Butterfly Stop",
+						"name_ch": "輕鐵蝴蝶站",
+						"ref_ID": "K52A-U070",
+						"latitude": 22.377547,
+						"longitude": 113.961481
+					},
+					{
+						"name_en": "Tuen Mun Public Riding School",
+						"name_ch": "屯門公眾騎術學校",
+						"ref_ID": "K52A-U080",
+						"latitude": 22.375483,
+						"longitude": 113.959318
+					},
+					{
+						"name_en": "Butterfly Beach Park",
+						"name_ch": "蝴蝶灣公園",
+						"ref_ID": "K52A-U090",
+						"latitude": 22.37319,
+						"longitude": 113.95473
+					},
+					{
+						"name_en": "Pillar Point",
+						"name_ch": "望后石",
+						"ref_ID": "K52A-U100",
+						"latitude": 22.368528,
+						"longitude": 113.948898
+					},
+					{
+						"name_en": "Government Depot",
+						"name_ch": "政府車場",
+						"ref_ID": "K52A-U110",
+						"latitude": 22.366727,
+						"longitude": 113.94371
+					},
+					{
+						"name_en": "River Trade Terminal",
+						"name_ch": "內河碼頭",
+						"ref_ID": "K52A-U120",
+						"latitude": 22.36857,
+						"longitude": 113.93822
+					},
+					{
+						"name_en": "EcoPark",
+						"name_ch": "環保園",
+						"ref_ID": "K52A-U130",
+						"latitude": 22.36999,
+						"longitude": 113.93403
+					},
+					{
+						"name_en": "Shiu Wing Steel Mill",
+						"name_ch": "紹榮鋼鐵",
+						"ref_ID": "K52A-U140",
+						"latitude": 22.36995,
+						"longitude": 113.92874
+					},
+					{
+						"name_en": "No.312 Sha Po Kong",
+						"name_ch": "沙埔崗 312 號",
+						"ref_ID": "K52A-U150",
+						"latitude": 22.386382,
+						"longitude": 113.921122
+					},
+					{
+						"name_en": "No.177 Sha Po Kong",
+						"name_ch": "沙埔崗 177 號",
+						"ref_ID": "K52A-U160",
+						"latitude": 22.388034,
+						"longitude": 113.920786
+					},
+					{
+						"name_en": "No.127 Sha Po Kong",
+						"name_ch": "沙埔崗 127 號",
+						"ref_ID": "K52A-U170",
+						"latitude": 22.389307,
+						"longitude": 113.920224
+					},
+					{
+						"name_en": "Tsang Tsui",
+						"name_ch": "曾咀",
+						"ref_ID": "K52A-U180",
+						"latitude": 22.420002,
+						"longitude": 113.919644
+					}
+				]
+			},
+			{
+				"description_en": "Tsang Tsui to Tuen Mun Station",
+				"description_zh": "曾咀至屯門站",
+				"stops": [
+					{
+						"name_en": "Tsang Tsui",
+						"name_ch": "曾咀",
+						"ref_ID": "K52A-D010",
+						"latitude": 22.420002,
+						"longitude": 113.919644
+					},
+					{
+						"name_en": "No.127 Sha Po Kong",
+						"name_ch": "沙埔崗 127 號",
+						"ref_ID": "K52A-D020",
+						"latitude": 22.389103,
+						"longitude": 113.920301
+					},
+					{
+						"name_en": "No.177 Sha Po Kong",
+						"name_ch": "沙埔崗 177 號",
+						"ref_ID": "K52A-D030",
+						"latitude": 22.388058,
+						"longitude": 113.920786
+					},
+					{
+						"name_en": "No.288 Sha Po Kong",
+						"name_ch": "沙埔崗 288 號",
+						"ref_ID": "K52A-D040",
+						"latitude": 22.386623,
+						"longitude": 113.921158
+					},
+					{
+						"name_en": "No.351 Sha Po Kong",
+						"name_ch": "沙埔崗 351 號",
+						"ref_ID": "K52A-D050",
+						"latitude": 22.385511,
+						"longitude": 113.921257
+					},
+					{
+						"name_en": "CLP(Plant A)",
+						"name_ch": "中電 A 廠",
+						"ref_ID": "K52A-D060",
+						"latitude": 22.38252,
+						"longitude": 113.92102
+					},
+					{
+						"name_en": "Shiu Wing Steel Mill",
+						"name_ch": "紹榮鋼鐵",
+						"ref_ID": "K52A-D070",
+						"latitude": 22.37012,
+						"longitude": 113.92898
+					},
+					{
+						"name_en": "EcoPark",
+						"name_ch": "環保園",
+						"ref_ID": "K52A-D080",
+						"latitude": 22.37001,
+						"longitude": 113.93439
+					},
+					{
+						"name_en": "River Trade Terminal",
+						"name_ch": "內河碼頭",
+						"ref_ID": "K52A-D090",
+						"latitude": 22.36855,
+						"longitude": 113.938063
+					},
+					{
+						"name_en": "Government Depot",
+						"name_ch": "政府車場",
+						"ref_ID": "K52A-D100",
+						"latitude": 22.366875,
+						"longitude": 113.944272
+					},
+					{
+						"name_en": "Pillar Point",
+						"name_ch": "望后石",
+						"ref_ID": "K52A-D110",
+						"latitude": 22.368667,
+						"longitude": 113.948837
+					},
+					{
+						"name_en": "Butterfly Beach Park",
+						"name_ch": "蝴蝶灣公園",
+						"ref_ID": "K52A-D120",
+						"latitude": 22.3729,
+						"longitude": 113.954631
+					},
+					{
+						"name_en": "Tuen Mun Public Riding School",
+						"name_ch": "屯門公眾騎術學校",
+						"ref_ID": "K52A-D130",
+						"latitude": 22.375258,
+						"longitude": 113.958583
+					},
+					{
+						"name_en": "LR Butterfly Stop",
+						"name_ch": "輕鐵蝴蝶站",
+						"ref_ID": "K52A-D140",
+						"latitude": 22.378359,
+						"longitude": 113.961955
+					},
+					{
+						"name_en": "Light Rail Depot Stop",
+						"name_ch": "輕鐵車廠站",
+						"ref_ID": "K52A-D150",
+						"latitude": 22.382203,
+						"longitude": 113.96359
+					},
+					{
+						"name_en": "LR Lung Mun Stop",
+						"name_ch": "輕鐵龍門站",
+						"ref_ID": "K52A-D160",
+						"latitude": 22.385399,
+						"longitude": 113.965222
+					},
+					{
+						"name_en": "LR Tsing Wun Stop",
+						"name_ch": "輕鐵青雲站",
+						"ref_ID": "K52A-D170",
+						"latitude": 22.393627,
+						"longitude": 113.96752
+					},
+					{
+						"name_en": "LR Kin On Stop",
+						"name_ch": "輕鐵建安站",
+						"ref_ID": "K52A-D180",
+						"latitude": 22.395064,
+						"longitude": 113.969953
+					},
+					{
+						"name_en": "Tuen Mun Station",
+						"name_ch": "屯門站",
+						"ref_ID": "K52A-D190",
+						"latitude": 22.394225,
+						"longitude": 113.973358
 					}
 				]
 			}
@@ -909,173 +1912,451 @@
 	},
 	{
 		"route_number": "K53",
-		"route_ID": 8,
-		"shape": "U",
 		"lines": [
 			{
-				"id": 13,
 				"description_en": "Tuen Mun Station to So Kwun Wat (Circular)",
 				"description_zh": "屯門站至掃管笏 (循環綫)",
 				"stops": [
 					{
 						"name_en": "Tuen Mun Station(LR Tuen Mun Stop)",
 						"name_ch": "屯門站(輕鐵屯門站)",
-						"ref_ID": "K53-U010"
+						"ref_ID": "K53-U010",
+						"latitude": 22.394225,
+						"longitude": 113.973358
 					},
 					{
 						"name_en": "Tuen Mun Town Centre",
 						"name_ch": "屯門市中心",
-						"ref_ID": "K53-U020"
+						"ref_ID": "K53-U020",
+						"latitude": 22.391543,
+						"longitude": 113.975435
 					},
 					{
 						"name_en": "Tuen Mun Government Secondary School",
 						"name_ch": "屯門官立中學",
-						"ref_ID": "K53-U030"
+						"ref_ID": "K53-U030",
+						"latitude": 22.390622,
+						"longitude": 113.978751
 					},
 					{
 						"name_en": "Handsome Court",
 						"name_ch": "恒順園",
-						"ref_ID": "K53-U040"
+						"ref_ID": "K53-U040",
+						"latitude": 22.387719,
+						"longitude": 113.980762
 					},
 					{
 						"name_en": "Harvest Garden",
 						"name_ch": "恒豐園",
-						"ref_ID": "K53-U050"
+						"ref_ID": "K53-U050",
+						"latitude": 22.385247,
+						"longitude": 113.981068
 					},
 					{
 						"name_en": "Sam Shing Estate",
 						"name_ch": "三聖邨",
-						"ref_ID": "K53-U060"
+						"ref_ID": "K53-U060",
+						"latitude": 22.381732,
+						"longitude": 113.978847
 					},
 					{
 						"name_en": "Castle Peak Beach",
 						"name_ch": "青山灣",
-						"ref_ID": "K53-U070"
+						"ref_ID": "K53-U070",
+						"latitude": 22.378923,
+						"longitude": 113.980763
 					},
 					{
 						"name_en": "Seaview Garden",
 						"name_ch": "海景花園",
-						"ref_ID": "K53-U080"
+						"ref_ID": "K53-U080",
+						"latitude": 22.377877,
+						"longitude": 113.983564
 					},
 					{
 						"name_en": "Cafeteria Beach",
 						"name_ch": "咖啡灣",
-						"ref_ID": "K53-U090"
+						"ref_ID": "K53-U090",
+						"latitude": 22.374926,
+						"longitude": 113.986745
 					},
 					{
 						"name_en": "Golden Beach",
 						"name_ch": "黃金泳灘",
-						"ref_ID": "K53-U100"
+						"ref_ID": "K53-U100",
+						"latitude": 22.373785,
+						"longitude": 113.990848
 					},
 					{
 						"name_en": "Hong Kong Gold Coast",
 						"name_ch": "香港黃金海岸",
-						"ref_ID": "K53-U110"
+						"ref_ID": "K53-U110",
+						"latitude": 22.372048,
+						"longitude": 113.993608
 					},
 					{
 						"name_en": "Aegean Coast",
 						"name_ch": "愛琴海岸",
-						"ref_ID": "K53-U120"
+						"ref_ID": "K53-U120",
+						"latitude": 22.371605,
+						"longitude": 113.9954
 					},
 					{
-						"name_en": "So Kwun Wat Sub-station",
+						"name_en": "So Kwun Wat Sub- station",
 						"name_ch": "掃管笏變電站",
-						"ref_ID": "K53-U130"
+						"ref_ID": "K53-U130",
+						"latitude": 22.373878,
+						"longitude": 113.996144
 					},
 					{
 						"name_en": "So Kwun Wat Tsuen",
 						"name_ch": "掃管笏村",
-						"ref_ID": "K53-U140"
+						"ref_ID": "K53-U140",
+						"latitude": 22.375743,
+						"longitude": 113.999829
 					},
 					{
 						"name_en": "So Kwun Wat(Mrs. Cheng Yam On Millennium School)",
 						"name_ch": "掃管笏(鄭任安夫人千禧小學)",
-						"ref_ID": "K53-D010"
+						"ref_ID": "K53-D010",
+						"latitude": 22.372023,
+						"longitude": 114.003593
 					},
 					{
 						"name_en": "So Kwun Wat Road",
 						"name_ch": "掃管笏路",
-						"ref_ID": "K53-D015"
+						"ref_ID": "K53-D015",
+						"latitude": 22.374216,
+						"longitude": 114.002295
 					},
 					{
-						"name_en": "Avignon",
-						"name_ch": "星堤",
-						"ref_ID": "K53-D020"
+						"name_en": "18 Kwun Chui Road",
+						"name_ch": "管翠路 18 號",
+						"ref_ID": "K53-D020",
+						"latitude": 22.373866,
+						"longitude": 114.001024
 					},
 					{
 						"name_en": "Kwun Chui Road",
 						"name_ch": "管翠路",
-						"ref_ID": "K53-D030"
+						"ref_ID": "K53-D030",
+						"latitude": 22.375123,
+						"longitude": 113.997707
 					},
 					{
 						"name_en": "Aegean Coast",
 						"name_ch": "愛琴海岸",
-						"ref_ID": "K53-D040"
+						"ref_ID": "K53-D040",
+						"latitude": 22.371473,
+						"longitude": 113.995381
 					},
 					{
 						"name_en": "Hong Kong Gold Coast",
 						"name_ch": "香港黃金海岸",
-						"ref_ID": "K53-D050"
+						"ref_ID": "K53-D050",
+						"latitude": 22.371294,
+						"longitude": 113.993906
 					},
 					{
 						"name_en": "Golden Beach",
 						"name_ch": "黃金泳灘",
-						"ref_ID": "K53-D060"
+						"ref_ID": "K53-D060",
+						"latitude": 22.373653,
+						"longitude": 113.991237
 					},
 					{
 						"name_en": "Cafeteria Beach",
 						"name_ch": "咖啡灣",
-						"ref_ID": "K53-D070"
+						"ref_ID": "K53-D070",
+						"latitude": 22.375924,
+						"longitude": 113.985662
 					},
 					{
 						"name_en": "Bayview Terrace",
 						"name_ch": "碧翠花園",
-						"ref_ID": "K53-D080"
+						"ref_ID": "K53-D080",
+						"latitude": 22.377941,
+						"longitude": 113.983293
 					},
 					{
 						"name_en": "Castle Peak Bay Pier",
 						"name_ch": "青山灣碼頭",
-						"ref_ID": "K53-D090"
+						"ref_ID": "K53-D090",
+						"latitude": 22.378954,
+						"longitude": 113.980609
 					},
 					{
 						"name_en": "Sam Shing Estate",
 						"name_ch": "三聖邨",
-						"ref_ID": "K53-D100"
+						"ref_ID": "K53-D100",
+						"latitude": 22.381245,
+						"longitude": 113.979119
 					},
 					{
 						"name_en": "Hanford Garden(LR Sam Shing Stop)",
 						"name_ch": "恆福花園(輕鐵三聖站)",
-						"ref_ID": "K53-D110"
+						"ref_ID": "K53-D110",
+						"latitude": 22.382079,
+						"longitude": 113.977158
 					},
 					{
 						"name_en": "Mrs Aw Boon Haw Secondary School",
 						"name_ch": "胡陳金枝中學",
-						"ref_ID": "K53-D120"
+						"ref_ID": "K53-D120",
+						"latitude": 22.383774,
+						"longitude": 113.97939
 					},
 					{
 						"name_en": "Tsing Sin Playground",
 						"name_ch": "青善遊樂場",
-						"ref_ID": "K53-D130"
+						"ref_ID": "K53-D130",
+						"latitude": 22.38463,
+						"longitude": 113.980641
 					},
 					{
 						"name_en": "Chi Lok Fa Yuen",
 						"name_ch": "置樂花園",
-						"ref_ID": "K53-D140"
+						"ref_ID": "K53-D140",
+						"latitude": 22.387328,
+						"longitude": 113.980668
 					},
 					{
 						"name_en": "Tuen Mun Government Secondary School",
 						"name_ch": "屯門官立中學",
-						"ref_ID": "K53-D150"
+						"ref_ID": "K53-D150",
+						"latitude": 22.390452,
+						"longitude": 113.978855
 					},
 					{
 						"name_en": "LR Town Centre Stop",
 						"name_ch": "輕鐵市中心站",
-						"ref_ID": "K53-D160"
+						"ref_ID": "K53-D160",
+						"latitude": 22.392116,
+						"longitude": 113.975082
 					},
 					{
 						"name_en": "Tuen Mun Station(LR Tuen Mun Stop)",
 						"name_ch": "屯門站(輕鐵屯門站)",
-						"ref_ID": "K53-U010"
+						"ref_ID": "K53-D170",
+						"latitude": 22.394225,
+						"longitude": 113.973358
+					},
+					{
+						"name_en": "Tin Hau Road*",
+						"name_ch": "天后路*",
+						"ref_ID": "K53-D180",
+						"latitude": 22.391668,
+						"longitude": 113.971547
+					},
+					{
+						"name_en": "Yip Wong Estate*",
+						"name_ch": "業旺邨 *",
+						"ref_ID": "K53-D190",
+						"latitude": 22.38814,
+						"longitude": 113.97015
+					},
+					{
+						"name_en": "Tuen Mun Station(LR Tuen Mun Stop)",
+						"name_ch": "屯門站(輕鐵屯門站)",
+						"ref_ID": "K53-U011",
+						"latitude": 22.394225,
+						"longitude": 113.973358
+					}
+				]
+			}
+		]
+	},
+	{
+		"route_number": "K54",
+		"lines": [
+			{
+				"description_en": "Wo Tin Estate to Tuen Mun Town Centre (Circular)",
+				"description_zh": "和田邨至屯門市中心(循環線)",
+				"stops": [
+					{
+						"name_en": "Wo Tin Estate",
+						"name_ch": "和田邨",
+						"ref_ID": "K54-U010",
+						"latitude": 22.4129536,
+						"longitude": 113.9686386
+					},
+					{
+						"name_en": "Ching Tin Estate",
+						"name_ch": "菁田邨",
+						"ref_ID": "K54-U020",
+						"latitude": 22.4122937,
+						"longitude": 113.9705794
+					},
+					{
+						"name_en": "Tsz Tin Tsuen",
+						"name_ch": "紫田村",
+						"ref_ID": "K54-U030",
+						"latitude": 22.4143948,
+						"longitude": 113.9738808
+					},
+					{
+						"name_en": "Yan Tin Estate",
+						"name_ch": "欣田邨",
+						"ref_ID": "K54-U040",
+						"latitude": 22.41435,
+						"longitude": 113.97701
+					},
+					{
+						"name_en": "MTR Siu Hong Station(North)(LR Siu Hong Stop)",
+						"name_ch": "港鐵兆康站(北)(輕鐵兆康站)",
+						"ref_ID": "K54-U050",
+						"latitude": 22.4134,
+						"longitude": 113.97902
+					},
+					{
+						"name_en": "Hung Kiu",
+						"name_ch": "紅橋",
+						"ref_ID": "K54-U060",
+						"latitude": 22.4019965,
+						"longitude": 113.977489
+					},
+					{
+						"name_en": "Tuen Mun Town Centre",
+						"name_ch": "屯門市中心",
+						"ref_ID": "K54-U070",
+						"latitude": 22.391389,
+						"longitude": 113.975465
+					},
+					{
+						"name_en": "Tuen Mun Town Plaza",
+						"name_ch": "屯門市廣場",
+						"ref_ID": "K54-D010",
+						"latitude": 22.3927298,
+						"longitude": 113.9769618
+					},
+					{
+						"name_en": "San Hui Market",
+						"name_ch": "新墟街市",
+						"ref_ID": "K54-D020",
+						"latitude": 22.3989419,
+						"longitude": 113.9766028
+					},
+					{
+						"name_en": "MTR Siu Hong Station(North)(LR Siu Hong Stop)",
+						"name_ch": "港鐵兆康站(北)(輕鐵兆康站)",
+						"ref_ID": "K54-D030",
+						"latitude": 22.41357,
+						"longitude": 113.9791
+					},
+					{
+						"name_en": "Siu Hong Court",
+						"name_ch": "兆康苑",
+						"ref_ID": "K54-D040",
+						"latitude": 22.414907,
+						"longitude": 113.977412
+					},
+					{
+						"name_en": "Yan Po Road Public Transport Interchange",
+						"name_ch": "欣寶路公共運輸交匯處",
+						"ref_ID": "K54-D050",
+						"latitude": 22.4130992,
+						"longitude": 113.9723357
+					},
+					{
+						"name_en": "Ching Tin Estate",
+						"name_ch": "菁田邨",
+						"ref_ID": "K54-D060",
+						"latitude": 22.4119741,
+						"longitude": 113.9703303
+					},
+					{
+						"name_en": "Wo Tin Estate",
+						"name_ch": "和田邨",
+						"ref_ID": "K54-D070",
+						"latitude": 22.4129536,
+						"longitude": 113.9686386
+					}
+				]
+			}
+		]
+	},
+	{
+		"route_number": "K54A",
+		"lines": [
+			{
+				"description_en": "Wo Tin Estate to MTR Siu Hong Station(North)(LR Siu Hong Stop)",
+				"description_zh": "和田邨至港鐵兆康站(北)(輕鐵兆康站)",
+				"stops": [
+					{
+						"name_en": "Wo Tin Estate",
+						"name_ch": "和田邨",
+						"ref_ID": "K54A-U010",
+						"latitude": 22.41295362,
+						"longitude": 113.9686386
+					},
+					{
+						"name_en": "Ching Tin Estate",
+						"name_ch": "菁田邨",
+						"ref_ID": "K54A-U020",
+						"latitude": 22.41229368,
+						"longitude": 113.9705794
+					},
+					{
+						"name_en": "Tsz Tin Tsuen",
+						"name_ch": "紫田村",
+						"ref_ID": "K54A-U030",
+						"latitude": 22.41439481,
+						"longitude": 113.9738808
+					},
+					{
+						"name_en": "Yan Tin Estate",
+						"name_ch": "欣田邨",
+						"ref_ID": "K54A-U040",
+						"latitude": 22.41435,
+						"longitude": 113.97701
+					},
+					{
+						"name_en": "MTR Siu Hong Station(North)(LR Siu Hong Stop)",
+						"name_ch": "港鐵兆康站(北)(輕鐵兆康站)",
+						"ref_ID": "K54A-U050",
+						"latitude": 22.4134,
+						"longitude": 113.97902
+					}
+				]
+			},
+			{
+				"description_en": "MTR Siu Hong Station(North)(LR Siu Hong Stop) to Wo Tin Estate",
+				"description_zh": "港鐵兆康站(北)(輕鐵兆康站)至和田邨",
+				"stops": [
+					{
+						"name_en": "MTR Siu Hong Station(North)(LR Siu Hong Stop)",
+						"name_ch": "港鐵兆康站(北)(輕鐵兆康站)",
+						"ref_ID": "K54A-D010",
+						"latitude": 22.4134,
+						"longitude": 113.97902
+					},
+					{
+						"name_en": "Siu Hong Court",
+						"name_ch": "兆康苑",
+						"ref_ID": "K54A-D020",
+						"latitude": 22.414907,
+						"longitude": 113.977412
+					},
+					{
+						"name_en": "Yan Po Road Public Transport Interchange",
+						"name_ch": "欣寶路公共運輸交匯處",
+						"ref_ID": "K54A-D030",
+						"latitude": 22.41309916,
+						"longitude": 113.9723357
+					},
+					{
+						"name_en": "Ching Tin Estate",
+						"name_ch": "菁田邨",
+						"ref_ID": "K54A-D040",
+						"latitude": 22.41197411,
+						"longitude": 113.9703303
+					},
+					{
+						"name_en": "Wo Tin Estate",
+						"name_ch": "和田邨",
+						"ref_ID": "K54A-D050",
+						"latitude": 22.41295362,
+						"longitude": 113.9686386
 					}
 				]
 			}
@@ -1083,230 +2364,485 @@
 	},
 	{
 		"route_number": "K58",
-		"route_ID": 9,
-		"shape": "H",
 		"lines": [
 			{
-				"id": 14,
-				"description_en": "Fu Tai to Castle Peak Bay",
-				"description_zh": "富泰 往 青山灣",
+				"description_en": "Fu Tai to Kwun Chui Road",
+				"description_zh": "富泰至管翠路",
 				"stops": [
 					{
 						"name_en": "Fu Tai",
 						"name_ch": "富泰",
-						"ref_ID": "K58-U010"
+						"ref_ID": "K58-U010",
+						"latitude": 22.412815,
+						"longitude": 113.982949
 					},
 					{
 						"name_en": "Beneville",
 						"name_ch": "聚康山莊",
-						"ref_ID": "K58-U020"
+						"ref_ID": "K58-U020",
+						"latitude": 22.412004,
+						"longitude": 113.98378
 					},
 					{
-						"name_en": "MTR Siu Hong Station(North), (LR Siu Hong Stop)",
-						"name_ch": "港鐵兆康站(北), (輕鐵兆康站)",
-						"ref_ID": "K58-U030"
+						"name_en": "Lingnan University",
+						"name_ch": "嶺南大學",
+						"ref_ID": "K58-U023",
+						"latitude": 22.41059,
+						"longitude": 113.982387
+					},
+					{
+						"name_en": "Brilliant Garden",
+						"name_ch": "彩暉花園",
+						"ref_ID": "K58-U026",
+						"latitude": 22.408575,
+						"longitude": 113.980046
+					},
+					{
+						"name_en": "MTR Siu Hong Station(South),(LR Siu Hong Stop)",
+						"name_ch": "港鐵兆康站(南),(輕鐵兆康站)",
+						"ref_ID": "K58-U030",
+						"latitude": 22.410247,
+						"longitude": 113.978583
 					},
 					{
 						"name_en": "Siu Hong Court",
 						"name_ch": "兆康苑",
-						"ref_ID": "K58-U040"
+						"ref_ID": "K58-U040",
+						"latitude": 22.4137,
+						"longitude": 113.976951
 					},
 					{
 						"name_en": "LR Kei Lun Stop",
 						"name_ch": "輕鐵麒麟站",
-						"ref_ID": "K58-U050"
+						"ref_ID": "K58-U050",
+						"latitude": 22.41013,
+						"longitude": 113.976505
 					},
 					{
 						"name_en": "Tuen Mun Hospital",
 						"name_ch": "屯門醫院",
-						"ref_ID": "K58-U060"
+						"ref_ID": "K58-U060",
+						"latitude": 22.408609,
+						"longitude": 113.975571
 					},
 					{
 						"name_en": "Tsing Chung Koon",
 						"name_ch": "青松觀",
-						"ref_ID": "K58-U070"
+						"ref_ID": "K58-U070",
+						"latitude": 22.406276,
+						"longitude": 113.971935
 					},
 					{
-						"name_en": "Shi Hui Wen Secondary School",
-						"name_ch": "釋慧文中學",
-						"ref_ID": "K58-U080"
+						"name_en": "PLK Vicwood K.T. Chong No.2 Primary School",
+						"name_ch": "保良局莊啟程第二小學",
+						"ref_ID": "K58-U080",
+						"latitude": 22.404952,
+						"longitude": 113.968844
 					},
 					{
 						"name_en": "Ho Sau Kei Primary School",
 						"name_ch": "何壽基小學",
-						"ref_ID": "K58-U090"
+						"ref_ID": "K58-U090",
+						"latitude": 22.405728,
+						"longitude": 113.967008
 					},
 					{
 						"name_en": "Leung King Estate",
 						"name_ch": "良景邨",
-						"ref_ID": "K58-U100"
+						"ref_ID": "K58-U100",
+						"latitude": 22.407089,
+						"longitude": 113.964247
 					},
 					{
 						"name_en": "LR San Wai Stop",
 						"name_ch": "輕鐵新圍站",
-						"ref_ID": "K58-U110"
+						"ref_ID": "K58-U110",
+						"latitude": 22.405394,
+						"longitude": 113.964648
 					},
 					{
 						"name_en": "LR Shek Pai Stop",
 						"name_ch": "輕鐵石排站",
-						"ref_ID": "K58-U120"
+						"ref_ID": "K58-U120",
+						"latitude": 22.401886,
+						"longitude": 113.96805
 					},
 					{
 						"name_en": "LR Ming Kum Stop",
 						"name_ch": "輕鐵鳴琴站",
-						"ref_ID": "K58-U130"
+						"ref_ID": "K58-U130",
+						"latitude": 22.396961,
+						"longitude": 113.967622
 					},
 					{
 						"name_en": "LR Kin On Stop",
 						"name_ch": "輕鐵建安站",
-						"ref_ID": "K58-U140"
+						"ref_ID": "K58-U140",
+						"latitude": 22.395021,
+						"longitude": 113.969976
 					},
 					{
 						"name_en": "MTR Tuen Mun Station",
 						"name_ch": "港鐵屯門站",
-						"ref_ID": "K58-U150"
+						"ref_ID": "K58-U150",
+						"latitude": 22.394225,
+						"longitude": 113.973358
 					},
 					{
 						"name_en": "Tuen Mun Town Centre",
 						"name_ch": "屯門市中心",
-						"ref_ID": "K58-U160"
+						"ref_ID": "K58-U160",
+						"latitude": 22.391389,
+						"longitude": 113.975465
 					},
 					{
 						"name_en": "Tuen Mun Government Secondary School",
 						"name_ch": "屯門官立中學",
-						"ref_ID": "K58-U170"
+						"ref_ID": "K58-U170",
+						"latitude": 22.390652,
+						"longitude": 113.978795
 					},
 					{
 						"name_en": "Handsome Court",
 						"name_ch": "恒順園",
-						"ref_ID": "K58-U180"
+						"ref_ID": "K58-U180",
+						"latitude": 22.387795,
+						"longitude": 113.980743
 					},
 					{
 						"name_en": "Harvest Garden",
 						"name_ch": "恒豐園",
-						"ref_ID": "K58-U190"
+						"ref_ID": "K58-U190",
+						"latitude": 22.385271,
+						"longitude": 113.981071
 					},
 					{
 						"name_en": "Sam Shing Estate",
 						"name_ch": "三聖邨",
-						"ref_ID": "K58-U200"
+						"ref_ID": "K58-U200",
+						"latitude": 22.381705,
+						"longitude": 113.978852
 					},
 					{
-						"name_en": "Castle Peak Bay",
+						"name_en": "Castle Peak Beach",
 						"name_ch": "青山灣",
-						"ref_ID": "K58-D010"
+						"ref_ID": "K58-U215",
+						"latitude": 22.378923,
+						"longitude": 113.980763
+					},
+					{
+						"name_en": "Seaview Garden",
+						"name_ch": "海景花園",
+						"ref_ID": "K58-U220",
+						"latitude": 22.377877,
+						"longitude": 113.983564
+					},
+					{
+						"name_en": "Cafeteria Beach",
+						"name_ch": "咖啡灣",
+						"ref_ID": "K58-U230",
+						"latitude": 22.374926,
+						"longitude": 113.986745
+					},
+					{
+						"name_en": "Golden Beach",
+						"name_ch": "黃金泳灘",
+						"ref_ID": "K58-U240",
+						"latitude": 22.373785,
+						"longitude": 113.990848
+					},
+					{
+						"name_en": "Hong Kong Gold Coast",
+						"name_ch": "香港黃金海岸",
+						"ref_ID": "K58-U250",
+						"latitude": 22.372048,
+						"longitude": 113.993608
+					},
+					{
+						"name_en": "Aegean Coast",
+						"name_ch": "愛琴海岸",
+						"ref_ID": "K58-U260",
+						"latitude": 22.371605,
+						"longitude": 113.9954
+					},
+					{
+						"name_en": "So Kwun Wat Sub-station",
+						"name_ch": "掃管笏變電站",
+						"ref_ID": "K58-U270",
+						"latitude": 22.373878,
+						"longitude": 113.996144
+					},
+					{
+						"name_en": "So Kwun Wat Tsuen",
+						"name_ch": "掃管笏村",
+						"ref_ID": "K58-U280",
+						"latitude": 22.375743,
+						"longitude": 113.999829
+					},
+					{
+						"name_en": "So Kwun Wat(Mrs. Cheng Yam On Millennium School)",
+						"name_ch": "掃管笏(鄭任安夫人千禧小學)",
+						"ref_ID": "K58-U290",
+						"latitude": 22.372023,
+						"longitude": 114.003593
+					},
+					{
+						"name_en": "So Kwun Wat Road",
+						"name_ch": "掃管笏路",
+						"ref_ID": "K58-U300",
+						"latitude": 22.374216,
+						"longitude": 114.002295
+					},
+					{
+						"name_en": "18 Kwun Chui Road",
+						"name_ch": "管翠路18號",
+						"ref_ID": "K58-U310",
+						"latitude": 22.373866,
+						"longitude": 114.001024
+					},
+					{
+						"name_en": "Kwun Chui Road",
+						"name_ch": "管翠路",
+						"ref_ID": "K58-U320",
+						"latitude": 22.375123,
+						"longitude": 113.997707
 					}
 				]
 			},
 			{
-				"id": 15,
-				"description_en": "Castle Peak Bay to Fu Tai",
-				"description_zh": "青山灣 往 富泰",
+				"description_en": "So Kwun Wat Tsuen to Fu Tai",
+				"description_zh": "掃管笏村至富泰",
 				"stops": [
 					{
-						"name_en": "Castle Peak Bay",
-						"name_ch": "青山灣",
-						"ref_ID": "K58-D010"
+						"name_en": "So Kwun Wat Tsuen",
+						"name_ch": "掃管笏村",
+						"ref_ID": "K58-D001",
+						"latitude": 22.375743,
+						"longitude": 113.999829
+					},
+					{
+						"name_en": "So Kwun Wat(Mrs. Cheng Yam On Millennium School)",
+						"name_ch": "掃管笏(鄭任安夫人千禧小學)",
+						"ref_ID": "K58-D002",
+						"latitude": 22.372023,
+						"longitude": 114.003593
+					},
+					{
+						"name_en": "So Kwun Wat Road",
+						"name_ch": "掃管笏路",
+						"ref_ID": "K58-D003",
+						"latitude": 22.374216,
+						"longitude": 114.002295
+					},
+					{
+						"name_en": "18 Kwun Chui Road",
+						"name_ch": "管翠路18號",
+						"ref_ID": "K58-D004",
+						"latitude": 22.373866,
+						"longitude": 114.001024
+					},
+					{
+						"name_en": "Kwun Chui Road",
+						"name_ch": "管翠路",
+						"ref_ID": "K58-D005",
+						"latitude": 22.375123,
+						"longitude": 113.997707
+					},
+					{
+						"name_en": "Aegean Coast",
+						"name_ch": "愛琴海岸",
+						"ref_ID": "K58-D006",
+						"latitude": 22.371473,
+						"longitude": 113.995381
+					},
+					{
+						"name_en": "Hong Kong Gold Coast",
+						"name_ch": "香港黃金海岸",
+						"ref_ID": "K58-D007",
+						"latitude": 22.371294,
+						"longitude": 113.993906
+					},
+					{
+						"name_en": "Golden Beach",
+						"name_ch": "黃金泳灘",
+						"ref_ID": "K58-D008",
+						"latitude": 22.373653,
+						"longitude": 113.991237
+					},
+					{
+						"name_en": "Cafeteria Beach",
+						"name_ch": "咖啡灣",
+						"ref_ID": "K58-D009",
+						"latitude": 22.375924,
+						"longitude": 113.985662
+					},
+					{
+						"name_en": "Bayview Terrace",
+						"name_ch": "碧翠花園",
+						"ref_ID": "K58-D011",
+						"latitude": 22.377941,
+						"longitude": 113.983293
+					},
+					{
+						"name_en": "Castle Peak Bay Pier",
+						"name_ch": "青山灣碼頭",
+						"ref_ID": "K58-D012",
+						"latitude": 22.378954,
+						"longitude": 113.980609
 					},
 					{
 						"name_en": "Sam Shing Estate",
 						"name_ch": "三聖邨",
-						"ref_ID": "K58-D020"
+						"ref_ID": "K58-D020",
+						"latitude": 22.381189,
+						"longitude": 113.979146
 					},
 					{
 						"name_en": "Mrs Aw Boon Haw Secondary School",
 						"name_ch": "胡陳金枝中學",
-						"ref_ID": "K58-D030"
+						"ref_ID": "K58-D030",
+						"latitude": 22.383774,
+						"longitude": 113.97939
 					},
 					{
 						"name_en": "Tsing Sin Playground",
 						"name_ch": "青善遊樂場",
-						"ref_ID": "K58-D040"
+						"ref_ID": "K58-D040",
+						"latitude": 22.38458,
+						"longitude": 113.980659
 					},
 					{
 						"name_en": "Chi Lok Fa Yuen",
 						"name_ch": "置樂花園",
-						"ref_ID": "K58-D050"
+						"ref_ID": "K58-D050",
+						"latitude": 22.387305,
+						"longitude": 113.980672
 					},
 					{
 						"name_en": "Tuen Mun Government Secondary School",
 						"name_ch": "屯門官立中學",
-						"ref_ID": "K58-D060"
+						"ref_ID": "K58-D060",
+						"latitude": 22.39043,
+						"longitude": 113.978867
 					},
 					{
 						"name_en": "LR Town Centre Stop",
 						"name_ch": "輕鐵市中心站",
-						"ref_ID": "K58-D070"
+						"ref_ID": "K58-D070",
+						"latitude": 22.392096,
+						"longitude": 113.97512
 					},
 					{
 						"name_en": "LR Tuen Mun Stop(MTR Tuen Mun Station)",
 						"name_ch": "輕鐵屯門站(港鐵屯門站)",
-						"ref_ID": "K58-D080"
+						"ref_ID": "K58-D080",
+						"latitude": 22.39395,
+						"longitude": 113.9737
 					},
 					{
 						"name_en": "LR Kin On Stop",
 						"name_ch": "輕鐵建安站",
-						"ref_ID": "K58-D090"
+						"ref_ID": "K58-D090",
+						"latitude": 22.394699,
+						"longitude": 113.970762
 					},
 					{
 						"name_en": "LR Ming Kum Stop",
 						"name_ch": "輕鐵鳴琴站",
-						"ref_ID": "K58-D100"
+						"ref_ID": "K58-D100",
+						"latitude": 22.396769,
+						"longitude": 113.967425
 					},
 					{
 						"name_en": "LR Shek Pai Stop",
 						"name_ch": "輕鐵石排站",
-						"ref_ID": "K58-D110"
+						"ref_ID": "K58-D110",
+						"latitude": 22.401983,
+						"longitude": 113.967883
 					},
 					{
 						"name_en": "LR San Wai Stop",
 						"name_ch": "輕鐵新圍站",
-						"ref_ID": "K58-D120"
+						"ref_ID": "K58-D120",
+						"latitude": 22.405404,
+						"longitude": 113.963966
 					},
 					{
 						"name_en": "LR Tin King Stop",
 						"name_ch": "輕鐵田景站",
-						"ref_ID": "K58-D130"
+						"ref_ID": "K58-D130",
+						"latitude": 22.407716,
+						"longitude": 113.96598
 					},
 					{
 						"name_en": "Tsing Tin Playground",
 						"name_ch": "青田遊樂場",
-						"ref_ID": "K58-D140"
+						"ref_ID": "K58-D140",
+						"latitude": 22.405974,
+						"longitude": 113.967207
 					},
 					{
 						"name_en": "Lok Sang House, Kin Sang Estate",
 						"name_ch": "建生邨樂生樓",
-						"ref_ID": "K58-D150"
+						"ref_ID": "K58-D150",
+						"latitude": 22.405169,
+						"longitude": 113.968901
 					},
 					{
 						"name_en": "Tai Sang House, Kin Sang Estate",
 						"name_ch": "建生邨泰生樓",
-						"ref_ID": "K58-D160"
+						"ref_ID": "K58-D160",
+						"latitude": 22.406394,
+						"longitude": 113.971667
 					},
 					{
 						"name_en": "LR Kei Lun Stop",
 						"name_ch": "輕鐵麒麟站",
-						"ref_ID": "K58-D170"
+						"ref_ID": "K58-D170",
+						"latitude": 22.411042,
+						"longitude": 113.97648
 					},
 					{
-						"name_en": "Tsz Tin Tsuen",
-						"name_ch": "紫田村",
-						"ref_ID": "K58-D180"
+						"name_en": "Yan Tin Estate",
+						"name_ch": "欣田邨",
+						"ref_ID": "K58-D180",
+						"latitude": 22.414291,
+						"longitude": 113.977143
 					},
 					{
-						"name_en": "MTR Siu Hong Station(North), (LR Siu Hong Stop)",
-						"name_ch": "港鐵兆康站(北), (輕鐵兆康站)",
-						"ref_ID": "K58-D190"
+						"name_en": "MTR Siu Hong Station(South)(LR Siu Hong Stop)",
+						"name_ch": "港鐵兆康站(南)(輕鐵兆康站)",
+						"ref_ID": "K58-D190",
+						"latitude": 22.410378,
+						"longitude": 113.978607
+					},
+					{
+						"name_en": "Brilliant Garden",
+						"name_ch": "彩暉花園",
+						"ref_ID": "K58-D193",
+						"latitude": 22.408779,
+						"longitude": 113.980397
+					},
+					{
+						"name_en": "Lingnan University",
+						"name_ch": "嶺南大學",
+						"ref_ID": "K58-D196",
+						"latitude": 22.410694,
+						"longitude": 113.982212
 					},
 					{
 						"name_en": "South Hillcrest",
 						"name_ch": "倚嶺南庭",
-						"ref_ID": "K58-D200"
+						"ref_ID": "K58-D200",
+						"latitude": 22.411915,
+						"longitude": 113.983238
 					},
 					{
 						"name_en": "Fu Tai",
 						"name_ch": "富泰",
-						"ref_ID": "K58-U010"
+						"ref_ID": "K58-D210",
+						"latitude": 22.412815,
+						"longitude": 113.982949
 					}
 				]
 			}
@@ -1314,230 +2850,495 @@
 	},
 	{
 		"route_number": "K65",
-		"route_ID": 10,
-		"shape": "H",
 		"lines": [
 			{
-				"id": 16,
-				"description_en": "Yuen Long Station to Lau Fau Shan",
-				"description_zh": "元朗站 往 流浮山",
+				"description_en": "Yuen Long Station(LR Yuen Long Stop, MTR Yuen Long Station) to Lau Fau Shan",
+				"description_zh": "元朗站(輕鐵元朗站, 港鐵元朗 站)至流浮山",
 				"stops": [
 					{
 						"name_en": "Yuen Long Station(LR Yuen Long Stop, MTR Yuen Long Station)",
-						"name_ch": "元朗站(輕鐵元朗站, 港鐵元朗站)",
-						"ref_ID": "K65-U010"
+						"name_ch": "元朗站(輕鐵元朗站, 港鐵元朗 站)",
+						"ref_ID": "K65-U010",
+						"latitude": 22.44514396,
+						"longitude": 114.035187
 					},
 					{
 						"name_en": "Yau San Street",
 						"name_ch": "又新街",
-						"ref_ID": "K65-U020"
+						"ref_ID": "K65-U020",
+						"latitude": 22.44451201,
+						"longitude": 114.0315245
 					},
 					{
 						"name_en": "Tai Tong Road",
 						"name_ch": "大棠路",
-						"ref_ID": "K65-U030"
+						"ref_ID": "K65-U030",
+						"latitude": 22.4446245,
+						"longitude": 114.028421
 					},
 					{
 						"name_en": "Hong Lok Road",
 						"name_ch": "康樂路",
-						"ref_ID": "K65-U040"
+						"ref_ID": "K65-U040",
+						"latitude": 22.44478103,
+						"longitude": 114.026429
 					},
 					{
 						"name_en": "Yuen Long Police Station",
 						"name_ch": "元朗警署",
-						"ref_ID": "K65-U050"
+						"ref_ID": "K65-U050",
+						"latitude": 22.44449303,
+						"longitude": 114.024142
 					},
 					{
 						"name_en": "LR Shui Pin Wai Stop",
 						"name_ch": "輕鐵水邊圍站",
-						"ref_ID": "K65-U060"
+						"ref_ID": "K65-U060",
+						"latitude": 22.44449303,
+						"longitude": 114.02119
 					},
 					{
 						"name_en": "Yuen Long Park",
 						"name_ch": "元朗公園",
-						"ref_ID": "K65-U070"
+						"ref_ID": "K65-U070",
+						"latitude": 22.44416303,
+						"longitude": 114.018772
 					},
 					{
 						"name_en": "Long Bin",
 						"name_ch": "朗邊",
-						"ref_ID": "K65-U080"
+						"ref_ID": "K65-U080",
+						"latitude": 22.44347999,
+						"longitude": 114.014914
 					},
 					{
 						"name_en": "Ping Hing Lane, Ping Shan",
 						"name_ch": "屏山屏興里",
-						"ref_ID": "K65-U090"
+						"ref_ID": "K65-U090",
+						"latitude": 22.443597,
+						"longitude": 114.009912
 					},
 					{
 						"name_en": "Hang Mei Tsuen",
 						"name_ch": "坑尾村",
-						"ref_ID": "K65-U100"
+						"ref_ID": "K65-U100",
+						"latitude": 22.44378098,
+						"longitude": 114.007739
 					},
 					{
 						"name_en": "LR Hang Mei Tsuen Stop",
 						"name_ch": "輕鐵坑尾村站",
-						"ref_ID": "K65-U110"
+						"ref_ID": "K65-U110",
+						"latitude": 22.445754,
+						"longitude": 114.004915
 					},
 					{
 						"name_en": "Tin Shing Court(MTR Tin Shui Wai Station)",
 						"name_ch": "天盛苑(港鐵天水圍站)",
-						"ref_ID": "K65-U120"
+						"ref_ID": "K65-U120",
+						"latitude": 22.44692696,
+						"longitude": 114.003126
 					},
 					{
 						"name_en": "Shek Po Road",
 						"name_ch": "石埗路",
-						"ref_ID": "K65-U130"
+						"ref_ID": "K65-U130",
+						"latitude": 22.44667601,
+						"longitude": 113.998121
 					},
 					{
 						"name_en": "Sha Chau Lei Tsuen",
 						"name_ch": "沙洲里村",
-						"ref_ID": "K65-U140"
+						"ref_ID": "K65-U140",
+						"latitude": 22.44606899,
+						"longitude": 113.995464
 					},
 					{
 						"name_en": "Ha Tsuen",
 						"name_ch": "廈村",
-						"ref_ID": "K65-U150"
+						"ref_ID": "K65-U150",
+						"latitude": 22.44756503,
+						"longitude": 113.9938825
 					},
 					{
 						"name_en": "Shek Kong Wai",
 						"name_ch": "錫降圍",
-						"ref_ID": "K65-U160"
+						"ref_ID": "K65-U160",
+						"latitude": 22.44952099,
+						"longitude": 113.994281
 					},
 					{
 						"name_en": "Lo Uk Tsuen",
 						"name_ch": "羅屋村",
-						"ref_ID": "K65-U170"
+						"ref_ID": "K65-U170",
+						"latitude": 22.451291,
+						"longitude": 113.994884
 					},
 					{
 						"name_en": "Tung Tau Tsuen(South)",
 						"name_ch": "東頭村(南)",
-						"ref_ID": "K65-U180"
+						"ref_ID": "K65-U180",
+						"latitude": 22.45294902,
+						"longitude": 113.994668
 					},
 					{
 						"name_en": "Tung Tau Tsuen(North)",
 						"name_ch": "東頭村(北)",
-						"ref_ID": "K65-U190"
+						"ref_ID": "K65-U190",
+						"latitude": 22.45670102,
+						"longitude": 113.991661
 					},
 					{
 						"name_en": "Fung Kong Tsuen",
 						"name_ch": "鳳降村",
-						"ref_ID": "K65-U200"
+						"ref_ID": "K65-U200",
+						"latitude": 22.45909799,
+						"longitude": 113.990368
 					},
 					{
 						"name_en": "Sha Kong Wai",
 						"name_ch": "沙江圍",
-						"ref_ID": "K65-U210"
+						"ref_ID": "K65-U210",
+						"latitude": 22.46156302,
+						"longitude": 113.988875
 					},
 					{
 						"name_en": "San Hing Tsuen",
 						"name_ch": "新慶村",
-						"ref_ID": "K65-U220"
+						"ref_ID": "K65-U220",
+						"latitude": 22.46464396,
+						"longitude": 113.986202
 					},
 					{
 						"name_en": "Lau Fau Shan",
 						"name_ch": "流浮山",
-						"ref_ID": "K65-D010"
+						"ref_ID": "K65-U230",
+						"latitude": 22.467614,
+						"longitude": 113.983984
 					}
 				]
 			},
 			{
-				"id": 17,
-				"description_en": "Lau Fau Shan to Yuen Long Station",
-				"description_zh": "流浮山 往 元朗站",
+				"description_en": "Lau Fau Shan to Yuen Long Station(LR Yuen Long Stop, MTR Yuen Long Station)",
+				"description_zh": "流浮山至元朗站(輕鐵元朗站, 港鐵元朗 站)",
 				"stops": [
 					{
 						"name_en": "Lau Fau Shan",
 						"name_ch": "流浮山",
-						"ref_ID": "K65-D010"
+						"ref_ID": "K65-D010",
+						"latitude": 22.467614,
+						"longitude": 113.983984
 					},
 					{
 						"name_en": "San Hing Tsuen",
 						"name_ch": "新慶村",
-						"ref_ID": "K65-D020"
+						"ref_ID": "K65-D020",
+						"latitude": 22.46416401,
+						"longitude": 113.986741
 					},
 					{
 						"name_en": "Sha Kong Wai",
 						"name_ch": "沙江圍",
-						"ref_ID": "K65-D030"
+						"ref_ID": "K65-D030",
+						"latitude": 22.46140502,
+						"longitude": 113.989344
 					},
 					{
 						"name_en": "Fung Kong Tsuen",
 						"name_ch": "鳳降村",
-						"ref_ID": "K65-D040"
+						"ref_ID": "K65-D040",
+						"latitude": 22.45915096,
+						"longitude": 113.990515
 					},
 					{
 						"name_en": "Tung Tau Tsuen",
 						"name_ch": "東頭村",
-						"ref_ID": "K65-D050"
+						"ref_ID": "K65-D050",
+						"latitude": 22.45592603,
+						"longitude": 113.992509
 					},
 					{
 						"name_en": "Lo Uk Tsuen",
 						"name_ch": "羅屋村",
-						"ref_ID": "K65-D060"
+						"ref_ID": "K65-D060",
+						"latitude": 22.45256698,
+						"longitude": 113.994935
 					},
 					{
 						"name_en": "Shek Kong Wai",
 						"name_ch": "錫降圍",
-						"ref_ID": "K65-D070"
+						"ref_ID": "K65-D070",
+						"latitude": 22.44876897,
+						"longitude": 113.994128
 					},
 					{
 						"name_en": "Ha Tsuen",
 						"name_ch": "廈村",
-						"ref_ID": "K65-D080"
+						"ref_ID": "K65-D080",
+						"latitude": 22.44670803,
+						"longitude": 113.994761
 					},
 					{
 						"name_en": "Sha Chau Lei Tsuen",
 						"name_ch": "沙洲里村",
-						"ref_ID": "K65-D090"
+						"ref_ID": "K65-D090",
+						"latitude": 22.44663703,
+						"longitude": 113.997152
 					},
 					{
 						"name_en": "Tin Shing Court(MTR Tin Shui Wai Station)",
 						"name_ch": "天盛苑(港鐵天水圍站)",
-						"ref_ID": "K65-D100"
+						"ref_ID": "K65-D100",
+						"latitude": 22.44694096,
+						"longitude": 114.00282
 					},
 					{
 						"name_en": "LR Hang Mei Tsuen Stop",
 						"name_ch": "輕鐵坑尾村站",
-						"ref_ID": "K65-D110"
+						"ref_ID": "K65-D110",
+						"latitude": 22.44588903,
+						"longitude": 114.00512
 					},
 					{
 						"name_en": "Hang Mei Tsuen",
 						"name_ch": "坑尾村",
-						"ref_ID": "K65-D120"
+						"ref_ID": "K65-D120",
+						"latitude": 22.44390302,
+						"longitude": 114.007678
 					},
 					{
 						"name_en": "Ping Hing Lane, Ping Shan",
 						"name_ch": "屏山屏興里",
-						"ref_ID": "K65-D130"
+						"ref_ID": "K65-D130",
+						"latitude": 22.44370999,
+						"longitude": 114.010233
 					},
 					{
 						"name_en": "LR Ping Shan Stop",
 						"name_ch": "輕鐵屏山站",
-						"ref_ID": "K65-D140"
+						"ref_ID": "K65-D140",
+						"latitude": 22.44322099,
+						"longitude": 114.012915
 					},
 					{
 						"name_en": "LR Shui Pin Wai Stop",
 						"name_ch": "輕鐵水邊圍站",
-						"ref_ID": "K65-D150"
+						"ref_ID": "K65-D150",
+						"latitude": 22.44457601,
+						"longitude": 114.019733
 					},
 					{
 						"name_en": "Yuen Long Plaza",
 						"name_ch": "元朗廣場",
-						"ref_ID": "K65-D160"
+						"ref_ID": "K65-D160",
+						"latitude": 22.44457601,
+						"longitude": 114.023787
 					},
 					{
 						"name_en": "Yuen Long Landmark",
 						"name_ch": "開心廣場",
-						"ref_ID": "K65-D170"
+						"ref_ID": "K65-D170",
+						"latitude": 22.44446897,
+						"longitude": 114.02828
 					},
 					{
 						"name_en": "Kuk Ting Street",
 						"name_ch": "谷亭街",
-						"ref_ID": "K65-D180"
+						"ref_ID": "K65-D180",
+						"latitude": 22.44441197,
+						"longitude": 114.030327
 					},
 					{
 						"name_en": "Yuen Long Station(LR Yuen Long Stop, MTR Yuen Long Station)",
-						"name_ch": "元朗站(輕鐵元朗站, 港鐵元朗站)",
-						"ref_ID": "K65-U010"
+						"name_ch": "元朗站(輕鐵元朗站, 港鐵元朗 站)",
+						"ref_ID": "K65-D190",
+						"latitude": 22.44514396,
+						"longitude": 114.035187
+					}
+				]
+			}
+		]
+	},
+	{
+		"route_number": "K65A",
+		"lines": [
+			{
+				"description_en": "Tin Shui Wai Station(LR Tin Shui Wai Stop) to Lau Fau Shan",
+				"description_zh": "天水圍站(輕鐵天水圍站)至流浮山",
+				"stops": [
+					{
+						"name_en": "Tin Shui Wai Station(LR Tin Shui Wai Stop)",
+						"name_ch": "天水圍站(輕鐵天水圍站)",
+						"ref_ID": "K65A-U010",
+						"latitude": 22.44654,
+						"longitude": 114.0037516
+					},
+					{
+						"name_en": "Tin Shing Court(MTR Tin Shui Wai Station)",
+						"name_ch": "天盛苑(港鐵天水圍站)",
+						"ref_ID": "K65A-U020",
+						"latitude": 22.446927,
+						"longitude": 114.003126
+					},
+					{
+						"name_en": "Shek Po Road",
+						"name_ch": "石埗路",
+						"ref_ID": "K65A-U030",
+						"latitude": 22.446676,
+						"longitude": 113.998121
+					},
+					{
+						"name_en": "Sha Chau Lei Tsuen",
+						"name_ch": "沙洲里村",
+						"ref_ID": "K65A-U040",
+						"latitude": 22.446069,
+						"longitude": 113.995464
+					},
+					{
+						"name_en": "Ha Tsuen",
+						"name_ch": "廈村",
+						"ref_ID": "K65A-U050",
+						"latitude": 22.447565,
+						"longitude": 113.9938825
+					},
+					{
+						"name_en": "Shek Kong Wai",
+						"name_ch": "錫降圍",
+						"ref_ID": "K65A-U060",
+						"latitude": 22.449521,
+						"longitude": 113.994281
+					},
+					{
+						"name_en": "Lo Uk Tsuen",
+						"name_ch": "羅屋村",
+						"ref_ID": "K65A-U070",
+						"latitude": 22.451291,
+						"longitude": 113.994884
+					},
+					{
+						"name_en": "Tung Tau Tsuen(South)",
+						"name_ch": "東頭村(南)",
+						"ref_ID": "K65A-U080",
+						"latitude": 22.452949,
+						"longitude": 113.994668
+					},
+					{
+						"name_en": "Tung Tau Tsuen(North)",
+						"name_ch": "東頭村(北)",
+						"ref_ID": "K65A-U090",
+						"latitude": 22.456701,
+						"longitude": 113.991661
+					},
+					{
+						"name_en": "Fung Kong Tsuen",
+						"name_ch": "鳳降村",
+						"ref_ID": "K65A-U100",
+						"latitude": 22.459098,
+						"longitude": 113.990368
+					},
+					{
+						"name_en": "Sha Kong Wai",
+						"name_ch": "沙江圍",
+						"ref_ID": "K65A-U110",
+						"latitude": 22.461563,
+						"longitude": 113.988875
+					},
+					{
+						"name_en": "San Hing Tsuen",
+						"name_ch": "新慶村",
+						"ref_ID": "K65A-U120",
+						"latitude": 22.464644,
+						"longitude": 113.986202
+					},
+					{
+						"name_en": "Lau Fau Shan",
+						"name_ch": "流浮山",
+						"ref_ID": "K65A-U130",
+						"latitude": 22.467614,
+						"longitude": 113.983984
+					}
+				]
+			},
+			{
+				"description_en": "Lau Fau Shan to Tin Shui Wai Station(LR Tin Shui Wai Stop)",
+				"description_zh": "流浮山至天水圍站(輕鐵天水圍站)",
+				"stops": [
+					{
+						"name_en": "Lau Fau Shan",
+						"name_ch": "流浮山",
+						"ref_ID": "K65A-D010",
+						"latitude": 22.467614,
+						"longitude": 113.983984
+					},
+					{
+						"name_en": "San Hing Tsuen",
+						"name_ch": "新慶村",
+						"ref_ID": "K65A-D020",
+						"latitude": 22.464164,
+						"longitude": 113.986741
+					},
+					{
+						"name_en": "Sha Kong Wai",
+						"name_ch": "沙江圍",
+						"ref_ID": "K65A-D030",
+						"latitude": 22.461405,
+						"longitude": 113.989344
+					},
+					{
+						"name_en": "Fung Kong Tsuen",
+						"name_ch": "鳳降村",
+						"ref_ID": "K65A-D040",
+						"latitude": 22.459151,
+						"longitude": 113.990515
+					},
+					{
+						"name_en": "Tung Tau Tsuen",
+						"name_ch": "東頭村",
+						"ref_ID": "K65A-D050",
+						"latitude": 22.455926,
+						"longitude": 113.992509
+					},
+					{
+						"name_en": "Lo Uk Tsuen",
+						"name_ch": "羅屋村",
+						"ref_ID": "K65A-D060",
+						"latitude": 22.452567,
+						"longitude": 113.994935
+					},
+					{
+						"name_en": "Shek Kong Wai",
+						"name_ch": "錫降圍",
+						"ref_ID": "K65A-D070",
+						"latitude": 22.448769,
+						"longitude": 113.994128
+					},
+					{
+						"name_en": "Ha Tsuen",
+						"name_ch": "廈村",
+						"ref_ID": "K65A-D080",
+						"latitude": 22.446708,
+						"longitude": 113.994761
+					},
+					{
+						"name_en": "Sha Chau Lei Tsuen",
+						"name_ch": "沙洲里村",
+						"ref_ID": "K65A-D090",
+						"latitude": 22.446637,
+						"longitude": 113.997152
+					},
+					{
+						"name_en": "Tin Shing Court(MTR Tin Shui Wai Station)",
+						"name_ch": "天盛苑(港鐵天水圍站)",
+						"ref_ID": "K65A-D100",
+						"latitude": 22.446941,
+						"longitude": 114.00282
+					},
+					{
+						"name_en": "Tin Shui Wai Station(LR Tin Shui Wai Stop)",
+						"name_ch": "天水圍站(輕鐵天水圍站)",
+						"ref_ID": "K65A-D110",
+						"latitude": 22.44654,
+						"longitude": 114.0037516
 					}
 				]
 			}
@@ -1545,250 +3346,338 @@
 	},
 	{
 		"route_number": "K66",
-		"route_ID": 11,
-		"shape": "H",
 		"lines": [
 			{
-				"id": 18,
 				"description_en": "Long Ping to Tai Tong Wong Nai Tun Tsuen",
-				"description_zh": "朗屏 往 大棠黃泥墩村",
+				"description_zh": "朗屏至大棠黃泥墩村",
 				"stops": [
 					{
 						"name_en": "Long Ping",
 						"name_ch": "朗屏",
-						"ref_ID": "K66-U010"
+						"ref_ID": "K66-U010",
+						"latitude": 22.45078121,
+						"longitude": 114.0229286
 					},
 					{
 						"name_en": "Yeung Uk Tsuen",
 						"name_ch": "楊屋村",
-						"ref_ID": "K66-U020"
+						"ref_ID": "K66-U020",
+						"latitude": 22.45134693,
+						"longitude": 114.0254022
 					},
 					{
 						"name_en": "Ping Cheong Path(MTR Long Ping Station)",
 						"name_ch": "屏昌徑(港鐵朗屏站)",
-						"ref_ID": "K66-U030"
+						"ref_ID": "K66-U030",
+						"latitude": 22.447672,
+						"longitude": 114.023295
 					},
 					{
 						"name_en": "Yuen Long Home for the Aged Blind",
 						"name_ch": "元朗盲人安老院",
-						"ref_ID": "K66-U040"
+						"ref_ID": "K66-U040",
+						"latitude": 22.446002,
+						"longitude": 114.022607
 					},
 					{
 						"name_en": "Yuen Long Town Hall(LR Fung Nin Road Stop)",
 						"name_ch": "元朗大會堂(輕鐵豐年路站)",
-						"ref_ID": "K66-U050"
+						"ref_ID": "K66-U050",
+						"latitude": 22.4434668,
+						"longitude": 114.0223167
 					},
 					{
 						"name_en": "On Hong Road",
 						"name_ch": "安康路",
-						"ref_ID": "K66-U060"
+						"ref_ID": "K66-U060",
+						"latitude": 22.44306167,
+						"longitude": 114.0236577
 					},
 					{
 						"name_en": "Yuen Long Commercial Centre",
 						"name_ch": "元朗商業中心",
-						"ref_ID": "K66-U070"
+						"ref_ID": "K66-U070",
+						"latitude": 22.44297,
+						"longitude": 114.027754
 					},
 					{
 						"name_en": "Manhattan Plaza",
 						"name_ch": "富達廣場",
-						"ref_ID": "K66-U080"
+						"ref_ID": "K66-U080",
+						"latitude": 22.44120404,
+						"longitude": 114.0294022
 					},
 					{
 						"name_en": "Sereno Verde",
 						"name_ch": "蝶翠峰",
-						"ref_ID": "K66-U090"
+						"ref_ID": "K66-U090",
+						"latitude": 22.436903,
+						"longitude": 114.029411
 					},
 					{
 						"name_en": "Fraser Village",
 						"name_ch": "禮修村",
-						"ref_ID": "K66-U100"
+						"ref_ID": "K66-U100",
+						"latitude": 22.435406,
+						"longitude": 114.0287683
 					},
 					{
 						"name_en": "Sham Chung Tsuen",
 						"name_ch": "深涌村",
-						"ref_ID": "K66-U110"
+						"ref_ID": "K66-U110",
+						"latitude": 22.43369688,
+						"longitude": 114.0285876
 					},
 					{
 						"name_en": "Law Ka Yuen",
 						"name_ch": "羅家園",
-						"ref_ID": "K66-U120"
+						"ref_ID": "K66-U120",
+						"latitude": 22.43240032,
+						"longitude": 114.0285171
 					},
 					{
 						"name_en": "Shung Ching School",
 						"name_ch": "崇正公立學校",
-						"ref_ID": "K66-U130"
+						"ref_ID": "K66-U130",
+						"latitude": 22.42978906,
+						"longitude": 114.0286105
 					},
 					{
 						"name_en": "Shung Ching Vegetable Market",
 						"name_ch": "崇正菜站",
-						"ref_ID": "K66-U140"
+						"ref_ID": "K66-U140",
+						"latitude": 22.42739559,
+						"longitude": 114.0295088
 					},
 					{
 						"name_en": "Lo Wai",
 						"name_ch": "老圍",
-						"ref_ID": "K66-U150"
+						"ref_ID": "K66-U150",
+						"latitude": 22.42562276,
+						"longitude": 114.0312735
 					},
 					{
 						"name_en": "Chun Wah Villas",
 						"name_ch": "振華花園",
-						"ref_ID": "K66-U160"
+						"ref_ID": "K66-U160",
+						"latitude": 22.42356303,
+						"longitude": 114.0321846
 					},
 					{
 						"name_en": "Nam Hang Pai",
 						"name_ch": "南坑排",
-						"ref_ID": "K66-U170"
+						"ref_ID": "K66-U170",
+						"latitude": 22.42265522,
+						"longitude": 114.0308948
 					},
 					{
 						"name_en": "Shui Chiu San Tsuen",
 						"name_ch": "水蕉新村",
-						"ref_ID": "K66-U180"
+						"ref_ID": "K66-U180",
+						"latitude": 22.42247664,
+						"longitude": 114.0298802
 					},
 					{
 						"name_en": "Wah Yuen",
 						"name_ch": "華苑",
-						"ref_ID": "K66-U190"
+						"ref_ID": "K66-U190",
+						"latitude": 22.42193919,
+						"longitude": 114.0282615
 					},
 					{
 						"name_en": "Tai Tong Roundabout",
 						"name_ch": "大棠迴旋處",
-						"ref_ID": "K66-U200"
+						"ref_ID": "K66-U200",
+						"latitude": 22.41836575,
+						"longitude": 114.0256553
 					},
 					{
 						"name_en": "Tai Tong Shan Road",
 						"name_ch": "大棠山路",
-						"ref_ID": "K66-U210"
+						"ref_ID": "K66-U210",
+						"latitude": 22.41618728,
+						"longitude": 114.0236994
 					},
 					{
 						"name_en": "Tai Tong Wong Nai Tun Tsuen",
 						"name_ch": "大棠黃泥墩村",
-						"ref_ID": "K66-D010"
+						"ref_ID": "K66-U220",
+						"latitude": 22.416389,
+						"longitude": 114.021874
 					}
 				]
 			},
 			{
-				"id": 19,
 				"description_en": "Tai Tong Wong Nai Tun Tsuen to Long Ping",
-				"description_zh": "大棠黃泥墩村 往 朗屏",
+				"description_zh": "大棠黃泥墩村至朗屏",
 				"stops": [
 					{
 						"name_en": "Tai Tong Wong Nai Tun Tsuen",
 						"name_ch": "大棠黃泥墩村",
-						"ref_ID": "K66-D010"
+						"ref_ID": "K66-D010",
+						"latitude": 22.416389,
+						"longitude": 114.021874
 					},
 					{
 						"name_en": "Tai Tong Shan Road",
 						"name_ch": "大棠山路",
-						"ref_ID": "K66-D020"
+						"ref_ID": "K66-D020",
+						"latitude": 22.41620604,
+						"longitude": 114.0238973
 					},
 					{
 						"name_en": "Tai Tong Roundabout",
 						"name_ch": "大棠迴旋處",
-						"ref_ID": "K66-D030"
+						"ref_ID": "K66-D030",
+						"latitude": 22.418334,
+						"longitude": 114.02484
 					},
 					{
 						"name_en": "Wah Yuen",
 						"name_ch": "華苑",
-						"ref_ID": "K66-D040"
+						"ref_ID": "K66-D040",
+						"latitude": 22.42207521,
+						"longitude": 114.0283849
 					},
 					{
 						"name_en": "Shui Chiu San Tsuen",
 						"name_ch": "水蕉新村",
-						"ref_ID": "K66-D050"
+						"ref_ID": "K66-D050",
+						"latitude": 22.42253674,
+						"longitude": 114.0299286
 					},
 					{
 						"name_en": "Nam Hang Pai",
 						"name_ch": "南坑排",
-						"ref_ID": "K66-D060"
+						"ref_ID": "K66-D060",
+						"latitude": 22.42270841,
+						"longitude": 114.0310276
 					},
 					{
 						"name_en": "Nam Hang Tsuen",
 						"name_ch": "南坑村",
-						"ref_ID": "K66-D070"
+						"ref_ID": "K66-D070",
+						"latitude": 22.42418205,
+						"longitude": 114.0322333
 					},
 					{
 						"name_en": "Hung Tso Tin Tsuen",
 						"name_ch": "紅棗田村",
-						"ref_ID": "K66-D080"
+						"ref_ID": "K66-D080",
+						"latitude": 22.42571102,
+						"longitude": 114.0311155
 					},
 					{
 						"name_en": "Po Shing Wai",
 						"name_ch": "普盛圍",
-						"ref_ID": "K66-D090"
+						"ref_ID": "K66-D090",
+						"latitude": 22.42751631,
+						"longitude": 114.0293547
 					},
 					{
 						"name_en": "Shung Ching School",
 						"name_ch": "崇正公立學校",
-						"ref_ID": "K66-D100"
+						"ref_ID": "K66-D100",
+						"latitude": 22.42993918,
+						"longitude": 114.0285687
 					},
 					{
 						"name_en": "Law Ka Yuen",
 						"name_ch": "羅家園",
-						"ref_ID": "K66-D110"
+						"ref_ID": "K66-D110",
+						"latitude": 22.4321724,
+						"longitude": 114.0284926
 					},
 					{
 						"name_en": "Sham Chung Tsuen",
 						"name_ch": "深涌村",
-						"ref_ID": "K66-D120"
+						"ref_ID": "K66-D120",
+						"latitude": 22.43377173,
+						"longitude": 114.0285624
 					},
 					{
 						"name_en": "Fraser Village",
 						"name_ch": "禮修村",
-						"ref_ID": "K66-D130"
+						"ref_ID": "K66-D130",
+						"latitude": 22.43543081,
+						"longitude": 114.0287164
 					},
 					{
 						"name_en": "Sereno Verde",
 						"name_ch": "蝶翠峰",
-						"ref_ID": "K66-D140"
+						"ref_ID": "K66-D140",
+						"latitude": 22.43724051,
+						"longitude": 114.0295783
 					},
 					{
 						"name_en": "Hang Heung Cake Shop",
 						"name_ch": "恆香製餅廠",
-						"ref_ID": "K66-D150"
+						"ref_ID": "K66-D150",
+						"latitude": 22.43836882,
+						"longitude": 114.0294482
 					},
 					{
 						"name_en": "Manhattan Plaza",
 						"name_ch": "富達廣場",
-						"ref_ID": "K66-D160"
+						"ref_ID": "K66-D160",
+						"latitude": 22.44119428,
+						"longitude": 114.0293385
 					},
 					{
 						"name_en": "Citi Mall",
 						"name_ch": "千色廣場",
-						"ref_ID": "K66-D170"
+						"ref_ID": "K66-D170",
+						"latitude": 22.44298197,
+						"longitude": 114.0278032
 					},
 					{
 						"name_en": "On Hong Road",
 						"name_ch": "安康路",
-						"ref_ID": "K66-D180"
+						"ref_ID": "K66-D180",
+						"latitude": 22.44302568,
+						"longitude": 114.0230108
 					},
 					{
 						"name_en": "Yuen Long Town Hall(LR Fung Nin Road Stop)",
 						"name_ch": "元朗大會堂(輕鐵豐年路站)",
-						"ref_ID": "K66-D190"
+						"ref_ID": "K66-D190",
+						"latitude": 22.44362078,
+						"longitude": 114.0222338
 					},
 					{
 						"name_en": "Hong Shui House, Shui Pin Wai Estate",
 						"name_ch": "水邊圍邨康水樓",
-						"ref_ID": "K66-D200"
+						"ref_ID": "K66-D200",
+						"latitude": 22.44613943,
+						"longitude": 114.0213445
 					},
 					{
 						"name_en": "Yuet Ping House, Long Ping Estate(MTR Long Ping Station)",
-						"name_ch": "朗屏邨悅屏樓(港鐵朗屏站)",
-						"ref_ID": "K66-D210"
+						"name_ch": "朗屏邨悅屏樓(港鐵朗 屏站)",
+						"ref_ID": "K66-D210",
+						"latitude": 22.44785153,
+						"longitude": 114.0227269
 					},
 					{
 						"name_en": "Wai Chow School",
 						"name_ch": "惠州學校",
-						"ref_ID": "K66-D220"
+						"ref_ID": "K66-D220",
+						"latitude": 22.449515,
+						"longitude": 114.025532
 					},
 					{
 						"name_en": "Chu Ping House, Long Ping Estate",
 						"name_ch": "朗屏邨珠屏樓",
-						"ref_ID": "K66-D230"
+						"ref_ID": "K66-D230",
+						"latitude": 22.451414,
+						"longitude": 114.025334
 					},
 					{
 						"name_en": "Long Ping",
 						"name_ch": "朗屏",
-						"ref_ID": "K66-U010"
+						"ref_ID": "K66-D240",
+						"latitude": 22.45078121,
+						"longitude": 114.0229286
 					}
 				]
 			}
@@ -1796,203 +3685,241 @@
 	},
 	{
 		"route_number": "K68",
-		"route_ID": 12,
-		"shape": "U",
 		"lines": [
 			{
-				"id": 20,
-				"description_en": "Yuen Long Industrial Estate to Yuen Long Park (Circular)",
-				"description_zh": "元朗工業邨至元朗公園 (循環綫)",
+				"description_en": "Yuen Long Industrial Estate to Yau Sang Galvanizers(Hot-Dip) Co Ltd",
+				"description_zh": "元朗工業邨至有生鉛水(熱浸鋅)",
 				"stops": [
 					{
 						"name_en": "Yuen Long Industrial Estate",
 						"name_ch": "元朗工業邨",
-						"ref_ID": "K68-U010"
+						"ref_ID": "K68-U010",
+						"latitude": 22.460827,
+						"longitude": 114.026513
 					},
 					{
 						"name_en": "Toppan Forms Card Tech Ltd",
 						"name_ch": "凸版資訊卡",
-						"ref_ID": "K68-U020"
+						"ref_ID": "K68-U020",
+						"latitude": 22.462075,
+						"longitude": 114.028979
 					},
 					{
-						"name_en": "Nestle (HK) Ltd",
+						"name_en": "Nestle(HK) Ltd",
 						"name_ch": "雀巢",
-						"ref_ID": "K68-U030"
+						"ref_ID": "K68-U030",
+						"latitude": 22.463753,
+						"longitude": 114.027581
 					},
 					{
 						"name_en": "Yuen Long Sewage Treatment Works",
 						"name_ch": "元朗污水處理廠",
-						"ref_ID": "K68-U040"
+						"ref_ID": "K68-U040",
+						"latitude": 22.465525,
+						"longitude": 114.026843
 					},
 					{
 						"name_en": "Wai Yuen Tong Medicine Building",
 						"name_ch": "位元堂藥業大廈",
-						"ref_ID": "K68-U050"
+						"ref_ID": "K68-U050",
+						"latitude": 22.464754,
+						"longitude": 114.024822
 					},
 					{
-						"name_en": "TDK Manufacturing (HK) Co Ltd",
+						"name_en": "TDK Manufacturing(HK) Co Ltd",
 						"name_ch": "東電化電子零件",
-						"ref_ID": "K68-U060"
+						"ref_ID": "K68-U060",
+						"latitude": 22.462219,
+						"longitude": 114.023448
 					},
 					{
-						"name_en": "Toppan Printing Co (HK) Ltd",
+						"name_en": "Toppan Printing Co(HK) Ltd",
 						"name_ch": "凸版印刷",
-						"ref_ID": "K68-U070"
+						"ref_ID": "K68-U070",
+						"latitude": 22.46039,
+						"longitude": 114.022169
 					},
 					{
 						"name_en": "Telford International Industries Ltd",
 						"name_ch": "匯泉國際實業",
-						"ref_ID": "K68-U080"
+						"ref_ID": "K68-U080",
+						"latitude": 22.45845,
+						"longitude": 114.023157
 					},
 					{
 						"name_en": "Wang Chau Fuk Hing Tsuen",
 						"name_ch": "橫洲福慶村",
-						"ref_ID": "K68-U090"
+						"ref_ID": "K68-U090",
+						"latitude": 22.455119,
+						"longitude": 114.024092
 					},
 					{
 						"name_en": "Long Ping(Bus Terminus)",
 						"name_ch": "朗屏(巴士總站)",
-						"ref_ID": "K68-U100"
+						"ref_ID": "K68-U100",
+						"latitude": 22.45078121,
+						"longitude": 114.0229286
 					},
 					{
 						"name_en": "Yeung Uk Tsuen",
 						"name_ch": "楊屋村",
-						"ref_ID": "K68-U110"
+						"ref_ID": "K68-U110",
+						"latitude": 22.451379,
+						"longitude": 114.025576
 					},
 					{
 						"name_en": "Ping Cheong Path(MTR Long Ping Station)",
 						"name_ch": "屏昌徑(港鐵朗屏站)",
-						"ref_ID": "K68-U120"
+						"ref_ID": "K68-U120",
+						"latitude": 22.447648,
+						"longitude": 114.023001
 					},
 					{
 						"name_en": "Yuen Long Home for the Aged Blind",
 						"name_ch": "元朗盲人安老院",
-						"ref_ID": "K68-U130"
+						"ref_ID": "K68-U130",
+						"latitude": 22.446002,
+						"longitude": 114.022607
 					},
 					{
 						"name_en": "Lut Sau Hall(LR Fung Nin Road Stop)",
 						"name_ch": "聿修堂(輕鐵豐年路站)",
-						"ref_ID": "K68-U140"
+						"ref_ID": "K68-U140",
+						"latitude": 22.442588,
+						"longitude": 114.022245
 					},
 					{
 						"name_en": "Yuen Long Theatre",
 						"name_ch": "元朗劇院",
-						"ref_ID": "K68-U150"
+						"ref_ID": "K68-U150",
+						"latitude": 22.441306,
+						"longitude": 114.02224
 					},
 					{
 						"name_en": "Silver Field Garden",
 						"name_ch": "銀田花園",
-						"ref_ID": "K68-U160"
+						"ref_ID": "K68-U160",
+						"latitude": 22.43953,
+						"longitude": 114.02226
 					},
 					{
 						"name_en": "South Yuen Long Government Primary School",
 						"name_ch": "南元朗官立小學",
-						"ref_ID": "K68-U170"
+						"ref_ID": "K68-U170",
+						"latitude": 22.438801,
+						"longitude": 114.02024
 					},
 					{
 						"name_en": "Yuen Long Park",
 						"name_ch": "元朗公園",
-						"ref_ID": "K68-D010"
+						"ref_ID": "K68-D010",
+						"latitude": 22.44193,
+						"longitude": 114.02007
 					},
 					{
 						"name_en": "Park Royale",
 						"name_ch": "御豪山莊",
-						"ref_ID": "K68-D020"
+						"ref_ID": "K68-D020",
+						"latitude": 22.442503,
+						"longitude": 114.017663
 					},
 					{
 						"name_en": "Villa Art Deco",
 						"name_ch": "藝典居",
-						"ref_ID": "K68-D030"
+						"ref_ID": "K68-D030",
+						"latitude": 22.440088,
+						"longitude": 114.019048
 					},
 					{
 						"name_en": "Springdale Villas",
 						"name_ch": "御庭居",
-						"ref_ID": "K68-D040"
+						"ref_ID": "K68-D040",
+						"latitude": 22.440407,
+						"longitude": 114.021312
 					},
 					{
 						"name_en": "Yuen Long Swimming Pool",
 						"name_ch": "元朗游泳池",
-						"ref_ID": "K68-D050"
+						"ref_ID": "K68-D050",
+						"latitude": 22.44149722,
+						"longitude": 114.0221389
 					},
 					{
 						"name_en": "Yuen Long Town Hall",
 						"name_ch": "元朗大會堂",
-						"ref_ID": "K68-D060"
+						"ref_ID": "K68-D060",
+						"latitude": 22.443644,
+						"longitude": 114.022164
 					},
 					{
 						"name_en": "Yuen Long Plaza(LR Fung Nin Road Stop)",
 						"name_ch": "元朗廣場(輕鐵豐年路站)",
-						"ref_ID": "K68-D070"
+						"ref_ID": "K68-D070",
+						"latitude": 22.444676,
+						"longitude": 114.023705
 					},
 					{
 						"name_en": "Yuen Long On Ning Road",
 						"name_ch": "元朗安寧路",
-						"ref_ID": "K68-D080"
+						"ref_ID": "K68-D080",
+						"latitude": 22.446157,
+						"longitude": 114.026583
 					},
 					{
 						"name_en": "Tai Kiu Tsuen(MTR Long Ping Station)",
 						"name_ch": "大橋村(港鐵朗屏站)",
-						"ref_ID": "K68-D090"
+						"ref_ID": "K68-D090",
+						"latitude": 22.447538,
+						"longitude": 114.026826
 					},
 					{
 						"name_en": "Wai Chow School",
 						"name_ch": "惠州學校",
-						"ref_ID": "K68-D100"
+						"ref_ID": "K68-D100",
+						"latitude": 22.449497,
+						"longitude": 114.025532
 					},
 					{
 						"name_en": "Chu Ping House, Long Ping Estate",
 						"name_ch": "朗屏邨珠屏樓",
-						"ref_ID": "K68-D110"
+						"ref_ID": "K68-D110",
+						"latitude": 22.451434,
+						"longitude": 114.025324
 					},
 					{
 						"name_en": "Long Ping(Bus Terminus)",
 						"name_ch": "朗屏(巴士總站)",
-						"ref_ID": "K68-D120"
+						"ref_ID": "K68-D120",
+						"latitude": 22.45078121,
+						"longitude": 114.0229286
 					},
 					{
 						"name_en": "Wang Chau Fuk Hing Tsuen",
 						"name_ch": "橫洲福慶村",
-						"ref_ID": "K68-D130"
+						"ref_ID": "K68-D130",
+						"latitude": 22.455166,
+						"longitude": 114.02403
 					},
 					{
 						"name_en": "Yuen Long Textile Co Ltd",
 						"name_ch": "元朗紡織品",
-						"ref_ID": "K68-D140"
+						"ref_ID": "K68-D140",
+						"latitude": 22.45789,
+						"longitude": 114.023353
 					},
 					{
 						"name_en": "DCH Food Processing & Logistics Centre",
 						"name_ch": "大昌行食品加工及物流中心",
-						"ref_ID": "K68-D150"
+						"ref_ID": "K68-D150",
+						"latitude": 22.460236,
+						"longitude": 114.022242
 					},
 					{
-						"name_en": "Yau Sang Galvanizers (Hot-Dip) Co Ltd",
+						"name_en": "Yau Sang Galvanizers(Hot-Dip) Co Ltd",
 						"name_ch": "有生鉛水(熱浸鋅)",
-						"ref_ID": "K68-D160"
-					},
-					{
-						"name_en": "Eu Yan Sang Centre",
-						"name_ch": "余仁生中心",
-						"ref_ID": "K68-D170"
-					},
-					{
-						"name_en": "Yuen Long Sewage Treatment Works",
-						"name_ch": "元朗污水處理廠",
-						"ref_ID": "K68-D180"
-					},
-					{
-						"name_en": "Nestle (HK) Ltd",
-						"name_ch": "雀巢",
-						"ref_ID": "K68-D190"
-					},
-					{
-						"name_en": "Ushio HK Ltd",
-						"name_ch": "牛尾香港",
-						"ref_ID": "K68-D200"
-					},
-					{
-						"name_en": "Yuen Long Industrial Estate",
-						"name_ch": "元朗工業邨",
-						"ref_ID": "K68-U010"
+						"ref_ID": "K68-D160",
+						"latitude": 22.462306,
+						"longitude": 114.023412
 					}
 				]
 			}
@@ -2000,160 +3927,205 @@
 	},
 	{
 		"route_number": "K73",
-		"route_ID": 13,
-		"shape": "H",
 		"lines": [
 			{
-				"id": 21,
-				"description_en": "Tin Heng to Yuen Long West",
-				"description_zh": "天恆 往 元朗西",
+				"description_en": "Tin Heng to Yuen Long West(LR Fung Nin Road Stop)",
+				"description_zh": "天恆至元朗西(輕鐵豐年路站)",
 				"stops": [
 					{
 						"name_en": "Tin Heng",
 						"name_ch": "天恆",
-						"ref_ID": "K73-U010"
+						"ref_ID": "K73-U010",
+						"latitude": 22.469006,
+						"longitude": 113.999661
 					},
 					{
 						"name_en": "Yat Tam House, Tin Yat Estate",
 						"name_ch": "天逸邨逸潭樓",
-						"ref_ID": "K73-U020"
+						"ref_ID": "K73-U020",
+						"latitude": 22.468098,
+						"longitude": 113.999163
 					},
 					{
 						"name_en": "Yat Yeung House, Tin Yat Estate",
 						"name_ch": "天逸邨逸洋樓",
-						"ref_ID": "K73-U030"
+						"ref_ID": "K73-U030",
+						"latitude": 22.465511,
+						"longitude": 114.00016
 					},
 					{
 						"name_en": "Ching Pik House, Tin Ching Estate",
 						"name_ch": "天晴邨晴碧樓",
-						"ref_ID": "K73-U040"
+						"ref_ID": "K73-U040",
+						"latitude": 22.464482,
+						"longitude": 114.003129
 					},
 					{
 						"name_en": "HKFYG Lee Shau Kee College",
 						"name_ch": "香港青年協會李兆基書院",
-						"ref_ID": "K73-U050"
+						"ref_ID": "K73-U050",
+						"latitude": 22.463253,
+						"longitude": 114.004136
 					},
 					{
 						"name_en": "Maywood Court, Tin Kwai Road",
 						"name_ch": "天葵路美湖居",
-						"ref_ID": "K73-U060"
+						"ref_ID": "K73-U060",
+						"latitude": 22.46082,
+						"longitude": 114.004565
 					},
 					{
 						"name_en": "Kenswood Court, Tin Shing Road",
 						"name_ch": "天城路景湖居",
-						"ref_ID": "K73-U070"
+						"ref_ID": "K73-U070",
+						"latitude": 22.457444,
+						"longitude": 114.005577
 					},
 					{
 						"name_en": "Tin Tsz Estate",
 						"name_ch": "天慈邨",
-						"ref_ID": "K73-U080"
+						"ref_ID": "K73-U080",
+						"latitude": 22.453279,
+						"longitude": 114.006118
 					},
 					{
 						"name_en": "Fung Chi Tsuen",
 						"name_ch": "鳳池村",
-						"ref_ID": "K73-U090"
+						"ref_ID": "K73-U090",
+						"latitude": 22.44845,
+						"longitude": 114.018634
 					},
 					{
 						"name_en": "Long Ping(Bus Terminus)",
 						"name_ch": "朗屏(巴士總站)",
-						"ref_ID": "K73-U100"
+						"ref_ID": "K73-U100",
+						"latitude": 22.45078121,
+						"longitude": 114.0229286
 					},
 					{
 						"name_en": "Yuen Long Home for the Aged Blind",
 						"name_ch": "元朗盲人安老院",
-						"ref_ID": "K73-U110"
+						"ref_ID": "K73-U110",
+						"latitude": 22.446002,
+						"longitude": 114.022607
 					},
 					{
 						"name_en": "Yuen Long West(LR Fung Nin Road Stop)",
 						"name_ch": "元朗西(輕鐵豐年路站)",
-						"ref_ID": "K73-D010"
+						"ref_ID": "K73-U120",
+						"latitude": 22.445181,
+						"longitude": 114.024919
 					}
 				]
 			},
 			{
-				"id": 22,
-				"description_en": "Yuen Long West to Tin Heng",
-				"description_zh": "元朗西 往 天恆",
+				"description_en": "Yuen Long West(LR Fung Nin Road Stop) to Tin Heng",
+				"description_zh": "元朗西(輕鐵豐年路站)至天恆",
 				"stops": [
 					{
 						"name_en": "Yuen Long West(LR Fung Nin Road Stop)",
 						"name_ch": "元朗西(輕鐵豐年路站)",
-						"ref_ID": "K73-D010"
+						"ref_ID": "K73-D010",
+						"latitude": 22.445181,
+						"longitude": 114.024919
 					},
 					{
 						"name_en": "Yuen Long On Ning Road",
 						"name_ch": "元朗安寧路",
-						"ref_ID": "K73-D020"
+						"ref_ID": "K73-D020",
+						"latitude": 22.446162,
+						"longitude": 114.026731
 					},
 					{
 						"name_en": "Tai Kiu Tsuen(MTR Long Ping Station)",
 						"name_ch": "大橋村(港鐵朗屏站)",
-						"ref_ID": "K73-D030"
+						"ref_ID": "K73-D030",
+						"latitude": 22.447489,
+						"longitude": 114.026856
 					},
 					{
 						"name_en": "Wai Chow School",
 						"name_ch": "惠州學校",
-						"ref_ID": "K73-D040"
+						"ref_ID": "K73-D040",
+						"latitude": 22.449497,
+						"longitude": 114.02552
 					},
 					{
 						"name_en": "Chu Ping House, Long Ping Estate",
 						"name_ch": "朗屏邨珠屏樓",
-						"ref_ID": "K73-D050"
-					},
-					{
-						"name_en": "Tung Koon Primary School",
-						"name_ch": "東莞學校",
-						"ref_ID": "K73-D060"
+						"ref_ID": "K73-D050",
+						"latitude": 22.451408,
+						"longitude": 114.025329
 					},
 					{
 						"name_en": "Long Ping(Bus Terminus)",
 						"name_ch": "朗屏(巴士總站)",
-						"ref_ID": "K73-D070"
+						"ref_ID": "K73-D070",
+						"latitude": 22.45078121,
+						"longitude": 114.0229286
 					},
 					{
 						"name_en": "Fung Chi Tsuen",
 						"name_ch": "鳳池村",
-						"ref_ID": "K73-D080"
+						"ref_ID": "K73-D080",
+						"latitude": 22.448299,
+						"longitude": 114.018562
 					},
 					{
 						"name_en": "LR Tin Tsz Stop",
 						"name_ch": "輕鐵天慈站",
-						"ref_ID": "K73-D090"
+						"ref_ID": "K73-D090",
+						"latitude": 22.453358,
+						"longitude": 114.00589
 					},
 					{
 						"name_en": "Tin Shui Wai Swimming Pool",
 						"name_ch": "天水圍游泳池",
-						"ref_ID": "K73-D100"
+						"ref_ID": "K73-D100",
+						"latitude": 22.455038,
+						"longitude": 114.007159
 					},
 					{
 						"name_en": "Kenswood Court, Tin Lung Road",
 						"name_ch": "天龍路景湖居",
-						"ref_ID": "K73-D110"
+						"ref_ID": "K73-D110",
+						"latitude": 22.458987,
+						"longitude": 114.005282
 					},
 					{
 						"name_en": "Lynwood Court, Tin Kwai Road",
 						"name_ch": "天葵路麗湖居",
-						"ref_ID": "K73-D120"
+						"ref_ID": "K73-D120",
+						"latitude": 22.460486,
+						"longitude": 114.004634
 					},
 					{
 						"name_en": "Ching Wan House, Tin Ching Estate",
 						"name_ch": "天晴邨晴雲樓",
-						"ref_ID": "K73-D130"
+						"ref_ID": "K73-D130",
+						"latitude": 22.463375,
+						"longitude": 114.00392
 					},
 					{
 						"name_en": "Nang Fu House, Tin Fu Court",
 						"name_ch": "天富苑能富閣",
-						"ref_ID": "K73-D140"
+						"ref_ID": "K73-D140",
+						"latitude": 22.465398,
+						"longitude": 114.000072
 					},
 					{
 						"name_en": "Tin Chak Estate",
 						"name_ch": "天澤邨",
-						"ref_ID": "K73-D150"
+						"ref_ID": "K73-D150",
+						"latitude": 22.468127,
+						"longitude": 113.999183
 					},
 					{
 						"name_en": "Tin Heng",
 						"name_ch": "天恆",
-						"ref_ID": "K73-U010"
+						"ref_ID": "K73-D160",
+						"latitude": 22.469006,
+						"longitude": 113.999661
 					}
 				]
 			}
@@ -2161,207 +4133,192 @@
 	},
 	{
 		"route_number": "K74",
-		"route_ID": 14,
-		"shape": "U",
 		"lines": [
 			{
-				"id": 23,
-				"description_en": "Tin Shui to Au Tau (Circular)",
-				"description_zh": "天瑞至凹頭 (循環綫)",
+				"description_en": "Tin Shui Wai Town Centre to Au Tau (Circular)",
+				"description_zh": "天水圍市中心至凹頭 (循環綫)",
 				"stops": [
+					{
+						"name_en": "Tin Shui Wai Town Centre",
+						"name_ch": "天水圍市中心",
+						"ref_ID": "K74-U001",
+						"latitude": 22.458553,
+						"longitude": 114.001415
+					},
+					{
+						"name_en": "Chung Ki House Tin Chung Court",
+						"name_ch": "天頌苑頌棋閣",
+						"ref_ID": "K74-U004",
+						"latitude": 22.461849,
+						"longitude": 114.000382
+					},
+					{
+						"name_en": "Tin Chung Court",
+						"name_ch": "天頌苑",
+						"ref_ID": "K74-U007",
+						"latitude": 22.460735,
+						"longitude": 113.997158
+					},
 					{
 						"name_en": "Tin Shui",
 						"name_ch": "天瑞",
-						"ref_ID": "K74-U010"
+						"ref_ID": "K74-U010",
+						"latitude": 22.455322,
+						"longitude": 113.998689
 					},
 					{
 						"name_en": "Tin Shui Wai Park",
 						"name_ch": "天水圍公園",
-						"ref_ID": "K74-U020"
+						"ref_ID": "K74-U020",
+						"latitude": 22.454452,
+						"longitude": 114.003146
 					},
 					{
 						"name_en": "Tin Tsz Estate",
 						"name_ch": "天慈邨",
-						"ref_ID": "K74-U030"
+						"ref_ID": "K74-U030",
+						"latitude": 22.453288,
+						"longitude": 114.006135
 					},
 					{
 						"name_en": "Fung Chi Tsuen",
 						"name_ch": "鳳池村",
-						"ref_ID": "K74-U040"
+						"ref_ID": "K74-U040",
+						"latitude": 22.448467,
+						"longitude": 114.018601
 					},
 					{
 						"name_en": "Long Ping(Bus Terminus)",
 						"name_ch": "朗屏(巴士總站)",
-						"ref_ID": "K74-U050"
+						"ref_ID": "K74-U050",
+						"latitude": 22.450549,
+						"longitude": 114.022688
 					},
 					{
 						"name_en": "Yuen Long Home for the Aged Blind",
 						"name_ch": "元朗盲人安老院",
-						"ref_ID": "K74-U060"
+						"ref_ID": "K74-U060",
+						"latitude": 22.445968,
+						"longitude": 114.022572
 					},
 					{
 						"name_en": "Yuen Long Plaza(LR Fung Nin Road Stop)",
 						"name_ch": "元朗廣場(輕鐵豐年路站)",
-						"ref_ID": "K74-U070"
+						"ref_ID": "K74-U070",
+						"latitude": 22.44467,
+						"longitude": 114.023718
 					},
 					{
 						"name_en": "Yuen Long Landmark",
 						"name_ch": "開心廣場",
-						"ref_ID": "K74-U080"
+						"ref_ID": "K74-U080",
+						"latitude": 22.4444,
+						"longitude": 114.02836
 					},
 					{
-						"name_en": "MTR Yuen Long Station (Long Yat Road)(MTR Yuen Long Station)",
-						"name_ch": "港鐵元朗站(朗日路) (港鐵元朗站)",
-						"ref_ID": "K74-U090"
+						"name_en": "MTR Yuen Long Station(Long Yat Road)(MTR Yuen Long Station)",
+						"name_ch": "港鐵元朗站(朗日路)(港鐵元朗站)",
+						"ref_ID": "K74-U090",
+						"latitude": 22.446625,
+						"longitude": 114.0349444
 					},
 					{
-						"name_en": "Tung Shing Lei (near Pok Oi Hospital)",
-						"name_ch": "東成里（近博愛醫院）",
-						"ref_ID": "K74-D010"
+						"name_en": "Pok Oi Hospital",
+						"name_ch": "博愛醫院",
+						"ref_ID": "K74-U100",
+						"latitude": 22.444787,
+						"longitude": 114.040379
 					},
 					{
-						"name_en": "TWGHs C.Y.Ma Memorial College (near Long Shin Estate)",
-						"name_ch": "東華三院馬振玉中學(近朗善邨)",
-						"ref_ID": "K74-D020"
+						"name_en": "Tung Shing Lei",
+						"name_ch": "東成里",
+						"ref_ID": "K74-D010",
+						"latitude": 22.44436944,
+						"longitude": 114.0436667
+					},
+					{
+						"name_en": "TWGHs C.Y.Ma Memorial College(near Long Shin Estate)",
+						"name_ch": "東華三院馬振玉中學(近朗善 邨)",
+						"ref_ID": "K74-D020",
+						"latitude": 22.44403889,
+						"longitude": 114.0439444
 					},
 					{
 						"name_en": "Tai Kiu Tsuen(MTR Long Ping Station)",
 						"name_ch": "大橋村(港鐵朗屏站)",
-						"ref_ID": "K74-D030"
+						"ref_ID": "K74-D030",
+						"latitude": 22.447487,
+						"longitude": 114.026853
 					},
 					{
 						"name_en": "Wai Chow School",
 						"name_ch": "惠州學校",
-						"ref_ID": "K74-D040"
+						"ref_ID": "K74-D040",
+						"latitude": 22.449502,
+						"longitude": 114.025527
 					},
 					{
 						"name_en": "Chu Ping House, Long Ping Estate",
 						"name_ch": "朗屏邨珠屏樓",
-						"ref_ID": "K74-D050"
+						"ref_ID": "K74-D050",
+						"latitude": 22.451421,
+						"longitude": 114.025317
 					},
 					{
 						"name_en": "Long Ping(Bus Terminus)",
 						"name_ch": "朗屏(巴士總站)",
-						"ref_ID": "K74-D060"
+						"ref_ID": "K74-D060",
+						"latitude": 22.450549,
+						"longitude": 114.022688
 					},
 					{
 						"name_en": "Fung Chi Tsuen",
 						"name_ch": "鳳池村",
-						"ref_ID": "K74-D070"
+						"ref_ID": "K74-D070",
+						"latitude": 22.448256,
+						"longitude": 114.018583
 					},
 					{
 						"name_en": "LR Tin Tsz Stop",
 						"name_ch": "輕鐵天慈站",
-						"ref_ID": "K74-D080"
+						"ref_ID": "K74-D080",
+						"latitude": 22.45321,
+						"longitude": 114.005918
 					},
 					{
 						"name_en": "Tin Shui Wai Park",
 						"name_ch": "天水圍公園",
-						"ref_ID": "K74-D090"
+						"ref_ID": "K74-D090",
+						"latitude": 22.454616,
+						"longitude": 114.002637
 					},
 					{
 						"name_en": "Tin Shui",
 						"name_ch": "天瑞",
-						"ref_ID": "K74-U010"
-					}
-				]
-			}
-		]
-	},
-	{
-		"route_number": "K75",
-		"route_ID": 15,
-		"shape": "U",
-		"lines": [
-			{
-				"id": 24,
-				"description_en": "Tin Shui Wai Station to Hung Shui Kiu (Circular)",
-				"description_zh": "天水圍站至洪水橋 (循環綫)",
-				"stops": [
-					{
-						"name_en": "Tin Shui Wai Station(LR Tin Shui Wai Stop)",
-						"name_ch": "天水圍站(輕鐵天水圍站)",
-						"ref_ID": "K75-U010"
+						"ref_ID": "K74-U011",
+						"latitude": 22.455322,
+						"longitude": 113.998689
 					},
 					{
-						"name_en": "Tin Shing Court(MTR Tin Shui Wai Station)",
-						"name_ch": "天盛苑(港鐵天水圍站)",
-						"ref_ID": "K75-U020"
+						"name_en": "Tin Wah Estate",
+						"name_ch": "天華邨",
+						"ref_ID": "K74-D100",
+						"latitude": 22.460285,
+						"longitude": 113.997021
 					},
 					{
-						"name_en": "Shek Po Road",
-						"name_ch": "石埗路",
-						"ref_ID": "K75-U030"
+						"name_en": "Tin Yuet Estate",
+						"name_ch": "天悅邨",
+						"ref_ID": "K74-D110",
+						"latitude": 22.462123,
+						"longitude": 113.99909
 					},
 					{
-						"name_en": "Sha Chau Lei Tsuen",
-						"name_ch": "沙洲里村",
-						"ref_ID": "K75-U040"
-					},
-					{
-						"name_en": "Ha Tsuen Shi",
-						"name_ch": "廈村市",
-						"ref_ID": "K75-U050"
-					},
-					{
-						"name_en": "San Uk Tsuen",
-						"name_ch": "新屋村",
-						"ref_ID": "K75-U060"
-					},
-					{
-						"name_en": "Lee Uk Tsuen",
-						"name_ch": "李屋村",
-						"ref_ID": "K75-U070"
-					},
-					{
-						"name_en": "San Sang Tsuen",
-						"name_ch": "新生村",
-						"ref_ID": "K75-U080"
-					},
-					{
-						"name_en": "San Lee Uk Tsuen",
-						"name_ch": "新李屋村",
-						"ref_ID": "K75-U090"
-					},
-					{
-						"name_en": "Tin Sam",
-						"name_ch": "田心",
-						"ref_ID": "K75-U100"
-					},
-					{
-						"name_en": "Rural Committee",
-						"name_ch": "鄉事委員會",
-						"ref_ID": "K75-U110"
-					},
-					{
-						"name_en": "LR Hung Shui Kiu Stop",
-						"name_ch": "輕鐵洪水橋站",
-						"ref_ID": "K75-D010"
-					},
-					{
-						"name_en": "Hung Shui Kiu Bus Depot",
-						"name_ch": "洪水橋巴士廠",
-						"ref_ID": "K75-D020"
-					},
-					{
-						"name_en": "Hung Fuk Estate",
-						"name_ch": "洪福邨",
-						"ref_ID": "K75-D030"
-					},
-					{
-						"name_en": "Shek Po Tsuen",
-						"name_ch": "石埗村",
-						"ref_ID": "K75-D040"
-					},
-					{
-						"name_en": "Tin Shing Court(MTR Tin Shui Wai Station)",
-						"name_ch": "天盛苑(港鐵天水圍站)",
-						"ref_ID": "K75-D050"
-					},
-					{
-						"name_en": "Tin Shui Wai Station(LR Tin Shui Wai Stop)",
-						"name_ch": "天水圍站(輕鐵天水圍站)",
-						"ref_ID": "K75-U010"
+						"name_en": "Tin Shui Wai Town Centre",
+						"name_ch": "天水圍市中心",
+						"ref_ID": "K74-U002",
+						"latitude": 22.458553,
+						"longitude": 114.001415
 					}
 				]
 			}
@@ -2369,88 +4326,115 @@
 	},
 	{
 		"route_number": "K75A",
-		"route_ID": 16,
-		"shape": "U",
 		"lines": [
 			{
-				"id": 25,
 				"description_en": "Tin Shui Wai Station to Hung Shui Kiu (Circular)",
 				"description_zh": "天水圍站至洪水橋 (循環綫)",
 				"stops": [
 					{
 						"name_en": "Tin Shui Wai Station(LR Tin Shui Wai Stop)",
 						"name_ch": "天水圍站(輕鐵天水圍站)",
-						"ref_ID": "K75A-U010"
+						"ref_ID": "K75A-U010",
+						"latitude": 22.44654,
+						"longitude": 114.0037516
 					},
 					{
 						"name_en": "Tin Shing Court(MTR Tin Shui Wai Station)",
 						"name_ch": "天盛苑(港鐵天水圍站)",
-						"ref_ID": "K75A-U020"
+						"ref_ID": "K75A-U020",
+						"latitude": 22.446839,
+						"longitude": 114.00307
 					},
 					{
 						"name_en": "Shek Po Tsuen",
 						"name_ch": "石埗村",
-						"ref_ID": "K75A-U030"
+						"ref_ID": "K75A-U030",
+						"latitude": 22.440307,
+						"longitude": 113.998965
 					},
 					{
 						"name_en": "LR Hung Shui Kiu Stop",
 						"name_ch": "輕鐵洪水橋站",
-						"ref_ID": "K75A-D010"
+						"ref_ID": "K75A-D010",
+						"latitude": 22.433489,
+						"longitude": 113.99772
 					},
 					{
 						"name_en": "Rural Committee",
 						"name_ch": "鄉事委員會",
-						"ref_ID": "K75A-D020"
+						"ref_ID": "K75A-D020",
+						"latitude": 22.432897,
+						"longitude": 113.992837
 					},
 					{
 						"name_en": "Tin Sam",
 						"name_ch": "田心",
-						"ref_ID": "K75A-D030"
+						"ref_ID": "K75A-D030",
+						"latitude": 22.434526,
+						"longitude": 113.992613
 					},
 					{
 						"name_en": "San Lee Uk Tsuen",
 						"name_ch": "新李屋村",
-						"ref_ID": "K75A-D040"
+						"ref_ID": "K75A-D040",
+						"latitude": 22.436504,
+						"longitude": 113.991851
 					},
 					{
 						"name_en": "San Sang Tsuen",
 						"name_ch": "新生村",
-						"ref_ID": "K75A-D050"
+						"ref_ID": "K75A-D050",
+						"latitude": 22.439615,
+						"longitude": 113.991583
 					},
 					{
 						"name_en": "Lee Uk Tsuen",
 						"name_ch": "李屋村",
-						"ref_ID": "K75A-D060"
+						"ref_ID": "K75A-D060",
+						"latitude": 22.443545,
+						"longitude": 113.991309
 					},
 					{
 						"name_en": "San Uk Tsuen",
 						"name_ch": "新屋村",
-						"ref_ID": "K75A-D070"
+						"ref_ID": "K75A-D070",
+						"latitude": 22.445107,
+						"longitude": 113.992349
 					},
 					{
 						"name_en": "Ha Tsuen Shi",
 						"name_ch": "廈村市",
-						"ref_ID": "K75A-D080"
+						"ref_ID": "K75A-D080",
+						"latitude": 22.446257,
+						"longitude": 113.993342
 					},
 					{
-						"name_en": "Ha Tsuen ",
+						"name_en": "Ha Tsuen",
 						"name_ch": "廈村",
-						"ref_ID": "K75A-D090"
+						"ref_ID": "K75A-D090",
+						"latitude": 22.44670803,
+						"longitude": 113.994761
 					},
 					{
 						"name_en": "Sha Chau Lei Tsuen",
 						"name_ch": "沙洲里村",
-						"ref_ID": "K75A-D100"
+						"ref_ID": "K75A-D100",
+						"latitude": 22.44663703,
+						"longitude": 113.997152
 					},
 					{
 						"name_en": "Tin Shing Court(MTR Tin Shui Wai Station)",
 						"name_ch": "天盛苑(港鐵天水圍站)",
-						"ref_ID": "K75A-D110"
+						"ref_ID": "K75A-D110",
+						"latitude": 22.446928,
+						"longitude": 114.002891
 					},
 					{
 						"name_en": "Tin Shui Wai Station(LR Tin Shui Wai Stop)",
 						"name_ch": "天水圍站(輕鐵天水圍站)",
-						"ref_ID": "K75A-U010"
+						"ref_ID": "K75A-U011",
+						"latitude": 22.44654,
+						"longitude": 114.0037516
 					}
 				]
 			}
@@ -2458,128 +4442,171 @@
 	},
 	{
 		"route_number": "K75P",
-		"route_ID": 17,
-		"shape": "U",
 		"lines": [
 			{
-				"id": 26,
-				"description_en": "Tin Shui to Hung Shui Kiu (Circular)",
-				"description_zh": "天瑞至洪水橋 (循環綫)",
+				"description_en": "K75P Circular",
+				"description_zh": "K75P Circular",
 				"stops": [
 					{
 						"name_en": "Tin Shui",
 						"name_ch": "天瑞",
-						"ref_ID": "K75P-U010"
+						"ref_ID": "K75P-U010",
+						"latitude": 22.455356,
+						"longitude": 113.998975
 					},
 					{
 						"name_en": "Tin Shui Wai Park",
 						"name_ch": "天水圍公園",
-						"ref_ID": "K75P-U020"
+						"ref_ID": "K75P-U020",
+						"latitude": 22.454494,
+						"longitude": 114.003128
 					},
 					{
 						"name_en": "Yiu Shing House, Tin Yiu Estate",
 						"name_ch": "天耀邨耀盛樓",
-						"ref_ID": "K75P-U030"
+						"ref_ID": "K75P-U030",
+						"latitude": 22.452347,
+						"longitude": 114.002244
 					},
 					{
 						"name_en": "LR Tin Yiu Stop",
 						"name_ch": "輕鐵天耀站",
-						"ref_ID": "K75P-U040"
+						"ref_ID": "K75P-U040",
+						"latitude": 22.450039,
+						"longitude": 114.002836
 					},
 					{
 						"name_en": "Tin Shing Court(MTR Tin Shui Wai Station)",
 						"name_ch": "天盛苑(港鐵天水圍站)",
-						"ref_ID": "K75P-U050"
+						"ref_ID": "K75P-U050",
+						"latitude": 22.446917,
+						"longitude": 114.003097
 					},
 					{
 						"name_en": "Shek Po Road",
 						"name_ch": "石埗路",
-						"ref_ID": "K75P-U060"
+						"ref_ID": "K75P-U060",
+						"latitude": 22.446711,
+						"longitude": 113.998247
 					},
 					{
 						"name_en": "Sha Chau Lei Tsuen",
 						"name_ch": "沙洲里村",
-						"ref_ID": "K75P-U070"
+						"ref_ID": "K75P-U070",
+						"latitude": 22.446108,
+						"longitude": 113.995617
 					},
 					{
 						"name_en": "Ha Tsuen Shi",
 						"name_ch": "廈村市",
-						"ref_ID": "K75P-U080"
+						"ref_ID": "K75P-U080",
+						"latitude": 22.446186,
+						"longitude": 113.993353
 					},
 					{
 						"name_en": "San Uk Tsuen",
 						"name_ch": "新屋村",
-						"ref_ID": "K75P-U090"
+						"ref_ID": "K75P-U090",
+						"latitude": 22.445111,
+						"longitude": 113.992378
 					},
 					{
 						"name_en": "Lee Uk Tsuen",
 						"name_ch": "李屋村",
-						"ref_ID": "K75P-U100"
+						"ref_ID": "K75P-U100",
+						"latitude": 22.443717,
+						"longitude": 113.991383
 					},
 					{
 						"name_en": "San Sang Tsuen",
 						"name_ch": "新生村",
-						"ref_ID": "K75P-U110"
+						"ref_ID": "K75P-U110",
+						"latitude": 22.440183,
+						"longitude": 113.991708
 					},
 					{
 						"name_en": "San Lee Uk Tsuen",
 						"name_ch": "新李屋村",
-						"ref_ID": "K75P-U120"
+						"ref_ID": "K75P-U120",
+						"latitude": 22.436125,
+						"longitude": 113.992242
 					},
 					{
 						"name_en": "Tin Sam",
 						"name_ch": "田心",
-						"ref_ID": "K75P-U130"
+						"ref_ID": "K75P-U130",
+						"latitude": 22.433431,
+						"longitude": 113.992694
 					},
 					{
 						"name_en": "Rural Committee",
 						"name_ch": "鄉事委員會",
-						"ref_ID": "K75P-U140"
+						"ref_ID": "K75P-U140",
+						"latitude": 22.431597,
+						"longitude": 113.992822
 					},
 					{
 						"name_en": "LR Hung Shui Kiu Stop",
 						"name_ch": "輕鐵洪水橋站",
-						"ref_ID": "K75P-D010"
+						"ref_ID": "K75P-D010",
+						"latitude": 22.433889,
+						"longitude": 113.997633
 					},
 					{
 						"name_en": "Hung Shui Kiu Bus Depot",
 						"name_ch": "洪水橋巴士廠",
-						"ref_ID": "K75P-D020"
+						"ref_ID": "K75P-D020",
+						"latitude": 22.436081,
+						"longitude": 113.99985
 					},
 					{
 						"name_en": "Hung Fuk Estate",
 						"name_ch": "洪福邨",
-						"ref_ID": "K75P-D030"
+						"ref_ID": "K75P-D030",
+						"latitude": 22.437436,
+						"longitude": 113.999028
 					},
 					{
 						"name_en": "Shek Po Tsuen",
 						"name_ch": "石埗村",
-						"ref_ID": "K75P-D040"
+						"ref_ID": "K75P-D040",
+						"latitude": 22.440381,
+						"longitude": 113.998406
 					},
 					{
 						"name_en": "Tin Shing Court(MTR Tin Shui Wai Station)",
 						"name_ch": "天盛苑(港鐵天水圍站)",
-						"ref_ID": "K75P-D050"
+						"ref_ID": "K75P-D050",
+						"latitude": 22.446897,
+						"longitude": 114.002789
 					},
 					{
 						"name_en": "Tin Shui Wai Police Station",
 						"name_ch": "天水圍警署",
-						"ref_ID": "K75P-D060"
+						"ref_ID": "K75P-D060",
+						"latitude": 22.449461,
+						"longitude": 114.002956
 					},
 					{
 						"name_en": "Sherwood Court",
 						"name_ch": "賞湖居",
-						"ref_ID": "K75P-D070"
+						"ref_ID": "K75P-D070",
+						"latitude": 22.452539,
+						"longitude": 114.002228
 					},
 					{
 						"name_en": "Tin Shui Wai Park",
 						"name_ch": "天水圍公園",
-						"ref_ID": "K75P-D080"
+						"ref_ID": "K75P-D080",
+						"latitude": 22.454522,
+						"longitude": 114.002736
 					},
 					{
 						"name_en": "Tin Shui",
 						"name_ch": "天瑞",
-						"ref_ID": "K75P-U010"
+						"ref_ID": "K75P-U011",
+						"latitude": 22.455356,
+						"longitude": 113.998975
 					}
 				]
 			}
@@ -2587,65 +4614,79 @@
 	},
 	{
 		"route_number": "K76",
-		"route_ID": 18,
-		"shape": "H",
 		"lines": [
 			{
-				"id": 27,
-				"description_en": "Tin Heng to Tin Shui Wai Station",
-				"description_zh": "天恆 往 天水圍站",
+				"description_en": "Tin Heng to Tin Shui Wai Station(MTR Tin Shui Wai Station)",
+				"description_zh": "天恆至天水圍站(港鐵天水圍站)",
 				"stops": [
 					{
 						"name_en": "Tin Heng",
 						"name_ch": "天恆",
-						"ref_ID": "K76-U010"
+						"ref_ID": "K76-U010",
+						"latitude": 22.469006,
+						"longitude": 113.999661
 					},
 					{
 						"name_en": "Yat Tam House, Tin Yat Estate",
 						"name_ch": "天逸邨逸潭樓",
-						"ref_ID": "K76-U020"
+						"ref_ID": "K76-U020",
+						"latitude": 22.468178,
+						"longitude": 113.999383
 					},
 					{
 						"name_en": "Yan Fu House, Tin Fu Court",
 						"name_ch": "天富苑欣富閣",
-						"ref_ID": "K76-U030"
+						"ref_ID": "K76-U030",
+						"latitude": 22.464353,
+						"longitude": 113.997442
 					},
 					{
 						"name_en": "Tin Shing Court(MTR Tin Shui Wai Station)",
 						"name_ch": "天盛苑(港鐵天水圍站)",
-						"ref_ID": "K76-U040"
+						"ref_ID": "K76-U040",
+						"latitude": 22.446864,
+						"longitude": 114.002819
 					},
 					{
 						"name_en": "Tin Shui Wai Station(MTR Tin Shui Wai Station)",
 						"name_ch": "天水圍站(港鐵天水圍站)",
-						"ref_ID": "K76-D010"
+						"ref_ID": "K76-U050",
+						"latitude": 22.446556,
+						"longitude": 114.003731
 					}
 				]
 			},
 			{
-				"id": 28,
-				"description_en": "Tin Shui Wai Station to Tin Heng",
-				"description_zh": "天水圍站 往 天恆",
+				"description_en": "Tin Shui Wai Station(MTR Tin Shui Wai Station) to Tin Heng",
+				"description_zh": "天水圍站(港鐵天水圍站)至天恆",
 				"stops": [
 					{
 						"name_en": "Tin Shui Wai Station(MTR Tin Shui Wai Station)",
 						"name_ch": "天水圍站(港鐵天水圍站)",
-						"ref_ID": "K76-D010"
+						"ref_ID": "K76-D010",
+						"latitude": 22.446556,
+						"longitude": 114.003731
 					},
 					{
 						"name_en": "Tin Yan Estate",
 						"name_ch": "天恩邨",
-						"ref_ID": "K76-D020"
+						"ref_ID": "K76-D020",
+						"latitude": 22.464592,
+						"longitude": 113.99725
 					},
 					{
 						"name_en": "Tin Chak Estate",
 						"name_ch": "天澤邨",
-						"ref_ID": "K76-D030"
+						"ref_ID": "K76-D030",
+						"latitude": 22.468061,
+						"longitude": 113.999058
 					},
 					{
 						"name_en": "Tin Heng",
 						"name_ch": "天恆",
-						"ref_ID": "K76-U010"
+						"ref_ID": "K76-D040",
+						"latitude": 22.469006,
+						"longitude": 113.999661
 					}
 				]
 			}
