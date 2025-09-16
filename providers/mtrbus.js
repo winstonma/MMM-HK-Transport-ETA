@@ -40,8 +40,8 @@ HKTransportETAProvider.register("mtrbus", {
 			const routeETAData = await this.fetchRouteETAs();
 
 			// Filter out routes with no ETA data
-			const validRouteETAData = routeETAData.filter(routeData => 
-				routeData.etas && routeData.etas.length > 0 && 
+			const validRouteETAData = routeETAData.filter(routeData =>
+				routeData.etas && routeData.etas.length > 0 &&
 				routeData.etas.some(eta => eta.time && eta.time.length > 0)
 			);
 
@@ -59,7 +59,7 @@ HKTransportETAProvider.register("mtrbus", {
 	 */
 	async fetchRouteETAs() {
 		// Create promises for each route
-		const etaPromises = this.config.stops.map(routeGroup => 
+		const etaPromises = this.config.stops.map(routeGroup =>
 			this.fetchSingleRouteETA(routeGroup)
 		);
 
@@ -142,35 +142,118 @@ HKTransportETAProvider.register("mtrbus", {
 	 * @returns {Map} - A map of route groups
 	 */
 	groupStopsByRoute(data) {
+		// Step 1: Find all stops that match our configured station
+		const matchingStops = this.findMatchingStops(data);
+
+		if (matchingStops.length === 0) {
+			return new Map();
+		}
+
+		// Step 2: For each matching stop, find all other stops at the same location
 		const routeGroups = new Map();
-		
-		// Iterate through all routes, lines, and stops
-		data.forEach(route => {
-			route.lines.forEach(line => {
-				line.stops.forEach(stop => {
-					// Check if this stop matches our configured station
-					if (this.isMatchingStop(stop)) {
-						// Initialize the route group if it doesn't exist
-						if (!routeGroups.has(route.route_number)) {
-							routeGroups.set(route.route_number, {
-								route: route.route_number,
-								station: this.getStationName(stop),
-								stops: []
-							});
-						}
-						
-						// Add stop to the route group
+
+		matchingStops.forEach(matchingStop => {
+			// Find all stops at the same location (same lat/long)
+			const stopsAtSameLocation = this.findStopsAtSameLocation(data, matchingStop);
+
+			// Group these stops by route
+			stopsAtSameLocation.forEach(stop => {
+				// Find the route and line for this stop
+				const routeInfo = this.findRouteInfoForStop(data, stop);
+
+				if (routeInfo) {
+					const { route, line } = routeInfo;
+
+					// Initialize the route group if it doesn't exist
+					if (!routeGroups.has(route.route_number)) {
+						routeGroups.set(route.route_number, {
+							route: route.route_number,
+							station: this.getStationName(stop),
+							stops: []
+						});
+					}
+
+					// Add stop to the route group if not already added
+					const existingStop = routeGroups.get(route.route_number).stops.find(
+						s => s.ref_ID === stop.ref_ID
+					);
+
+					if (!existingStop) {
 						routeGroups.get(route.route_number).stops.push({
 							ref_ID: stop.ref_ID,
 							direction: line.direction,
 							dest: this.getDestinationName(line)
 						});
 					}
+				}
+			});
+		});
+
+		return routeGroups;
+	},
+
+	/**
+	 * Find all stops that match our configured station
+	 * @param {Array} data - The MTR bus lines data
+	 * @returns {Array} - Array of matching stops
+	 */
+	findMatchingStops(data) {
+		const matchingStops = [];
+
+		data.forEach(route => {
+			route.lines.forEach(line => {
+				line.stops.forEach(stop => {
+					if (this.isMatchingStop(stop)) {
+						matchingStops.push(stop);
+					}
 				});
 			});
 		});
-		
-		return routeGroups;
+
+		return matchingStops;
+	},
+
+	/**
+	 * Find all stops at the same location as the given stop
+	 * @param {Array} data - The MTR bus lines data
+	 * @param {Object} referenceStop - The stop to match against
+	 * @returns {Array} - Array of stops at the same location
+	 */
+	findStopsAtSameLocation(data, referenceStop) {
+		const stopsAtSameLocation = [];
+		const tolerance = 0.0001; // Small tolerance for GPS coordinates
+
+		data.forEach(route => {
+			route.lines.forEach(line => {
+				line.stops.forEach(stop => {
+					// Check if the stop is at the same location (within tolerance)
+					if (Math.abs(stop.latitude - referenceStop.latitude) < tolerance &&
+						Math.abs(stop.longitude - referenceStop.longitude) < tolerance) {
+						stopsAtSameLocation.push(stop);
+					}
+				});
+			});
+		});
+
+		return stopsAtSameLocation;
+	},
+
+	/**
+	 * Find the route and line information for a given stop
+	 * @param {Array} data - The MTR bus lines data
+	 * @param {Object} targetStop - The stop to find route info for
+	 * @returns {Object|null} - Object containing route and line, or null if not found
+	 */
+	findRouteInfoForStop(data, targetStop) {
+		for (const route of data) {
+			for (const line of route.lines) {
+				const foundStop = line.stops.find(stop => stop.ref_ID === targetStop.ref_ID);
+				if (foundStop) {
+					return { route, line };
+				}
+			}
+		}
+		return null;
 	},
 
 	/**
@@ -179,9 +262,9 @@ HKTransportETAProvider.register("mtrbus", {
 	 * @returns {boolean} - True if the stop matches our configured station
 	 */
 	isMatchingStop(stop) {
-		return stop.ref_ID === this.config.sta || 
-			   stop.name_en === this.config.sta || 
-			   stop.name_ch === this.config.sta;
+		return stop.ref_ID === this.config.sta ||
+			stop.name_en === this.config.sta ||
+			stop.name_ch === this.config.sta;
 	},
 
 	/**
@@ -200,12 +283,12 @@ HKTransportETAProvider.register("mtrbus", {
 	 */
 	getDestinationName(line) {
 		if (this.config.lang.startsWith("zh")) {
-			return line.stops.length > 0 
-				? line.stops[line.stops.length - 1].name_ch 
+			return line.stops.length > 0
+				? line.stops[line.stops.length - 1].name_ch
 				: line.description_zh;
 		} else {
-			return line.stops.length > 0 
-				? line.stops[line.stops.length - 1].name_en 
+			return line.stops.length > 0
+				? line.stops[line.stops.length - 1].name_en
 				: line.description_en;
 		}
 	},
@@ -219,7 +302,7 @@ HKTransportETAProvider.register("mtrbus", {
 				"Invalid ETA data received: busStop is missing.",
 				currentETAData,
 			);
-			
+
 			// Return structure for the entire route with empty ETAs
 			return {
 				station: routeGroup.station,
@@ -248,8 +331,8 @@ HKTransportETAProvider.register("mtrbus", {
 				dest: stop.dest,
 				time: stopData.bus.map(bus => {
 					// Use arrival time if available and not empty, otherwise use departure time
-					const timeInSeconds = bus.arrivalTimeText === "" 
-						? bus.departureTimeInSecond 
+					const timeInSeconds = bus.arrivalTimeText === ""
+						? bus.departureTimeInSecond
 						: bus.arrivalTimeInSecond;
 					return moment().add(timeInSeconds, "seconds");
 				}),
