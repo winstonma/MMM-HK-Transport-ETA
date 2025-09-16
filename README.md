@@ -12,6 +12,8 @@ This module aims to be the replacement the [MMM-HK-KMB](https://github.com/winst
 
 This module includes a data extraction script for MTR Bus routes in the `scripts/` directory. The script extracts route and station information from the MTR Bus Data Dictionary PDF and converts it to JSON format for use in the module.
 
+For detailed information on how to use the script, please refer to [scripts/README.md](scripts/README.md).
+
 ## Prerequisite
 
 A working installation of [MagicMirror<sup>2</sup>](https://github.com/MichMich/MagicMirror)
