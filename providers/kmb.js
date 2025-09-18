@@ -19,7 +19,6 @@ HKTransportETAProvider.register("kmb", {
 	defaults: {
 		apiBase: "https://data.etabus.gov.hk/v1/transport/kmb",
 		stopInfo: null, // Changed from [] to null for better cache invalidation
-		routeStopCache: new Map(),
 		stopDataCache: new Map(),
 	},
 
@@ -266,7 +265,22 @@ HKTransportETAProvider.register("kmb", {
 	/**
 	 * Enhanced route-stop data fetching
 	 */
-	async fetchRouteStopData(variant) {
+	async fetchRouteStop(variant = null) {
+		// If no variant is provided, fetch all route-stop data
+		if (!variant) {
+			try {
+				const url = `${this.config.apiBase}/route-stop/`;
+				const response = await this.fetchData(url);
+				return response?.data || [];
+			} catch (error) {
+				Log.error(
+					`KMB ETA Provider: Error fetching all route-stop data`,
+					error,
+				);
+				throw error;
+			}
+		}
+
 		const route = variant.route.number;
 		const direction = variant.route.bound === 1 ? "outbound" : "inbound";
 		const service_type = String(variant.serviceType);
@@ -275,22 +289,13 @@ HKTransportETAProvider.register("kmb", {
 			throw new Error("Missing required parameters for route-stop data");
 		}
 
-		const cacheKey = `${route}/${direction}/${service_type}`;
-		if (this.config.routeStopCache.has(cacheKey)) {
-			return this.config.routeStopCache.get(cacheKey);
-		}
-
 		try {
 			const url = `${this.config.apiBase}/route-stop/${route}/${direction}/${service_type}`;
 			const response = await this.fetchData(url);
-			const data = response?.data || [];
-			if (data.length > 0) {
-				this.config.routeStopCache.set(cacheKey, data);
-			}
-			return data;
+			return response?.data || [];
 		} catch (error) {
 			Log.error(
-				`KMB ETA Provider: Error fetching route-stop data for ${cacheKey}`,
+				`KMB ETA Provider: Error fetching route-stop data for route ${route}, direction ${direction}, service_type ${service_type}`,
 				error,
 			);
 			throw error;
@@ -318,17 +323,15 @@ HKTransportETAProvider.register("kmb", {
 	/**
 	 * Enhanced stop data fetching
 	 */
-	async fetchStopData(stop_id) {
-		if (!stop_id) {
-			throw new Error("Stop ID is required");
-		}
-
+	async fetchStopData(stop_id = null) {
 		if (this.config.stopDataCache.has(stop_id)) {
 			return this.config.stopDataCache.get(stop_id);
 		}
 
 		try {
-			const url = `${this.config.apiBase}/stop/${stop_id}`;
+			const url = stop_id
+				? `${this.config.apiBase}/stop/${stop_id}`
+				: `${this.config.apiBase}/stop/`;
 			const response = await this.fetchData(url);
 			const data = response?.data;
 			if (data) {
@@ -337,7 +340,7 @@ HKTransportETAProvider.register("kmb", {
 			return data;
 		} catch (error) {
 			Log.error(
-				`KMB ETA Provider: Error fetching stop data for ${stop_id}`,
+				`KMB ETA Provider: Error fetching stop data for ${stop_id || 'all stops'}`,
 				error,
 			);
 			throw error;
@@ -374,7 +377,6 @@ HKTransportETAProvider.register("kmb", {
 	 * Cleans up resources, e.g., clears caches.
 	 */
 	_cleanup() {
-		this.config.routeStopCache.clear();
 		this.config.stopDataCache.clear();
 	},
 
