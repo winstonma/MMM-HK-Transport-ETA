@@ -60,30 +60,15 @@ The following properties can be configured:
 
 | Option                 | Description                                                                                                                                                                                                 |
 | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `transportETAProvider` | Which ETA provider should be used. <br><br> **Possible values:** `mtr`, `kmb` ,`mtrbus`, `lrt` or `gmb`<br> **Default value:** `mtr`                                                                        |
+| `transportETAProvider` | Which ETA provider should be used. <br><br> **Possible values:** `mtr`, `kmb`, `ctb`, `mtrbus`, `lrt` or `gmb`<br> **Default value:** `mtr`                                                                        |
 | `reloadInterval`       | How often does the content needs to be fetched? (Milliseconds) <br><br> **Possible values:** `1000` - `86400000` <br> **Default value:** `60000` (1 minute)                                                 |
 | `updateInterval`       | How often do you want to display a relative time? (seconds). If set to `0`, the relative time would not be displayed.<br><br> **Possible values:** `0` - `60000` <br> **Default value:** `5000` (5 seconds) |
 | `animationSpeed`       | Speed of the update animation. (Milliseconds) <br><br> **Possible values:** `0` - `5000` <br> **Default value:** `2500` (2.5 seconds)                                                                       |
 | `showHeader`           | Display the header. <br><br> **Possible values:** `true` or `false` <br> **Default value:** `false`                                                                                                         |
 
-### MTR
+## Supported Transport Providers
 
-| Option | Description                                                                                                                                                                                                                                                                          |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `sta`  | Which MTR station <br><br> **Possible values:** Please use either chinese station name or english station name inside the [MTR routemap](https://www.mtr.com.hk/archive/en/services/routemap.pdf). **Currently Kwun Tong Line is not supported.**<br> **Default value:** `Hong Kong` |
-
-### KMB
-
-| Option | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `sta`  | Which KMB station <br><br> **Possible values:**<br>1. Open your web browser and navigate to the [kmb_eta](https://miklcct.com/kmb_eta/) page, developed by miklcct.<br>2. In the `Enter the route number:` box, enter the KMB Bus route number that passes the stop. Then press the submit button. The destination and the home would be displayed.<br>3. After the submit of the bus route, the route origin and destination would be displayed. Choose the right direction by clicking the `Switch direction` button.<br>4. In the `Choose a route variant:` infobox, select the variant.<br>5. In the `Choose a stop in the list:` infobox, there is a list of stops with the `stopID` displayed in the bracket. Fill the `sta` in the `config.js`. |
-
-### MTR Bus
-
-| Option | Description                                                                                                                                                                                                                                                                                                                                  |
-| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `line` | Which Bus line <br><br> **Possible values:** Please refer to **route_number** field of the supported list of bus routes, for example `K12`                                                                    |
-| `sta`  | Which Bus station <br><br> **Possible values:** Please refer to **line.stops.name_ch** or **line.stops.name_en** field of the supported list of bus routes, for example `Tai Po Market Station` or `大埔墟站` |
+For MTR, KMB, CTB and MTR Bus configuration, please use the [MMM-HK-Transport-ETA-Configurator](https://winstonma.github.io/MMM-HK-Transport-ETA-Configurator/). This web-based tool simplifies the process of finding the correct configuration values for your desired transport lines and stations.
 
 ### Light Rail Transit (LRT)
 
