@@ -20,6 +20,7 @@ HKTransportETAProvider.register("ctb", {
 		apiBase: "https://rt.data.gov.hk/v2/transport/citybus",
 		company_id: "CTB",
 		stopInfo: null,
+		newDataURL: "https://winstonma.github.io/MMM-HK-Transport-ETA-Data/ctb/stops",
 	},
 
 	// Overwrite the fetchETA method.
@@ -56,6 +57,25 @@ HKTransportETAProvider.register("ctb", {
 
 	async fetchStopInfo() {
 		try {
+			// First try to fetch from the new data source
+			const newDataURL = `${this.config.newDataURL}/${this.config.sta}.json`;
+
+			try {
+				const newData = await this.fetchData(newDataURL);
+
+				// Check if we received valid data from the new source
+				if (newData && (newData.name_tc || newData.name_en || newData.name_sc)) {
+					// If this.config.routes doesn't exist and the new data has routes, populate it
+					if (!this.config.routes && newData.routes && Array.isArray(newData.routes)) {
+						this.config.routes = newData.routes.map(route => ({ route: route }));
+					}
+					return newData;
+				}
+			} catch (newDataError) {
+				Log.warn(`Failed to fetch from new data source for stop ${this.config.sta}, falling back to original API:`, newDataError.message);
+			}
+
+			// Fallback to original logic if new data source fails
 			const stopURL = `${this.config.apiBase}/stop/${this.config.sta}`;
 			const data = await this.fetchData(stopURL);
 
@@ -320,37 +340,45 @@ HKTransportETAProvider.register("ctb", {
 			return [];
 		}
 
-		// Get the first ETA object to extract route information
-		const firstETA = combinedETAData[0];
+		// Group ETAs by route first, then by destination within each route
+		const etasByRoute = combinedETAData.reduce((routeGroups, eta) => {
+			if (!eta || !eta.route) {
+				return routeGroups;
+			}
 
-		// Additional safety check to ensure firstETA exists and has a route property
-		if (!firstETA || !firstETA.route) {
-			return [];
-		}
-
-		const route = firstETA.route;
-
-		// Group ETAs by destination
-		const etasByDestination = combinedETAData.reduce((groups, eta) => {
+			const route = eta.route;
 			const dest = this.getLocalizedDestination(eta);
-			groups[dest] = groups[dest] || [];
-			groups[dest].push(eta.eta);
-			return groups;
+
+			// Initialize route group if it doesn't exist
+			if (!routeGroups[route]) {
+				routeGroups[route] = {};
+			}
+
+			// Initialize destination group within route if it doesn't exist
+			if (!routeGroups[route][dest]) {
+				routeGroups[route][dest] = [];
+			}
+
+			// Add ETA time to the destination group
+			routeGroups[route][dest].push(eta.eta);
+
+			return routeGroups;
 		}, {});
 
-		const etasArray = Object.entries(etasByDestination).map(
-			([dest, times]) => ({
+		// Convert the grouped data into the expected format
+		const result = Object.entries(etasByRoute).map(([route, destinations]) => {
+			const etasArray = Object.entries(destinations).map(([dest, times]) => ({
 				dest: dest,
 				time: times,
-			}),
-		);
+			}));
 
-		return [
-			{
+			return {
 				line: route,
 				etas: etasArray,
-			},
-		];
+			};
+		});
+
+		return result;
 	},
 
 	// Helper methods to improve readability
