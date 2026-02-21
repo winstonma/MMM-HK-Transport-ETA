@@ -29,7 +29,7 @@ To add this module, go to MagicMirror folder and run the following command
 
 ```bash
 cd modules
-git clone https://github.com/winstonma/MMM-HK-Transport-ETA.git
+git clone https://github.com/winstonma/MMM-HK-Transport-ETA
 cd MMM-HK-Transport-ETA
 npm install
 ```
@@ -39,7 +39,6 @@ npm install
 To use this module, add it to the modules array in the `config/config.js` file:
 
 ```javascript
-modules: [
 	{
 		module: "MMM-HK-Transport-ETA",
 		position: "top_right",
@@ -49,7 +48,6 @@ modules: [
 			sta: "Hong Kong",
 		},
 	},
-];
 ```
 
 ## Configuration options
