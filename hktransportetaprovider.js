@@ -1,4 +1,4 @@
-/* global Class, performWebRequest */
+/* global Class */
 
 /* MagicMirror²
  * Module: ETA
@@ -92,16 +92,19 @@ const HKTransportETAProvider = Class.extend({
 			const data = mockData.substring(1, mockData.length - 1);
 			return JSON.parse(data);
 		}
-		const useCorsProxy =
-			typeof this.config.useCorsProxy !== "undefined" &&
-			this.config.useCorsProxy;
-		return performWebRequest(
-			url,
-			type,
-			useCorsProxy,
-			requestHeaders,
-			expectedResponseHeaders,
-		);
+		const headers = {};
+		if (requestHeaders) {
+			requestHeaders.forEach(h => { headers[h.name] = h.value; });
+		}
+		const response = await fetch(url, { headers });
+		if (!response.ok) {
+			throw new Error(`HTTP error: ${response.status}`);
+		}
+		if (type === "xml") {
+			const text = await response.text();
+			return new DOMParser().parseFromString(text, "text/xml");
+		}
+		return response.json();
 	},
 });
 
