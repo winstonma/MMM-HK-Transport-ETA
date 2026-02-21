@@ -16,7 +16,7 @@ For detailed information on how to use the script, please refer to [scripts/READ
 
 ## Prerequisite
 
-A working installation of [MagicMirror<sup>2</sup>](https://github.com/MichMich/MagicMirror)
+A working installation of [MagicMirror²](https://github.com/MagicMirrorOrg/MagicMirror).
 
 ## Dependencies
 
