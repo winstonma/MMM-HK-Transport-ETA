@@ -37,7 +37,6 @@ Module.register("MMM-HK-Transport-ETA", {
 	getScripts: function () {
 		return [
 			"moment.js",
-			this.file("../default/utils.js"),
 			"hktransportetaprovider.js",
 			"etaobject.js",
 			this.file(
