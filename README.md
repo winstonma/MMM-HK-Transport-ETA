@@ -20,8 +20,7 @@ A working installation of [MagicMirror²](https://github.com/MagicMirrorOrg/Magi
 
 ## Dependencies
 
-- npm
-- [js-kmb-api](https://github.com/miklcct/js-kmb-api)
+No runtime dependencies required.
 
 ## Installation
 
@@ -30,8 +29,6 @@ To add this module, go to MagicMirror folder and run the following command
 ```bash
 cd modules
 git clone https://github.com/winstonma/MMM-HK-Transport-ETA
-cd MMM-HK-Transport-ETA
-npm install
 ```
 
 ## Usage

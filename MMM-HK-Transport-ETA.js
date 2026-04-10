@@ -1,5 +1,3 @@
-/* global ETAProvider */
-
 /* MagicMirror²
  * Module: MMM-HK-Transport-ETA
  *
@@ -114,30 +112,25 @@ Module.register("MMM-HK-Transport-ETA", {
 			this.config.transportETAProvider === "kmb" &&
 			this.config.sta.includes("-")
 		) {
-			this.sendSocketNotification("ADD_KMB_STOP", this.config.sta);
+			this.transportETAProvider
+				.getKmbStoppings(this.config.sta)
+				.then((stoppings) => {
+					// Update the provider's config with the fetched stoppings
+					// Directly mutate to preserve the searchApiCache in the provider's config
+					this.transportETAProvider.config.stops = stoppings;
+
+					// Let the ETA provider know we are starting.
+					this.transportETAProvider.start();
+
+					// Schedule the first update.
+					this.scheduleUpdate(this.config.initialLoadDelay);
+				})
+				.catch((error) => {
+					Log.error("Failed to fetch KMB stop data:", error);
+					this.error = error.message;
+					this.updateDom();
+				});
 		} else {
-			// Let the ETA provider know we are starting.
-			this.transportETAProvider.start();
-
-			// Schedule the first update.
-			this.scheduleUpdate(this.config.initialLoadDelay);
-		}
-	},
-
-	socketNotificationReceived: function (notification, payload) {
-		if (
-			notification === "KMB_STOP_ITEM" &&
-			payload.station === this.config.sta
-		) {
-			this.config.stops = payload.data;
-
-			const config = Object.assign(
-				{},
-				this.transportETAProvider.defaults,
-				this.config,
-			);
-			this.transportETAProvider.setConfig(config);
-
 			// Let the ETA provider know we are starting.
 			this.transportETAProvider.start();
 

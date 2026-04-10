@@ -1,5 +1,3 @@
-/* global ETAProvider, ETAObject */
-
 /* MagicMirror²
  * Module: ETA
  *
@@ -21,6 +19,10 @@ HKTransportETAProvider.register("kmb", {
 		stopInfo: null, // Changed from [] to null for better cache invalidation
 		stopDataCache: new Map(),
 	},
+
+	// Cache for internal KMB search API responses
+	searchApiCache: new Map(),
+	cacheMaxAge: 30 * 60 * 1000,
 
 	/**
 	 * Main method to fetch ETA data
@@ -184,6 +186,10 @@ HKTransportETAProvider.register("kmb", {
 		try {
 			if (this.config.sta?.includes("-")) {
 				if (!this.config.stops?.length) {
+					Log.error(
+						"KMB ETA Provider: No stops configured. sta:",
+						this.config.sta,
+					);
 					throw new Error("No stops configured");
 				}
 				const stops = this.config.stops;
@@ -211,9 +217,23 @@ HKTransportETAProvider.register("kmb", {
 						data.sequence === 999
 							? routeStopData.data.length
 							: data.sequence + 1;
-					const stopID = routeStopData.data.find(
+					const stopEntry = routeStopData.data.find(
 						(stop) => parseInt(stop.seq) === sequence,
-					).stop;
+					);
+
+					if (!stopEntry) {
+						Log.error(
+							"KMB ETA Provider: Stop with sequence",
+							sequence,
+							"not found in route-stop data for route",
+							data.variant.route.number,
+						);
+						throw new Error(
+							`Stop with sequence ${sequence} not found`,
+						);
+					}
+
+					const stopID = stopEntry.stop;
 
 					return {
 						...data,
@@ -340,7 +360,7 @@ HKTransportETAProvider.register("kmb", {
 			return data;
 		} catch (error) {
 			Log.error(
-				`KMB ETA Provider: Error fetching stop data for ${stop_id || 'all stops'}`,
+				`KMB ETA Provider: Error fetching stop data for ${stop_id || "all stops"}`,
 				error,
 			);
 			throw error;
@@ -356,6 +376,58 @@ HKTransportETAProvider.register("kmb", {
 			return await response.json();
 		} catch (error) {
 			throw error;
+		}
+	},
+
+	/**
+	 * Fetch data from internal KMB search API with caching
+	 * @param {string} action - The API action (e.g., 'getRoutesInStop', 'getroutebound')
+	 * @param {object} params - Query parameters for the API call
+	 * @returns {Promise<object>} The API response data
+	 */
+	async fetchWithCache(action, params = {}) {
+		// Create a cache key from action and params
+		const cacheKey = `${action}_${JSON.stringify(params)}`;
+
+		// Check cache first
+		if (this.searchApiCache.has(cacheKey)) {
+			const cached = this.searchApiCache.get(cacheKey);
+			const age = Date.now() - cached.timestamp;
+
+			if (age < this.cacheMaxAge) {
+				return cached.data;
+			}
+			// Cache expired, remove it
+			this.searchApiCache.delete(cacheKey);
+		}
+
+		// Fetch fresh data
+		const queryParams = new URLSearchParams({
+			action,
+			...params,
+		}).toString();
+		const url = `https://search.kmb.hk/KMBWebSite/Function/FunctionRequest.ashx?${queryParams}`;
+
+		const data = await this.fetchData(url);
+
+		// Cache the result
+		this.searchApiCache.set(cacheKey, {
+			data,
+			timestamp: Date.now(),
+		});
+
+		return data;
+	},
+
+	/**
+	 * Clear expired cache entries
+	 */
+	_clearExpiredCache() {
+		const now = Date.now();
+		for (const [key, value] of this.searchApiCache.entries()) {
+			if (now - value.timestamp > this.cacheMaxAge) {
+				this.searchApiCache.delete(key);
+			}
 		}
 	},
 
@@ -385,6 +457,209 @@ HKTransportETAProvider.register("kmb", {
 	 */
 	getETAUrl(stopID) {
 		return `${this.config.apiBase}/stop-eta/${stopID}`;
+	},
+
+	/**
+	 * Fetch KMB stoppings data directly from KMB internal search API
+	 * This uses the same API and flow as js-kmb-api which is more reliable
+	 * Uses caching to minimize API calls and avoid rate limits
+	 * @param {string} stopId - Stop ID (e.g., "HA01-N-1000-0" or "AB01-N")
+	 * @returns {Promise<Array>} Array of stopping objects
+	 */
+	async getKmbStoppings(stopId) {
+		// Parse the stop ID to extract streetId and streetDirection
+		const parts = stopId.split("-");
+		const streetId = parts[0];
+		const streetDirection = parts[1] || null;
+
+		try {
+			// Step 1: Get all route numbers serving this stop
+			const routesInStopResponse = await this.fetchWithCache(
+				"getRoutesInStop",
+				{ bsiCode: stopId },
+			);
+
+			const routeNumbers = routesInStopResponse.data || [];
+			Log.log(
+				"KMB ETA Provider: Found",
+				routeNumbers.length,
+				"routes serving stop",
+				stopId,
+			);
+
+			if (routeNumbers.length === 0) {
+				Log.error("KMB ETA Provider: No routes found for stop", stopId);
+				throw new Error(
+					`No routes found for stop ${stopId}. Please verify the stop ID is correct.`,
+				);
+			}
+
+			const stoppings = [];
+
+			// Step 2: For each route, get bounds, variants, and stoppings
+			const routePromises = routeNumbers.map(async (routeNumberStr) => {
+				const routeNumber = routeNumberStr.trim();
+
+				try {
+					// Get bounds for this route (e.g., 1 for outbound, 2 for inbound)
+					const routeBoundResponse = await this.fetchWithCache(
+						"getroutebound",
+						{ route: routeNumber },
+					);
+					const bounds = routeBoundResponse.data || [];
+
+					// For each bound, get variants
+					const boundPromises = bounds.map(async (boundData) => {
+						const bound = boundData.BOUND;
+
+						try {
+							// Get special route variants (different service types)
+							const specialRouteResponse =
+								await this.fetchWithCache("getSpecialRoute", {
+									route: routeNumber,
+									bound: String(bound),
+								});
+							const variants =
+								specialRouteResponse.data?.routes || [];
+
+							// For each variant, get stoppings
+							const variantPromises = variants.map(
+								async (variant) => {
+									try {
+										const serviceType = variant.ServiceType;
+
+										// Get all stops for this route/bound/serviceType
+										const stopsResponse =
+											await this.fetchWithCache(
+												"getstops",
+												{
+													route: routeNumber,
+													bound: String(bound),
+													serviceType:
+														String(serviceType),
+												},
+											);
+										const routeStops =
+											stopsResponse.data?.routeStops ||
+											[];
+
+										// Find stops that match our streetId and streetDirection
+										const matchingStops = routeStops.filter(
+											(stop) => {
+												const stopBSICode =
+													stop.BSICode || "";
+												const stopParts =
+													stopBSICode.split("-");
+												const stopStreetId =
+													stopParts[0];
+												const stopDirection =
+													stopParts[1] || null;
+
+												return (
+													stopStreetId === streetId &&
+													(streetDirection === null ||
+														stopDirection ===
+															streetDirection)
+												);
+											},
+										);
+
+										return matchingStops.map((stop) => {
+											const seq = Number(stop.Seq);
+											return {
+												stop: {
+													id: stop.BSICode,
+												},
+												variant: {
+													route: {
+														number: routeNumber,
+														bound: Number(bound),
+													},
+													serviceType:
+														Number(serviceType),
+													origin:
+														stop.Origin_ENG || "",
+													destination:
+														stop.Destination_ENG ||
+														"",
+													description:
+														stop.Desc_ENG || "",
+												},
+												direction: stop.Direction
+													? stop.Direction.trim()
+													: "F",
+												sequence: seq,
+												fare: Number(stop.AirFare || 0),
+											};
+										});
+									} catch (e) {
+										Log.warn(
+											"KMB ETA Provider: Failed to fetch stoppings for route",
+											routeNumber,
+											"bound",
+											bound,
+											"serviceType",
+											variant.ServiceType,
+											e,
+										);
+										return [];
+									}
+								},
+							);
+
+							const variantResults =
+								await Promise.all(variantPromises);
+							return variantResults.flat();
+						} catch (e) {
+							Log.warn(
+								"KMB ETA Provider: Failed to fetch variants for route",
+								routeNumber,
+								"bound",
+								bound,
+								e,
+							);
+							return [];
+						}
+					});
+
+					const boundResults = await Promise.all(boundPromises);
+					return boundResults.flat();
+				} catch (e) {
+					Log.warn(
+						"KMB ETA Provider: Failed to process route",
+						routeNumber,
+						e,
+					);
+					return [];
+				}
+			});
+
+			const allResults = await Promise.all(routePromises);
+			stoppings.push(...allResults.flat());
+
+			Log.log(
+				"KMB ETA Provider: Total stoppings found:",
+				stoppings.length,
+			);
+
+			if (stoppings.length === 0) {
+				const errorMsg =
+					`No stoppings found for stop "${stopId}". This could mean:\n` +
+					`  1. The stop ID format is incorrect\n` +
+					`  2. The stop ID does not exist in the KMB system\n\n` +
+					`Please verify your configuration. Use the configurator at: https://winstonma.github.io/MMM-HK-Transport-ETA-Configurator/`;
+				Log.error("KMB ETA Provider:", errorMsg);
+				throw new Error(errorMsg);
+			}
+
+			return stoppings;
+		} catch (error) {
+			Log.error(
+				"KMB ETA Provider: Failed to fetch KMB stop data:",
+				error,
+			);
+			throw error;
+		}
 	},
 
 	/**
