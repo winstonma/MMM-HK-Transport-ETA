@@ -396,6 +396,8 @@ HKTransportETAProvider.register("kmb", {
 		}).toString();
 		const url = `https://search.kmb.hk/KMBWebSite/Function/FunctionRequest.ashx?${queryParams}`;
 
+		Log.log(`KMB ETA Provider: Fetching ${url}`);
+
 		const data = await this.fetchData(url);
 
 		// Cache the result
@@ -455,17 +457,22 @@ HKTransportETAProvider.register("kmb", {
 	 * @returns {Promise<Array>} Array of stopping objects
 	 */
 	async getKmbStoppings(stopId) {
-		// Parse the stop ID to extract streetId and streetDirection
-		const parts = stopId.split("-");
+		// Trim whitespace and parse the stop ID
+		const cleanStopId = stopId.trim();
+		const parts = cleanStopId.split("-");
 		const streetId = parts[0];
 		const streetDirection = parts[1] || null;
 
 		try {
-			// Step 1: Get all route numbers serving this stop
+			// Use the full stop ID as bsiCode
+			Log.log(`KMB ETA Provider: Using bsiCode "${cleanStopId}"`);
+
 			const routesInStopResponse = await this.fetchWithCache(
 				"getRoutesInStop",
-				{ bsiCode: stopId },
+				{ bsiCode: cleanStopId },
 			);
+
+			Log.log(`KMB ETA Provider: Raw getRoutesInStop response:`, JSON.stringify(routesInStopResponse));
 
 			const routeNumbers = routesInStopResponse.data || [];
 			Log.log(
