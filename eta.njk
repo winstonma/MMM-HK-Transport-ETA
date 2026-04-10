@@ -26,10 +26,17 @@
                             {{ eta.dest }}
                         </td>
                         <td class="align-right bright">
-                            {% if config.displayRelativeTime %}
-                                {{ eta.time | fromNow }}
-                            {% else %}
-                                {{ eta.time | formatTime }}
+                            {% if eta.time | length %}
+                                {% if config.displayRelativeTime %}
+                                    {{ eta.time | fromNow }}
+                                {% else %}
+                                    {{ eta.time | formatTime }}
+                                {% endif %}
+                            {% elseif eta.note %}
+                                <span class="dimmed small">{{ eta.note }}</span>
+                            {% endif %}
+                            {% if eta.note and eta.time | length %}
+                                <span class="dimmed small">({{ eta.note }})</span>
                             {% endif %}
                         </td>
                     </tr>

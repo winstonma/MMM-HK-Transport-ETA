@@ -133,6 +133,17 @@ HKTransportETAProvider.register("ctb", {
 			// Fetch the data
 			const data = await this.fetchData(url);
 			if (data && data.data) {
+				// Log raw API response to debug invalid date issues
+				Log.log(`[CTB] Raw API response for route ${routeStr}:`, JSON.stringify(data.data));
+				if (data.data.length > 0) {
+					Log.log(`[CTB] First ETA object for route ${routeStr}:`, {
+						eta: data.data[0].eta,
+						dest_en: data.data[0].dest_en,
+						dest_tc: data.data[0].dest_tc,
+						dir: data.data[0].dir,
+						route: data.data[0].route,
+					});
+				}
 				return data.data;
 			} else {
 				Log.warn(
@@ -162,9 +173,16 @@ HKTransportETAProvider.register("ctb", {
 			return [];
 		}
 
+		// Log all raw ETA times for debugging
+		Log.log(`[CTB] Processing ${combinedETAData.length} raw ETA objects`);
+		const invalidETAs = combinedETAData.filter(eta => !eta.eta || eta.eta === "" || eta.eta === "null" || eta.eta === "undefined");
+		if (invalidETAs.length > 0) {
+			Log.log(`[CTB] Found ${invalidETAs.length} ETA objects with empty eta values (likely KMB-operated trips)`);
+		}
+
 		// Group ETAs by route first, then by destination within each route
 		const etasByRoute = combinedETAData.reduce((routeGroups, eta) => {
-			if (!eta || !eta.route) {
+			if (!eta) {
 				return routeGroups;
 			}
 
@@ -178,11 +196,22 @@ HKTransportETAProvider.register("ctb", {
 
 			// Initialize destination group within route if it doesn't exist
 			if (!routeGroups[route][dest]) {
-				routeGroups[route][dest] = [];
+				routeGroups[route][dest] = {
+					times: [],
+					hasKmbCycle: false,
+				};
 			}
 
-			// Add ETA time to the destination group
-			routeGroups[route][dest].push(eta.eta);
+			// Check if this is a KMB-operated trip (empty eta with KMB remark)
+			if (!eta.eta || eta.eta === "" || eta.eta === "null" || eta.eta === "undefined") {
+				if (eta.rmk_en && eta.rmk_en.includes("KMB")) {
+					routeGroups[route][dest].hasKmbCycle = true;
+					Log.log(`[CTB] Detected KMB-operated trip for route ${route}, dest: ${dest}`);
+				}
+			} else {
+				// Valid ETA, add the time
+				routeGroups[route][dest].times.push(eta.eta);
+			}
 
 			return routeGroups;
 		}, {});
@@ -191,10 +220,26 @@ HKTransportETAProvider.register("ctb", {
 		const result = Object.entries(etasByRoute).map(
 			([route, destinations]) => {
 				const etasArray = Object.entries(destinations).map(
-					([dest, times]) => ({
-						dest: dest,
-						time: times,
-					}),
+					([dest, data]) => {
+						const { times, hasKmbCycle } = data;
+
+						// Check for invalid dates
+						if (times.some(t => !moment(t).isValid())) {
+							Log.warn(`[CTB] Invalid date detected in route ${route}, dest ${dest}. Times:`, times);
+						}
+
+						const etaObj = {
+							dest: dest,
+							time: times,
+						};
+
+						// Add note if applicable
+						if (hasKmbCycle) {
+							etaObj.note = this.config.lang.startsWith("zh") ? "九巴時段" : "KMB Cycle";
+						}
+
+						return etaObj;
+					},
 				);
 
 				return {

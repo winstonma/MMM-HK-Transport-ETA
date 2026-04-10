@@ -210,22 +210,27 @@ Module.register("MMM-HK-Transport-ETA", {
 			function (date) {
 				if (Array.isArray(date)) {
 					const retArray = date.map((singleDate) => {
-						singleDate = moment(singleDate);
-
-						if (this.config.timeFormat !== 24) {
-							return singleDate.format("h:mm");
+						// Log invalid dates for CTB debugging
+						const m = moment(singleDate);
+						if (!m.isValid()) {
+							Log.warn(`[CTB] formatTime received invalid date:`, singleDate);
 						}
-						return singleDate.format("HH:mm");
+						if (this.config.timeFormat !== 24) {
+							return m.format("h:mm");
+						}
+						return m.format("HH:mm");
 					});
 					return retArray.toString();
 				} else {
-					date = moment(date);
-
+					const m = moment(date);
+					if (!m.isValid()) {
+						Log.warn(`[CTB] formatTime received invalid date:`, date);
+					}
 					if (this.config.timeFormat !== 24) {
-						return date.format("h:mm");
+						return m.format("h:mm");
 					}
 
-					return date.format("HH:mm");
+					return m.format("HH:mm");
 				}
 			}.bind(this),
 		);
@@ -234,7 +239,14 @@ Module.register("MMM-HK-Transport-ETA", {
 			"fromNow",
 			function (dateArray) {
 				return dateArray
-					.map((date) => moment(date).fromNow(true))
+					.map((date) => {
+						const m = moment(date);
+						if (!m.isValid()) {
+							Log.warn(`[CTB] fromNow received invalid date:`, date);
+							return "N/A";
+						}
+						return m.fromNow(true);
+					})
 					.toString();
 			}.bind(this),
 		);
