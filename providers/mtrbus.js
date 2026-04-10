@@ -1,5 +1,3 @@
-/* global ETAProvider, ETAObject */
-
 /* MagicMirror²
  * Module: ETA
  *
@@ -40,9 +38,13 @@ HKTransportETAProvider.register("mtrbus", {
 			const routeETAData = await this.fetchRouteETAs();
 
 			// Filter out routes with no ETA data
-			const validRouteETAData = routeETAData.filter(routeData =>
-				routeData.etas && routeData.etas.length > 0 &&
-				routeData.etas.some(eta => eta.time && eta.time.length > 0)
+			const validRouteETAData = routeETAData.filter(
+				(routeData) =>
+					routeData.etas &&
+					routeData.etas.length > 0 &&
+					routeData.etas.some(
+						(eta) => eta.time && eta.time.length > 0,
+					),
 			);
 
 			this.setCurrentETA(validRouteETAData);
@@ -59,8 +61,8 @@ HKTransportETAProvider.register("mtrbus", {
 	 */
 	async fetchRouteETAs() {
 		// Create promises for each route
-		const etaPromises = this.config.stops.map(routeGroup =>
-			this.fetchSingleRouteETA(routeGroup)
+		const etaPromises = this.config.stops.map((routeGroup) =>
+			this.fetchSingleRouteETA(routeGroup),
 		);
 
 		// Wait for all requests to complete
@@ -82,16 +84,16 @@ HKTransportETAProvider.register("mtrbus", {
 			// Prepare the request payload
 			const dataObject = {
 				language: "en",
-				routeName: routeGroup.route
+				routeName: routeGroup.route,
 			};
 
 			// Make the API request
 			const response = await fetch(this.config.apiBase, {
 				method: "POST",
 				headers: {
-					"Content-Type": "application/json"
+					"Content-Type": "application/json",
 				},
-				body: JSON.stringify(dataObject)
+				body: JSON.stringify(dataObject),
 			});
 
 			// Check if response is ok
@@ -103,7 +105,10 @@ HKTransportETAProvider.register("mtrbus", {
 			const data = await response.json();
 			return { routeGroup, data };
 		} catch (error) {
-			Log.error(`Error fetching ETA for route ${routeGroup.route}:`, error);
+			Log.error(
+				`Error fetching ETA for route ${routeGroup.route}:`,
+				error,
+			);
 			return { routeGroup, data: null };
 		}
 	},
@@ -120,7 +125,9 @@ HKTransportETAProvider.register("mtrbus", {
 			const groupedStops = Array.from(routeGroups.values());
 
 			if (groupedStops.length === 0) {
-				Log.error(`No route data found for station ID: ${this.config.sta}`);
+				Log.error(
+					`No route data found for station ID: ${this.config.sta}`,
+				);
 				return [];
 			}
 
@@ -152,12 +159,15 @@ HKTransportETAProvider.register("mtrbus", {
 		// Step 2: For each matching stop, find all other stops at the same location
 		const routeGroups = new Map();
 
-		matchingStops.forEach(matchingStop => {
+		matchingStops.forEach((matchingStop) => {
 			// Find all stops at the same location (same lat/long)
-			const stopsAtSameLocation = this.findStopsAtSameLocation(data, matchingStop);
+			const stopsAtSameLocation = this.findStopsAtSameLocation(
+				data,
+				matchingStop,
+			);
 
 			// Group these stops by route
-			stopsAtSameLocation.forEach(stop => {
+			stopsAtSameLocation.forEach((stop) => {
 				// Find the route and line for this stop
 				const routeInfo = this.findRouteInfoForStop(data, stop);
 
@@ -169,20 +179,20 @@ HKTransportETAProvider.register("mtrbus", {
 						routeGroups.set(route.route_number, {
 							route: route.route_number,
 							station: this.getStationName(stop),
-							stops: []
+							stops: [],
 						});
 					}
 
 					// Add stop to the route group if not already added
-					const existingStop = routeGroups.get(route.route_number).stops.find(
-						s => s.ref_ID === stop.ref_ID
-					);
+					const existingStop = routeGroups
+						.get(route.route_number)
+						.stops.find((s) => s.ref_ID === stop.ref_ID);
 
 					if (!existingStop) {
 						routeGroups.get(route.route_number).stops.push({
 							ref_ID: stop.ref_ID,
 							direction: line.direction,
-							dest: this.getDestinationName(line)
+							dest: this.getDestinationName(line),
 						});
 					}
 				}
@@ -200,9 +210,9 @@ HKTransportETAProvider.register("mtrbus", {
 	findMatchingStops(data) {
 		const matchingStops = [];
 
-		data.forEach(route => {
-			route.lines.forEach(line => {
-				line.stops.forEach(stop => {
+		data.forEach((route) => {
+			route.lines.forEach((line) => {
+				line.stops.forEach((stop) => {
 					if (this.isMatchingStop(stop)) {
 						matchingStops.push(stop);
 					}
@@ -223,12 +233,16 @@ HKTransportETAProvider.register("mtrbus", {
 		const stopsAtSameLocation = [];
 		const tolerance = 0.0001; // Small tolerance for GPS coordinates
 
-		data.forEach(route => {
-			route.lines.forEach(line => {
-				line.stops.forEach(stop => {
+		data.forEach((route) => {
+			route.lines.forEach((line) => {
+				line.stops.forEach((stop) => {
 					// Check if the stop is at the same location (within tolerance)
-					if (Math.abs(stop.latitude - referenceStop.latitude) < tolerance &&
-						Math.abs(stop.longitude - referenceStop.longitude) < tolerance) {
+					if (
+						Math.abs(stop.latitude - referenceStop.latitude) <
+							tolerance &&
+						Math.abs(stop.longitude - referenceStop.longitude) <
+							tolerance
+					) {
 						stopsAtSameLocation.push(stop);
 					}
 				});
@@ -247,7 +261,9 @@ HKTransportETAProvider.register("mtrbus", {
 	findRouteInfoForStop(data, targetStop) {
 		for (const route of data) {
 			for (const line of route.lines) {
-				const foundStop = line.stops.find(stop => stop.ref_ID === targetStop.ref_ID);
+				const foundStop = line.stops.find(
+					(stop) => stop.ref_ID === targetStop.ref_ID,
+				);
 				if (foundStop) {
 					return { route, line };
 				}
@@ -262,9 +278,11 @@ HKTransportETAProvider.register("mtrbus", {
 	 * @returns {boolean} - True if the stop matches our configured station
 	 */
 	isMatchingStop(stop) {
-		return stop.ref_ID === this.config.sta ||
+		return (
+			stop.ref_ID === this.config.sta ||
 			stop.name_en === this.config.sta ||
-			stop.name_ch === this.config.sta;
+			stop.name_ch === this.config.sta
+		);
 	},
 
 	/**
@@ -307,7 +325,7 @@ HKTransportETAProvider.register("mtrbus", {
 			return {
 				station: routeGroup.station,
 				line: routeGroup.route,
-				etas: routeGroup.stops.map(stop => ({
+				etas: routeGroup.stops.map((stop) => ({
 					dest: stop.dest,
 					time: [],
 				})),
@@ -315,9 +333,9 @@ HKTransportETAProvider.register("mtrbus", {
 		}
 
 		// Generate ETA objects for each stop in this route
-		const etas = routeGroup.stops.map(stop => {
+		const etas = routeGroup.stops.map((stop) => {
 			const stopData = currentETAData.busStop.find(
-				busStop => busStop.busStopId === stop.ref_ID,
+				(busStop) => busStop.busStopId === stop.ref_ID,
 			);
 
 			if (!stopData || !stopData.bus) {
@@ -329,11 +347,12 @@ HKTransportETAProvider.register("mtrbus", {
 
 			return {
 				dest: stop.dest,
-				time: stopData.bus.map(bus => {
+				time: stopData.bus.map((bus) => {
 					// Use arrival time if available and not empty, otherwise use departure time
-					const timeInSeconds = bus.arrivalTimeText === ""
-						? bus.departureTimeInSecond
-						: bus.arrivalTimeInSecond;
+					const timeInSeconds =
+						bus.arrivalTimeText === ""
+							? bus.departureTimeInSecond
+							: bus.arrivalTimeInSecond;
 					return moment().add(timeInSeconds, "seconds");
 				}),
 			};

@@ -36,7 +36,6 @@ Module.register("MMM-HK-Transport-ETA", {
 		return [
 			"moment.js",
 			"hktransportetaprovider.js",
-			"etaobject.js",
 			this.file(
 				`providers/${this.config.transportETAProvider.toLowerCase()}.js`,
 			),

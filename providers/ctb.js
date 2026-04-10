@@ -1,5 +1,3 @@
-/* global ETAProvider, ETAObject */
-
 /* MagicMirror²
  * Module: ETA
  *
@@ -20,7 +18,8 @@ HKTransportETAProvider.register("ctb", {
 		apiBase: "https://rt.data.gov.hk/v2/transport/citybus",
 		company_id: "CTB",
 		stopInfo: null,
-		newDataURL: "https://winstonma.github.io/MMM-HK-Transport-ETA-Data/ctb/stops",
+		newDataURL:
+			"https://winstonma.github.io/MMM-HK-Transport-ETA-Data/ctb/stops",
 	},
 
 	// Overwrite the fetchETA method.
@@ -33,13 +32,15 @@ HKTransportETAProvider.register("ctb", {
 			// Use routes from config instead of fetching them dynamically
 			if (this.config.routes && Array.isArray(this.config.routes)) {
 				// Fetch ETA data for each route using the fetchRouteETA function
-				const etaData = (await Promise.all(
-					this.config.routes.map(async (routeObj) => {
-						const data = await this.fetchRouteETA(routeObj);
-						// Filter out null or empty data immediately
-						return (data && data.length) ? data : null;
-					})
-				)).filter(item => item); // Filter out null values immediately
+				const etaData = (
+					await Promise.all(
+						this.config.routes.map(async (routeObj) => {
+							const data = await this.fetchRouteETA(routeObj);
+							// Filter out null or empty data immediately
+							return data && data.length ? data : null;
+						}),
+					)
+				).filter((item) => item); // Filter out null values immediately
 
 				const currentETAArray = this.generateETAObject(etaData);
 
@@ -64,15 +65,27 @@ HKTransportETAProvider.register("ctb", {
 				const newData = await this.fetchData(newDataURL);
 
 				// Check if we received valid data from the new source
-				if (newData && (newData.name_tc || newData.name_en || newData.name_sc)) {
+				if (
+					newData &&
+					(newData.name_tc || newData.name_en || newData.name_sc)
+				) {
 					// If this.config.routes doesn't exist and the new data has routes, populate it
-					if (!this.config.routes && newData.routes && Array.isArray(newData.routes)) {
-						this.config.routes = newData.routes.map(route => ({ route: route }));
+					if (
+						!this.config.routes &&
+						newData.routes &&
+						Array.isArray(newData.routes)
+					) {
+						this.config.routes = newData.routes.map((route) => ({
+							route: route,
+						}));
 					}
 					return newData;
 				}
 			} catch (newDataError) {
-				Log.warn(`Failed to fetch from new data source for stop ${this.config.sta}, falling back to original API:`, newDataError.message);
+				Log.warn(
+					`Failed to fetch from new data source for stop ${this.config.sta}, falling back to original API:`,
+					newDataError.message,
+				);
 			}
 
 			// Fallback to original logic if new data source fails
@@ -81,233 +94,39 @@ HKTransportETAProvider.register("ctb", {
 
 			// Check if we received valid data
 			if (!data) {
-				Log.warn(`No data received for stop ${this.config.sta}. Full response:`, data);
+				Log.warn(
+					`No data received for stop ${this.config.sta}. Full response:`,
+					data,
+				);
 				return null;
 			}
 
 			// Check if the data object has the expected structure
 			if (!data.data) {
-				Log.warn(`No data.data found for stop ${this.config.sta}. Full response:`, data);
+				Log.warn(
+					`No data.data found for stop ${this.config.sta}. Full response:`,
+					data,
+				);
 				return null;
 			}
 
 			return data.data;
 		} catch (error) {
-			Log.error(`Could not load stop info for stop ${this.config.sta} ... `, error);
+			Log.error(
+				`Could not load stop info for stop ${this.config.sta} ... `,
+				error,
+			);
 			throw error; // Re-throw the error to propagate it
-		}
-	},
-
-	async fetchRoutes(route = null) {
-		try {
-			let routesURL = `${this.config.apiBase}/route/ctb`;
-			if (route) {
-				routesURL = `${routesURL}/${route}`;
-			}
-			const data = await this.fetchData(routesURL);
-			if (!data || !data.data) {
-				Log.warn(
-					`No data or data.data found for routes from ${routesURL}. Full response:`,
-					data,
-				);
-				return []; // Return an empty array to prevent further issues
-			}
-			return data.data;
-		} catch (error) {
-			Log.error("Could not load routes info ... ", error);
-			throw error;
-		}
-	},
-
-	async fetchRouteStops(route) {
-		try {
-			const outboundURL = `${this.config.apiBase}/route-stop/${this.config.company_id}/${route}/outbound`;
-			const inboundURL = `${this.config.apiBase}/route-stop/${this.config.company_id}/${route}/inbound`;
-
-			const [outboundData, inboundData] = await Promise.all([
-				this.fetchData(outboundURL),
-				this.fetchData(inboundURL),
-			]);
-
-			if (!outboundData || !outboundData.data) {
-				Log.warn(
-					`No data or data.data found for outbound route stops from ${outboundURL}. Full response:`,
-					outboundData,
-				);
-			}
-			if (!inboundData || !inboundData.data) {
-				Log.warn(
-					`No data or data.data found for inbound route stops from ${inboundURL}. Full response:`,
-					inboundData,
-				);
-			}
-
-			// Combine outbound and inbound stops into a single array
-			const outboundStops = outboundData?.data || [];
-			const inboundStops = inboundData?.data || [];
-
-			// Add direction property to each stop for identification
-			const allStops = [
-				...outboundStops.map(stop => ({ ...stop, direction: 'outbound' })),
-				...inboundStops.map(stop => ({ ...stop, direction: 'inbound' }))
-			];
-
-			return allStops;
-		} catch (error) {
-			Log.error(`Could not load route stops for route ${route} ... `, error);
-			throw error;
-		}
-	},
-
-	/*
-	 * Fetch route stops with stop names
-	 * Enhances route stops data with all name variants by calling fetchStop for each stop
-	 */
-	async fetchRouteStopsWithNames(route) {
-		try {
-			// First get the route stops (which contain stop_ids)
-			const routeStops = await this.fetchRouteStops(route);
-
-			if (!routeStops || !Array.isArray(routeStops) || routeStops.length === 0) {
-				return [];
-			}
-
-			// Process stops in batches to avoid overwhelming the API
-			const batchSize = 5;
-			const enhancedStops = [];
-
-			for (let i = 0; i < routeStops.length; i += batchSize) {
-				const batch = routeStops.slice(i, i + batchSize);
-				const batchPromises = batch.map(async (stop) => {
-					try {
-						// Fetch the full stop information to get all name variants
-						const stopInfo = await this.fetchStop(stop.stop);
-
-						// Return the original stop object enhanced with all name variants
-						return {
-							...stop,
-							name_tc: stopInfo?.name_tc || null,
-							name_en: stopInfo?.name_en || null,
-							name_sc: stopInfo?.name_sc || null
-						};
-					} catch (error) {
-						Log.error(`Error fetching stop info for stop ${stop.stop}:`, error);
-						// Return the original stop object even if we couldn't get the info
-						return stop;
-					}
-				});
-
-				// Wait for all promises in this batch to resolve
-				const batchResults = await Promise.all(batchPromises);
-				enhancedStops.push(...batchResults);
-			}
-
-			return enhancedStops;
-		} catch (error) {
-			Log.error(`Could not load route stops with names for route ${route} ... `, error);
-			throw error;
-		}
-	},
-
-	/*
-	 * Fetch stop information by stop_id
-	 */
-	async fetchStop(stop_id) {
-		try {
-			const stopURL = `${this.config.apiBase}/stop/${stop_id}`;
-			const data = await this.fetchData(stopURL);
-
-			if (!data || !data.data) {
-				Log.warn(
-					`No data or data.data found for stop ${stop_id}. Full response:`,
-					data,
-				);
-				return null;
-			}
-
-			return data.data;
-		} catch (error) {
-			Log.error(`Could not load stop info for stop ${stop_id} ... `, error);
-			throw error;
-		}
-	},
-
-	async fetchAllRoutes() {
-		try {
-			const allRoutes = await this.fetchRoutes();
-
-			if (!allRoutes || !Array.isArray(allRoutes) || allRoutes.length === 0) {
-				Log.warn("No routes found or invalid routes data:", allRoutes);
-				return [];
-			}
-
-			return allRoutes;
-		} catch (error) {
-			Log.error("Could not load all routes ... ", error);
-			throw error;
-		}
-	},
-
-	async filterRoutesByStop(routes, stop_id) {
-		try {
-			// For each route, check if it passes through the specified stop
-			const routesThroughStop = [];
-
-			// Process routes in batches to avoid overwhelming the API
-			const batchSize = 5;
-			for (let i = 0; i < routes.length; i += batchSize) {
-				const batch = routes.slice(i, i + batchSize);
-				const batchPromises = batch.map(async (route) => {
-					try {
-						// Fetch stops for this route
-						const routeStops = await this.fetchRouteStops(route.route);
-
-						// Check if the specified stop_id is in this route and return route number if found
-						return routeStops.some(stop => stop.stop === stop_id) ? route.route : null;
-					} catch (error) {
-						Log.error(`Error fetching route stops for route ${route.route}:`, error);
-						return null;
-					}
-				});
-
-				// Wait for all promises in this batch to resolve
-				const batchResults = await Promise.all(batchPromises);
-
-				// Add non-null results to our routesThroughStop array
-				routesThroughStop.push(...batchResults.filter(result => result));
-			}
-
-			return routesThroughStop;
-		} catch (error) {
-			Log.error(`Could not filter routes for stop ${stop_id} ... `, error);
-			throw error;
-		}
-	},
-
-	/*
-	 * Fetch routes that pass through a specific stop_id
-	 */
-	async fetchRoutesByStop(stop_id) {
-		try {
-			// First fetch all routes
-			const allRoutes = await this.fetchAllRoutes();
-
-			// Then filter routes by stop_id
-			const routesThroughStop = await this.filterRoutesByStop(allRoutes, stop_id);
-
-			return routesThroughStop;
-		} catch (error) {
-			Log.error(`Could not load routes for stop ${stop_id} ... `, error);
-			throw error;
 		}
 	},
 
 	async fetchRouteETA(routeObj) {
 		try {
 			// Generate the URL for the ETA request
-			const routeStr = typeof routeObj.route === 'object' && routeObj.route !== null ?
-				(routeObj.route.route || String(routeObj.route)) :
-				String(routeObj.route);
+			const routeStr =
+				typeof routeObj.route === "object" && routeObj.route !== null
+					? routeObj.route.route || String(routeObj.route)
+					: String(routeObj.route);
 
 			const url = `${this.config.apiBase}/eta/${this.config.company_id}/${this.config.sta}/${routeStr}`;
 
@@ -323,7 +142,10 @@ HKTransportETAProvider.register("ctb", {
 				return null;
 			}
 		} catch (error) {
-			Log.error(`Error fetching ETA for route ${routeObj.route}:`, error.message);
+			Log.error(
+				`Error fetching ETA for route ${routeObj.route}:`,
+				error.message,
+			);
 			return null;
 		}
 	},
@@ -366,17 +188,21 @@ HKTransportETAProvider.register("ctb", {
 		}, {});
 
 		// Convert the grouped data into the expected format
-		const result = Object.entries(etasByRoute).map(([route, destinations]) => {
-			const etasArray = Object.entries(destinations).map(([dest, times]) => ({
-				dest: dest,
-				time: times,
-			}));
+		const result = Object.entries(etasByRoute).map(
+			([route, destinations]) => {
+				const etasArray = Object.entries(destinations).map(
+					([dest, times]) => ({
+						dest: dest,
+						time: times,
+					}),
+				);
 
-			return {
-				line: route,
-				etas: etasArray,
-			};
-		});
+				return {
+					line: route,
+					etas: etasArray,
+				};
+			},
+		);
 
 		return result;
 	},
@@ -406,5 +232,4 @@ HKTransportETAProvider.register("ctb", {
 	getHeader: function () {
 		return this.getLocalizedStationName();
 	},
-
 });

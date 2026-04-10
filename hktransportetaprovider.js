@@ -94,7 +94,9 @@ const HKTransportETAProvider = Class.extend({
 		}
 		const headers = {};
 		if (requestHeaders) {
-			requestHeaders.forEach(h => { headers[h.name] = h.value; });
+			requestHeaders.forEach((h) => {
+				headers[h.name] = h.value;
+			});
 		}
 		const response = await fetch(url, { headers });
 		if (!response.ok) {

@@ -1,5 +1,3 @@
-/* global ETAProvider, ETAObject */
-
 /* MagicMirror²
  * Module: ETA
  *
@@ -24,45 +22,49 @@ HKTransportETAProvider.register("nwfb", {
 
 	// Overwrite the fetchETA method.
 	async fetchETA() {
-		if (!this.config.stopInfo) {
-			this.config.stopInfo = await this.fetchStopInfo();
-			this.config.stopRouteInfo = await this.fetchStopRouteInfo();
+		try {
+			if (!this.config.stopInfo) {
+				this.config.stopInfo = await this.fetchStopInfo();
+				this.config.stopRouteInfo = await this.fetchStopRouteInfo();
+			}
+
+			const routeData = await Promise.all(
+				this.config.stopRouteInfo.map(async (stopRoute) => {
+					const data = await this.fetchData(
+						this.getUrl(stopRoute.route),
+					);
+					return data.data;
+				}),
+			);
+
+			const filteredData = routeData.filter((etaInfo) => etaInfo.length);
+			const currentETAArray = this.generateETAObject(filteredData);
+			this.setCurrentETA(currentETAArray);
+		} catch (error) {
+			Log.error("Could not load data ... ", error);
+		} finally {
+			this.updateAvailable();
 		}
-
-		Promise.all(
-			this.config.stopRouteInfo.map((stopRoute) =>
-				this.fetchData(this.getUrl(stopRoute.route)).then(
-					(data) => data.data,
-				),
-			),
-		)
-			.then((data) => data.filter((etaInfo) => etaInfo.length))
-			.then((data) => this.generateETAObject(data))
-			.then((currentETAArray) => {
-				this.setCurrentETA(currentETAArray);
-			})
-			.catch((request) => {
-				Log.error("Could not load data ... ", request);
-			})
-			.finally(() => this.updateAvailable());
 	},
 
-	fetchStopInfo() {
+	async fetchStopInfo() {
 		const stopURL = `${this.config.apiBase}/transport/citybus-nwfb/stop/${this.config.sta}`;
-		return this.fetchData(stopURL)
-			.then((data) => data.data)
-			.catch((request) => {
-				Log.error("Could not load data ... ", request);
-			});
+		try {
+			const data = await this.fetchData(stopURL);
+			return data.data;
+		} catch (error) {
+			Log.error("Could not load data ... ", error);
+		}
 	},
 
-	fetchStopRouteInfo() {
+	async fetchStopRouteInfo() {
 		const stopURL = `${this.config.apiBase}/transport/batch/stop-route/${this.providerName}/${this.config.sta}`;
-		return this.fetchData(stopURL)
-			.then((data) => data.data)
-			.catch((request) => {
-				Log.error("Could not load data ... ", request);
-			});
+		try {
+			const data = await this.fetchData(stopURL);
+			return data.data;
+		} catch (error) {
+			Log.error("Could not load data ... ", error);
+		}
 	},
 
 	/*

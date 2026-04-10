@@ -1,5 +1,3 @@
-/* global ETAProvider, ETAObject */
-
 /* MagicMirror²
  * Module: ETA
  *
@@ -17,7 +15,7 @@ HKTransportETAProvider.register("lrt", {
 
 	// Set the default config properties that is specific to this provider
 	defaults: {
-		apiBase: " https://rt.data.gov.hk/v1/transport/mtr/lrt/getSchedule",
+		apiBase: "https://rt.data.gov.hk/v1/transport/mtr/lrt/getSchedule",
 		lrtLines: "/modules/MMM-HK-Transport-ETA/data/station-lrt.json",
 		allRoutesData: {},
 		stationInfo: {},
@@ -25,41 +23,42 @@ HKTransportETAProvider.register("lrt", {
 
 	// Overwrite the fetchETA method.
 	async fetchETA() {
-		if (Object.entries(this.config.stationInfo).length === 0) {
-			this.config.stationInfo = await this.fetchStationInfo();
-		}
+		try {
+			if (Object.entries(this.config.stationInfo).length === 0) {
+				this.config.stationInfo = await this.fetchStationInfo();
+			}
 
-		this.fetchData(this.getUrl(this.config.stationInfo))
-			.then((data) => {
-				const currentETAArray = this.generateETAObject(data).flat();
-				this.setCurrentETA(currentETAArray);
-			})
-			.catch((request) => {
-				Log.error("Could not load data ... ", request);
-			})
-			.finally(() => this.updateAvailable());
+			const data = await this.fetchData(
+				this.getUrl(this.config.stationInfo),
+			);
+			const currentETAArray = this.generateETAObject(data).flat();
+			this.setCurrentETA(currentETAArray);
+		} catch (error) {
+			Log.error("Could not load data ... ", error);
+		} finally {
+			this.updateAvailable();
+		}
 	},
 
-	fetchStationInfo() {
-		return this.fetchData(this.config.lrtLines)
-			.then((data) => {
-				this.config.allRoutesData = data;
-				const stations = data
-					.map((zones) => zones.stations.map((data) => data))
-					.flat();
-				const targetStation = stations.find((stop) =>
-					[stop.eng_name, stop.chi_name].includes(this.config.sta),
-				);
-				return {
-					station_id: targetStation.station_id,
-					station: this.config.lang.startsWith("zh")
-						? targetStation.chi_name
-						: targetStation.eng_name,
-				};
-			})
-			.catch((request) => {
-				Log.error("Could not load data ... ", request);
-			});
+	async fetchStationInfo() {
+		try {
+			const data = await this.fetchData(this.config.lrtLines);
+			this.config.allRoutesData = data;
+			const stations = data
+				.map((zones) => zones.stations.map((data) => data))
+				.flat();
+			const targetStation = stations.find((stop) =>
+				[stop.eng_name, stop.chi_name].includes(this.config.sta),
+			);
+			return {
+				station_id: targetStation.station_id,
+				station: this.config.lang.startsWith("zh")
+					? targetStation.chi_name
+					: targetStation.eng_name,
+			};
+		} catch (error) {
+			Log.error("Could not load data ... ", error);
+		}
 	},
 
 	/*

@@ -17,10 +17,10 @@ HKTransportETAProvider.register("kmb", {
 	defaults: {
 		apiBase: "https://data.etabus.gov.hk/v1/transport/kmb",
 		stopInfo: null, // Changed from [] to null for better cache invalidation
-		stopDataCache: new Map(),
 	},
 
-	// Cache for internal KMB search API responses
+	// Caches
+	stopDataCache: new Map(),
 	searchApiCache: new Map(),
 	cacheMaxAge: 30 * 60 * 1000,
 
@@ -344,8 +344,8 @@ HKTransportETAProvider.register("kmb", {
 	 * Enhanced stop data fetching
 	 */
 	async fetchStopData(stop_id = null) {
-		if (this.config.stopDataCache.has(stop_id)) {
-			return this.config.stopDataCache.get(stop_id);
+		if (this.stopDataCache.has(stop_id)) {
+			return this.stopDataCache.get(stop_id);
 		}
 
 		try {
@@ -355,7 +355,7 @@ HKTransportETAProvider.register("kmb", {
 			const response = await this.fetchData(url);
 			const data = response?.data;
 			if (data) {
-				this.config.stopDataCache.set(stop_id, data);
+				this.stopDataCache.set(stop_id, data);
 			}
 			return data;
 		} catch (error) {
@@ -363,18 +363,6 @@ HKTransportETAProvider.register("kmb", {
 				`KMB ETA Provider: Error fetching stop data for ${stop_id || "all stops"}`,
 				error,
 			);
-			throw error;
-		}
-	},
-
-	/**
-	 * Fetch data
-	 */
-	async fetchData(url, options = {}) {
-		try {
-			const response = await fetch(url, options);
-			return await response.json();
-		} catch (error) {
 			throw error;
 		}
 	},
@@ -449,7 +437,7 @@ HKTransportETAProvider.register("kmb", {
 	 * Cleans up resources, e.g., clears caches.
 	 */
 	_cleanup() {
-		this.config.stopDataCache.clear();
+		this.stopDataCache.clear();
 	},
 
 	/**
