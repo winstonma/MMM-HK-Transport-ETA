@@ -7,22 +7,26 @@
  * This class is the blueprint for a HK Transport ETA provider.
  */
 
-HKTransportETAProvider.register("kmb", {
-	// Set the name of the provider.
-	// This isn't strictly necessary, since it will fallback to the provider identifier
-	// But for debugging (and future alerts) it would be nice to have the real name.
-	providerName: "KMB",
+class KMBProvider extends HKTransportETAProvider {
+	constructor() {
+		super();
 
-	// Set the default config properties that is specific to this provider
-	defaults: {
-		apiBase: "https://data.etabus.gov.hk/v1/transport/kmb",
-		stopInfo: null, // Changed from [] to null for better cache invalidation
-	},
+		// Set the name of the provider.
+		// This isn't strictly necessary, since it will fallback to the provider identifier
+		// But for debugging (and future alerts) it would be nice to have the real name.
+		this.providerName = "KMB";
 
-	// Caches
-	stopDataCache: new Map(),
-	searchApiCache: new Map(),
-	cacheMaxAge: 30 * 60 * 1000,
+		// Set the default config properties that is specific to this provider
+		this.defaults = {
+			apiBase: "https://data.etabus.gov.hk/v1/transport/kmb",
+			stopInfo: null, // Changed from [] to null for better cache invalidation
+		};
+
+		// Caches
+		this.stopDataCache = new Map();
+		this.searchApiCache = new Map();
+		this.cacheMaxAge = 30 * 60 * 1000;
+	}
 
 	/**
 	 * Main method to fetch ETA data
@@ -42,7 +46,7 @@ HKTransportETAProvider.register("kmb", {
 		} finally {
 			this.updateAvailable();
 		}
-	},
+	}
 
 	/**
 	 * Fetch ETA data for all stops
@@ -71,7 +75,7 @@ HKTransportETAProvider.register("kmb", {
 		this._sortAggregatedResults(aggregatedResults);
 
 		return Array.from(aggregatedResults.values());
-	},
+	}
 
 	/**
 	 * Processes a single stop result to extract unique ETAs.
@@ -99,7 +103,7 @@ HKTransportETAProvider.register("kmb", {
 			return Object.values(uniqueETAs);
 		}
 		return [];
-	},
+	}
 
 	/**
 	 * Aggregates unique ETA objects into the main aggregatedResults Map.
@@ -113,7 +117,7 @@ HKTransportETAProvider.register("kmb", {
 	 */
 	_getLocalizedDestination(eta) {
 		return this.config.lang?.startsWith("zh") ? eta.dest_tc : eta.dest_en;
-	},
+	}
 
 	_aggregateETAs(aggregatedResults, uniqueETAs) {
 		uniqueETAs.forEach((eta) => {
@@ -140,7 +144,7 @@ HKTransportETAProvider.register("kmb", {
 			}
 			existingDest.time.push(formattedTime);
 		});
-	},
+	}
 
 	/**
 	 * Sorts the aggregated ETA results.
@@ -153,7 +157,7 @@ HKTransportETAProvider.register("kmb", {
 			});
 			this._sortEtasByDestination(lineData.etas);
 		});
-	},
+	}
 
 	/**
 	 * Sorts an array of ETA destinations.
@@ -161,7 +165,7 @@ HKTransportETAProvider.register("kmb", {
 	 */
 	_sortEtasByDestination(etas) {
 		etas.sort((a, b) => a.dest.localeCompare(b.dest));
-	},
+	}
 
 	/**
 	 * Fetch ETA data for a single stop.
@@ -177,7 +181,7 @@ HKTransportETAProvider.register("kmb", {
 			);
 			return { stopID, data: [], success: false, error };
 		}
-	},
+	}
 
 	/**
 	 * Fetch route information with enhanced error handling
@@ -263,7 +267,7 @@ HKTransportETAProvider.register("kmb", {
 			);
 			throw error;
 		}
-	},
+	}
 
 	/**
 	 * Get display name for the stop
@@ -280,7 +284,7 @@ HKTransportETAProvider.register("kmb", {
 			Log.warn("KMB ETA Provider: Could not fetch stop name", error);
 			return "";
 		}
-	},
+	}
 
 	/**
 	 * Enhanced route-stop data fetching
@@ -320,7 +324,7 @@ HKTransportETAProvider.register("kmb", {
 			);
 			throw error;
 		}
-	},
+	}
 
 	/**
 	 * Enhanced routes fetching
@@ -338,7 +342,7 @@ HKTransportETAProvider.register("kmb", {
 			Log.error("KMB ETA Provider: Error fetching routes", error);
 			throw error;
 		}
-	},
+	}
 
 	/**
 	 * Enhanced stop data fetching
@@ -365,7 +369,7 @@ HKTransportETAProvider.register("kmb", {
 			);
 			throw error;
 		}
-	},
+	}
 
 	/**
 	 * Fetch data from internal KMB search API with caching
@@ -407,7 +411,7 @@ HKTransportETAProvider.register("kmb", {
 		});
 
 		return data;
-	},
+	}
 
 	/**
 	 * Clear expired cache entries
@@ -419,7 +423,7 @@ HKTransportETAProvider.register("kmb", {
 				this.searchApiCache.delete(key);
 			}
 		}
-	},
+	}
 
 	/**
 	 * Handle errors gracefully
@@ -433,21 +437,21 @@ HKTransportETAProvider.register("kmb", {
 		// - Exponential backoff for subsequent requests
 		// - Fallback to cached data if recent enough
 		// - User notifications for persistent errors
-	},
+	}
 
 	/**
 	 * Cleans up resources, e.g., clears caches.
 	 */
 	_cleanup() {
 		this.stopDataCache.clear();
-	},
+	}
 
 	/**
 	 * Create ETA URL for a stop
 	 */
 	getETAUrl(stopID) {
 		return `${this.config.apiBase}/stop-eta/${stopID}`;
-	},
+	}
 
 	/**
 	 * Fetch KMB stoppings data directly from KMB internal search API
@@ -472,7 +476,10 @@ HKTransportETAProvider.register("kmb", {
 				{ bsiCode: cleanStopId },
 			);
 
-			Log.log(`KMB ETA Provider: Raw getRoutesInStop response:`, JSON.stringify(routesInStopResponse));
+			Log.log(
+				`KMB ETA Provider: Raw getRoutesInStop response:`,
+				JSON.stringify(routesInStopResponse),
+			);
 
 			const routeNumbers = routesInStopResponse.data || [];
 			Log.log(
@@ -655,7 +662,7 @@ HKTransportETAProvider.register("kmb", {
 			);
 			throw error;
 		}
-	},
+	}
 
 	/**
 	 * Get header for display
@@ -665,5 +672,7 @@ HKTransportETAProvider.register("kmb", {
 			return this.config.stopInfo.stopName;
 		}
 		return null;
-	},
-});
+	}
+}
+
+HKTransportETAProvider.register("kmb", KMBProvider);

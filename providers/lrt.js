@@ -7,19 +7,23 @@
  * This class is the blueprint for a HK Transport ETA provider.
  */
 
-HKTransportETAProvider.register("lrt", {
-	// Set the name of the provider.
-	// This isn't strictly necessary, since it will fallback to the provider identifier
-	// But for debugging (and future alerts) it would be nice to have the real name.
-	providerName: "LRT",
+class LRTProvider extends HKTransportETAProvider {
+	constructor() {
+		super();
 
-	// Set the default config properties that is specific to this provider
-	defaults: {
-		apiBase: "https://rt.data.gov.hk/v1/transport/mtr/lrt/getSchedule",
-		lrtLines: "/modules/MMM-HK-Transport-ETA/data/station-lrt.json",
-		allRoutesData: {},
-		stationInfo: {},
-	},
+		// Set the name of the provider.
+		// This isn't strictly necessary, since it will fallback to the provider identifier
+		// But for debugging (and future alerts) it would be nice to have the real name.
+		this.providerName = "LRT";
+
+		// Set the default config properties that is specific to this provider
+		this.defaults = {
+			apiBase: "https://rt.data.gov.hk/v1/transport/mtr/lrt/getSchedule",
+			lrtLines: "/modules/MMM-HK-Transport-ETA/data/station-lrt.json",
+			allRoutesData: {},
+			stationInfo: {},
+		};
+	}
 
 	// Overwrite the fetchETA method.
 	async fetchETA() {
@@ -38,7 +42,7 @@ HKTransportETAProvider.register("lrt", {
 		} finally {
 			this.updateAvailable();
 		}
-	},
+	}
 
 	async fetchStationInfo() {
 		try {
@@ -59,7 +63,7 @@ HKTransportETAProvider.register("lrt", {
 		} catch (error) {
 			Log.error("Could not load data ... ", error);
 		}
-	},
+	}
 
 	/*
 	 * Generate a ETAObject based on currentETAData
@@ -111,7 +115,7 @@ HKTransportETAProvider.register("lrt", {
 				};
 			});
 		});
-	},
+	}
 
 	/** LRT Specific Methods - These are not part of the default provider methods */
 	/*
@@ -119,7 +123,7 @@ HKTransportETAProvider.register("lrt", {
 	 */
 	getUrl(stationInfo) {
 		return this.config.apiBase + this.getParams(stationInfo);
-	},
+	}
 
 	/* getParams(compliments)
 	 * Generates an url with api parameters based on the config.
@@ -132,5 +136,7 @@ HKTransportETAProvider.register("lrt", {
 		params += "&station_id=" + stationInfo.station_id;
 
 		return params;
-	},
-});
+	}
+}
+
+HKTransportETAProvider.register("lrt", LRTProvider);

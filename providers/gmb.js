@@ -7,18 +7,22 @@
  * This class is the blueprint for a HK Transport ETA provider.
  */
 
-HKTransportETAProvider.register("gmb", {
-	// Set the name of the provider.
-	// This isn't strictly necessary, since it will fallback to the provider identifier
-	// But for debugging (and future alerts) it would be nice to have the real name.
-	providerName: "GMB",
+class GMBProvider extends HKTransportETAProvider {
+	constructor() {
+		super();
 
-	// Set the default config properties that is specific to this provider
-	defaults: {
-		apiBase: "https://data.etagmb.gov.hk",
-		routeData: {},
-		stationInfo: null,
-	},
+		// Set the name of the provider.
+		// This isn't strictly necessary, since it will fallback to the provider identifier
+		// But for debugging (and future alerts) it would be nice to have the real name.
+		this.providerName = "GMB";
+
+		// Set the default config properties that is specific to this provider
+		this.defaults = {
+			apiBase: "https://data.etagmb.gov.hk",
+			routeData: {},
+			stationInfo: null,
+		};
+	}
 
 	// Overwrite the fetchETA method.
 	async fetchETA() {
@@ -42,7 +46,7 @@ HKTransportETAProvider.register("gmb", {
 		} finally {
 			this.updateAvailable();
 		}
-	},
+	}
 
 	async fetchRouteInfo() {
 		try {
@@ -80,7 +84,7 @@ HKTransportETAProvider.register("gmb", {
 			Log.error("Could not load data ... ", request);
 			throw request; // Rethrow the error for further handling if necessary
 		}
-	},
+	}
 
 	/** GMB Specific Methods - These are not part of the default provider methods */
 	/*
@@ -88,7 +92,7 @@ HKTransportETAProvider.register("gmb", {
 	 */
 	getUrl(stationInfo) {
 		return `${this.config.apiBase}/eta/route-stop/${stationInfo.routeID}/${this.config.sta}`;
-	},
+	}
 
 	/**
 	 * Generate a ETAObject based on currentETAData
@@ -120,5 +124,7 @@ HKTransportETAProvider.register("gmb", {
 							},
 						],
 		}));
-	},
-});
+	}
+}
+
+HKTransportETAProvider.register("gmb", GMBProvider);

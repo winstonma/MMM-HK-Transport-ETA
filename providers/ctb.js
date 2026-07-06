@@ -7,20 +7,24 @@
  * This class is the blueprint for a HK Transport ETA provider.
  */
 
-HKTransportETAProvider.register("ctb", {
-	// Set the name of the provider.
-	// This isn't strictly necessary, since it will fallback to the provider identifier
-	// But for debugging (and future alerts) it would be nice to have the real name.
-	providerName: "CTB",
+class CTBProvider extends HKTransportETAProvider {
+	constructor() {
+		super();
 
-	// Set the default config properties that is specific to this provider
-	defaults: {
-		apiBase: "https://rt.data.gov.hk/v2/transport/citybus",
-		company_id: "CTB",
-		stopInfo: null,
-		newDataURL:
-			"https://winstonma.github.io/MMM-HK-Transport-ETA-Data/ctb/stops",
-	},
+		// Set the name of the provider.
+		// This isn't strictly necessary, since it will fallback to the provider identifier
+		// But for debugging (and future alerts) it would be nice to have the real name.
+		this.providerName = "CTB";
+
+		// Set the default config properties that is specific to this provider
+		this.defaults = {
+			apiBase: "https://rt.data.gov.hk/v2/transport/citybus",
+			company_id: "CTB",
+			stopInfo: null,
+			newDataURL:
+				"https://winstonma.github.io/MMM-HK-Transport-ETA-Data/ctb/stops",
+		};
+	}
 
 	// Overwrite the fetchETA method.
 	async fetchETA() {
@@ -54,7 +58,7 @@ HKTransportETAProvider.register("ctb", {
 		} finally {
 			this.updateAvailable();
 		}
-	},
+	}
 
 	async fetchStopInfo() {
 		try {
@@ -118,7 +122,7 @@ HKTransportETAProvider.register("ctb", {
 			);
 			throw error; // Re-throw the error to propagate it
 		}
-	},
+	}
 
 	async fetchRouteETA(routeObj) {
 		try {
@@ -134,7 +138,10 @@ HKTransportETAProvider.register("ctb", {
 			const data = await this.fetchData(url);
 			if (data && data.data) {
 				// Log raw API response to debug invalid date issues
-				Log.log(`[CTB] Raw API response for route ${routeStr}:`, JSON.stringify(data.data));
+				Log.log(
+					`[CTB] Raw API response for route ${routeStr}:`,
+					JSON.stringify(data.data),
+				);
 				if (data.data.length > 0) {
 					Log.log(`[CTB] First ETA object for route ${routeStr}:`, {
 						eta: data.data[0].eta,
@@ -159,7 +166,7 @@ HKTransportETAProvider.register("ctb", {
 			);
 			return null;
 		}
-	},
+	}
 
 	/*
 	 * Generate a ETAObject based on currentETAData
@@ -175,9 +182,17 @@ HKTransportETAProvider.register("ctb", {
 
 		// Log all raw ETA times for debugging
 		Log.log(`[CTB] Processing ${combinedETAData.length} raw ETA objects`);
-		const invalidETAs = combinedETAData.filter(eta => !eta.eta || eta.eta === "" || eta.eta === "null" || eta.eta === "undefined");
+		const invalidETAs = combinedETAData.filter(
+			(eta) =>
+				!eta.eta ||
+				eta.eta === "" ||
+				eta.eta === "null" ||
+				eta.eta === "undefined",
+		);
 		if (invalidETAs.length > 0) {
-			Log.log(`[CTB] Found ${invalidETAs.length} ETA objects with empty eta values (likely KMB-operated trips)`);
+			Log.log(
+				`[CTB] Found ${invalidETAs.length} ETA objects with empty eta values (likely KMB-operated trips)`,
+			);
 		}
 
 		// Group ETAs by route first, then by destination within each route
@@ -203,10 +218,17 @@ HKTransportETAProvider.register("ctb", {
 			}
 
 			// Check if this is a KMB-operated trip (empty eta with KMB remark)
-			if (!eta.eta || eta.eta === "" || eta.eta === "null" || eta.eta === "undefined") {
+			if (
+				!eta.eta ||
+				eta.eta === "" ||
+				eta.eta === "null" ||
+				eta.eta === "undefined"
+			) {
 				if (eta.rmk_en && eta.rmk_en.includes("KMB")) {
 					routeGroups[route][dest].hasKmbCycle = true;
-					Log.log(`[CTB] Detected KMB-operated trip for route ${route}, dest: ${dest}`);
+					Log.log(
+						`[CTB] Detected KMB-operated trip for route ${route}, dest: ${dest}`,
+					);
 				}
 			} else {
 				// Valid ETA, add the time
@@ -224,8 +246,11 @@ HKTransportETAProvider.register("ctb", {
 						const { times, hasKmbCycle } = data;
 
 						// Check for invalid dates
-						if (times.some(t => !moment(t).isValid())) {
-							Log.warn(`[CTB] Invalid date detected in route ${route}, dest ${dest}. Times:`, times);
+						if (times.some((t) => !moment(t).isValid())) {
+							Log.warn(
+								`[CTB] Invalid date detected in route ${route}, dest ${dest}. Times:`,
+								times,
+							);
 						}
 
 						const etaObj = {
@@ -235,7 +260,9 @@ HKTransportETAProvider.register("ctb", {
 
 						// Add note if applicable
 						if (hasKmbCycle) {
-							etaObj.note = this.config.lang.startsWith("zh") ? "九巴時段" : "KMB Cycle";
+							etaObj.note = this.config.lang.startsWith("zh")
+								? "九巴時段"
+								: "KMB Cycle";
 						}
 
 						return etaObj;
@@ -250,7 +277,7 @@ HKTransportETAProvider.register("ctb", {
 		);
 
 		return result;
-	},
+	}
 
 	// Helper methods to improve readability
 	groupETAsByDirection(etaList) {
@@ -259,7 +286,7 @@ HKTransportETAProvider.register("ctb", {
 			groups[eta.dir].push(eta);
 			return groups;
 		}, {});
-	},
+	}
 
 	getLocalizedStationName() {
 		if (!this.config.stopInfo) {
@@ -268,13 +295,15 @@ HKTransportETAProvider.register("ctb", {
 		return this.config.lang.startsWith("zh")
 			? this.config.stopInfo.name_tc
 			: this.config.stopInfo.name_en;
-	},
+	}
 
 	getLocalizedDestination(eta) {
 		return this.config.lang.startsWith("zh") ? eta.dest_tc : eta.dest_en;
-	},
+	}
 
-	getHeader: function () {
+	getHeader() {
 		return this.getLocalizedStationName();
-	},
-});
+	}
+}
+
+HKTransportETAProvider.register("ctb", CTBProvider);

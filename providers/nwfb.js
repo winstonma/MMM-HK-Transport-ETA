@@ -7,18 +7,22 @@
  * This class is the blueprint for a HK Transport ETA provider.
  */
 
-HKTransportETAProvider.register("nwfb", {
-	// Set the name of the provider.
-	// This isn't strictly necessary, since it will fallback to the provider identifier
-	// But for debugging (and future alerts) it would be nice to have the real name.
-	providerName: "NWFB",
+class NWFBProvider extends HKTransportETAProvider {
+	constructor() {
+		super();
 
-	// Set the default config properties that is specific to this provider
-	defaults: {
-		apiBase: "https://rt.data.gov.hk/v1.1",
-		stopInfo: null,
-		stopRouteInfo: null,
-	},
+		// Set the name of the provider.
+		// This isn't strictly necessary, since it will fallback to the provider identifier
+		// But for debugging (and future alerts) it would be nice to have the real name.
+		this.providerName = "NWFB";
+
+		// Set the default config properties that is specific to this provider
+		this.defaults = {
+			apiBase: "https://rt.data.gov.hk/v1.1",
+			stopInfo: null,
+			stopRouteInfo: null,
+		};
+	}
 
 	// Overwrite the fetchETA method.
 	async fetchETA() {
@@ -45,7 +49,7 @@ HKTransportETAProvider.register("nwfb", {
 		} finally {
 			this.updateAvailable();
 		}
-	},
+	}
 
 	async fetchStopInfo() {
 		const stopURL = `${this.config.apiBase}/transport/citybus-nwfb/stop/${this.config.sta}`;
@@ -55,7 +59,7 @@ HKTransportETAProvider.register("nwfb", {
 		} catch (error) {
 			Log.error("Could not load data ... ", error);
 		}
-	},
+	}
 
 	async fetchStopRouteInfo() {
 		const stopURL = `${this.config.apiBase}/transport/batch/stop-route/${this.providerName}/${this.config.sta}`;
@@ -65,14 +69,14 @@ HKTransportETAProvider.register("nwfb", {
 		} catch (error) {
 			Log.error("Could not load data ... ", error);
 		}
-	},
+	}
 
 	/*
 	 * Gets the complete url for the request
 	 */
 	getUrl(route) {
 		return `${this.config.apiBase}/transport/citybus-nwfb/eta/${this.providerName}/${this.config.sta}/${route}`;
-	},
+	}
 
 	/*
 	 * Generate a ETAObject based on currentETAData
@@ -111,5 +115,7 @@ HKTransportETAProvider.register("nwfb", {
 				};
 			})[0];
 		});
-	},
-});
+	}
+}
+
+HKTransportETAProvider.register("nwfb", NWFBProvider);

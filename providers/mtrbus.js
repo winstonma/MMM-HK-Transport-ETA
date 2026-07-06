@@ -7,18 +7,22 @@
  * This class is the blueprint for a HK Transport ETA provider.
  */
 
-HKTransportETAProvider.register("mtrbus", {
-	// Set the name of the provider.
-	// This isn't strictly necessary, since it will fallback to the provider identifier
-	// But for debugging (and future alerts) it would be nice to have the real name.
-	providerName: "MTR Bus",
+class MTRBusProvider extends HKTransportETAProvider {
+	constructor() {
+		super();
 
-	// Set the default config properties that is specific to this provider
-	defaults: {
-		apiBase: "https://rt.data.gov.hk/v1/transport/mtr/bus/getSchedule",
-		mtrBusLines: "/modules/MMM-HK-Transport-ETA/data/routes-mtr.json",
-		stops: null,
-	},
+		// Set the name of the provider.
+		// This isn't strictly necessary, since it will fallback to the provider identifier
+		// But for debugging (and future alerts) it would be nice to have the real name.
+		this.providerName = "MTR Bus";
+
+		// Set the default config properties that is specific to this provider
+		this.defaults = {
+			apiBase: "https://rt.data.gov.hk/v1/transport/mtr/bus/getSchedule",
+			mtrBusLines: "/modules/MMM-HK-Transport-ETA/data/routes-mtr.json",
+			stops: null,
+		};
+	}
 
 	// Overwrite the fetchETA method.
 	async fetchETA() {
@@ -53,7 +57,7 @@ HKTransportETAProvider.register("mtrbus", {
 		} finally {
 			this.updateAvailable();
 		}
-	},
+	}
 
 	/**
 	 * Fetch ETA data for all configured routes
@@ -72,7 +76,7 @@ HKTransportETAProvider.register("mtrbus", {
 		return etaResults.map(({ routeGroup, data }) =>
 			this.generateETAObject(routeGroup, data),
 		);
-	},
+	}
 
 	/**
 	 * Fetch ETA data for a single route
@@ -111,7 +115,7 @@ HKTransportETAProvider.register("mtrbus", {
 			);
 			return { routeGroup, data: null };
 		}
-	},
+	}
 
 	async fetchStopsInfo() {
 		try {
@@ -141,7 +145,7 @@ HKTransportETAProvider.register("mtrbus", {
 			Log.error("Could not load data ... ", error);
 			return [];
 		}
-	},
+	}
 
 	/**
 	 * Group stops by route for the configured station
@@ -200,7 +204,7 @@ HKTransportETAProvider.register("mtrbus", {
 		});
 
 		return routeGroups;
-	},
+	}
 
 	/**
 	 * Find all stops that match our configured station
@@ -221,7 +225,7 @@ HKTransportETAProvider.register("mtrbus", {
 		});
 
 		return matchingStops;
-	},
+	}
 
 	/**
 	 * Find all stops at the same location as the given stop
@@ -250,7 +254,7 @@ HKTransportETAProvider.register("mtrbus", {
 		});
 
 		return stopsAtSameLocation;
-	},
+	}
 
 	/**
 	 * Find the route and line information for a given stop
@@ -270,7 +274,7 @@ HKTransportETAProvider.register("mtrbus", {
 			}
 		}
 		return null;
-	},
+	}
 
 	/**
 	 * Check if a stop matches our configured station
@@ -283,7 +287,7 @@ HKTransportETAProvider.register("mtrbus", {
 			stop.name_en === this.config.sta ||
 			stop.name_ch === this.config.sta
 		);
-	},
+	}
 
 	/**
 	 * Get the station name based on the configured language
@@ -292,7 +296,7 @@ HKTransportETAProvider.register("mtrbus", {
 	 */
 	getStationName(stop) {
 		return this.config.lang.startsWith("zh") ? stop.name_ch : stop.name_en;
-	},
+	}
 
 	/**
 	 * Get the destination name based on the configured language
@@ -309,7 +313,7 @@ HKTransportETAProvider.register("mtrbus", {
 				? line.stops[line.stops.length - 1].name_en
 				: line.description_en;
 		}
-	},
+	}
 
 	/*
 	 * Generate a ETAObject based on routeGroup and currentETAData
@@ -363,7 +367,7 @@ HKTransportETAProvider.register("mtrbus", {
 			line: routeGroup.route,
 			etas: etas,
 		};
-	},
+	}
 
 	/**
 	 * Get the header to display for this provider
@@ -374,5 +378,7 @@ HKTransportETAProvider.register("mtrbus", {
 			return this.config.stops[0].station;
 		}
 		return this.providerName;
-	},
-});
+	}
+}
+
+HKTransportETAProvider.register("mtrbus", MTRBusProvider);
