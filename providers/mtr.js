@@ -134,12 +134,13 @@ class MTRProvider extends HKTransportETAProvider {
 	 * return String - URL params.
 	 */
 	getParams(stationInfo) {
-		let params = "?";
-
-		params += "&line=" + stationInfo.line_code;
-		params += "&sta=" + stationInfo.station_code;
-
-		return params;
+		return (
+			"?" +
+			new URLSearchParams({
+				line: stationInfo.line_code,
+				sta: stationInfo.station_code,
+			}).toString()
+		);
 	}
 }
 

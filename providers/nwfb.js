@@ -95,23 +95,21 @@ class NWFBProvider extends HKTransportETAProvider {
 				currentETA,
 				(product) => product.dir,
 			);
-			return Object.keys(groupedETA).map((key, index) => {
-				const value = groupedETA[key];
-				return {
-					line: value[0].route,
-					station: this.config.lang.startsWith("zh")
-						? this.config.stopInfo.name_tc
-						: this.config.stopInfo.name_en,
-					etas: [
-						{
-							dest: this.config.lang.startsWith("zh")
-								? value[0].dest_tc
-								: value[0].dest_en,
-							time: value.map((eta) => eta.eta),
-						},
-					],
-				};
-			})[0];
+			const value = Object.values(groupedETA)[0];
+			return {
+				line: value[0].route,
+				station: this.config.lang.startsWith("zh")
+					? this.config.stopInfo.name_tc
+					: this.config.stopInfo.name_en,
+				etas: [
+					{
+						dest: this.config.lang.startsWith("zh")
+							? value[0].dest_tc
+							: value[0].dest_en,
+						time: value.map((eta) => eta.eta),
+					},
+				],
+			};
 		});
 	}
 }

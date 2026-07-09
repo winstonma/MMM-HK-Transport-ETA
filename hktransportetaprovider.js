@@ -11,6 +11,9 @@ class HKTransportETAProvider {
 	// ETA data with enforced access via accessor methods.
 	#currentETAArray = null;
 
+	// Collection of registered ETA providers.
+	static providers = Object.create(null);
+
 	constructor() {
 		// ETA Provider Properties
 		this.providerName = null;
@@ -108,53 +111,48 @@ class HKTransportETAProvider {
 		}
 		return response.json();
 	}
+
+	/**
+	 * Static method to register a new HK Transport ETA provider.
+	 *
+	 * @param {string} providerIdentifier The name of the HK Transport ETA provider
+	 * @param {Function} ProviderClass A class extending HKTransportETAProvider
+	 */
+	static register(providerIdentifier, ProviderClass) {
+		HKTransportETAProvider.providers[providerIdentifier.toLowerCase()] =
+			ProviderClass;
+	}
+
+	/**
+	 * Static method to initialize a new HK Transport ETA provider.
+	 *
+	 * @param {string} providerIdentifier The name of the HK Transport ETA provider
+	 * @param {object} delegate The ETA module
+	 * @returns {HKTransportETAProvider} The new HK Transport ETA provider instance
+	 */
+	static initialize(providerIdentifier, delegate) {
+		providerIdentifier = providerIdentifier.toLowerCase();
+
+		const ProviderClass = HKTransportETAProvider.providers[providerIdentifier];
+
+		if (typeof ProviderClass !== "function") {
+			throw new Error(
+				`HK Transport ETA provider "${providerIdentifier}" is not a valid provider class. ` +
+					"Make sure the provider file exports a class extending HKTransportETAProvider.",
+			);
+		}
+
+		const provider = new ProviderClass();
+		const config = { ...provider.defaults, ...delegate.config };
+
+		provider.delegate = delegate;
+		provider.setConfig(config);
+
+		provider.providerIdentifier = providerIdentifier;
+		if (!provider.providerName) {
+			provider.providerName = providerIdentifier;
+		}
+
+		return provider;
+	}
 }
-
-/**
- * Collection of registered ETA providers.
- */
-HKTransportETAProvider.providers = Object.create(null);
-
-/**
- * Static method to register a new HK Transport ETA provider.
- *
- * @param {string} providerIdentifier The name of the HK Transport ETA provider
- * @param {Function} ProviderClass A class extending HKTransportETAProvider
- */
-HKTransportETAProvider.register = function (providerIdentifier, ProviderClass) {
-	HKTransportETAProvider.providers[providerIdentifier.toLowerCase()] =
-		ProviderClass;
-};
-
-/**
- * Static method to initialize a new HK Transport ETA provider.
- *
- * @param {string} providerIdentifier The name of the HK Transport ETA provider
- * @param {object} delegate The ETA module
- * @returns {HKTransportETAProvider} The new HK Transport ETA provider instance
- */
-HKTransportETAProvider.initialize = function (providerIdentifier, delegate) {
-	providerIdentifier = providerIdentifier.toLowerCase();
-
-	const ProviderClass = HKTransportETAProvider.providers[providerIdentifier];
-
-	if (typeof ProviderClass !== "function") {
-		throw new Error(
-			`HK Transport ETA provider "${providerIdentifier}" is not a valid provider class. ` +
-				"Make sure the provider file exports a class extending HKTransportETAProvider.",
-		);
-	}
-
-	const provider = new ProviderClass();
-	const config = { ...provider.defaults, ...delegate.config };
-
-	provider.delegate = delegate;
-	provider.setConfig(config);
-
-	provider.providerIdentifier = providerIdentifier;
-	if (!provider.providerName) {
-		provider.providerName = providerIdentifier;
-	}
-
-	return provider;
-};

@@ -267,14 +267,6 @@ class CTBProvider extends HKTransportETAProvider {
 	}
 
 	// Helper methods to improve readability
-	groupETAsByDirection(etaList) {
-		return etaList.reduce((groups, eta) => {
-			groups[eta.dir] ??= [];
-			groups[eta.dir].push(eta);
-			return groups;
-		}, {});
-	}
-
 	getLocalizedStationName() {
 		if (!this.config.stopInfo) {
 			return null;

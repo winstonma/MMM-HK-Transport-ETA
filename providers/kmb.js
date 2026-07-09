@@ -88,19 +88,20 @@ class KMBProvider extends HKTransportETAProvider {
 			stopResult.value.success &&
 			stopResult.value.data
 		) {
-			const uniqueETAs = {};
+			const uniqueETAs = new Map();
 			stopResult.value.data.forEach((eta) => {
 				if (eta.eta) {
 					const key = `${eta.route}-${eta.dir}-${eta.dest_tc}-${eta.eta}`;
+					const existing = uniqueETAs.get(key);
 					if (
-						!uniqueETAs[key] ||
-						eta.service_type < uniqueETAs[key].service_type
+						!existing ||
+						eta.service_type < existing.service_type
 					) {
-						uniqueETAs[key] = eta;
+						uniqueETAs.set(key, eta);
 					}
 				}
 			});
-			return Object.values(uniqueETAs);
+			return [...uniqueETAs.values()];
 		}
 		return [];
 	}

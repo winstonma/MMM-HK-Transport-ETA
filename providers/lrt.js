@@ -126,11 +126,12 @@ class LRTProvider extends HKTransportETAProvider {
 	 * return String - URL params.
 	 */
 	getParams(stationInfo) {
-		let params = "?";
-
-		params += "&station_id=" + stationInfo.station_id;
-
-		return params;
+		return (
+			"?" +
+			new URLSearchParams({
+				station_id: stationInfo.station_id,
+			}).toString()
+		);
 	}
 }
 

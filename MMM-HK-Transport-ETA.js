@@ -62,7 +62,7 @@ Module.register("MMM-HK-Transport-ETA", {
 	},
 
 	// Start the ETA module.
-	start() {
+	async start() {
 		this.loaded = false;
 		this.displayRelativeTime = false;
 		this.error = null;
@@ -111,24 +111,25 @@ Module.register("MMM-HK-Transport-ETA", {
 			this.config.transportETAProvider === "kmb" &&
 			this.config.sta.includes("-")
 		) {
-			this.transportETAProvider
-				.getKmbStoppings(this.config.sta)
-				.then((stoppings) => {
-					// Update the provider's config with the fetched stoppings
-					// Directly mutate to preserve the searchApiCache in the provider's config
-					this.transportETAProvider.config.stops = stoppings;
+			try {
+				const stoppings = await this.transportETAProvider.getKmbStoppings(
+					this.config.sta,
+				);
 
-					// Let the ETA provider know we are starting.
-					this.transportETAProvider.start();
+				// Update the provider's config with the fetched stoppings
+				// Directly mutate to preserve the searchApiCache in the provider's config
+				this.transportETAProvider.config.stops = stoppings;
 
-					// Schedule the first update.
-					this.scheduleUpdate(this.config.initialLoadDelay);
-				})
-				.catch((error) => {
-					Log.error("Failed to fetch KMB stop data:", error);
-					this.error = error.message;
-					this.updateDom();
-				});
+				// Let the ETA provider know we are starting.
+				this.transportETAProvider.start();
+
+				// Schedule the first update.
+				this.scheduleUpdate(this.config.initialLoadDelay);
+			} catch (error) {
+				Log.error("Failed to fetch KMB stop data:", error);
+				this.error = error.message;
+				this.updateDom();
+			}
 		} else {
 			// Let the ETA provider know we are starting.
 			this.transportETAProvider.start();
@@ -219,7 +220,7 @@ Module.register("MMM-HK-Transport-ETA", {
 						}
 						return m.format(format);
 					})
-					.toString();
+					.join(", ");
 			}
 
 			const m = moment(date);
@@ -239,7 +240,7 @@ Module.register("MMM-HK-Transport-ETA", {
 					}
 					return m.fromNow(true);
 				})
-				.toString();
+				.join(", ");
 		});
 
 		this.nunjucksEnvironment().addFilter("json", (value, spaces) => {
