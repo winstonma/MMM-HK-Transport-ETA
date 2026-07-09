@@ -14,9 +14,9 @@
             </tr>
         {% endif %}
         {% for f in currentETA %}
-            {% if f.etas | length %}
+            {% if f.etas %}
                 {% for eta in f.etas %}
-                    <tr {% if config.colored %} class="colored" {% endif %}>
+                    <tr{% if config.colored %} class="colored"{% endif %}>
                         {% if f.line and loop.first %}
                             <td rowspan="{{ f.etas.length }}" class="align-left bright">
                                 {{ f.line }}
@@ -26,7 +26,7 @@
                             {{ eta.dest }}
                         </td>
                         <td class="align-right bright">
-                            {% if eta.time | length %}
+                            {% if eta.time %}
                                 {% if config.displayRelativeTime %}
                                     {{ eta.time | fromNow }}
                                 {% else %}
@@ -35,16 +35,20 @@
                             {% elseif eta.note %}
                                 <span class="dimmed small">{{ eta.note }}</span>
                             {% endif %}
-                            {% if eta.note and eta.time | length %}
+
+                            {% if eta.note and eta.time %}
                                 <span class="dimmed small">({{ eta.note }})</span>
                             {% endif %}
                         </td>
                     </tr>
                 {% endfor %}
             {% else %}
-                <div class="dimmed light small">
-                    {{ "EMPTY" | translate }}
-                </div>
+                {# A row is required here — a bare <div> is invalid inside a <table> #}
+                <tr>
+                    <td colspan="3" class="dimmed light small">
+                        {{ "EMPTY" | translate }}
+                    </td>
+                </tr>
             {% endif %}
         {% endfor %}
     </table>
@@ -57,5 +61,5 @@
         {{ "LOADING" | translate }}
     </div>
 {% endif %}
-<!-- Uncomment the line below to see the contents of the `forecast` object. -->
-<!-- <div style="word-wrap:break-word" class="xsmall dimmed">{{forecast | dump}}</div> -->
+<!-- Uncomment the line below to see the contents of the `currentETA` object. -->
+<!-- <div style="word-wrap:break-word" class="xsmall dimmed">{{ currentETA | dump }}</div> -->
