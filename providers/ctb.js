@@ -173,7 +173,7 @@ class CTBProvider extends HKTransportETAProvider {
 	 */
 	generateETAObject(etaData) {
 		// Flatten the array of arrays into a single array of ETA objects
-		let combinedETAData = [].concat(...etaData);
+		let combinedETAData = etaData.flat();
 
 		// Check if we have any ETA data
 		if (!combinedETAData || combinedETAData.length === 0) {

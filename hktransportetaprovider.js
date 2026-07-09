@@ -8,14 +8,13 @@
  */
 
 class HKTransportETAProvider {
+	// ETA data with enforced access via accessor methods.
+	#currentETAArray = null;
+
 	constructor() {
 		// ETA Provider Properties
 		this.providerName = null;
 		this.defaults = {};
-
-		// The following properties have accessor methods.
-		// Try to not access them directly.
-		this.currentETAArray = null;
 
 		// The following properties will be set automatically.
 		// You do not need to overwrite these properties.
@@ -59,13 +58,13 @@ class HKTransportETAProvider {
 
 	// This returns the current ETA object for the current ETA.
 	currentETA() {
-		return this.currentETAArray;
+		return this.#currentETAArray;
 	}
 
 	// Set the currentETA and notify the delegate that new information is available.
 	setCurrentETA(currentETAArray) {
 		// We should check here if we are passing a ETA
-		this.currentETAArray = currentETAArray;
+		this.#currentETAArray = currentETAArray;
 	}
 
 	// Notify the delegate that new ETA is available.
@@ -114,7 +113,7 @@ class HKTransportETAProvider {
 /**
  * Collection of registered ETA providers.
  */
-HKTransportETAProvider.providers = [];
+HKTransportETAProvider.providers = Object.create(null);
 
 /**
  * Static method to register a new HK Transport ETA provider.
@@ -147,7 +146,7 @@ HKTransportETAProvider.initialize = function (providerIdentifier, delegate) {
 	}
 
 	const provider = new ProviderClass();
-	const config = Object.assign({}, provider.defaults, delegate.config);
+	const config = { ...provider.defaults, ...delegate.config };
 
 	provider.delegate = delegate;
 	provider.setConfig(config);

@@ -306,11 +306,11 @@ class MTRBusProvider extends HKTransportETAProvider {
 	getDestinationName(line) {
 		if (this.config.lang.startsWith("zh")) {
 			return line.stops.length > 0
-				? line.stops[line.stops.length - 1].name_ch
+				? line.stops.at(-1).name_ch
 				: line.description_zh;
 		} else {
 			return line.stops.length > 0
-				? line.stops[line.stops.length - 1].name_en
+				? line.stops.at(-1).name_en
 				: line.description_en;
 		}
 	}

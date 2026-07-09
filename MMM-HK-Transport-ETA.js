@@ -27,12 +27,12 @@ Module.register("MMM-HK-Transport-ETA", {
 	firstEvent: null,
 
 	// Define required scripts.
-	getStyles: function () {
+	getStyles() {
 		return ["font-awesome.css", "MMM-HK-Transport-ETA.css"];
 	},
 
 	// Return the scripts that are necessary for the ETA module.
-	getScripts: function () {
+	getScripts() {
 		return [
 			"moment.js",
 			"hktransportetaprovider.js",
@@ -43,15 +43,15 @@ Module.register("MMM-HK-Transport-ETA", {
 	},
 
 	// Override getHeader method.
-	getHeader: function () {
+	getHeader() {
 		if (typeof this.transportETAProvider.getHeader === "function") {
 			return this.transportETAProvider.getHeader();
-		} else {
-			const currentETA = this.transportETAProvider.currentETA();
-			return currentETA && currentETA.length > 0
-				? currentETA[0].station
-				: `${this.data.classes}-${this.config.transportETAProvider}`;
 		}
+		const currentETA = this.transportETAProvider.currentETA();
+		return (
+			currentETA?.[0]?.station ??
+			`${this.data.classes}-${this.config.transportETAProvider}`
+		);
 	},
 
 	getTranslations() {
@@ -62,7 +62,7 @@ Module.register("MMM-HK-Transport-ETA", {
 	},
 
 	// Start the ETA module.
-	start: function () {
+	start() {
 		this.loaded = false;
 		this.displayRelativeTime = false;
 		this.error = null;
@@ -139,15 +139,15 @@ Module.register("MMM-HK-Transport-ETA", {
 	},
 
 	// Override notification handler.
-	notificationReceived: function (notification, payload, sender) {},
+	notificationReceived(notification, payload, sender) {},
 
 	// Select the template depending on the display type.
-	getTemplate: function () {
+	getTemplate() {
 		return "eta.njk";
 	},
 
 	// Add all the data to the template.
-	getTemplateData: function () {
+	getTemplateData() {
 		if (this.error) {
 			return {
 				error: this.error,
@@ -160,7 +160,7 @@ Module.register("MMM-HK-Transport-ETA", {
 	},
 
 	// What to do when the HK Transport ETA provider has new information available?
-	updateAvailable: function () {
+	updateAvailable() {
 		Log.log("New ETA information available.");
 
 		if (this.config.updateInterval !== 0 && !this.loaded) {
@@ -176,7 +176,7 @@ Module.register("MMM-HK-Transport-ETA", {
 	/**
 	 * Schedule visual update.
 	 */
-	scheduleUpdateInterval: function () {
+	scheduleUpdateInterval() {
 		this.updateDom(this.config.animationSpeed);
 
 		const currentTime = Date.now();
@@ -193,11 +193,9 @@ Module.register("MMM-HK-Transport-ETA", {
 		}, nextLoad);
 	},
 
-	scheduleUpdate: function (delay = null) {
-		let nextLoad = this.config.reloadInterval;
-		if (delay !== null && delay >= 0) {
-			nextLoad = delay;
-		}
+	scheduleUpdate(delay = null) {
+		const nextLoad =
+			delay !== null && delay >= 0 ? delay : this.config.reloadInterval;
 
 		setTimeout(() => {
 			this.transportETAProvider.fetchETA();
@@ -205,64 +203,56 @@ Module.register("MMM-HK-Transport-ETA", {
 	},
 
 	addFilters() {
-		this.nunjucksEnvironment().addFilter(
-			"formatTime",
-			function (date) {
-				if (Array.isArray(date)) {
-					const retArray = date.map((singleDate) => {
+		this.nunjucksEnvironment().addFilter("formatTime", (date) => {
+			const format = this.config.timeFormat !== 24 ? "h:mm" : "HH:mm";
+
+			if (Array.isArray(date)) {
+				return date
+					.map((singleDate) => {
 						// Log invalid dates for CTB debugging
 						const m = moment(singleDate);
 						if (!m.isValid()) {
-							Log.warn(`[CTB] formatTime received invalid date:`, singleDate);
+							Log.warn(
+								`[CTB] formatTime received invalid date:`,
+								singleDate,
+							);
 						}
-						if (this.config.timeFormat !== 24) {
-							return m.format("h:mm");
-						}
-						return m.format("HH:mm");
-					});
-					return retArray.toString();
-				} else {
-					const m = moment(date);
-					if (!m.isValid()) {
-						Log.warn(`[CTB] formatTime received invalid date:`, date);
-					}
-					if (this.config.timeFormat !== 24) {
-						return m.format("h:mm");
-					}
-
-					return m.format("HH:mm");
-				}
-			}.bind(this),
-		);
-
-		this.nunjucksEnvironment().addFilter(
-			"fromNow",
-			function (dateArray) {
-				return dateArray
-					.map((date) => {
-						const m = moment(date);
-						if (!m.isValid()) {
-							Log.warn(`[CTB] fromNow received invalid date:`, date);
-							return "N/A";
-						}
-						return m.fromNow(true);
+						return m.format(format);
 					})
 					.toString();
-			}.bind(this),
-		);
+			}
 
-		this.nunjucksEnvironment().addFilter(
-			"json",
-			function (value, spaces) {
-				if (value instanceof nunjucks.runtime.SafeString) {
-					value = value.toString();
-				}
-				const jsonString = JSON.stringify(value, null, spaces).replace(
-					/</g,
-					"\\u003c",
-				);
-				return nunjucks.runtime.markSafe(jsonString);
-			}.bind(this),
-		);
+			const m = moment(date);
+			if (!m.isValid()) {
+				Log.warn(`[CTB] formatTime received invalid date:`, date);
+			}
+			return m.format(format);
+		});
+
+		this.nunjucksEnvironment().addFilter("fromNow", (dateArray) => {
+			return dateArray
+				.map((date) => {
+					const m = moment(date);
+					if (!m.isValid()) {
+						Log.warn(`[CTB] fromNow received invalid date:`, date);
+						return "N/A";
+					}
+					return m.fromNow(true);
+				})
+				.toString();
+		});
+
+		this.nunjucksEnvironment().addFilter("json", (value, spaces) => {
+			const normalizedValue =
+				value instanceof nunjucks.runtime.SafeString
+					? value.toString()
+					: value;
+			const jsonString = JSON.stringify(
+				normalizedValue,
+				null,
+				spaces,
+			).replace(/</g, "\\u003c");
+			return nunjucks.runtime.markSafe(jsonString);
+		});
 	},
 });
