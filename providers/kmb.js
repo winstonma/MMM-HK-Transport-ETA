@@ -173,7 +173,7 @@ class KMBProvider extends HKTransportETAProvider {
 	async fetchStopETA(stopID) {
 		try {
 			const data = await this.fetchData(this.getETAUrl(stopID));
-			return { stopID, data: data?.data || [], success: true };
+			return { stopID, data: data?.data ?? [], success: true };
 		} catch (error) {
 			Log.error(
 				`KMB ETA Provider: Failed to fetch ETA for stop ${stopID}`,
@@ -295,7 +295,7 @@ class KMBProvider extends HKTransportETAProvider {
 			try {
 				const url = `${this.config.apiBase}/route-stop/`;
 				const response = await this.fetchData(url);
-				return response?.data || [];
+				return response?.data ?? [];
 			} catch (error) {
 				Log.error(
 					`KMB ETA Provider: Error fetching all route-stop data`,
@@ -481,7 +481,7 @@ class KMBProvider extends HKTransportETAProvider {
 				JSON.stringify(routesInStopResponse),
 			);
 
-			const routeNumbers = routesInStopResponse.data || [];
+			const routeNumbers = routesInStopResponse.data ?? [];
 			Log.log(
 				"KMB ETA Provider: Found",
 				routeNumbers.length,
@@ -508,7 +508,7 @@ class KMBProvider extends HKTransportETAProvider {
 						"getroutebound",
 						{ route: routeNumber },
 					);
-					const bounds = routeBoundResponse.data || [];
+					const bounds = routeBoundResponse.data ?? [];
 
 					// For each bound, get variants
 					const boundPromises = bounds.map(async (boundData) => {
@@ -522,7 +522,7 @@ class KMBProvider extends HKTransportETAProvider {
 									bound: String(bound),
 								});
 							const variants =
-								specialRouteResponse.data?.routes || [];
+								specialRouteResponse.data?.routes ?? [];
 
 							// For each variant, get stoppings
 							const variantPromises = variants.map(

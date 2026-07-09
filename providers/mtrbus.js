@@ -44,11 +44,8 @@ class MTRBusProvider extends HKTransportETAProvider {
 			// Filter out routes with no ETA data
 			const validRouteETAData = routeETAData.filter(
 				(routeData) =>
-					routeData.etas &&
-					routeData.etas.length > 0 &&
-					routeData.etas.some(
-						(eta) => eta.time && eta.time.length > 0,
-					),
+					routeData.etas?.length > 0 &&
+					routeData.etas.some((eta) => eta.time?.length > 0),
 			);
 
 			this.setCurrentETA(validRouteETAData);
@@ -305,14 +302,9 @@ class MTRBusProvider extends HKTransportETAProvider {
 	 */
 	getDestinationName(line) {
 		if (this.config.lang.startsWith("zh")) {
-			return line.stops.length > 0
-				? line.stops.at(-1).name_ch
-				: line.description_zh;
-		} else {
-			return line.stops.length > 0
-				? line.stops.at(-1).name_en
-				: line.description_en;
+			return line.stops.at(-1)?.name_ch ?? line.description_zh;
 		}
+		return line.stops.at(-1)?.name_en ?? line.description_en;
 	}
 
 	/*
@@ -374,7 +366,7 @@ class MTRBusProvider extends HKTransportETAProvider {
 	 * @returns {string} The header text
 	 */
 	getHeader() {
-		if (this.config.stops && this.config.stops.length > 0) {
+		if (this.config.stops?.length > 0) {
 			return this.config.stops[0].station;
 		}
 		return this.providerName;

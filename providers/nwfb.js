@@ -91,12 +91,10 @@ class NWFBProvider extends HKTransportETAProvider {
 				return null;
 			}
 
-			const groupedETA = currentETA.reduce((group, product) => {
-				const { dir } = product;
-				group[dir] = group[dir] ?? [];
-				group[dir].push(product);
-				return group;
-			}, {});
+			const groupedETA = Object.groupBy(
+				currentETA,
+				(product) => product.dir,
+			);
 			return Object.keys(groupedETA).map((key, index) => {
 				const value = groupedETA[key];
 				return {

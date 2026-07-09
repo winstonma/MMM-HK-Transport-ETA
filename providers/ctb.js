@@ -41,7 +41,7 @@ class CTBProvider extends HKTransportETAProvider {
 						this.config.routes.map(async (routeObj) => {
 							const data = await this.fetchRouteETA(routeObj);
 							// Filter out null or empty data immediately
-							return data && data.length ? data : null;
+							return data?.length ? data : null;
 						}),
 					)
 				).filter((item) => item); // Filter out null values immediately
@@ -136,7 +136,7 @@ class CTBProvider extends HKTransportETAProvider {
 
 			// Fetch the data
 			const data = await this.fetchData(url);
-			if (data && data.data) {
+			if (data?.data) {
 				// Log raw API response to debug invalid date issues
 				Log.log(
 					`[CTB] Raw API response for route ${routeStr}:`,
@@ -173,10 +173,10 @@ class CTBProvider extends HKTransportETAProvider {
 	 */
 	generateETAObject(etaData) {
 		// Flatten the array of arrays into a single array of ETA objects
-		let combinedETAData = etaData.flat();
+		const combinedETAData = etaData.flat();
 
 		// Check if we have any ETA data
-		if (!combinedETAData || combinedETAData.length === 0) {
+		if (combinedETAData.length === 0) {
 			return [];
 		}
 
@@ -196,93 +196,80 @@ class CTBProvider extends HKTransportETAProvider {
 		}
 
 		// Group ETAs by route first, then by destination within each route
-		const etasByRoute = combinedETAData.reduce((routeGroups, eta) => {
-			if (!eta) {
-				return routeGroups;
-			}
-
-			const route = eta.route;
-			const dest = this.getLocalizedDestination(eta);
-
-			// Initialize route group if it doesn't exist
-			if (!routeGroups[route]) {
-				routeGroups[route] = {};
-			}
-
-			// Initialize destination group within route if it doesn't exist
-			if (!routeGroups[route][dest]) {
-				routeGroups[route][dest] = {
-					times: [],
-					hasKmbCycle: false,
-				};
-			}
-
-			// Check if this is a KMB-operated trip (empty eta with KMB remark)
-			if (
-				!eta.eta ||
-				eta.eta === "" ||
-				eta.eta === "null" ||
-				eta.eta === "undefined"
-			) {
-				if (eta.rmk_en && eta.rmk_en.includes("KMB")) {
-					routeGroups[route][dest].hasKmbCycle = true;
-					Log.log(
-						`[CTB] Detected KMB-operated trip for route ${route}, dest: ${dest}`,
-					);
-				}
-			} else {
-				// Valid ETA, add the time
-				routeGroups[route][dest].times.push(eta.eta);
-			}
-
-			return routeGroups;
-		}, {});
-
-		// Convert the grouped data into the expected format
-		const result = Object.entries(etasByRoute).map(
-			([route, destinations]) => {
-				const etasArray = Object.entries(destinations).map(
-					([dest, data]) => {
-						const { times, hasKmbCycle } = data;
-
-						// Check for invalid dates
-						if (times.some((t) => !moment(t).isValid())) {
-							Log.warn(
-								`[CTB] Invalid date detected in route ${route}, dest ${dest}. Times:`,
-								times,
-							);
-						}
-
-						const etaObj = {
-							dest: dest,
-							time: times,
-						};
-
-						// Add note if applicable
-						if (hasKmbCycle) {
-							etaObj.note = this.config.lang.startsWith("zh")
-								? "九巴時段"
-								: "KMB Cycle";
-						}
-
-						return etaObj;
-					},
-				);
-
-				return {
-					line: route,
-					etas: etasArray,
-				};
-			},
+		const groupedByRoute = Object.groupBy(
+			combinedETAData,
+			(eta) => eta.route,
 		);
 
-		return result;
+		// Convert the grouped data into the expected format
+		return Object.entries(groupedByRoute).map(([route, routeEtas]) => {
+			const groupedByDest = Object.groupBy(routeEtas, (eta) =>
+				this.getLocalizedDestination(eta),
+			);
+
+			const etasArray = Object.entries(groupedByDest).map(
+				([dest, etaItems]) => {
+					// Valid ETAs, add the time
+					const times = etaItems
+						.filter(
+							(eta) =>
+								eta.eta &&
+								eta.eta !== "" &&
+								eta.eta !== "null" &&
+								eta.eta !== "undefined",
+						)
+						.map((eta) => eta.eta);
+
+					// Check for invalid dates
+					if (times.some((t) => !moment(t).isValid())) {
+						Log.warn(
+							`[CTB] Invalid date detected in route ${route}, dest ${dest}. Times:`,
+							times,
+						);
+					}
+
+					// Check if this is a KMB-operated trip (empty eta with KMB remark)
+					const hasKmbCycle = etaItems.some(
+						(eta) =>
+							(!eta.eta ||
+								eta.eta === "" ||
+								eta.eta === "null" ||
+								eta.eta === "undefined") &&
+							eta.rmk_en?.includes("KMB"),
+					);
+					if (hasKmbCycle) {
+						Log.log(
+							`[CTB] Detected KMB-operated trip for route ${route}, dest: ${dest}`,
+						);
+					}
+
+					const etaObj = {
+						dest: dest,
+						time: times,
+					};
+
+					// Add note if applicable
+					if (hasKmbCycle) {
+						etaObj.note = this.config.lang.startsWith("zh")
+							? "九巴時段"
+							: "KMB Cycle";
+					}
+
+					return etaObj;
+				},
+			);
+
+			return {
+				line: route,
+				etas: etasArray,
+			};
+		});
 	}
 
 	// Helper methods to improve readability
 	groupETAsByDirection(etaList) {
 		return etaList.reduce((groups, eta) => {
-			groups[eta.dir] = groups[eta.dir] || [];
+			groups[eta.dir] ??= [];
 			groups[eta.dir].push(eta);
 			return groups;
 		}, {});

@@ -83,14 +83,9 @@ class LRTProvider extends HKTransportETAProvider {
 				return [];
 			}
 
-			const groupedRouteList = routeLists.route_list.reduce(
-				(group, product) => {
-					const { route_no } = product;
-					group[route_no] = group[route_no] ?? [];
-					group[route_no].push(product);
-					return group;
-				},
-				{},
+			const groupedRouteList = Object.groupBy(
+				routeLists.route_list,
+				(product) => product.route_no,
 			);
 			return Object.keys(groupedRouteList).map((key) => {
 				const dataList = groupedRouteList[key];

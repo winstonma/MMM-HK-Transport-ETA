@@ -60,7 +60,7 @@ class MTRProvider extends HKTransportETAProvider {
 
 			// Find the valid line and routes
 			return Object.entries(data).flatMap(([key, lineInfo]) =>
-				(lineInfo.stations || [])
+				(lineInfo.stations ?? [])
 					.filter((station) =>
 						[station.tc, station.en].includes(this.config.sta),
 					)
@@ -107,19 +107,19 @@ class MTRProvider extends HKTransportETAProvider {
 		const etas = Object.keys(etaObject)
 			.filter((key) => ["UP", "DOWN"].includes(key))
 			.map((direction) => {
-				const groupByDest = etaObject[direction].reduce((r, a) => {
-					const destination = this.config.mtrData[
-						lineCode
-					].stations.find((station) => station.code === a.dest)[lang];
-					r[destination] = [...(r[destination] || []), a];
-					return r;
-				}, {});
-				return Object.entries(groupByDest).map(([key, value]) => ({
+				const groupedByDest = Object.groupBy(
+					etaObject[direction],
+					(eta) =>
+						this.config.mtrData[lineCode].stations.find(
+							(station) => station.code === eta.dest,
+						)[lang],
+				);
+				return Object.entries(groupedByDest).map(([key, value]) => ({
 					dest: key,
 					time: value.map((eta) => eta.time),
 				}))[0];
 			})
-			.filter((n) => n);
+			.filter(Boolean);
 
 		return {
 			line: stationInfo.line,

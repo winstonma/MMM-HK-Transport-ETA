@@ -53,7 +53,7 @@ class GMBProvider extends HKTransportETAProvider {
 			const routeURL = `${this.config.apiBase}/route/${this.config.area}/${this.config.line}`;
 			const routeData = await this.fetchData(routeURL);
 
-			if (!routeData.data || !routeData.data[0]) {
+			if (!routeData?.data?.[0]) {
 				throw new Error("Invalid route data received");
 			}
 
